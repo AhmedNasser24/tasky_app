@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky_app/core/utils/app_color.dart';
 
 void main() {
   runApp(const TaskyApp());
@@ -12,7 +13,9 @@ class TaskyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        
+        fontFamily: 'DM Sans',
+        scaffoldBackgroundColor: AppColor.whiteColor,
+        colorScheme: ColorScheme.fromSeed(seedColor:AppColor.primaryColor),
       ),
       home: const Scaffold(),
     );
