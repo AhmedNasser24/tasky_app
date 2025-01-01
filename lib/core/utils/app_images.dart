@@ -19,12 +19,8 @@ class Assets {
   static const String imagesLogoForTablet = "assets/images/logo_for_tablet.svg";
 
   /// Assets for imagesRegisterLogo
-  /// assets/images/register_logo.svg
-  static const String imagesRegisterLogo = "assets/images/register_logo.svg";
-
-  /// Assets for imagesRegisterLogo1
-  /// assets/images/register_logo1.svg
-  static const String imagesRegisterLogo1 = "assets/images/register_logo1.svg";
+  /// assets/images/register_logo.png
+  static const String imagesRegisterLogo = "assets/images/register_logo.png";
 
   /// Assets for imagesRegisterLogo2
   /// assets/images/register_logo2.png

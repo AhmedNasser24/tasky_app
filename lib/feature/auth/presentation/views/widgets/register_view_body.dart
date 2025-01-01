@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/utils/app_images.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
+import 'package:tasky_app/feature/auth/presentation/views/widgets/already_have_account.dart';
 import 'package:tasky_app/feature/auth/presentation/views/widgets/register_password.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/feature/auth/presentation/views/widgets/register_years_of_experience.dart';
 import '../../../../../core/utils/app_styles.dart';
 import 'custom_intl_phone_field.dart';
 import 'register_address.dart';
+import 'register_button.dart';
 import 'register_name.dart';
+import 'select_experience_textformfield.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
@@ -25,10 +28,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(Assets.imagesRegisterLogoCopy),
-            const Text("Register", style: AppStyles.bold24),
+            Image.asset(Assets.imagesRegisterLogo),
+            TitleWidget("Register"),
             const Gap(15),
             RegisterName(userInfoModel),
             const Gap(10),
@@ -36,12 +39,36 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             const Gap(10),
             RegisterYearsOfExperience(userInfoModel),
             const Gap(10),
+            SelectedExperienceTextFormField(userInfoModel),
+            const Gap(10),
             RegisterAddress(userInfoModel),
             const Gap(10),
             RegisterPassword(userInfoModel),
+            const Gap(15),
+            RegisterButton(userInfoModel),
+            const Gap(10),
+            const AlreadyHaveAccount(),
+            const Gap(kBottomSpace),
           ],
         ),
       ),
+    );
+  }
+}
+
+class TitleWidget extends StatelessWidget {
+  const TitleWidget(
+    this.title, {
+    super.key,
+  });
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(title, style: AppStyles.bold24),
+        const Spacer(),
+      ],
     );
   }
 }

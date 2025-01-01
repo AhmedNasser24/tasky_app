@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
 
+import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class CustomIntlPhoneField extends StatelessWidget {
@@ -15,11 +16,11 @@ class CustomIntlPhoneField extends StatelessWidget {
     return IntlPhoneField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       flagsButtonPadding: const EdgeInsets.only(left: 8),
-      style: AppStyles.semibold14,
+      style: AppStyles.medium14,
       disableLengthCheck: true,
       decoration: InputDecoration(
         hintText: 'Enter your phone number',
-        hintStyle: AppStyles.regular14.copyWith(color: const Color(0xff7F7F7F)),
+        hintStyle: AppStyles.regular14.copyWith(color: AppColor.greyColor),
         border: normalOutlineInputBorder(),
         enabledBorder: normalOutlineInputBorder(),
         focusedBorder: focusOutlineInputBorder(),
