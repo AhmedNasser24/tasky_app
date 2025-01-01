@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  intl_phone_field: ^3.2.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.2
@@ -43,7 +44,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # add flutter_launcher_icons package
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -52,7 +52,7 @@ flutter_launcher_icons:
   min_sdk_android: 24 # android min sdk min:16, default 21
   adaptive_icon_background: "#FFFFFFFF"
   adaptive_icon_foreground: "assets/images/app_icon.webp"
-  remove_alpha_ios: true    # remove alpha channel from iOS icon
+  remove_alpha_ios: true # remove alpha channel from iOS icon
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
@@ -83,7 +83,6 @@ flutter:
           weight: 600
         - asset: assets/fonts/DMSans-Bold.ttf
           weight: 700
-
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

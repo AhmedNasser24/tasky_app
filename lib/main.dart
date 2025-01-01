@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
+import 'package:tasky_app/feature/auth/presentation/views/register_view.dart';
+
+import 'core/helper/on_generate_route.dart';
 
 void main() {
   runApp(const TaskyApp());
@@ -17,7 +20,9 @@ class TaskyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColor.whiteColor,
         colorScheme: ColorScheme.fromSeed(seedColor:AppColor.primaryColor),
       ),
-      home: const Scaffold(),
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: onGenerateRoute,
+      initialRoute: RegisterView.routeName,
     );
   }
 }
