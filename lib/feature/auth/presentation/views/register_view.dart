@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky_app/feature/auth/presentation/views/widgets/register_view_body.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -7,7 +8,7 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-        child: Center(child: Text('Register View')),
+        child: RegisterViewBody(),
       ),
     );
   }
