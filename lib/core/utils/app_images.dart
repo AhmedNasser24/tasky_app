@@ -18,6 +18,22 @@ class Assets {
   /// assets/images/logo_for_tablet.svg
   static const String imagesLogoForTablet = "assets/images/logo_for_tablet.svg";
 
+  /// Assets for imagesRegisterLogo
+  /// assets/images/register_logo.svg
+  static const String imagesRegisterLogo = "assets/images/register_logo.svg";
+
+  /// Assets for imagesRegisterLogo1
+  /// assets/images/register_logo1.svg
+  static const String imagesRegisterLogo1 = "assets/images/register_logo1.svg";
+
+  /// Assets for imagesRegisterLogo2
+  /// assets/images/register_logo2.png
+  static const String imagesRegisterLogo2 = "assets/images/register_logo2.png";
+
+  /// Assets for imagesRegisterLogoCopy
+  /// assets/images/register_logo_copy.png
+  static const String imagesRegisterLogoCopy = "assets/images/register_logo_copy.png";
+
   /// Assets for imagesTinywowLogoPng72237246
   /// assets/images/tinywow_logo_png_72237246.png
   static const String imagesTinywowLogoPng72237246 = "assets/images/tinywow_logo_png_72237246.png";
