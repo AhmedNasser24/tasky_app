@@ -40,6 +40,7 @@ class _SelectedExperienceTextFormFieldState
     );
   }
 
+  List<String> experience = ['Fresh', 'Junior', 'Senior'];
   void _showAccountKindDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -48,33 +49,28 @@ class _SelectedExperienceTextFormFieldState
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
-            
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical:  12.0),
-                child: GestureDetector(
-                  child: const Text("Junior", style: AppStyles.semibold14),
-                  onTap: () {
-                    setState(() {
-                      selectExperience = "Junior";
-                    });
-                    Navigator.pop(context);
-                  },
+              for (int i = 0; i < experience.length; i++)
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: GestureDetector(
+                        child: Text(experience[i], style: AppStyles.semibold14),
+                        onTap: () {
+                          setState(() {
+                            selectExperience = experience[i];
+                          });
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                    i != experience.length - 1
+                        ? const Divider(
+                            thickness: 0.3, color: AppColor.primaryColor)
+                        : const SizedBox(),
+                  ],
                 ),
-              ),
-              const Divider(thickness: 0.3, color: AppColor.primaryColor),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical:  12.0),
-                child: GestureDetector(
-                  child: const Text("Senior", style: AppStyles.semibold14),
-                  onTap: () {
-                    setState(() {
-                      selectExperience = "Senior";
-                    });
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
             ],
           ),
         );
