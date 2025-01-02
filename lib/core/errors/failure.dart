@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 
 abstract class Failure {
@@ -39,12 +37,18 @@ class ServerFailure extends Failure {
       int statusCode, Map<String, dynamic> errData) {
     if (statusCode == 404) {
       return const ServerFailure('Not found');
-    } else if ( statusCode == 401 ) {
+    } else if (statusCode == 401) {
+      if (errData['message'] == '"يوجد خطأ في رقم الهاتف أو كلمة المرور"') {
+        return const ServerFailure("wrong phone number or password");
+      }
       return const ServerFailure("unauthorized");
     } else if (statusCode == 422) {
-      return const ServerFailure("this phone is already in use");
+      if (errData['message'] == "رقم الهاتف مستخدم بالفعل") {
+        return const ServerFailure("this phone is already in use");
+      }
+      return const ServerFailure("error , please try again");
     } else {
-      return const ServerFailure('Unknown bad response');
+      return const ServerFailure("error , please try again");
     }
   }
 }

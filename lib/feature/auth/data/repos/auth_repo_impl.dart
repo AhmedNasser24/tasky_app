@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:tasky_app/core/services/auth_services.dart';
+import 'package:tasky_app/feature/auth/data/model/login_model.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -18,6 +19,23 @@ class AuthRepoImpl implements AuthRepo {
     try {
       UserInfoModel userInfoModelOutput =
           await authServices.register(userInfoModelInput: userInfoModelInput);
+      // save to shared preferences
+      return left(null);
+    } on DioException catch (e) {
+      log("register error : ${e.toString()}");
+      return right(ServerFailure.fromDioException(e));
+    } catch (e) {
+      log("register error : ${e.toString()}");
+      return right(const ServerFailure("please try again"));
+    }
+  }
+
+  @override
+  Future<Either<void, Failure>> login(
+      {required LoginModel loginModelInput}) async {
+    try {
+      LoginModel loginModelOutput =
+          await authServices.login(loginModelInput: loginModelInput);
       // save to shared preferences
       return left(null);
     } on DioException catch (e) {
