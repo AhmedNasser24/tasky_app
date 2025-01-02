@@ -26,6 +26,7 @@ class CustomIntlPhoneField extends StatelessWidget {
         enabledBorder: normalOutlineInputBorder(),
         focusedBorder: focusOutlineInputBorder(),
         errorBorder: outLineErrorInputBorder(),
+        focusedErrorBorder: outLineErrorInputBorder(),
       ),
       dropdownIcon: const Icon(
         Icons.arrow_drop_down,
