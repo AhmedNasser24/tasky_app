@@ -40,7 +40,7 @@ class _SelectedExperienceTextFormFieldState
     );
   }
 
-  List<String> experience = ['Fresh', 'Junior', 'Senior'];
+  List<String> experience = ["fresh" , "junior" , "midLevel" , "senior"];
   void _showAccountKindDialog(BuildContext context) {
     showDialog(
       context: context,

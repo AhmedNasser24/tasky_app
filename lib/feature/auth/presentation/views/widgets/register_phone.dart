@@ -12,7 +12,7 @@ class RegisterPhone extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomIntlPhoneField(
       onChanged: (phone) {
-        userInfoModel.phone = phone.toString();
+        userInfoModel.phone = "${phone.countryCode}${phone.number}";
       },
       
     );

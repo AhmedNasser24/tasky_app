@@ -23,10 +23,13 @@ class _RegisterPasswordState extends State<RegisterPassword> {
       hintText: "Password...",
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,
-      onSaved: (password) => widget.userInfoModel.password = password,
+      onChanged: (password) => widget.userInfoModel.password = password,
       validator: (password) {
         if (password == null || password.isEmpty) {
           return "field is required";
+        }
+        if (password.length < 6) {
+          return "password is too weak" ;
         }
         return null;
       },

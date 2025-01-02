@@ -12,9 +12,8 @@ class LoginPhone extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomIntlPhoneField(
       onChanged: (phone) {
-        loginModel.phone = phone.toString();
+        loginModel.phone = "${phone.countryCode}${phone.number}";
       },
-      
     );
   }
 }

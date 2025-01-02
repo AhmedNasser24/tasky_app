@@ -10,7 +10,7 @@ class RegisterAddress extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       hintText: "Address...",
-      onSaved: (address) => userInfoModel.address = address,
+      onChanged: (address) => userInfoModel.address = address,
       validator: (address) {
         if (address == null || address.isEmpty) return "field is required";
         return null;

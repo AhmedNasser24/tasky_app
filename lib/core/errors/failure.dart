@@ -12,7 +12,6 @@ class ServerFailure extends Failure {
   const ServerFailure(super.errMessage);
 
   factory ServerFailure.fromDioException(DioException dioException) {
-    
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
         return const ServerFailure('Connection time out with ApiServer');
@@ -40,8 +39,10 @@ class ServerFailure extends Failure {
       int statusCode, Map<String, dynamic> errData) {
     if (statusCode == 404) {
       return const ServerFailure('Not found');
-    } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return const ServerFailure("invalid email or password");
+    } else if ( statusCode == 401 ) {
+      return const ServerFailure("unauthorized");
+    } else if (statusCode == 422) {
+      return const ServerFailure("this phone is already in use");
     } else {
       return const ServerFailure('Unknown bad response');
     }

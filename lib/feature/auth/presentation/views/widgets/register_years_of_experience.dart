@@ -11,9 +11,12 @@ class RegisterYearsOfExperience extends StatelessWidget {
     return CustomTextFormField(
       hintText: "Years of experience...",
       keyboardType: TextInputType.number,
-      onSaved: (yearsOfExperience) => userInfoModel.yearsOfExperience = yearsOfExperience,
+      onChanged: (yearsOfExperience) => userInfoModel.yearsOfExperience = yearsOfExperience,
       validator: (yearsOfExperience) {
         if (yearsOfExperience == null || yearsOfExperience.isEmpty) return "field is required";
+        if (int.tryParse(yearsOfExperience) == null) return "field must be numbers only";
+        if ( int.parse(yearsOfExperience) < 0) return "field must be greater than 0";
+        if ( int.parse(yearsOfExperience) > 50) return "field must be less than 50";
         return null;
       },
     );

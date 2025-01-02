@@ -23,7 +23,7 @@ class _LoginPasswordState extends State<LoginPassword> {
       hintText: "Password...",
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,
-      onSaved: (password) => widget.loginModel.password = password,
+      onChanged: (password) => widget.loginModel.password = password,
       validator: (password) {
         if (password == null || password.isEmpty) {
           return "field is required";
