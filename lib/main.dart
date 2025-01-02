@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
-import 'package:tasky_app/feature/auth/presentation/views/register_view.dart';
-
+import 'package:tasky_app/feature/auth/presentation/views/login_view.dart';
 import 'core/helper/on_generate_route.dart';
 
 void main() {
@@ -22,7 +21,7 @@ class TaskyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: RegisterView.routeName,
+      initialRoute: LoginView.routeName,
     );
   }
 }

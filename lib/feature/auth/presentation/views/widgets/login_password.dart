@@ -38,11 +38,11 @@ class _LoginPasswordState extends State<LoginPassword> {
         },
         child: obscureText
             ? const Icon(
-                Icons.visibility,
+                Icons.visibility_outlined,
                 color: Color(0xffC9CECF),
               )
             : const Icon(
-                Icons.visibility_off,
+                Icons.visibility_off_outlined,
                 color: Color(0xffC9CECF),
               ),
       ),

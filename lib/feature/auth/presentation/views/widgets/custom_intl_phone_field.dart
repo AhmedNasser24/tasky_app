@@ -1,16 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class CustomIntlPhoneField extends StatelessWidget {
-  const CustomIntlPhoneField(
-    this.userInfoModel, {
+  const CustomIntlPhoneField({
     super.key,
+    this.onChanged,
+    this.validator,
   });
-  final UserInfoModel userInfoModel;
+  final void Function(PhoneNumber)? onChanged;
+  final FutureOr<String?> Function(PhoneNumber?)? validator;
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
@@ -33,7 +37,8 @@ class CustomIntlPhoneField extends StatelessWidget {
       dropdownIconPosition: IconPosition.trailing,
       dropdownTextStyle: const TextStyle(color: Color(0xff7F7F7F)),
       initialCountryCode: 'EG',
-      onChanged: (phone) {},
+      onChanged: onChanged,
+      validator: validator,
     );
   }
 

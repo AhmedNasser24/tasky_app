@@ -1,1 +1,1 @@
-3 hour work
+6.5 hour work
