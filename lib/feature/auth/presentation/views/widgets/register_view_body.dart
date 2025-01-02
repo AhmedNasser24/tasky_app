@@ -48,7 +48,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               const Gap(10),
               RegisterPassword(userInfoModel),
               const Gap(15),
-              RegisterButton(userInfoModel),
+              RegisterButton(userInfoModel : userInfoModel , formKey: formKey),
               const Gap(10),
               const AlreadyHaveAccount(),
               const Gap(kBottomSpace),

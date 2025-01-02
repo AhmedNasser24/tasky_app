@@ -14,10 +14,7 @@ class RegisterPhone extends StatelessWidget {
       onChanged: (phone) {
         userInfoModel.phone = phone.toString();
       },
-      // validator: (phone) {
-      //   if (phone == null || phone.isValidNumber()) return "field is required";
-      //   return null;
-      // },
+      
     );
   }
 }

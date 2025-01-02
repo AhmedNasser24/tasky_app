@@ -36,7 +36,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               const Gap(10),
               LoginPassword(loginModel),
               const Gap(15),
-              LoginButton(loginModel),
+              LoginButton(loginModel:loginModel , formKey:formKey),
               const Gap(10),
               const DoNotHaveAccount(),
               const Gap(kBottomSpace),

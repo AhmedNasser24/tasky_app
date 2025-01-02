@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
@@ -11,17 +9,16 @@ class CustomIntlPhoneField extends StatelessWidget {
   const CustomIntlPhoneField({
     super.key,
     this.onChanged,
-    this.validator,
   });
   final void Function(PhoneNumber)? onChanged;
-  final FutureOr<String?> Function(PhoneNumber?)? validator;
+
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: AutovalidateMode.always,
       flagsButtonPadding: const EdgeInsets.only(left: 8),
       style: AppStyles.medium14,
-      disableLengthCheck: true,
+      disableLengthCheck: true,    // set false , make it use default validation
       decoration: InputDecoration(
         hintText: 'Enter your phone number',
         hintStyle: AppStyles.regular14.copyWith(color: AppColor.greyColor),
@@ -38,7 +35,20 @@ class CustomIntlPhoneField extends StatelessWidget {
       dropdownTextStyle: const TextStyle(color: Color(0xff7F7F7F)),
       initialCountryCode: 'EG',
       onChanged: onChanged,
-      validator: validator,
+      onCountryChanged: (value) {},
+      validator: (phone) async {
+        if (phone == null || phone.number.isEmpty) return "field is required";
+        try {
+          phone.isValidNumber();
+          return null;
+        } catch (e) {
+          if (e.toString().contains("NumberTooShortException")) {
+            return "Number is too short";
+          } else {
+            return "Number is too long";
+          }
+        }
+      },
     );
   }
 
