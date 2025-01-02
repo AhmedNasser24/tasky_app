@@ -10,7 +10,7 @@ class RegisterName extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       hintText: "Name...",
-      onSaved: (name) => userInfoModel.name = name,
+      onSaved: (name) => userInfoModel.userName = name,
       validator: (name) {
         if (name == null || name.isEmpty) return "field is required";
         return null;

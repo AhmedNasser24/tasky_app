@@ -34,7 +34,7 @@ class _SelectedExperienceTextFormFieldState
         if (selectExperience == 'Choose experience Level') {
           return "Choose experience Level";
         }
-        widget.userInfoModel.experience = selectExperience;
+        widget.userInfoModel.experienceLevel = selectExperience;
         return null;
       },
     );
