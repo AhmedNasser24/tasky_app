@@ -38,10 +38,13 @@ class ServerFailure extends Failure {
     if (statusCode == 404) {
       return const ServerFailure('Not found');
     } else if (statusCode == 401) {
-      if (errData['message'] == '"يوجد خطأ في رقم الهاتف أو كلمة المرور"') {
+      if (errData['message'] == "يوجد خطأ في رقم الهاتف أو كلمة المرور") {
         return const ServerFailure("wrong phone number or password");
+      } else if (errData['message'] == "unauthorized") {
+        // refresh token
+        return const ServerFailure("unauthorized");
       }
-      return const ServerFailure("unauthorized");
+      return const ServerFailure("error , please try again");
     } else if (statusCode == 422) {
       if (errData['message'] == "رقم الهاتف مستخدم بالفعل") {
         return const ServerFailure("this phone is already in use");

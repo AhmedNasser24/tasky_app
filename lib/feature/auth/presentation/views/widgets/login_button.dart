@@ -17,6 +17,7 @@ class LoginButton extends StatelessWidget {
     return CustomButton(
       onTap: () {
         if (formKey.currentState!.validate()) {
+          log("user info : ${loginModel.toJson()}");
           BlocProvider.of<LoginCubit>(context)
               .login(loginModelInput: loginModel);
         }

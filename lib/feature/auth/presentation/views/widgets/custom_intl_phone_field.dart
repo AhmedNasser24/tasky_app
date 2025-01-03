@@ -5,7 +5,7 @@ import 'package:intl_phone_field/phone_number.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_styles.dart';
 
-class CustomIntlPhoneField extends StatelessWidget {
+class CustomIntlPhoneField extends StatefulWidget {
   const CustomIntlPhoneField({
     super.key,
     this.onChanged,
@@ -13,8 +13,16 @@ class CustomIntlPhoneField extends StatelessWidget {
   final void Function(PhoneNumber)? onChanged;
 
   @override
+  State<CustomIntlPhoneField> createState() => _CustomIntlPhoneFieldState();
+}
+
+class _CustomIntlPhoneFieldState extends State<CustomIntlPhoneField> {
+  TextEditingController controller = TextEditingController();
+  AutovalidateMode autovalidateMode = AutovalidateMode.always ;
+  @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
+      controller: controller,
       autovalidateMode: AutovalidateMode.always,
       flagsButtonPadding: const EdgeInsets.only(left: 8),
       style: AppStyles.medium14,
@@ -35,8 +43,13 @@ class CustomIntlPhoneField extends StatelessWidget {
       dropdownIconPosition: IconPosition.trailing,
       dropdownTextStyle: const TextStyle(color: Color(0xff7F7F7F)),
       initialCountryCode: 'EG',
-      onChanged: onChanged,
-      onCountryChanged: (value) {},
+      onChanged: widget.onChanged,
+      onCountryChanged: (value) {
+        setState(() {
+          autovalidateMode = AutovalidateMode.always ;
+          controller.clear();
+        });
+      },
       validator: (phone) async {
         if (phone == null || phone.number.isEmpty) return "field is required";
         try {

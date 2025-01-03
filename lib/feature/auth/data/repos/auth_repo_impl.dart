@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:tasky_app/core/helper/api_keys.dart';
 import 'package:tasky_app/core/services/auth_services.dart';
+import 'package:tasky_app/core/utils/shared_preference_singleton.dart';
 import 'package:tasky_app/feature/auth/data/model/login_model.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
 
@@ -19,7 +21,12 @@ class AuthRepoImpl implements AuthRepo {
     try {
       UserInfoModel userInfoModelOutput =
           await authServices.register(userInfoModelInput: userInfoModelInput);
-      // save to shared preferences
+      await SharedPreferenceSingleton.setString(
+          ApiKeys.userId, userInfoModelOutput.userId!);
+      await SharedPreferenceSingleton.setString(
+          ApiKeys.accessToken, userInfoModelOutput.accessToken!);
+      await SharedPreferenceSingleton.setString(
+          ApiKeys.refreshToken, userInfoModelOutput.refreshToken!);
       return left(null);
     } on DioException catch (e) {
       log("register error : ${e.toString()}");
@@ -36,7 +43,12 @@ class AuthRepoImpl implements AuthRepo {
     try {
       LoginModel loginModelOutput =
           await authServices.login(loginModelInput: loginModelInput);
-      // save to shared preferences
+      await SharedPreferenceSingleton.setString(
+          ApiKeys.userId, loginModelOutput.userId!);
+      await SharedPreferenceSingleton.setString(
+          ApiKeys.accessToken, loginModelOutput.accessToken!);
+      await SharedPreferenceSingleton.setString(
+          ApiKeys.refreshToken, loginModelOutput.refreshToken!);
       return left(null);
     } on DioException catch (e) {
       log("register error : ${e.toString()}");

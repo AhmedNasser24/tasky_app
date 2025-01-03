@@ -4,11 +4,14 @@ import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/get_it_setup.dart';
 import 'package:tasky_app/feature/auth/presentation/views/login_view.dart';
 import 'core/helper/on_generate_route.dart';
+import 'core/utils/shared_preference_singleton.dart';
 import 'core/utils/simple_bloc_observer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
+  await SharedPreferenceSingleton.init();
   runApp(const TaskyApp());
 }
 
