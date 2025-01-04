@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/feature/home/data/models/filter_model.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/all_task_list_view.dart';
 
 import 'filter_item.dart';
 
 class FilterButtons extends StatefulWidget {
-  const FilterButtons({super.key});
-
+  const FilterButtons(
+    this.selectFilter, {
+    super.key,
+  });
+  final void Function(String selectFilter) selectFilter;
   @override
   State<FilterButtons> createState() => _FilterButtonsState();
 }
@@ -21,9 +22,9 @@ class _FilterButtonsState extends State<FilterButtons> {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: filterModelList.asMap().entries.map((e) {
+          children: filterTitleList.asMap().entries.map((e) {
             int index = e.key;
-            FilterModel filterModel = e.value;
+            String title = e.value;
             return GestureDetector(
               onTap: () {
                 setState(() {
@@ -31,7 +32,7 @@ class _FilterButtonsState extends State<FilterButtons> {
                 });
               },
               child: FilterItem(
-                text: filterModel.title,
+                text: title,
                 isActive: selectedIndex == index,
               ),
             );
@@ -41,11 +42,10 @@ class _FilterButtonsState extends State<FilterButtons> {
     );
   }
 
-  List < FilterModel > filterModelList = const [
-    FilterModel(title: kAll , widget: AllTaskListView(filterAccordingTo: "all")),
-    FilterModel(title: kInprogress , widget: AllTaskListView(filterAccordingTo: "waiting")),
-    FilterModel(title: kWaiting , widget: AllTaskListView(filterAccordingTo: kWaiting)),
-    FilterModel(title: kFinished , widget: AllTaskListView(filterAccordingTo: kFinished)),
-
+  List<String> filterTitleList = const [
+    kAll,
+    kInprogress,
+    kWaiting,
+    kFinished,
   ];
 }
