@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:tasky_app/feature/home/presentation/views/widgets/custom_add_icon.dart';
+import 'widgets/custom_qr_icon.dart';
 import 'widgets/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -10,6 +11,19 @@ class HomeView extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: HomeViewBody(),
+      ),
+      floatingActionButton: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomRight,
+            child: CustomAddIconButton(),
+          ),
+          Positioned(
+            right: 0.0,
+            bottom: 80,
+            child: CustomQrIconButton(),
+          ),
+        ],
       ),
     );
   }
