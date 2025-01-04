@@ -1,12 +1,14 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+// WidgetsFlutterBinding.ensureInitialized();
+//   await SharedPreferenceSingleton.init();
 class SharedPreferenceSingleton {
   static late SharedPreferences _instance;
   static Future<void> init() async {
     _instance = await SharedPreferences.getInstance();
   }
 
-  static setbool(String key, bool value) async{
+  static Future<void> setbool(String key, bool value) async {
     await _instance.setBool(key, value);
   }
 
@@ -14,7 +16,7 @@ class SharedPreferenceSingleton {
     return _instance.getBool(key) ?? false;
   }
 
-  static setString(String key, String value) async {
+  static Future<void> setString(String key, String value) async {
     await _instance.setString(key, value);
   }
 

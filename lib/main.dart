@@ -9,9 +9,9 @@ import 'core/utils/simple_bloc_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferenceSingleton.init();
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
-  await SharedPreferenceSingleton.init();
   runApp(const TaskyApp());
 }
 

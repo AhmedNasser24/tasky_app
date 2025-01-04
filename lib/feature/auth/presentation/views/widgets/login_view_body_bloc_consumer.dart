@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_model_progress_hud.dart';
 import 'package:tasky_app/core/widgets/show_error_message.dart';
 import 'package:tasky_app/feature/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:tasky_app/feature/home/presentation/views/home_view.dart';
 
 import 'login_view_body.dart';
 
@@ -18,7 +17,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          log("Login Success");
+          Navigator.pushReplacementNamed(context, HomeView.routeName) ;
         } else if (state is LoginFailure) {
           showSnackBar(context, state.errMessage);
         }
