@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.tasky_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = 24
+    ndkVersion = "24.0.8215888"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

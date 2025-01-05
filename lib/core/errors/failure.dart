@@ -28,8 +28,7 @@ class ServerFailure extends Failure {
         return const ServerFailure('Network connection error');
       case DioExceptionType.unknown:
         return const ServerFailure('unKnown Error');
-      default:
-        return const ServerFailure('Opps , unExcepected error');
+      
     }
   }
 
