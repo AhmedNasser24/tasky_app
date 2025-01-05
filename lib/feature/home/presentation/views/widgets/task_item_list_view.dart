@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tasky_app/feature/home/presentation/views/widgets/task_item.dart';
 // import 'package:tasky_app/feature/home/data/models/task_model.dart';
 
-class AllTaskListView extends StatelessWidget {
-  const AllTaskListView({
+class TaskItemListView extends StatelessWidget {
+  const TaskItemListView({
     super.key,
     required this.filterAccordingTo,
   });
@@ -11,6 +11,10 @@ class AllTaskListView extends StatelessWidget {
   // final TaskModel data;
   @override
   Widget build(BuildContext context) {
-    return const TaskItem();
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      itemCount: 8,
+      itemBuilder: (context, index) => const TaskItem(),
+    );
   }
 }

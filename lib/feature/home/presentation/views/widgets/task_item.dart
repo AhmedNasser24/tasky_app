@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/utils/app_color.dart';
-import 'package:tasky_app/core/utils/app_styles.dart';
 import '../../../../../core/utils/app_images.dart';
 import 'setting_icon_button.dart';
 import 'task_item_date.dart';
@@ -22,10 +20,14 @@ class TaskItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TaskItemImage(Assets.imagesTask),
+          SizedBox(
+            height: 64,
+            width: 64,
+            child: TaskItemImage(Assets.imagesTask)),
           Gap(5),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(

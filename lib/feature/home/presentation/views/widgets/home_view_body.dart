@@ -32,16 +32,14 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const HomeAppBar(),
-            const Gap(24),
-            const MyTaskText(),
-            FilterButtons(selectFilter),
-            selectWidgetAccordingToFilter(),
-          ],
-        ),
+      child: Column(
+        children: [
+          const HomeAppBar(),
+          const Gap(24),
+          const MyTaskText(),
+          FilterButtons(selectFilter),
+          Expanded(child: selectWidgetAccordingToFilter()),
+        ],
       ),
     );
   }
@@ -49,13 +47,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget selectWidgetAccordingToFilter() {
     switch (currFilter) {
       case kAll:
-        return const AllTaskListView(filterAccordingTo: kAll);
+        return const TaskItemListView(filterAccordingTo: kAll);
       case kWaiting:
-        return const AllTaskListView(filterAccordingTo: kWaiting);
+        return const TaskItemListView(filterAccordingTo: kWaiting);
       case kInprogress:
-        return const AllTaskListView(filterAccordingTo: kInprogress);
+        return const TaskItemListView(filterAccordingTo: kInprogress);
       case kFinished:
-        return const AllTaskListView(filterAccordingTo: kFinished);
+        return const TaskItemListView(filterAccordingTo: kFinished);
       default:
         return const SizedBox();
     }
