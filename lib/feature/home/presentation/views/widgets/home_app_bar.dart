@@ -10,14 +10,17 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text('Logo', style: AppStyles.bold24),
-        const Spacer(),
-        SvgPicture.asset(Assets.imagesProfileIcon),
-        const Gap(20),
-        SvgPicture.asset(Assets.imagesLogoutIcon),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric( vertical: 12.0),
+      child: Row(
+        children: [
+          const Text('Logo', style: AppStyles.bold24),
+          const Spacer(),
+          SvgPicture.asset(Assets.imagesProfileIcon),
+          const Gap(20),
+          SvgPicture.asset(Assets.imagesLogoutIcon),
+        ],
+      ),
     );
   }
 }

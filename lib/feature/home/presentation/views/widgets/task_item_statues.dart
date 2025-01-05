@@ -1,0 +1,39 @@
+
+import 'package:flutter/material.dart';
+
+import '../../../../../constants.dart';
+import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/app_styles.dart';
+
+class TaskItemStatues extends StatelessWidget {
+  const TaskItemStatues(
+    this.statues, {
+    super.key,
+  });
+  final String statues;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      decoration: ShapeDecoration(
+        color: const Color(0xFFE3F2FF),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+      child: Text(
+        statues,
+        style: AppStyles.medium12.copyWith(color: getStatusColor(statues)),
+      ),
+    );
+  }
+  Color getStatusColor(String statues){
+    Map < String , Color > statusColor = {
+      kWaiting : const Color(0xFFFF7D53),
+      kInprogress :  AppColor.primaryColor,
+      kFinished : const Color(0xFF0087FF),
+    };
+
+    return statusColor[statues]! ;
+  }
+}

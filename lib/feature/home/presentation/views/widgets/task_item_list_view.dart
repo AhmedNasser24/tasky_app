@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky_app/feature/home/presentation/views/widgets/task_item.dart';
 // import 'package:tasky_app/feature/home/data/models/task_model.dart';
 
 class AllTaskListView extends StatelessWidget {
@@ -10,10 +11,6 @@ class AllTaskListView extends StatelessWidget {
   // final TaskModel data;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(filterAccordingTo),
-      ],
-    );
+    return const TaskItem();
   }
 }
