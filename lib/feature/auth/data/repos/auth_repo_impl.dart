@@ -58,4 +58,23 @@ class AuthRepoImpl implements AuthRepo {
       return right(const ServerFailure("please try again"));
     }
   }
+
+  @override
+  Future<Either<void, Failure>> refreshToken() async {
+    try {
+      String refreshToken =
+          SharedPreferenceSingleton.getString(ApiKeys.refreshToken);
+      String newAccessToken =
+          await authServices.refreshToken(refreshToken: refreshToken);
+      await SharedPreferenceSingleton.setString(
+          ApiKeys.accessToken, newAccessToken);
+      return left(null);
+    } on DioException catch (e) {
+      log("refresh token error : ${e.toString()}");
+      return right(ServerFailure.fromDioException(e));
+    } catch (e) {
+      log("refresh token error : ${e.toString()}");
+      return right(const ServerFailure("please try again"));
+    }
+  }
 }

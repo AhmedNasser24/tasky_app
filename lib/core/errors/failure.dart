@@ -28,14 +28,13 @@ class ServerFailure extends Failure {
         return const ServerFailure('Network connection error');
       case DioExceptionType.unknown:
         return const ServerFailure('unKnown Error');
-      
     }
   }
 
   factory ServerFailure.fromBadResponse(
       int statusCode, Map<String, dynamic> errData) {
-    if (statusCode == 404) {
-      return const ServerFailure('Not found');
+    if (statusCode == 403) {
+      return ServerFailure(errData['message']);
     } else if (statusCode == 401) {
       if (errData['message'] == "يوجد خطأ في رقم الهاتف أو كلمة المرور") {
         return const ServerFailure("wrong phone number or password");
