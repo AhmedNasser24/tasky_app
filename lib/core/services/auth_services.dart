@@ -12,7 +12,7 @@ class AuthServices {
 
   Future<LoginModel> login({required LoginModel loginModelInput}) async {
     Map<String, dynamic> data = await apiServices.post(
-        endPoint:EndPoint.login, data: loginModelInput.toJson());
+        endPoint: EndPoint.login, data: loginModelInput.toJson());
     LoginModel loginModelOutput = LoginModel.fromJson(data);
     return loginModelOutput;
   }
@@ -25,9 +25,8 @@ class AuthServices {
     return userInfoModelOutput;
   }
 
-  Future < void > logout() async {
-    await apiServices.get(endPoint: "auth/logout" ,
-    );
+  Future<void> logout({required accessToken}) async {
+    await apiServices.get(endPoint: "auth/logout" , authorization: accessToken);
   }
 
   Future<String> refreshToken({required String refreshToken}) async {

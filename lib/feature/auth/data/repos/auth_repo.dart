@@ -7,5 +7,6 @@ import '../model/user_info_model.dart';
 abstract class AuthRepo {
   Future<Either < void , Failure >> login ({required LoginModel loginModelInput});
   Future<Either < void , Failure >> register({required UserInfoModel userInfoModelInput});
-  Future < Either < void , Failure >> refreshToken ();
+  Future < String > refreshToken ();
+  Future < Either < void , Failure >> logout ();
 }
