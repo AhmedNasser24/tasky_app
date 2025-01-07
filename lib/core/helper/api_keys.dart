@@ -8,4 +8,15 @@ class ApiKeys {
   static const String userId = "_id";
   static const String accessToken = "access_token";
   static const String refreshToken = "refresh_token";
+  static const String taskId = "_id";
+  static const String taskImage = "image";
+  static const String taskTitle = "title";
+  static const String taskDesc = "desc";
+  static const String taskPriority = "priority";
+  static const String taskStatus = "status";
+  static const String taskUser = "user";
+  static const String taskCreatedAt = "createdAt";
+  static const String taskUpdatedAt = "updatedAt";
+
+  
 }
