@@ -26,7 +26,7 @@ class AuthServices {
   }
 
   Future<void> logout({required accessToken}) async {
-    await apiServices.get(endPoint: "auth/logout" , authorization: accessToken);
+    await apiServices.post(endPoint: EndPoint.logout , authorization: accessToken);
   }
 
   Future<String> refreshToken({required String refreshToken}) async {

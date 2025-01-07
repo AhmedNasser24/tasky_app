@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/core/utils/app_images.dart';
 
 import '../../../../../core/utils/app_styles.dart';
+import 'logout_icon_button_bloc_consumer.dart';
+import 'profile_icon_button.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric( vertical: 12.0),
+    return const Padding(
+      padding: EdgeInsets.symmetric( vertical: 12.0),
       child: Row(
         children: [
-          const Text('Logo', style: AppStyles.bold24),
-          const Spacer(),
-          SvgPicture.asset(Assets.imagesProfileIcon),
-          const Gap(20),
-          SvgPicture.asset(Assets.imagesLogoutIcon),
+          Text('Logo', style: AppStyles.bold24),
+          Spacer(),
+          ProfileIconButton(),
+          Gap(20),
+          LogoutIconButtonBlocConsumer(),
         ],
       ),
     );
   }
 }
+
+

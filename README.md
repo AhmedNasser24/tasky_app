@@ -1,1 +1,1 @@
-19 hour work
+20.15 hour work

@@ -9,9 +9,13 @@ class TaskItemImage extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      image,
-      fit: BoxFit.fill,
+    return SizedBox(
+      height: 64,
+      width: 64,
+      child: Image.asset(
+        image,
+        fit: BoxFit.fill,
+      ),
     );
   }
 }

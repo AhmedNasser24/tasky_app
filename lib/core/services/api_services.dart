@@ -21,7 +21,7 @@ class ApiServices {
 
   Future<Map<String, dynamic>> post(
       {required String endPoint,
-      required Map<String, dynamic> data,
+      Map<String, dynamic>? data,
       String? authorization}) async {
     Response response = await _dio.post(
       "$kBaseUrl$endPoint",
@@ -30,7 +30,7 @@ class ApiServices {
           ? null
           : Options(
               headers: {
-                'Authorization': 'Bearer $authorization}',
+                'Authorization': 'Bearer $authorization',
               },
             ),
     );

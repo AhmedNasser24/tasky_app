@@ -34,7 +34,8 @@ class TaskyApp extends StatelessWidget {
       initialRoute:
           SharedPreferenceSingleton.getString(ApiKeys.accessToken).isNotEmpty
               ? HomeView.routeName
-              : LoginView.routeName,
+              : 
+              LoginView.routeName,
     );
   }
 }

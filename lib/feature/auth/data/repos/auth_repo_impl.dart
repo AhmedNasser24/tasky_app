@@ -75,12 +75,16 @@ class AuthRepoImpl implements AuthRepo {
     try {
       String newAccessToken = await refreshToken();
       await authServices.logout(accessToken: newAccessToken);
+      // remove access token & refresh token from local storage
+      await SharedPreferenceSingleton.remove(ApiKeys.accessToken);
+      await SharedPreferenceSingleton.remove(ApiKeys.refreshToken);
+      //------------------------------------------------------------------
       return left(null);
     } on DioException catch (e) {
-      log("refresh token error : ${e.toString()}");
+      log("log out error : ${e.toString()}");
       return right(ServerFailure.fromDioException(e));
     } catch (e) {
-      log("refresh token error : ${e.toString()}");
+      log("log out error : ${e.toString()}");
       return right(const ServerFailure("please try again"));
     }
   }

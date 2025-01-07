@@ -20,10 +20,7 @@ class TaskItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 64,
-            width: 64,
-            child: TaskItemImage(Assets.imagesTask)),
+          TaskItemImage(Assets.imagesTask),
           Gap(5),
           Expanded(
             child: Column(
