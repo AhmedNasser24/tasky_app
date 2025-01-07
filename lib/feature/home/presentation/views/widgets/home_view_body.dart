@@ -16,6 +16,7 @@ class HomeViewBody extends StatefulWidget {
 
 class _HomeViewBodyState extends State<HomeViewBody> {
   late String currFilter;
+  
   @override
   void initState() {
     currFilter = kAll;
