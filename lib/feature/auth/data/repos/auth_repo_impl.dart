@@ -21,12 +21,9 @@ class AuthRepoImpl implements AuthRepo {
     try {
       UserInfoModel userInfoModelOutput =
           await authServices.register(userInfoModelInput: userInfoModelInput);
-      await SharedPreferenceSingleton.setString(
-          ApiKeys.userId, userInfoModelOutput.userId!);
-      await SharedPreferenceSingleton.setString(
-          ApiKeys.accessToken, userInfoModelOutput.accessToken!);
-      await SharedPreferenceSingleton.setString(
-          ApiKeys.refreshToken, userInfoModelOutput.refreshToken!);
+      await __saveUserInfoLocal(
+          userInfoModelOutput: userInfoModelOutput,
+          profile: userInfoModelInput);
       return left(null);
     } on DioException catch (e) {
       log("register error : ${e.toString()}");
@@ -87,5 +84,25 @@ class AuthRepoImpl implements AuthRepo {
       log("log out error : ${e.toString()}");
       return right(const ServerFailure("please try again"));
     }
+  }
+
+  Future<void> __saveUserInfoLocal(
+      {required UserInfoModel userInfoModelOutput,
+      required UserInfoModel profile}) async {
+    await SharedPreferenceSingleton.setString(
+        ApiKeys.userId, userInfoModelOutput.userId!);
+    await SharedPreferenceSingleton.setString(
+        ApiKeys.accessToken, userInfoModelOutput.accessToken!);
+    await SharedPreferenceSingleton.setString(
+        ApiKeys.refreshToken, userInfoModelOutput.refreshToken!);
+    await SharedPreferenceSingleton.setString(ApiKeys.phone, profile.phone!);
+    await SharedPreferenceSingleton.setString(
+        ApiKeys.displayName, profile.userName!);
+    await SharedPreferenceSingleton.setString(
+        ApiKeys.address, profile.address!);
+    await SharedPreferenceSingleton.setString(
+        ApiKeys.level, profile.experienceLevel!);
+    await SharedPreferenceSingleton.setString(
+        ApiKeys.experienceYears, profile.yearsOfExperience!);
   }
 }

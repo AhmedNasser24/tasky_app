@@ -32,4 +32,7 @@ class UserInfoModel {
         refreshToken: json[ApiKeys.refreshToken],
         userName: json[ApiKeys.displayName],
       );
+  factory UserInfoModel.profileFromJson(Map<String, dynamic> json) => UserInfoModel(
+    
+  ) ;   
 }
