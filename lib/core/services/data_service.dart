@@ -10,6 +10,7 @@ class DataService {
     var data = await _apiServices.get(
       endPoint: EndPoint.getTasks,
       authorization: accessToken,
+      queryParameters: {"page" : 1}
     );
     List<TaskModel> tasksList = [];
     for (var task in data) {

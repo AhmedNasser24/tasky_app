@@ -38,8 +38,7 @@ class ServerFailure extends Failure {
     } else if (statusCode == 401) {
       if (errData['message'] == "يوجد خطأ في رقم الهاتف أو كلمة المرور") {
         return const ServerFailure("wrong phone number or password");
-      } else if (errData['message'] == "unauthorized") {
-        // refresh token
+      } else if (errData['message'] == "Unauthorized") {
         return const ServerFailure("unauthorized");
       }
       return const ServerFailure("error , please try again");

@@ -19,6 +19,7 @@ class DataRepoImpl extends DataRepo {
   Future<Either<List<TaskModel>, Failure>> fetchData() async {
     try {
       String newAccessToken = await refreshToken() ;
+      log(newAccessToken);
       List<TaskModel> taskModel = await dataService.fetchTasks( accessToken : newAccessToken);
       return left(taskModel);
     } on DioException catch (e) {

@@ -4,9 +4,10 @@ import 'package:tasky_app/core/secrets/api_base_url.dart';
 class ApiServices {
   final Dio _dio = Dio();
 
-  Future get({required String endPoint, String? authorization}) async {
+  Future get({required String endPoint, String? authorization , Map<String, dynamic>? queryParameters }) async {
     Response response = await _dio.get(
       "$kBaseUrl$endPoint",
+      queryParameters: queryParameters,
       options: authorization == null
           ? null
           : Options(
