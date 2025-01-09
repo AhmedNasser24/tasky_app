@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:tasky_app/core/helper/api_keys.dart';
 import 'package:tasky_app/core/services/auth_services.dart';
 import 'package:tasky_app/core/utils/shared_preference_singleton.dart';
-import 'package:tasky_app/feature/auth/data/model/login_model.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -19,10 +18,10 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<void, Failure>> register(
       {required UserInfoModel userInfoModelInput}) async {
     try {
-      UserInfoModel userInfoModelOutput =
+      UserInfoModel registerOutput =
           await authServices.register(userInfoModelInput: userInfoModelInput);
       await __saveUserInfoLocal(
-          userInfoModelOutput: userInfoModelOutput,
+          userInfoModelOutput: registerOutput,
           profile: userInfoModelInput);
       return left(null);
     } on DioException catch (e) {
@@ -36,10 +35,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<void, Failure>> login(
-      {required LoginModel loginModelInput}) async {
+      {required UserInfoModel loginModelInput}) async {
     try {
-      LoginModel loginModelOutput =
+      UserInfoModel loginModelOutput =
           await authServices.login(loginModelInput: loginModelInput);
+      UserInfoModel profile = await authServices.getProfile(accessToken: loginModelOutput.accessToken!);
+      await __saveUserInfoLocal(userInfoModelOutput: loginModelOutput, profile: profile);    
       await SharedPreferenceSingleton.setString(
           ApiKeys.userId, loginModelOutput.userId!);
       await SharedPreferenceSingleton.setString(
@@ -48,10 +49,10 @@ class AuthRepoImpl implements AuthRepo {
           ApiKeys.refreshToken, loginModelOutput.refreshToken!);
       return left(null);
     } on DioException catch (e) {
-      log("register error : ${e.toString()}");
+      log("login error : ${e.toString()}");
       return right(ServerFailure.fromDioException(e));
     } catch (e) {
-      log("register error : ${e.toString()}");
+      log("login error : ${e.toString()}");
       return right(const ServerFailure("please try again"));
     }
   }
@@ -86,6 +87,12 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+  @override
+  Future < UserInfoModel > profile (String accessToken) async {
+    UserInfoModel profile = await authServices.getProfile(accessToken: accessToken);
+    return profile;
+  }
+
   Future<void> __saveUserInfoLocal(
       {required UserInfoModel userInfoModelOutput,
       required UserInfoModel profile}) async {
@@ -102,7 +109,7 @@ class AuthRepoImpl implements AuthRepo {
         ApiKeys.address, profile.address!);
     await SharedPreferenceSingleton.setString(
         ApiKeys.level, profile.experienceLevel!);
-    await SharedPreferenceSingleton.setString(
+    await SharedPreferenceSingleton.setInt(
         ApiKeys.experienceYears, profile.yearsOfExperience!);
   }
 }

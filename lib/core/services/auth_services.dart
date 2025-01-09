@@ -1,6 +1,5 @@
 import 'package:tasky_app/core/helper/api_keys.dart';
 import 'package:tasky_app/core/services/api_services.dart';
-import 'package:tasky_app/feature/auth/data/model/login_model.dart';
 
 import '../../feature/auth/data/model/user_info_model.dart';
 import '../secrets/end_point.dart';
@@ -10,10 +9,10 @@ class AuthServices {
 
   AuthServices({required this.apiServices});
 
-  Future<LoginModel> login({required LoginModel loginModelInput}) async {
+  Future<UserInfoModel> login({required UserInfoModel loginModelInput}) async {
     Map<String, dynamic> data = await apiServices.post(
-        endPoint: EndPoint.login, data: loginModelInput.toJson());
-    LoginModel loginModelOutput = LoginModel.fromJson(data);
+        endPoint: EndPoint.login, data: loginModelInput.loginToJson());
+    UserInfoModel loginModelOutput = UserInfoModel.authFromJson(data);
     return loginModelOutput;
   }
 
@@ -21,8 +20,8 @@ class AuthServices {
       {required UserInfoModel userInfoModelInput}) async {
     Map<String, dynamic> data = await apiServices.post(
         endPoint: EndPoint.register, data: userInfoModelInput.toJson());
-    UserInfoModel userInfoModelOutput = UserInfoModel.fromJson(data);
-    return userInfoModelOutput;
+    UserInfoModel registerOutput = UserInfoModel.authFromJson(data);
+    return registerOutput;
   }
 
   Future<void> logout({required accessToken}) async {
@@ -34,5 +33,11 @@ class AuthServices {
         endPoint: "${EndPoint.refreshToken}$refreshToken");
     String newAccessToken = data[ApiKeys.accessToken];
     return newAccessToken;
+  }
+
+  Future < UserInfoModel > getProfile({required String accessToken}) async {
+    Map < String , dynamic > data = await apiServices.get(endPoint: EndPoint.profile, authorization: accessToken);
+    UserInfoModel profileInfo = UserInfoModel.profileFromJson(data);
+    return profileInfo;
   }
 }

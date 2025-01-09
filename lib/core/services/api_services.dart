@@ -12,7 +12,7 @@ class ApiServices {
           ? null
           : Options(
               headers: {
-                'Authorization': 'Bearer $authorization}',
+                'Authorization': 'Bearer $authorization',
               },
             ),
     );
@@ -48,7 +48,7 @@ class ApiServices {
           ? null
           : Options(
               headers: {
-                'Authorization': 'Bearer $authorization}',
+                'Authorization': 'Bearer $authorization',
               },
             ),
     );
@@ -61,7 +61,7 @@ class ApiServices {
           ? null
           : Options(
               headers: {
-                'Authorization': 'Bearer $authorization}',
+                'Authorization': 'Bearer $authorization',
               },
             ),
     );

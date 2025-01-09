@@ -2,7 +2,8 @@ import '../../../../core/helper/api_keys.dart';
 
 class UserInfoModel {
   String? phone, userName, address, password;
-  String? yearsOfExperience, experienceLevel;
+  String?  experienceLevel;
+  int? yearsOfExperience ;
   String? userId, accessToken, refreshToken;
   UserInfoModel(
       {this.phone,
@@ -26,13 +27,21 @@ class UserInfoModel {
     };
   }
 
-  factory UserInfoModel.fromJson(Map<String, dynamic> json) => UserInfoModel(
+  Map<String, dynamic> loginToJson() {
+    return {ApiKeys.phone: phone, ApiKeys.password: password};
+  }
+
+  factory UserInfoModel.authFromJson(Map<String, dynamic> json) => UserInfoModel(
         userId: json[ApiKeys.userId],
         accessToken: json[ApiKeys.accessToken],
         refreshToken: json[ApiKeys.refreshToken],
-        userName: json[ApiKeys.displayName],
       );
-  factory UserInfoModel.profileFromJson(Map<String, dynamic> json) => UserInfoModel(
     
+  factory UserInfoModel.profileFromJson(Map<String, dynamic> json) => UserInfoModel(
+    userName: json[ApiKeys.displayName],
+    phone: json["username"] ,          // in api username is phone for profile
+    address: json[ApiKeys.address],
+    yearsOfExperience: json[ApiKeys.experienceYears],
+    experienceLevel: json[ApiKeys.level],        
   ) ;   
 }

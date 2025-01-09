@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/utils/app_images.dart';
-import 'package:tasky_app/feature/auth/data/model/login_model.dart';
 import 'package:tasky_app/feature/auth/presentation/views/widgets/login_phone.dart';
 import 'package:gap/gap.dart';
+import '../../../data/model/user_info_model.dart';
 import 'do_not_have_account.dart';
 import 'login_button.dart';
 import 'login_password.dart';
@@ -17,7 +17,7 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-  LoginModel loginModel = LoginModel();
+  UserInfoModel loginModel = UserInfoModel();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
