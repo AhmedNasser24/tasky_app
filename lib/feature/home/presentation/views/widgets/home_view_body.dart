@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/feature/home/presentation/views/widgets/filter_buttons.dart';
 
@@ -8,15 +9,15 @@ import 'home_app_bar.dart';
 import 'my_task_text.dart';
 
 class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
-
+  const HomeViewBody({super.key, required this.enableSkeletonizer});
+  final bool enableSkeletonizer ;
   @override
   State<HomeViewBody> createState() => _HomeViewBodyState();
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
   late String currFilter;
-  
+
   @override
   void initState() {
     currFilter = kAll;
@@ -25,7 +26,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   void selectFilter(String selectFilter) {
     setState(() {
-      currFilter = currFilter;
+      currFilter = selectFilter;
     });
   }
 
@@ -39,7 +40,12 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           const Gap(24),
           const MyTaskText(),
           FilterButtons(selectFilter),
-          Expanded(child: selectWidgetAccordingToFilter()),
+          Expanded(
+            child: Skeletonizer(
+              enabled: widget.enableSkeletonizer,
+              child: selectWidgetAccordingToFilter(),
+            ),
+          ),
         ],
       ),
     );

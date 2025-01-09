@@ -5,4 +5,5 @@ import '../../../../core/errors/failure.dart';
 
 abstract class DataRepo {
   Future<Either < List <TaskModel >, Failure >> fetchData() ;
+  Future<String> refreshToken() ;
 }

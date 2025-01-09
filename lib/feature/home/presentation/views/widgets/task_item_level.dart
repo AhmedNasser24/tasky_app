@@ -7,14 +7,15 @@ import 'package:tasky_app/core/utils/app_images.dart';
 import 'package:tasky_app/core/utils/app_styles.dart';
 
 class TaskItemLevel extends StatelessWidget {
-  const TaskItemLevel(this.level ,{super.key});
-  final String level ;
+  const TaskItemLevel(this.level, {super.key, this.isDamy = false});
+  final String level;
+  final bool isDamy;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SvgPicture.asset(data[level]![kFlag]),
+        isDamy ? const Gap(0) : SvgPicture.asset(data[level]![kFlag]),
         const Gap(5),
         Text(
           level,
@@ -24,9 +25,12 @@ class TaskItemLevel extends StatelessWidget {
     );
   }
 
-  Map<String , Map < String , dynamic > > get data => {
-    kLow : {kFlag  : Assets.imagesLowFlag , kColor : const Color(0xff0087FF)},
-    kMedium : {kFlag  : Assets.imagesMediumFlag , kColor : AppColor.primaryColor},
-    kHigh : {kFlag  : Assets.imagesHeighFlag , kColor : const Color(0xFFFF7D53)},
-  };
+  Map<String, Map<String, dynamic>> get data => {
+        kLow: {kFlag: Assets.imagesLowFlag, kColor: const Color(0xff0087FF)},
+        kMedium: {
+          kFlag: Assets.imagesMediumFlag,
+          kColor: AppColor.primaryColor
+        },
+        kHigh: {kFlag: Assets.imagesHeighFlag, kColor: const Color(0xFFFF7D53)},
+      };
 }

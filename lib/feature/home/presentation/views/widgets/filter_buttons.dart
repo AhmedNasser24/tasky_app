@@ -46,6 +46,7 @@ class _FilterButtonsState extends State<FilterButtons> {
                     selectedIndex = index;
                   },
                 );
+                widget.selectFilter(title);
                 navToSection(index);
               },
               child: FilterItem(

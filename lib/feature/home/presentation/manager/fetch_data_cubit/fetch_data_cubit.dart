@@ -8,7 +8,9 @@ import 'package:tasky_app/feature/home/data/repo/data_repo.dart';
 part 'fetch_data_state.dart';
 
 class FetchDataCubit extends Cubit<FetchDataState> {
-  FetchDataCubit(this.dataRepoImpl) : super(FetchDataInitial());
+  FetchDataCubit(this.dataRepoImpl) : super(FetchDataInitial()){
+    fetchData();
+  }
   final DataRepo dataRepoImpl ;
   Future < void > fetchData () async {
     emit(FetchDataLoading());

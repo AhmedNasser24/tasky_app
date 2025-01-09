@@ -17,9 +17,7 @@ void getItSetup() {
       getIt.get<ApiServices>(),
     ),
   );
-  getIt.registerSingleton<DataRepo>(
-    DataRepoImpl(getIt.get<DataService>()),
-  );
+  
   getIt.registerSingleton<AuthServices>(
     AuthServices(
       apiServices: getIt.get<ApiServices>(),
@@ -27,6 +25,12 @@ void getItSetup() {
   );
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
+      authServices: getIt.get<AuthServices>(),
+    ),
+  );
+  getIt.registerSingleton<DataRepo>(
+    DataRepoImpl(
+      dataService: getIt.get<DataService>(),
       authServices: getIt.get<AuthServices>(),
     ),
   );

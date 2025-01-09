@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
 import '../../../../../core/utils/app_images.dart';
-import '../../../data/models/task_model.dart';
-import 'setting_icon_button.dart';
 import 'task_item_date.dart';
 import 'task_item_description.dart';
 import 'task_item_image.dart';
@@ -11,9 +9,9 @@ import 'task_item_level.dart';
 import 'task_item_statues.dart';
 import 'task_item_title.dart';
 
-class TaskItem extends StatelessWidget {
-  const TaskItem({super.key, required this.taskModel});
-  final TaskModel taskModel ;
+class DamyTaskItem extends StatelessWidget {
+  const DamyTaskItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Padding(
@@ -43,7 +41,7 @@ class TaskItem extends StatelessWidget {
                 Gap(5),
                 Row(
                   children: [
-                    TaskItemLevel(kMedium),
+                    TaskItemLevel(kMedium , isDamy: true),
                     Spacer(),
                     TaskItemDate(),
                   ],
@@ -52,7 +50,7 @@ class TaskItem extends StatelessWidget {
             ),
           ),
           Gap(5),
-          SettingIconButton(),
+          // SettingIconButton(),
         ],
       ),
     );
