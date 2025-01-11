@@ -1,1 +1,1 @@
-21.15 hour work
+24 hour work

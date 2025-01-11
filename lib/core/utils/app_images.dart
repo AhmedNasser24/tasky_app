@@ -6,6 +6,10 @@ class Assets {
   /// assets/images/app_icon.webp
   static const String imagesAppIcon = "assets/images/app_icon.webp";
 
+  /// Assets for imagesBackArrowIcon
+  /// assets/images/back_arrow_icon.svg
+  static const String imagesBackArrowIcon = "assets/images/back_arrow_icon.svg";
+
   /// Assets for imagesHeighFlag
   /// assets/images/heigh_flag.svg
   static const String imagesHeighFlag = "assets/images/heigh_flag.svg";
