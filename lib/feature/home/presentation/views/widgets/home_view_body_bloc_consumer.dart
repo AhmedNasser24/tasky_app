@@ -17,7 +17,7 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool enableSkeletonizer = false;
-    List<TaskModel> taskModelList = List.generate(5, (index) => TaskModel());
+    List<TaskModel>? taskModelList ;
     return BlocConsumer<LogoutCubit, LogoutState>(
       listener: (context, state) {
         if (state is LogoutSuccess) {
@@ -40,7 +40,9 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
           builder: (context, state) {
             return CustomModalProgressHud(
               isLoading: state is LogoutLoading,
-              child: HomeViewBody(enableSkeletonizer: enableSkeletonizer),
+              child: HomeViewBody(
+                taskModelList : enableSkeletonizer ? null : taskModelList,
+                enableSkeletonizer: enableSkeletonizer),
             );
           },
         );

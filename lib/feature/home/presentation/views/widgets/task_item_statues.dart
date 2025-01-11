@@ -23,15 +23,15 @@ class TaskItemStatues extends StatelessWidget {
       ),
       child: Text(
         statues,
-        style: AppStyles.medium12.copyWith(color: getStatusColor(statues)),
+        style: AppStyles.medium12.copyWith(color: getStatusColor(statues.toLowerCase())),
       ),
     );
   }
   Color getStatusColor(String statues){
     Map < String , Color > statusColor = {
-      kWaiting : const Color(0xFFFF7D53),
-      kInprogress :  AppColor.primaryColor,
-      kFinished : const Color(0xFF0087FF),
+      kWaiting.toLowerCase() : const Color(0xFFFF7D53),
+      kInprogress.toLowerCase() :  AppColor.primaryColor,
+      kFinished.toLowerCase() : const Color(0xFF0087FF),
     };
 
     return statusColor[statues]! ;

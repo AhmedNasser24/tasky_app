@@ -15,22 +15,22 @@ class TaskItemLevel extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        isDamy ? const Gap(0) : SvgPicture.asset(data[level]![kFlag]),
+        isDamy ? const Gap(0) : SvgPicture.asset(data[level.toLowerCase()]![kFlag]),
         const Gap(5),
         Text(
           level,
-          style: AppStyles.medium12.copyWith(color: data[level]![kColor]),
+          style: AppStyles.medium12.copyWith(color: data[level.toLowerCase()]![kColor]),
         ),
       ],
     );
   }
 
   Map<String, Map<String, dynamic>> get data => {
-        kLow: {kFlag: Assets.imagesLowFlag, kColor: const Color(0xff0087FF)},
-        kMedium: {
+        kLow.toLowerCase(): {kFlag: Assets.imagesLowFlag, kColor: const Color(0xff0087FF)},
+        kMedium.toLowerCase(): {
           kFlag: Assets.imagesMediumFlag,
           kColor: AppColor.primaryColor
         },
-        kHigh: {kFlag: Assets.imagesHeighFlag, kColor: const Color(0xFFFF7D53)},
+        kHigh.toLowerCase(): {kFlag: Assets.imagesHeighFlag, kColor: const Color(0xFFFF7D53)},
       };
 }

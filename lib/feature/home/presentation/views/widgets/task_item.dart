@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../data/models/task_model.dart';
 import 'setting_icon_button.dart';
@@ -13,16 +14,17 @@ import 'task_item_title.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({super.key, required this.taskModel});
-  final TaskModel taskModel ;
+  final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
+    log(taskModel.toString());
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TaskItemImage(Assets.imagesTask),
-          Gap(5),
+          const TaskItemImage(Assets.imagesTask),
+          const Gap(5),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,28 +33,27 @@ class TaskItem extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: TaskItemTitle("Grocery Shopping App"),
+                      child: TaskItemTitle(taskModel.title!),
                     ),
-                    Gap(5),
-                    TaskItemStatues(kFinished),
+                    const Gap(5),
+                    TaskItemStatues(taskModel.status!),
                   ],
                 ),
-                Gap(5),
-                TaskItemDescription(
-                    "This application is designed for super shops. By using "),
-                Gap(5),
+                const Gap(5),
+                TaskItemDescription(taskModel.desc!),
+                const Gap(5),
                 Row(
                   children: [
-                    TaskItemLevel(kMedium),
-                    Spacer(),
-                    TaskItemDate(),
+                    TaskItemLevel(taskModel.priority!),
+                    const Spacer(),
+                    TaskItemDate(date: taskModel.createdAt!),
                   ],
                 )
               ],
             ),
           ),
-          Gap(5),
-          SettingIconButton(),
+          const Gap(5),
+          const SettingIconButton(),
         ],
       ),
     );
