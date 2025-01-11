@@ -17,7 +17,7 @@ class ProfileAppBar extends StatelessWidget {
       child: Row(
         children: [
           CustomBackArrowButton(),
-          Gap(5),
+          Gap(8),
           Text('Profile', style: AppStyles.bold16),
         ],
       ),
