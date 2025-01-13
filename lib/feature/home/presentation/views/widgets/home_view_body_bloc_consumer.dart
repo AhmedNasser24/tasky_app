@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_model_progress_hud.dart';
 import 'package:tasky_app/core/widgets/show_error_message.dart';
 import 'package:tasky_app/feature/auth/presentation/manager/logout_cubit/logout_cubit.dart';
-import 'package:tasky_app/feature/home/data/models/task_model.dart';
 import 'package:tasky_app/feature/home/presentation/manager/fetch_data_cubit/fetch_data_cubit.dart';
 
 import '../../../../auth/presentation/views/login_view.dart';
@@ -16,8 +15,6 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool enableSkeletonizer = false;
-    List<TaskModel>? taskModelList ;
     return BlocConsumer<LogoutCubit, LogoutState>(
       listener: (context, state) {
         if (state is LogoutSuccess) {
@@ -28,23 +25,10 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return BlocConsumer<FetchDataCubit, FetchDataState>(
-          listener: (context, state) {
-            if (state is FetchDataLoading) {
-              enableSkeletonizer = true;
-            } else if (state is FetchDataSuccess) {
-              taskModelList = state.dataList;
-              enableSkeletonizer = false;
-            }
-          },
-          builder: (context, state) {
-            return CustomModalProgressHud(
-              isLoading: state is LogoutLoading,
-              child: HomeViewBody(
-                taskModelList : enableSkeletonizer ? null : taskModelList,
-                enableSkeletonizer: enableSkeletonizer),
-            );
-          },
+        return CustomModalProgressHud(
+          isLoading: state is LogoutLoading,
+          child: HomeViewBody(
+            ),
         );
       },
     );

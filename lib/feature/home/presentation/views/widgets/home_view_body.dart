@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/feature/home/presentation/views/widgets/filter_buttons.dart';
 
-import '../../../data/models/task_model.dart';
 import '../../manager/fetch_data_cubit/fetch_data_cubit.dart';
 import 'task_item_list_view.dart';
 import 'home_app_bar.dart';
 import 'my_task_text.dart';
 
 class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key, required this.enableSkeletonizer, required this.taskModelList});
-  final bool enableSkeletonizer ;
-  final List < TaskModel >? taskModelList ;
+  const HomeViewBody({super.key});
   @override
   State<HomeViewBody> createState() => _HomeViewBodyState();
 }
@@ -25,7 +21,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
     currFilter = kAll;
-    BlocProvider.of<FetchDataCubit>(context).fetchData() ;
+    BlocProvider.of<FetchDataCubit>(context).fetchData();
     super.initState();
   }
 
@@ -46,10 +42,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           const MyTaskText(),
           FilterButtons(selectFilter),
           Expanded(
-            child: Skeletonizer(
-              enabled: widget.enableSkeletonizer,
               child: selectWidgetAccordingToFilter(),
-            ),
+            
           ),
         ],
       ),
@@ -59,13 +53,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget selectWidgetAccordingToFilter() {
     switch (currFilter) {
       case kAll:
-        return  TaskItemListView(filterAccordingTo: kAll ,taskModelList: widget.taskModelList, );
+        return const TaskItemListView(filterAccordingTo: kAll);
       case kWaiting:
-        return  TaskItemListView(filterAccordingTo: kWaiting ,taskModelList: widget.taskModelList, );
+        return const TaskItemListView(filterAccordingTo: kWaiting);
       case kInprogress:
-        return  TaskItemListView(filterAccordingTo: kInprogress , taskModelList: widget.taskModelList,);
+        return const TaskItemListView(filterAccordingTo: kInprogress);
       case kFinished:
-        return  TaskItemListView(filterAccordingTo: kFinished ,taskModelList: widget.taskModelList, );
+        return const TaskItemListView(filterAccordingTo: kFinished);
       default:
         return const SizedBox();
     }

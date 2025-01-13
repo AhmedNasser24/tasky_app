@@ -6,11 +6,11 @@ class DataService {
   final ApiServices _apiServices;
 
   DataService(this._apiServices);
-  Future<List<TaskModel>> fetchTasks({required String accessToken}) async {
+  Future<List<TaskModel>> fetchTasks({required String accessToken , required int pageNum}) async {
     var data = await _apiServices.get(
       endPoint: EndPoint.getTasks,
       authorization: accessToken,
-      queryParameters: {"page" : 1}
+      queryParameters: {"page" : pageNum}
     );
     List<TaskModel> tasksList = [];
     for (var task in data) {

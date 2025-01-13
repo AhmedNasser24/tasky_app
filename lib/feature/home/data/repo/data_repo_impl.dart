@@ -16,11 +16,11 @@ class DataRepoImpl extends DataRepo {
   final AuthServices authServices;
   DataRepoImpl({required this.authServices, required this.dataService});
   @override
-  Future<Either<List<TaskModel>, Failure>> fetchData() async {
+  Future<Either<List<TaskModel>, Failure>> fetchData({required int pageNum}) async {
     try {
       String newAccessToken = await refreshToken() ;
       log(newAccessToken);
-      List<TaskModel> taskModel = await dataService.fetchTasks( accessToken : newAccessToken);
+      List<TaskModel> taskModel = await dataService.fetchTasks( accessToken : newAccessToken , pageNum : pageNum);
       return left(taskModel);
     } on DioException catch (e) {
       log("fetch data error : ${e.toString()}");

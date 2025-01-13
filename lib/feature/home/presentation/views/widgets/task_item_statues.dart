@@ -34,6 +34,6 @@ class TaskItemStatues extends StatelessWidget {
       kFinished.toLowerCase() : const Color(0xFF0087FF),
     };
 
-    return statusColor[statues]! ;
+    return statusColor[statues] ?? Colors.black ;
   }
 }

@@ -1,1 +1,1 @@
-25.30 hour work
+26.30 hour work

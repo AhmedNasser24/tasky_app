@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
@@ -15,11 +15,11 @@ class TaskItemLevel extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        isDamy ? const Gap(0) : SvgPicture.asset(data[level.toLowerCase()]![kFlag]),
+        isDamy ? const Gap(0) : SvgPicture.asset(data[level.toLowerCase()]?[kFlag] ?? Assets.imagesLowFlag),
         const Gap(5),
         Text(
           level,
-          style: AppStyles.medium12.copyWith(color: data[level.toLowerCase()]![kColor]),
+          style: AppStyles.medium12.copyWith(color: data[level.toLowerCase()]?[kColor] ?? Colors.black),
         ),
       ],
     );
