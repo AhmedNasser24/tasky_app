@@ -13,13 +13,14 @@ class CustomFloatingButtonForHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Stack(
       children: [
-        Align(
-          alignment: Alignment.bottomRight,
+        Positioned(
+          right: 0.0,
+          bottom: 20,
           child: CustomAddIconButton(),
         ),
         Positioned(
           right: 0.0,
-          bottom: 80,
+          bottom: 100,
           child: CustomQrIconButton(),
         ),
       ],
