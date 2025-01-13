@@ -16,58 +16,33 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
-  late String currFilter;
-
   @override
   void initState() {
-    currFilter = kAll;
     BlocProvider.of<FetchTaskCubit>(context).fetchData();
     super.initState();
   }
 
-  void selectFilter(String selectFilter) {
-    setState(() {
-      currFilter = selectFilter;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: HomeAppBar(),
         ),
-        const Gap(24),
-        const Padding(
-          padding: EdgeInsets.symmetric( horizontal: kHorizontalPadding),
+        Gap(24),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: MyTaskText(),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: kHorizontalPadding),
-          child: FilterButtons(selectFilter),
+          padding: EdgeInsets.only(left: kHorizontalPadding),
+          child: FilterButtons(),
         ),
         Expanded(
-            child: selectWidgetAccordingToFilter(),
-          
+          child: TaskItemListView(),
         ),
       ],
     );
-  }
-
-  Widget selectWidgetAccordingToFilter() {
-    switch (currFilter) {
-      case kAll:
-        return const TaskItemListView(filterAccordingTo: kAll);
-      case kWaiting:
-        return const TaskItemListView(filterAccordingTo: kWaiting);
-      case kInprogress:
-        return const TaskItemListView(filterAccordingTo: kInprogress);
-      case kFinished:
-        return const TaskItemListView(filterAccordingTo: kFinished);
-      default:
-        return const SizedBox();
-    }
   }
 }

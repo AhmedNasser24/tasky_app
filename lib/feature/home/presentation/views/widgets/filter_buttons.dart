@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
 
+import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
 import 'filter_item.dart';
 
 class FilterButtons extends StatefulWidget {
-  const FilterButtons(
-    this.selectFilter, {
+  const FilterButtons({
     super.key,
   });
-  final void Function(String selectFilter) selectFilter;
   @override
   State<FilterButtons> createState() => _FilterButtonsState();
 }
@@ -36,26 +36,29 @@ class _FilterButtonsState extends State<FilterButtons> {
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: filterTitleList.asMap().entries.map((e) {
-            int index = e.key;
-            String title = e.value;
-            return GestureDetector(
-              onTap: () {
-                setState(
-                  () {
-                    selectedIndex = index;
-                  },
-                );
-                widget.selectFilter(title);
-                navToSection(index);
-              },
-              child: FilterItem(
-                key: navBarKeys[index],
-                text: title,
-                isActive: selectedIndex == index,
-              ),
-            );
-          }).toList(),
+          children: filterTitleList.asMap().entries.map(
+            (e) {
+              int index = e.key;
+              String filterName = e.value;
+              return GestureDetector(
+                onTap: () {
+                  setState(
+                    () {
+                      selectedIndex = index;
+                    },
+                  );
+                  BlocProvider.of<FetchTaskCubit>(context)
+                      .changeFilter(filterName);
+                  navToSection(index);
+                },
+                child: FilterItem(
+                  key: navBarKeys[index],
+                  text: filterName,
+                  isActive: selectedIndex == index,
+                ),
+              );
+            },
+          ).toList(),
         ),
       ),
     );

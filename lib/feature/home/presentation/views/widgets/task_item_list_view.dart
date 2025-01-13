@@ -8,9 +8,7 @@ import 'task_loading_state_body.dart';
 class TaskItemListView extends StatelessWidget {
   const TaskItemListView({
     super.key,
-    required this.filterAccordingTo,
   });
-  final String filterAccordingTo;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,6 @@ class TaskItemListView extends StatelessWidget {
         } else if (state is FetchTaskLoading) {
           return const TaskLoadingStateBody();
         } else {
-          // FetchTaskFailure
           return const TaskErrorStateBody();
         }
       },

@@ -15,7 +15,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
   bool __isThereMoreItems = true;
   bool __isFirstLoading = true;
   List<TaskModel>? __tasksList;
-  String __filterAccordingTo = kAll ;
+  String __currFilter = kAll;
 
   Future<void> fetchData() async {
     if (__isThereMoreItems == false) {
@@ -63,6 +63,11 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
 
   get tasksList => __tasksList;
 
-  set filterAccordingToValue(String value) => __filterAccordingTo = value;
-  get filterAccordingTo => __filterAccordingTo;
+  void changeFilter(String value) {
+    __currFilter = value;
+    if (__isFirstLoading) return;
+    emit(FetchTaskSuccess(tasksList!));
+  }
+
+  get currFilter => __currFilter;
 }
