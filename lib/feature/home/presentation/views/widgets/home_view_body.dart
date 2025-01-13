@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/feature/home/presentation/views/widgets/filter_buttons.dart';
 
-import '../../manager/fetch_data_cubit/fetch_data_cubit.dart';
+import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
 import 'task_item_list_view.dart';
 import 'home_app_bar.dart';
 import 'my_task_text.dart';
@@ -21,7 +21,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
     currFilter = kAll;
-    BlocProvider.of<FetchDataCubit>(context).fetchData();
+    BlocProvider.of<FetchTaskCubit>(context).fetchData();
     super.initState();
   }
 
@@ -33,20 +33,26 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: Column(
-        children: [
-          const HomeAppBar(),
-          const Gap(24),
-          const MyTaskText(),
-          FilterButtons(selectFilter),
-          Expanded(
-              child: selectWidgetAccordingToFilter(),
-            
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+          child: HomeAppBar(),
+        ),
+        const Gap(24),
+        const Padding(
+          padding: EdgeInsets.symmetric( horizontal: kHorizontalPadding),
+          child: MyTaskText(),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: kHorizontalPadding),
+          child: FilterButtons(selectFilter),
+        ),
+        Expanded(
+            child: selectWidgetAccordingToFilter(),
+          
+        ),
+      ],
     );
   }
 

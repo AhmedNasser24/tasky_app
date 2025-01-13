@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_model_progress_hud.dart';
 import 'package:tasky_app/core/widgets/show_error_message.dart';
 import 'package:tasky_app/feature/auth/presentation/manager/logout_cubit/logout_cubit.dart';
-import 'package:tasky_app/feature/home/presentation/manager/fetch_data_cubit/fetch_data_cubit.dart';
 
 import '../../../../auth/presentation/views/login_view.dart';
 import 'home_view_body.dart';
@@ -27,8 +26,7 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         return CustomModalProgressHud(
           isLoading: state is LogoutLoading,
-          child: HomeViewBody(
-            ),
+          child: const HomeViewBody(),
         );
       },
     );

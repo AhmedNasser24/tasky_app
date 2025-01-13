@@ -1,28 +1,28 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/errors/failure.dart';
 import 'package:tasky_app/feature/home/data/models/task_model.dart';
 import 'package:tasky_app/feature/home/data/repo/data_repo.dart';
 
-part 'fetch_data_state.dart';
+part 'fetch_task_state.dart';
 
-class FetchDataCubit extends Cubit<FetchDataState> {
-  FetchDataCubit(this.dataRepoImpl) : super(FetchDataInitial());
+class FetchTaskCubit extends Cubit<FetchTaskState> {
+  FetchTaskCubit(this.dataRepoImpl) : super(FetchTaskInitial());
   final DataRepo dataRepoImpl;
   int __pageNum = 1;
   final int __maxItemPerPage = 20;
   bool __isThereMoreItems = true;
   bool __isFirstLoading = true;
   List<TaskModel>? __tasksList;
+  String __filterAccordingTo = kAll ;
+
   Future<void> fetchData() async {
     if (__isThereMoreItems == false) {
       return;
     }
     if (__isFirstLoading) {
-      emit(FetchDataLoading());
-      __isFirstLoading = false;
+      emit(FetchTaskLoading());
     }
     Either<List<TaskModel>, Failure> result =
         await dataRepoImpl.fetchData(pageNum: __pageNum);
@@ -42,11 +42,13 @@ class FetchDataCubit extends Cubit<FetchDataState> {
         } else {
           __pageNum++;
         }
-        log("page num : $__pageNum");
-        emit(FetchDataSuccess(tasksList));
+        emit(FetchTaskSuccess(__tasksList!));
       },
-      (fail) => emit(FetchDataFailure(fail.errMessage)),
+      (fail) {
+        if (__isFirstLoading) emit(FetchTaskFailure(fail.errMessage));
+      },
     );
+    __isFirstLoading = false;
   }
 
   Future<void> refresh() async {
@@ -60,4 +62,7 @@ class FetchDataCubit extends Cubit<FetchDataState> {
   get isThereMoreItems => __isThereMoreItems;
 
   get tasksList => __tasksList;
+
+  set filterAccordingToValue(String value) => __filterAccordingTo = value;
+  get filterAccordingTo => __filterAccordingTo;
 }
