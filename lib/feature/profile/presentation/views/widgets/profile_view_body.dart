@@ -25,10 +25,10 @@ class ProfileViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: SingleChildScrollView(
         child: Column(
-          spacing: 10,
+          spacing: kSpaceBetween,
           children: [
             const ProfileAppBar(),
-            const Gap(10),
+            const Gap(kTopSpace),
             ProfileTextFormField(
               title: "Name",
               subTitle: profileData.userName!,

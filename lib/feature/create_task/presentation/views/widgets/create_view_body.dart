@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:tasky_app/constants.dart';
+import 'package:tasky_app/feature/create_task/presentation/views/widgets/create_app_bar.dart';
 
 class CreateViewBody extends StatefulWidget {
   const CreateViewBody({super.key});
@@ -13,7 +16,9 @@ class _CreateViewBodyState extends State<CreateViewBody> {
     return const SingleChildScrollView(
       child: Column(
         children: [
-
+          CreateAppBar(),
+          Gap(kTopSpace),
+          
         ],
       ),
       
