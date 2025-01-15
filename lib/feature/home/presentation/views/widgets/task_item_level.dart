@@ -26,11 +26,11 @@ class TaskItemLevel extends StatelessWidget {
   }
 
   Map<String, Map<String, dynamic>> get data => {
-        kLow.toLowerCase(): {kFlag: Assets.imagesLowFlag, kColor: const Color(0xff0087FF)},
+        kLow.toLowerCase(): {kFlag: Assets.imagesLowFlag, kColor: AppColor.blueColor},
         kMedium.toLowerCase(): {
           kFlag: Assets.imagesMediumFlag,
           kColor: AppColor.primaryColor
         },
-        kHigh.toLowerCase(): {kFlag: Assets.imagesHeighFlag, kColor: const Color(0xFFFF7D53)},
+        kHigh.toLowerCase(): {kFlag: Assets.imagesHeighFlag, kColor: AppColor.orangeColor},
       };
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
@@ -23,17 +22,19 @@ class TaskItemStatues extends StatelessWidget {
       ),
       child: Text(
         statues,
-        style: AppStyles.medium12.copyWith(color: getStatusColor(statues.toLowerCase())),
+        style: AppStyles.medium12
+            .copyWith(color: getStatusColor(statues.toLowerCase())),
       ),
     );
   }
-  Color getStatusColor(String statues){
-    Map < String , Color > statusColor = {
-      kWaiting.toLowerCase() : const Color(0xFFFF7D53),
-      kInprogress.toLowerCase() :  AppColor.primaryColor,
-      kFinished.toLowerCase() : const Color(0xFF0087FF),
+
+  Color getStatusColor(String statues) {
+    Map<String, Color> statusColor = {
+      kWaiting.toLowerCase(): AppColor.orangeColor,
+      kInprogress.toLowerCase(): AppColor.primaryColor,
+      kFinished.toLowerCase(): AppColor.blueColor,
     };
 
-    return statusColor[statues] ?? Colors.black ;
+    return statusColor[statues] ?? Colors.black;
   }
 }

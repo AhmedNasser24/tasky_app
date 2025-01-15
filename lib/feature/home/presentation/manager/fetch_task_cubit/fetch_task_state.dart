@@ -5,6 +5,7 @@ abstract class FetchTaskState {}
 class FetchTaskInitial extends FetchTaskState {}
 
 class FetchTaskLoading extends FetchTaskState {}
+class FetchTaskEmpty extends FetchTaskState {}
 
 class FetchTaskSuccess extends FetchTaskState {
   final List<TaskModel> tasksList;

@@ -42,7 +42,11 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
         } else {
           __pageNum++;
         }
-        emit(FetchTaskSuccess(__tasksList!));
+        if (__tasksList!.isEmpty) {
+          emit(FetchTaskEmpty());
+        } else {
+          emit(FetchTaskSuccess(__tasksList!));
+        }
       },
       (fail) {
         if (__isFirstLoading) emit(FetchTaskFailure(fail.errMessage));
@@ -59,13 +63,14 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     fetchData();
   }
 
-  get isThereMoreItems => __isThereMoreItems;
+  bool get isThereMoreItems => __isThereMoreItems;
 
-  get tasksList => __tasksList;
+  List<TaskModel>? get tasksList => __tasksList;
 
   void changeFilter(String value) {
     __currFilter = value;
     if (__isFirstLoading) return;
+    if (tasksList!.isEmpty) return;
     emit(FetchTaskSuccess(tasksList!));
   }
 

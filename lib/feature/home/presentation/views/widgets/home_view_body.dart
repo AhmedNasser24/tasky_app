@@ -5,7 +5,7 @@ import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/feature/home/presentation/views/widgets/filter_buttons.dart';
 
 import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
-import 'task_item_list_view.dart';
+import 'task_items_bloc_builder.dart';
 import 'home_app_bar.dart';
 import 'my_task_text.dart';
 
@@ -40,7 +40,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           child: FilterButtons(),
         ),
         Expanded(
-          child: TaskItemListView(),
+          child: TaskItemsBlocBuilder(),
         ),
       ],
     );

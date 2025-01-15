@@ -1,1 +1,1 @@
-29 hour work
+29.15 hour work
