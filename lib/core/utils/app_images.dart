@@ -18,6 +18,10 @@ class Assets {
   /// assets/images/heigh_flag.svg
   static const String imagesHeighFlag = "assets/images/heigh_flag.svg";
 
+  /// Assets for imagesImageIcon
+  /// assets/images/image_icon.svg
+  static const String imagesImageIcon = "assets/images/image_icon.svg";
+
   /// Assets for imagesLoginLogo
   /// assets/images/login_logo.png
   static const String imagesLoginLogo = "assets/images/login_logo.png";

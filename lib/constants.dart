@@ -1,7 +1,5 @@
 const double kHorizontalPadding = 22.0;
 const double kBottomSpace = 40.0;
-const double kTopSpace = 10.0;
-const double kSpaceBetween = 10.0;
 
 const String kAll = "All" ;
 const String kWaiting = "Waiting" ;

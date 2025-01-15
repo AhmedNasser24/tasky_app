@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/feature/create_task/presentation/views/widgets/create_app_bar.dart';
+import 'package:tasky_app/feature/create_task/presentation/views/widgets/image_form_field.dart';
 
 class CreateViewBody extends StatefulWidget {
   const CreateViewBody({super.key});
@@ -17,7 +17,9 @@ class _CreateViewBodyState extends State<CreateViewBody> {
       child: Column(
         children: [
           CreateAppBar(),
-          Gap(kTopSpace),
+          Gap(24),
+          ImageFormField(),
+          Gap(16),
           
         ],
       ),
