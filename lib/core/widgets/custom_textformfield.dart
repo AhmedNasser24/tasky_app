@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 
-import '../../../../../core/utils/app_styles.dart';
+import '../utils/app_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -10,40 +10,57 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.obscureText,
     this.suffixIcon,
+    this.prefixIcon,
     this.validator,
     this.onChanged,
     this.onSaved,
     this.onTap,
     this.readOnly = false,
     this.controller,
+    this.maxLines,
+    this.hintStyle,
+    this.textStyle,
+    this.filled,
+    this.fillColor,
+    this.borderSide,
   });
   final String? hintText;
   final TextInputType? keyboardType;
   final bool? obscureText;
-  final Widget? suffixIcon;
+  final Widget? suffixIcon, prefixIcon;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
-  final void Function(String?)? onSaved ;
-  final void Function()? onTap ;
-  final bool readOnly ;
-  final TextEditingController? controller ;
+  final void Function(String?)? onSaved;
+  final void Function()? onTap;
+  final bool readOnly;
+  final TextEditingController? controller;
+  final int? maxLines;
+  final TextStyle? textStyle, hintStyle;
+  final Color? fillColor;
+  final bool? filled;
+  final double? borderSide;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: AppStyles.medium14,
+      style: textStyle ?? AppStyles.medium14,
       keyboardType: keyboardType,
       obscureText: obscureText ?? false,
       obscuringCharacter: '.',
       validator: validator,
       onChanged: onChanged,
       onSaved: onSaved,
-      onTap: onTap ,
+      onTap: onTap,
       readOnly: readOnly,
+      maxLines: maxLines,
       decoration: InputDecoration(
+        prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         hintText: hintText,
-        hintStyle: AppStyles.regular14.copyWith(color: AppColor.greyColor),
+        hintStyle: hintStyle ??
+            AppStyles.regular14.copyWith(color: AppColor.greyColor),
+        filled: filled,
+        fillColor: fillColor,
         border: normalOutlineInputBorder(),
         enabledBorder: normalOutlineInputBorder(),
         focusedBorder: focusOutlineInputBorder(),
@@ -53,28 +70,31 @@ class CustomTextFormField extends StatelessWidget {
   }
 
   OutlineInputBorder normalOutlineInputBorder() {
-    return const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(
-          width: 1,
-          color: Color(0xffBABABA),
-        ),
-      );
+    return OutlineInputBorder(
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      borderSide: BorderSide(
+        width: borderSide ?? 1,
+        color: const Color(0xffBABABA),
+      ),
+    );
   }
+
   OutlineInputBorder focusOutlineInputBorder() {
-    return const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(
-          width: 2,
-          color: Color(0xffBABABA),
-        ),
-      );}
+    return OutlineInputBorder(
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      borderSide: BorderSide(
+        width: borderSide ?? 2,
+        color: const Color(0xffBABABA),
+      ),
+    );
+  }
+
   OutlineInputBorder outLineErrorInputBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: const BorderSide(
+      borderSide: BorderSide(
         color: Colors.red,
-        width: 1.5,
+        width: borderSide ?? 1.5,
       ),
     );
   }

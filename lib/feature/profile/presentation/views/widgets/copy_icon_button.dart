@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasky_app/core/widgets/show_error_message.dart';
+import 'package:tasky_app/core/widgets/show_snack_bar.dart';
 
 import '../../../../../core/utils/app_images.dart';
 

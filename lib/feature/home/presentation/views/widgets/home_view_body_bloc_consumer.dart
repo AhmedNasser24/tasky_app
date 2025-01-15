@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_model_progress_hud.dart';
-import 'package:tasky_app/core/widgets/show_error_message.dart';
+import 'package:tasky_app/core/widgets/show_snack_bar.dart';
 import 'package:tasky_app/feature/auth/presentation/manager/logout_cubit/logout_cubit.dart';
 
 import '../../../../auth/presentation/views/login_view.dart';

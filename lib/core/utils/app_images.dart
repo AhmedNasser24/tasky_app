@@ -10,6 +10,14 @@ class Assets {
   /// assets/images/back_arrow_icon.svg
   static const String imagesBackArrowIcon = "assets/images/back_arrow_icon.svg";
 
+  /// Assets for imagesCalendar
+  /// assets/images/calendar.svg
+  static const String imagesCalendar = "assets/images/calendar.svg";
+
+  /// Assets for imagesCalendar1
+  /// assets/images/calendar1.svg
+  static const String imagesCalendar1 = "assets/images/calendar1.svg";
+
   /// Assets for imagesCopyIcon
   /// assets/images/copy_icon.svg
   static const String imagesCopyIcon = "assets/images/copy_icon.svg";

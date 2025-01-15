@@ -23,37 +23,42 @@ class ProfileViewBody extends StatelessWidget {
     );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: SingleChildScrollView(
-        child: Column(
-          spacing: 10,
-          children: [
-            const ProfileAppBar(),
-            const Gap(10),
-            ProfileTextFormField(
-              title: "Name",
-              subTitle: profileData.userName!,
+      child: Column(
+        children: [
+          const ProfileAppBar(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                spacing: 10,
+                children: [
+                  const Gap(10),
+                  ProfileTextFormField(
+                    title: "Name",
+                    subTitle: profileData.userName!,
+                  ),
+                  ProfileTextFormField(
+                    title: "Phone",
+                    subTitle: profileData.phone!,
+                    copy: true,
+                  ),
+                  ProfileTextFormField(
+                    title: "Level",
+                    subTitle: profileData.experienceLevel!,
+                  ),
+                  ProfileTextFormField(
+                    title: "Years of experience",
+                    subTitle: profileData.yearsOfExperience!.toString(),
+                  ),
+                  ProfileTextFormField(
+                    title: "Location",
+                    subTitle: profileData.address!,
+                  ),
+                  const Gap(kBottomSpace),
+                ],
+              ),
             ),
-            ProfileTextFormField(
-              title: "Phone",
-              subTitle: profileData.phone!,
-              copy: true,
-            ),
-            ProfileTextFormField(
-              title: "Level",
-              subTitle: profileData.experienceLevel!,
-            ),
-            ProfileTextFormField(
-              title: "Years of experience",
-              subTitle: profileData.yearsOfExperience!.toString(),
-            ),
-            ProfileTextFormField(
-              title: "Location",
-              subTitle: profileData.address!,
-            ),
-            
-            const Gap(kBottomSpace),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

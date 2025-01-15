@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../data/model/user_info_model.dart';
-import 'custom_textformfield.dart';
+import '../../../../../core/widgets/custom_textformfield.dart';
 
 class RegisterName extends StatelessWidget {
   const RegisterName(this.userInfoModel, {super.key});

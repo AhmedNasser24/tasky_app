@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
-import 'custom_textformfield.dart';
+import '../../../../../core/widgets/custom_textformfield.dart';
 
 class RegisterPassword extends StatefulWidget {
   const RegisterPassword(this.userInfoModel, {super.key});
