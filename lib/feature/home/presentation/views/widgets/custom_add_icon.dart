@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
+import 'package:tasky_app/feature/create_task/presentation/views/create_view.dart';
 
 class CustomAddIconButton extends StatelessWidget {
   const CustomAddIconButton({super.key});
@@ -7,7 +8,9 @@ class CustomAddIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, CreateView.routeName) ;
+      },
       child: Container(
         width: 64,
         height: 64,
