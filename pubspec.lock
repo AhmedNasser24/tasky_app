@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  dropdown_button2:
+    dependency: "direct main"
+    description:
+      name: dropdown_button2
+      sha256: "50c4d8f73cb58c99a75581974d03457b690af646db19706af4aafd29ec3f6fe8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-beta.21"
   fake_async:
     dependency: transitive
     description:

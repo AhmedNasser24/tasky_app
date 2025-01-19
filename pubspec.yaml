@@ -32,6 +32,7 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.7.0
   dotted_border: ^2.1.0
+  dropdown_button2: ^3.0.0-beta.21
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6

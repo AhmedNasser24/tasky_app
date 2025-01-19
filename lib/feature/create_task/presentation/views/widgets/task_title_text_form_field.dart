@@ -4,8 +4,8 @@ import 'package:tasky_app/core/widgets/custom_textformfield.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 
-class TaskTitleTextFormField extends StatelessWidget {
-  const TaskTitleTextFormField({super.key});
+class TaskTitleFormField extends StatelessWidget {
+  const TaskTitleFormField({super.key});
 
   @override
   Widget build(BuildContext context) {

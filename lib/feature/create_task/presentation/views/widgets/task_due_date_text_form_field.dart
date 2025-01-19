@@ -6,8 +6,8 @@ import 'package:tasky_app/core/widgets/custom_textformfield.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_styles.dart';
 
-class TaskDueDateTextFormField extends StatelessWidget {
-  const TaskDueDateTextFormField({super.key});
+class TaskDueDateFormField extends StatelessWidget {
+  const TaskDueDateFormField({super.key});
 
   @override
   Widget build(BuildContext context) {
