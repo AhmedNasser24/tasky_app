@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
-
+import '../../../../../core/helper/format_date.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class TaskItemDate extends StatelessWidget {
@@ -14,14 +13,6 @@ class TaskItemDate extends StatelessWidget {
     );
   }
 
-    String formatDate(String dateString) {
-    // Parse the date string into a DateTime object
-    DateTime parsedDate = DateTime.parse(dateString);
-
-    // Format the DateTime into "31/12/2024"
-    String formattedDate = DateFormat('dd/MM/yyyy').format(parsedDate);
-
-    return formattedDate;
-  }
+   
 }
 
