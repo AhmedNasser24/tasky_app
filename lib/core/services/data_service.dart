@@ -1,3 +1,7 @@
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:tasky_app/core/services/api_services.dart';
 import '../models/task_model.dart';
 import '../secrets/end_point.dart';
@@ -25,5 +29,24 @@ class DataService {
         endPoint: EndPoint.createTask,
         data: taskModel.toJsonCreate(),
         authorization: accessToken);
+  }
+
+  Future<void> uploadImage(
+      {required String accessToken, required File imageFile}) async {
+    FormData formData = FormData.fromMap({
+      "image": await MultipartFile.fromFile(
+        imageFile.path,
+        filename: imageFile.path.split('/').last,
+        contentType:
+            DioMediaType.parse("image/${imageFile.path.split('.').last}"),
+      ),
+    });
+
+    var data = await _apiServices.post(
+        endPoint: EndPoint.uploadImage,
+        data: formData,
+        authorization: accessToken);
+    log("upload image success") ;
+    log("upload image data : $data");    
   }
 }

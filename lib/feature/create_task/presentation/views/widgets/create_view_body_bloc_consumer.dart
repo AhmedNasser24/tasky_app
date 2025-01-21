@@ -17,6 +17,7 @@ class CreateViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<CreateTaskCubit, CreateTaskState>(
       listener: (context, state) {
         if (state is CreateTaskSuccess) {
+          showSnackBar(context, "task is added successfully");
           Navigator.pop(context);
         } else if (state is CreateTaskLoading) {
           isLoading = true;

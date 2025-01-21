@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -15,27 +16,27 @@ import 'create_task_repo.dart';
 
 class CreateTaskRepoImpl extends CreateTaskRepo {
   final DataService dataService;
-  final AuthServices authServices ;
+  final AuthServices authServices;
 
-  CreateTaskRepoImpl({required this.dataService , required this.authServices}); 
+  CreateTaskRepoImpl({required this.dataService, required this.authServices});
   @override
-  Future<Either<void, Failure>> createTask({required TaskModel taskModel}) async {
+  Future<Either<void, Failure>> createTask(
+      {required TaskModel taskModel}) async {
     try {
       String newAccessToken = await refreshToken();
-      await dataService.createTask(accessToken: newAccessToken, taskModel: taskModel);
-      return left(null) ;
+      await uploadImage(image: taskModel.imageFile!);
+      await dataService.createTask(
+          accessToken: newAccessToken, taskModel: taskModel);
+      return left(null);
     } on DioException catch (e) {
       log("create task error : ${e.toString()}");
       return right(ServerFailure.fromDioException(e));
-    } 
-    
-    catch (e) {
+    } catch (e) {
       log("create task error : ${e.toString()}");
       return right(const ServerFailure("Error , please try again"));
     }
   }
 
-  
   @override
   Future<String> refreshToken() async {
     String refreshToken =
@@ -45,5 +46,17 @@ class CreateTaskRepoImpl extends CreateTaskRepo {
     await SharedPreferenceSingleton.setString(
         ApiKeys.accessToken, newAccessToken);
     return newAccessToken;
+  }
+
+  @override
+  Future<void> uploadImage({required File image}) async {
+    try {
+      String newAccessToken = await refreshToken();
+      await dataService.uploadImage(accessToken: newAccessToken, imageFile: image);
+    } on DioException catch (e) {
+      log(ServerFailure.fromDioException(e).errMessage);
+    } catch (e) {
+      log("Error uploading image: $e");
+    }
   }
 }

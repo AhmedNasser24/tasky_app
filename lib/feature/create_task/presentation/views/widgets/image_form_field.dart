@@ -20,7 +20,7 @@ class ImageFormField extends StatefulWidget {
 }
 
 class _ImageFormFieldState extends State<ImageFormField> {
-  File? image;
+  File? imageFile;
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
@@ -31,13 +31,14 @@ class _ImageFormFieldState extends State<ImageFormField> {
           child: child,
         );
       },
-      child: image == null
+      child: imageFile == null
           ? GestureDetector(
               onTap: () async {
-                image = await pickImageFromGallery();
-                if (image != null) {
+                imageFile = await pickImageFromGallery();
+                if (imageFile != null) {
                   log("image picked successfully");
                 }
+                widget.taskModel.imageFile = imageFile;
                 setState(() {});
               },
               child: DottedBorder(
@@ -66,13 +67,13 @@ class _ImageFormFieldState extends State<ImageFormField> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Image.file(image!, fit: BoxFit.fill),
+                      child: Image.file(imageFile!, fit: BoxFit.fill),
                     ),
                   ),
                   const Gap(8),
                   IconButton(
                     onPressed: () {
-                      image = null;
+                      imageFile = null;
                       setState(() {});
                     },
                     icon: const Icon(

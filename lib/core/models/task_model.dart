@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:tasky_app/core/helper/api_keys.dart';
 
 class TaskModel {
@@ -11,10 +13,11 @@ class TaskModel {
       createdAt,
       updatedAt,
       dueDate;
-
+  File? imageFile;
   TaskModel(
       {this.id,
       this.image,
+      this.imageFile,
       this.title,
       this.desc,
       this.priority,
