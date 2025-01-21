@@ -9,12 +9,12 @@ import 'package:tasky_app/core/models/task_model.dart';
 
 import '../../../../core/helper/api_keys.dart';
 import '../../../../core/utils/shared_preference_singleton.dart';
-import 'data_repo.dart';
+import 'home_repo.dart';
 
-class DataRepoImpl extends DataRepo {
+class HomeRepoImpl extends HomeRepo {
   final DataService dataService;
   final AuthServices authServices;
-  DataRepoImpl({required this.authServices, required this.dataService});
+  HomeRepoImpl({required this.authServices, required this.dataService});
   @override
   Future<Either<List<TaskModel>, Failure>> fetchData({required int pageNum}) async {
     try {

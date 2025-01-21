@@ -2,8 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:tasky_app/core/services/api_services.dart';
 import 'package:tasky_app/core/services/auth_services.dart';
 import 'package:tasky_app/core/services/data_service.dart';
-import 'package:tasky_app/feature/home/data/repo/data_repo.dart';
-import 'package:tasky_app/feature/home/data/repo/data_repo_impl.dart';
+import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
+import 'package:tasky_app/feature/home/data/repo/home_repo_impl.dart';
 
 import '../../feature/auth/data/repos/auth_repo.dart';
 import '../../feature/auth/data/repos/auth_repo_impl.dart';
@@ -28,8 +28,8 @@ void getItSetup() {
       authServices: getIt.get<AuthServices>(),
     ),
   );
-  getIt.registerSingleton<DataRepo>(
-    DataRepoImpl(
+  getIt.registerSingleton<HomeRepo>(
+    HomeRepoImpl(
       dataService: getIt.get<DataService>(),
       authServices: getIt.get<AuthServices>(),
     ),

@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/errors/failure.dart';
 import 'package:tasky_app/core/models/task_model.dart';
-import 'package:tasky_app/feature/home/data/repo/data_repo.dart';
+import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 
 part 'fetch_task_state.dart';
 
 class FetchTaskCubit extends Cubit<FetchTaskState> {
   FetchTaskCubit(this.dataRepoImpl) : super(FetchTaskInitial());
-  final DataRepo dataRepoImpl;
+  final HomeRepo dataRepoImpl;
   int __pageNum = 1;
   final int __maxItemPerPage = 20;
   bool __isThereMoreItems = true;
