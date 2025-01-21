@@ -7,11 +7,13 @@ import 'package:tasky_app/core/helper/date_picker.dart';
 import 'package:tasky_app/core/helper/format_date.dart';
 import 'package:tasky_app/core/widgets/custom_textformfield.dart';
 
+import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class TaskDueDateFormField extends StatefulWidget {
-  const TaskDueDateFormField({super.key});
+  const TaskDueDateFormField(this.taskModel , {super.key});
+  final TaskModel taskModel ;
 
   @override
   State<TaskDueDateFormField> createState() => _TaskDueDateFormFieldState();
@@ -50,10 +52,11 @@ class _TaskDueDateFormFieldState extends State<TaskDueDateFormField> {
             padding: const EdgeInsets.symmetric(horizontal: 9),
             child: SvgPicture.asset(Assets.imagesCalendar),
           ),
-          validator: (title) {
-            if (title == null || title.isEmpty) {
+          validator: (dueDate) {
+            if (dueDate == null || dueDate.isEmpty) {
               return "field is required";
             }
+            widget.taskModel.dueDate = dueDate;
             return null;
           },
         ),

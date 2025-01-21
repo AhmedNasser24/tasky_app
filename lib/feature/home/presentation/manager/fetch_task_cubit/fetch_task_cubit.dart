@@ -8,8 +8,8 @@ import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 part 'fetch_task_state.dart';
 
 class FetchTaskCubit extends Cubit<FetchTaskState> {
-  FetchTaskCubit(this.dataRepoImpl) : super(FetchTaskInitial());
-  final HomeRepo dataRepoImpl;
+  FetchTaskCubit(this.homeRepoImpl) : super(FetchTaskInitial());
+  final HomeRepo homeRepoImpl;
   int __pageNum = 1;
   final int __maxItemPerPage = 20;
   bool __isThereMoreItems = true;
@@ -25,7 +25,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
       emit(FetchTaskLoading());
     }
     Either<List<TaskModel>, Failure> result =
-        await dataRepoImpl.fetchData(pageNum: __pageNum);
+        await homeRepoImpl.fetchData(pageNum: __pageNum);
     result.fold(
       (tasksList) {
         if (__tasksList != null) {

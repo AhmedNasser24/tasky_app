@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/core/widgets/custom_textformfield.dart';
 
+import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class TaskTitleFormField extends StatelessWidget {
-  const TaskTitleFormField({super.key});
+  const TaskTitleFormField(this.taskModel , {super.key});
+  final TaskModel taskModel ;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class TaskTitleFormField extends StatelessWidget {
             if(title == null || title.isEmpty){
               return "field is required";
             }
+            taskModel.title = title;
             return null;
           },
         )

@@ -24,7 +24,7 @@ class ApiServices {
 
   Future post(
       {required String endPoint,
-      Map<String, dynamic>? data,
+      Object? data,
       String? authorization}) async {
     Response response = await _dio.post(
       "$kBaseUrl$endPoint",

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/core/widgets/custom_textformfield.dart';
 
+import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class TaskDescTextFormField extends StatelessWidget {
-  const TaskDescTextFormField({super.key});
+  const TaskDescTextFormField(this.taskModel , {super.key});
+  final TaskModel taskModel ;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class TaskDescTextFormField extends StatelessWidget {
             if (desc == null || desc.isEmpty) {
               return "field is required";
             }
+            taskModel.desc = desc;
             return null;
           },
         )

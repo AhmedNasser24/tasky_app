@@ -5,11 +5,13 @@ import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/utils/app_images.dart';
 
+import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class TaskPriorityFormField extends StatefulWidget {
-  const TaskPriorityFormField({super.key});
+  const TaskPriorityFormField(this.taskModel , {super.key});
+  final TaskModel taskModel ;
 
   @override
   State<TaskPriorityFormField> createState() => _TaskPriorityFormFieldState();
@@ -34,6 +36,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
+        
         isExpanded: true,
         hint: Text(
           'Select Priority',
@@ -59,6 +62,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
         valueListenable: valueListenable,
         onChanged: (value) {
           valueListenable.value = value;
+          widget.taskModel.priority = value?.toLowerCase();
           changeIconColor(value);
         },
         buttonStyleData: const ButtonStyleData(

@@ -8,12 +8,13 @@ import 'package:gap/gap.dart';
 import 'package:tasky_app/core/utils/app_styles.dart';
 
 import '../../../../../core/helper/image_picker.dart';
+import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_images.dart';
 
 class ImageFormField extends StatefulWidget {
-  const ImageFormField({super.key});
-
+  const ImageFormField(this.taskModel , {super.key});
+  final TaskModel taskModel ;
   @override
   State<ImageFormField> createState() => _ImageFormFieldState();
 }
