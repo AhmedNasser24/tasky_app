@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tasky_app/feature/home/data/models/task_model.dart';
+import 'package:tasky_app/core/models/task_model.dart';
 
 import '../../../../core/errors/failure.dart';
 

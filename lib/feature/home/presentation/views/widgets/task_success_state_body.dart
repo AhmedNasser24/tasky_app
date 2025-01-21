@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../constants.dart';
-import '../../../data/models/task_model.dart';
+import '../../../../../core/models/task_model.dart';
 import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
 import 'task_item.dart';
 

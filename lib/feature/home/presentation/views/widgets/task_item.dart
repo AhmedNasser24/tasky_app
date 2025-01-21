@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import '../../../../../core/utils/app_images.dart';
-import '../../../data/models/task_model.dart';
+import '../../../../../core/models/task_model.dart';
 import 'setting_icon_button.dart';
 import 'task_item_date.dart';
 import 'task_item_description.dart';

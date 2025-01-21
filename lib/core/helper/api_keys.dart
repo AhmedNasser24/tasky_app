@@ -17,6 +17,7 @@ class ApiKeys {
   static const String taskUser = "user";
   static const String taskCreatedAt = "createdAt";
   static const String taskUpdatedAt = "updatedAt";
+  static const String taskDueDate = "dueDate";
 
   
 }

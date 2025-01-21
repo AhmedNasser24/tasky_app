@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/errors/failure.dart';
-import 'package:tasky_app/feature/home/data/models/task_model.dart';
+import 'package:tasky_app/core/models/task_model.dart';
 import 'package:tasky_app/feature/home/data/repo/data_repo.dart';
 
 part 'fetch_task_state.dart';

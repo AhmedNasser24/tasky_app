@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:tasky_app/core/errors/failure.dart';
 import 'package:tasky_app/core/services/auth_services.dart';
 import 'package:tasky_app/core/services/data_service.dart';
-import 'package:tasky_app/feature/home/data/models/task_model.dart';
+import 'package:tasky_app/core/models/task_model.dart';
 
 import '../../../../core/helper/api_keys.dart';
 import '../../../../core/utils/shared_preference_singleton.dart';

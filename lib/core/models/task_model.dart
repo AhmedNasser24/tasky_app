@@ -1,7 +1,16 @@
 import 'package:tasky_app/core/helper/api_keys.dart';
 
 class TaskModel {
-  String? id, image, title, desc, priority, status, user, createdAt, updatedAt;
+  String? id,
+      image,
+      title,
+      desc,
+      priority,
+      status,
+      user,
+      createdAt,
+      updatedAt,
+      dueDate;
 
   TaskModel(
       {this.id,
@@ -14,7 +23,7 @@ class TaskModel {
       this.createdAt,
       this.updatedAt});
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
+  factory TaskModel.fromJsonFetch(Map<String, dynamic> json) => TaskModel(
         id: json[ApiKeys.taskId],
         image: json[ApiKeys.taskImage],
         title: json[ApiKeys.taskTitle],
@@ -26,4 +35,11 @@ class TaskModel {
         updatedAt: json[ApiKeys.taskUpdatedAt],
       );
 
+  toJsonCreate() => {
+        ApiKeys.taskImage: image,
+        ApiKeys.taskTitle: title,
+        ApiKeys.taskDesc: desc,
+        ApiKeys.taskPriority: priority,
+        ApiKeys.taskDueDate: dueDate,
+      };
 }
