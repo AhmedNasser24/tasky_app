@@ -17,7 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onTap,
     this.readOnly = false,
     this.controller,
-    this.maxLines,
+    this.maxLines = 1,
     this.hintStyle,
     this.textStyle,
     this.filled,

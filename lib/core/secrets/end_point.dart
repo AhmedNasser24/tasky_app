@@ -5,4 +5,5 @@ class EndPoint {
   static const String refreshToken = "auth/refresh-token?token=";
   static const String profile = "auth/profile";
   static const String getTasks = "todos" ;
+  static const String uploadImage = "upload/image" ;
 }
