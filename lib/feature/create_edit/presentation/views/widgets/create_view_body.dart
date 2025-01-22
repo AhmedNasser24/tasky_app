@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/models/task_model.dart';
-import 'package:tasky_app/feature/create_task/presentation/views/widgets/create_app_bar.dart';
-import 'package:tasky_app/feature/create_task/presentation/views/widgets/create_task_button.dart';
-import 'package:tasky_app/feature/create_task/presentation/views/widgets/image_form_field.dart';
-import 'package:tasky_app/feature/create_task/presentation/views/widgets/task_priority_form_field.dart';
+import 'package:tasky_app/feature/create_edit/presentation/views/widgets/create_app_bar.dart';
+import 'package:tasky_app/feature/create_edit/presentation/views/widgets/create_task_button.dart';
+import 'package:tasky_app/feature/create_edit/presentation/views/widgets/image_form_field.dart';
+import 'package:tasky_app/feature/create_edit/presentation/views/widgets/task_priority_form_field.dart';
 
 import 'task_desc_text_form_field.dart';
 import 'task_due_date_text_form_field.dart';

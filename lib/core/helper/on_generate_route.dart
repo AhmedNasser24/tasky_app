@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasky_app/feature/auth/presentation/views/register_view.dart';
 
 import '../../feature/auth/presentation/views/login_view.dart';
-import '../../feature/create_task/presentation/views/create_view.dart';
+import '../../feature/create_edit/presentation/views/create_view.dart';
 import '../../feature/home/presentation/views/home_view.dart';
 import '../../feature/profile/presentation/views/profile_view.dart';
 

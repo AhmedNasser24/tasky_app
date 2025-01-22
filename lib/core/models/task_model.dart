@@ -9,7 +9,7 @@ class TaskModel {
       desc,
       priority,
       status,
-      user,
+      userId,
       createdAt,
       updatedAt,
       dueDate;
@@ -22,7 +22,7 @@ class TaskModel {
       this.desc,
       this.priority,
       this.status,
-      this.user,
+      this.userId,
       this.createdAt,
       this.updatedAt});
 
@@ -33,7 +33,7 @@ class TaskModel {
         desc: json[ApiKeys.taskDesc],
         priority: json[ApiKeys.taskPriority],
         status: json[ApiKeys.taskStatus],
-        user: json[ApiKeys.taskUser],
+        userId: json[ApiKeys.taskUser],
         createdAt: json[ApiKeys.taskCreatedAt],
         updatedAt: json[ApiKeys.taskUpdatedAt],
       );
@@ -45,4 +45,12 @@ class TaskModel {
         ApiKeys.taskPriority: priority,
         ApiKeys.taskDueDate: dueDate,
       };
+  toJsonEdit() => {
+        ApiKeys.taskImage: image,
+        ApiKeys.taskTitle: title,
+        ApiKeys.taskDesc: desc,
+        ApiKeys.taskPriority: priority,
+        ApiKeys.taskStatus: status,
+        ApiKeys.userId : userId ,
+      };    
 }
