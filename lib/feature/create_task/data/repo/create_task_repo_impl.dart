@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:tasky_app/core/errors/failure.dart';
 
 import 'package:tasky_app/core/models/task_model.dart';
+import 'package:tasky_app/core/secrets/api_base_url.dart';
 import 'package:tasky_app/core/services/auth_services.dart';
 import 'package:tasky_app/core/services/data_service.dart';
 
@@ -24,7 +25,8 @@ class CreateTaskRepoImpl extends CreateTaskRepo {
       {required TaskModel taskModel}) async {
     try {
       String newAccessToken = await refreshToken();
-      await uploadImage(image: taskModel.imageFile!);
+      String imageUrl = await uploadImage(image: taskModel.imageFile!);
+      taskModel.image = imageUrl;
       await dataService.createTask(
           accessToken: newAccessToken, taskModel: taskModel);
       return left(null);
@@ -49,14 +51,11 @@ class CreateTaskRepoImpl extends CreateTaskRepo {
   }
 
   @override
-  Future<void> uploadImage({required File image}) async {
-    try {
-      String newAccessToken = await refreshToken();
-      await dataService.uploadImage(accessToken: newAccessToken, imageFile: image);
-    } on DioException catch (e) {
-      log(ServerFailure.fromDioException(e).errMessage);
-    } catch (e) {
-      log("Error uploading image: $e");
-    }
+  Future<String> uploadImage({required File image}) async {
+    String newAccessToken = await refreshToken();
+    String imagePath = await dataService.uploadImage(
+        accessToken: newAccessToken, imageFile: image);
+    String imageUrl = "$kBaseUrl//images/$imagePath";
+    return imageUrl;
   }
 }

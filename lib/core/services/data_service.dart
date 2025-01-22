@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:tasky_app/core/helper/api_keys.dart';
 import 'package:tasky_app/core/services/api_services.dart';
 import '../models/task_model.dart';
 import '../secrets/end_point.dart';
@@ -31,7 +32,7 @@ class DataService {
         authorization: accessToken);
   }
 
-  Future<void> uploadImage(
+  Future<String> uploadImage(
       {required String accessToken, required File imageFile}) async {
     FormData formData = FormData.fromMap({
       "image": await MultipartFile.fromFile(
@@ -47,6 +48,7 @@ class DataService {
         data: formData,
         authorization: accessToken);
     log("upload image success") ;
-    log("upload image data : $data");    
+    log("upload image data : $data");  
+    return data[ApiKeys.taskImage] ;  
   }
 }
