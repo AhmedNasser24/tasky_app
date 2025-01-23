@@ -5,10 +5,21 @@ import 'package:tasky_app/core/widgets/custom_textformfield.dart';
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_styles.dart';
 
-class TaskDescTextFormField extends StatelessWidget {
+class TaskDescTextFormField extends StatefulWidget {
   const TaskDescTextFormField(this.taskModel , {super.key});
   final TaskModel taskModel ;
 
+  @override
+  State<TaskDescTextFormField> createState() => _TaskDescTextFormFieldState();
+}
+
+class _TaskDescTextFormFieldState extends State<TaskDescTextFormField> {
+  late TextEditingController controller ;
+  @override
+  void initState() {
+    controller = TextEditingController(text: widget.taskModel.desc);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,13 +31,14 @@ class TaskDescTextFormField extends StatelessWidget {
                 AppStyles.regular12.copyWith(color: const Color(0xff6E6A7C))),
         const Gap(8),
         CustomTextFormField(
+          controller: controller,
           hintText: "Enter description here...",
           maxLines: 5,
           validator: (desc) {
             if (desc == null || desc.isEmpty) {
               return "field is required";
             }
-            taskModel.desc = desc;
+            widget.taskModel.desc = desc;
             return null;
           },
         )

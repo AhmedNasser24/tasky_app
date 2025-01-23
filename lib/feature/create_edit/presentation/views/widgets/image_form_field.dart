@@ -13,8 +13,8 @@ import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_images.dart';
 
 class ImageFormField extends StatefulWidget {
-  const ImageFormField(this.taskModel , {super.key});
-  final TaskModel taskModel ;
+  const ImageFormField(this.taskModel, {super.key});
+  final TaskModel taskModel;
   @override
   State<ImageFormField> createState() => _ImageFormFieldState();
 }
@@ -37,9 +37,9 @@ class _ImageFormFieldState extends State<ImageFormField> {
                 imageFile = await pickImageFromGallery();
                 if (imageFile != null) {
                   log("image picked successfully");
+                  widget.taskModel.imageFile = imageFile;
+                  setState(() {});
                 }
-                widget.taskModel.imageFile = imageFile;
-                setState(() {});
               },
               child: DottedBorder(
                 color: AppColor.primaryColor,

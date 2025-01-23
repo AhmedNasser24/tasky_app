@@ -56,7 +56,11 @@ class TaskItem extends StatelessWidget {
               const Gap(30),
             ],
           ),
-          const Positioned(top: 0, right: 0, child: SettingIconButton()),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: SettingIconButton(taskModel: taskModel),
+          ),
         ],
       ),
     );

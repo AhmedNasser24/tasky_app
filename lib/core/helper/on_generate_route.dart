@@ -16,6 +16,7 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const HomeView());
     case CreateView.routeName:
       return MaterialPageRoute(builder: (context) => const CreateView());
+
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
     default:

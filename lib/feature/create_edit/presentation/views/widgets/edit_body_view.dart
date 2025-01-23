@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/models/task_model.dart';
-import 'package:tasky_app/feature/create_edit/presentation/views/widgets/create_app_bar.dart';
-import 'package:tasky_app/feature/create_edit/presentation/views/widgets/create_task_button.dart';
-import 'package:tasky_app/feature/create_edit/presentation/views/widgets/image_form_field.dart';
-import 'package:tasky_app/feature/create_edit/presentation/views/widgets/task_priority_form_field.dart';
 
+import '../../../../../core/models/task_model.dart';
+import 'edit_app_bar.dart';
+import 'edit_task_button.dart';
+import 'image_form_field.dart';
 import 'task_desc_text_form_field.dart';
 import 'task_due_date_text_form_field.dart';
+import 'task_priority_form_field.dart';
 import 'task_title_text_form_field.dart';
 
-class CreateViewBody extends StatefulWidget {
-  const CreateViewBody({super.key});
-
+class EditBodyView extends StatefulWidget {
+  const EditBodyView({super.key, required this.taskModel});
+  final TaskModel taskModel ; 
   @override
-  State<CreateViewBody> createState() => _CreateViewBodyState();
+  State<EditBodyView> createState() => _EditBodyViewState();
 }
 
-class _CreateViewBodyState extends State<CreateViewBody> {
+class _EditBodyViewState extends State<EditBodyView> {
   @override
   Widget build(BuildContext context) {
-    TaskModel taskModel = TaskModel();
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return  Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -29,23 +28,23 @@ class _CreateViewBodyState extends State<CreateViewBody> {
         key: formKey,
         child: Column(
           children: [
-            const CreateAppBar(),
+            const EditAppBar(),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     const Gap(24),
-                    ImageFormField(taskModel),
+                    ImageFormField(widget.taskModel),
                     const Gap(16),
-                    TaskTitleFormField(taskModel),
+                    TaskTitleFormField(widget.taskModel),
                     const Gap(16),
-                    TaskDescTextFormField(taskModel),
+                    TaskDescTextFormField(widget.taskModel),
                     const Gap(16),
-                    TaskPriorityFormField(taskModel),
+                    TaskPriorityFormField(widget.taskModel),
                     const Gap(16),
-                    TaskDueDateFormField(taskModel),
+                    TaskDueDateFormField(widget.taskModel),
                     const Gap(34),
-                    CreateTaskButton(taskModel , formKey),
+                    EditTaskButton(widget.taskModel , formKey),
                     const Gap(kBottomSpace),
                   ],
                 ),

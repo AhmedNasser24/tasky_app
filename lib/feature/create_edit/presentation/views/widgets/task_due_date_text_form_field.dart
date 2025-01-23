@@ -20,8 +20,12 @@ class TaskDueDateFormField extends StatefulWidget {
 }
 
 class _TaskDueDateFormFieldState extends State<TaskDueDateFormField> {
-  TextEditingController dateController = TextEditingController();
-
+  late TextEditingController dateController;
+  @override
+  void initState() {
+    dateController = TextEditingController(text: widget.taskModel.dueDate);
+    super.initState();
+  }
   Future<void> __selectDate() async {
     DateTime? pickedDate = await pickDate(context);
     if (pickedDate != null) {

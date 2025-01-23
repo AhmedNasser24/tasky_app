@@ -35,6 +35,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
+      
       child: DropdownButton2<String>(
         
         isExpanded: true,

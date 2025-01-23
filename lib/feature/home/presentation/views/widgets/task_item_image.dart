@@ -16,7 +16,8 @@ class TaskItemImage extends StatelessWidget {
       width: 60,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
-        placeholder: (context, url) => const CircularProgressIndicator(),
+        placeholder: (context, url) =>
+            const Center(child: CircularProgressIndicator()),
         errorWidget: (context, url, error) => Image.asset(
           Assets.imagesTask,
           fit: BoxFit.fill,
