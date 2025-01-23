@@ -19,14 +19,22 @@ class TaskPriorityFormField extends StatefulWidget {
 
 class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
   final valueListenable = ValueNotifier<String?>(null);
-  Color iconColor = AppColor.greyColor;
+  late Color iconColor ;
+
+  @override
+  void initState() {
+    iconColor = AppColor.greyColor;
+    valueListenable.value = widget.taskModel.priority?.toLowerCase();
+    changeIconColor(valueListenable.value);
+    super.initState();
+  }
   void changeIconColor(String? value) {
     if (value == null) return;
-    if (value == kLow) {
+    if (value == kLow.toLowerCase()) {
       iconColor = AppColor.blueColor;
-    } else if (value == kMedium) {
+    } else if (value == kMedium.toLowerCase()) {
       iconColor = AppColor.primaryColor;
-    } else if (value == kHigh) {
+    } else if (value == kHigh.toLowerCase()) {
       iconColor = AppColor.orangeColor;
     }
     setState(() {});
@@ -109,7 +117,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
           style: AppStyles.bold16.copyWith(color: AppColor.blueColor),
         ),
       ]),
-      "value": kLow,
+      "value": kLow.toLowerCase(),
     },
     {
       "widget": Row(children: [
@@ -123,7 +131,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
           style: AppStyles.bold16.copyWith(color: AppColor.primaryColor),
         ),
       ]),
-      "value": kMedium,
+      "value": kMedium.toLowerCase(),
     },
     {
       "widget": Row(children: [
@@ -137,7 +145,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
           style: AppStyles.bold16.copyWith(color: AppColor.orangeColor),
         ),
       ]),
-      "value": kHigh,
+      "value": kHigh.toLowerCase(),
     },
   ];
 }
