@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:tasky_app/core/helper/api_keys.dart';
 
 class TaskModel {
-  String? id,
+  String? taskId,
       image,
       title,
       desc,
@@ -15,7 +15,7 @@ class TaskModel {
       dueDate;
   File? imageFile;
   TaskModel(
-      {this.id,
+      {this.taskId,
       this.image,
       this.imageFile,
       this.title,
@@ -27,13 +27,13 @@ class TaskModel {
       this.updatedAt});
 
   factory TaskModel.fromJsonFetch(Map<String, dynamic> json) => TaskModel(
-        id: json[ApiKeys.taskId],
+        taskId: json[ApiKeys.taskId],
         image: json[ApiKeys.taskImage],
         title: json[ApiKeys.taskTitle],
         desc: json[ApiKeys.taskDesc],
         priority: json[ApiKeys.taskPriority],
         status: json[ApiKeys.taskStatus],
-        userId: json[ApiKeys.taskUser],
+        userId: json[ApiKeys.userId],
         createdAt: json[ApiKeys.taskCreatedAt],
         updatedAt: json[ApiKeys.taskUpdatedAt],
       );

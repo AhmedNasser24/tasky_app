@@ -16,7 +16,6 @@ class TaskItem extends StatelessWidget {
   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    log(taskModel.toString());
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Stack(

@@ -32,7 +32,7 @@ class UserInfoModel {
   }
 
   factory UserInfoModel.authFromJson(Map<String, dynamic> json) => UserInfoModel(
-        userId: json[ApiKeys.userId],
+        userId: json["_id"],
         accessToken: json[ApiKeys.accessToken],
         refreshToken: json[ApiKeys.refreshToken],
       );

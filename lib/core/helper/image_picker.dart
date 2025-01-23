@@ -1,38 +1,18 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:tasky_app/core/services/auth_services.dart';
-import 'package:tasky_app/core/services/data_service.dart';
-import 'package:tasky_app/core/utils/get_it_setup.dart';
-import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo_impl.dart';
 
 Future<File?> pickImageFromGallery() async {
   final ImagePicker picker = ImagePicker();
   // Pick an image
   final XFile? image = await picker.pickImage(source: ImageSource.gallery);
   if (image != null) {
-    await TaskOperationRepoImpl(dataService: getIt.get<DataService>(), authServices: getIt.get<AuthServices>()).uploadImage(image: File(image.path));
     return File(image.path);
   } else {
     return null;
   }
 }
 
-// Future<void> uploadImage(File imageFile) async {
-//   try {
-//     final Dio dio = Dio();
 
-//     // Prepare the form data
-    
-
-//     // Log the response
-//     log("Response status: ${response.statusCode}");
-//     log("Response data: ${response.data}");
-//   } on DioException catch (e) {
-//     log(ServerFailure.fromDioException(e).errMessage);
-//   } catch (e) {
-//     log("Error uploading image: $e");
-//   }
-// }
 
 Future<File?> pickImageFromCamera() async {
   final ImagePicker picker = ImagePicker();

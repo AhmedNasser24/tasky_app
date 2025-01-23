@@ -1,1 +1,1 @@
-38.30 hour work
+39 hour work

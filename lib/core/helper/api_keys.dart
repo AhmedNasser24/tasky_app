@@ -5,7 +5,7 @@ class ApiKeys {
   static const String experienceYears = "experienceYears";
   static const String address = "address";
   static const String level = "level";
-  static const String userId = "_id";
+  static const String userId = "user";
   static const String accessToken = "access_token";
   static const String refreshToken = "refresh_token";
   static const String taskId = "_id";
@@ -14,7 +14,6 @@ class ApiKeys {
   static const String taskDesc = "desc";
   static const String taskPriority = "priority";
   static const String taskStatus = "status";
-  static const String taskUser = "user";
   static const String taskCreatedAt = "createdAt";
   static const String taskUpdatedAt = "updatedAt";
   static const String taskDueDate = "dueDate";

@@ -47,6 +47,7 @@ class ApiServices {
       String? authorization}) async {
     _dio.put(
       "$kBaseUrl$endPoint",
+      data: data,
       options: authorization == null
           ? null
           : Options(

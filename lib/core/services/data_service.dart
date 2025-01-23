@@ -47,15 +47,13 @@ class DataService {
         endPoint: EndPoint.uploadImage,
         data: formData,
         authorization: accessToken);
-    log("upload image success") ;
-    log("upload image data : $data");  
     return data[ApiKeys.taskImage] ;  
   }
 
   Future < void > editTask ({required String accessToken , required TaskModel taskModel}) async {
-    String userId = taskModel.userId!;
+    String taskId = taskModel.taskId!;
     await _apiServices.put(
-        endPoint: "${EndPoint.editTask}$userId",
+        endPoint: "${EndPoint.editTask}$taskId",
         data: taskModel.toJsonEdit(),
         authorization: accessToken
     );

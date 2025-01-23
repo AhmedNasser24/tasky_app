@@ -19,7 +19,6 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<List<TaskModel>, Failure>> fetchData({required int pageNum}) async {
     try {
       String newAccessToken = await refreshToken() ;
-      log(newAccessToken);
       List<TaskModel> taskModel = await dataService.fetchTasks( accessToken : newAccessToken , pageNum : pageNum);
       return left(taskModel);
     } on DioException catch (e) {

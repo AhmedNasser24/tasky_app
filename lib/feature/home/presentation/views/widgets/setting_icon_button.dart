@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,6 +18,8 @@ class SettingIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        log(taskModel.taskId!) ;
+        log(taskModel.toJsonEdit().toString());
         Navigator.push(context, MaterialPageRoute(builder: (context) =>  EditView(taskModel: taskModel)));
       },
       child: SvgPicture.asset(Assets.imagesSettingIcon),

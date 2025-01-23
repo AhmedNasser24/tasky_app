@@ -78,7 +78,7 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
     String newAccessToken = await refreshToken();
     String imagePath = await __dataService.uploadImage(
         accessToken: newAccessToken, imageFile: image);
-    String imageUrl = "$kBaseUrl//images/$imagePath";
+    String imageUrl = "$kBaseUrl/images/$imagePath";
     return imageUrl;
   }
 }
