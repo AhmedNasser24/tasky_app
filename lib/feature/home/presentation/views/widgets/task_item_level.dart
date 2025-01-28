@@ -6,8 +6,8 @@ import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/app_images.dart';
 import 'package:tasky_app/core/utils/app_styles.dart';
 
-class TaskItemLevel extends StatelessWidget {
-  const TaskItemLevel(this.level, {super.key, this.isDamy = false});
+class TaskItemPriority extends StatelessWidget {
+  const TaskItemPriority(this.level, {super.key, this.isDamy = false});
   final String level;
   final bool isDamy;
   @override

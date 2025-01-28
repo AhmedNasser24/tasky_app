@@ -41,7 +41,7 @@ class DamyTaskItem extends StatelessWidget {
                 Gap(5),
                 Row(
                   children: [
-                    TaskItemLevel(kMedium , isDamy: true),
+                    TaskItemPriority(kMedium , isDamy: true),
                     Spacer(),
                     TaskItemDate(),
                   ],

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import '../../../../../core/models/task_model.dart';
@@ -44,7 +42,7 @@ class TaskItem extends StatelessWidget {
                     const Gap(5),
                     Row(
                       children: [
-                        TaskItemLevel(taskModel.priority!),
+                        TaskItemPriority(taskModel.priority!),
                         const Spacer(),
                         TaskItemDate(date: taskModel.createdAt!),
                       ],

@@ -8,6 +8,7 @@ import 'edit_task_button.dart';
 import 'image_form_field.dart';
 import 'task_desc_text_form_field.dart';
 import 'task_priority_form_field.dart';
+import 'task_statues_form_field.dart';
 import 'task_title_text_form_field.dart';
 
 class EditBodyView extends StatefulWidget {
@@ -53,6 +54,9 @@ class _EditBodyViewState extends State<EditBodyView> {
                     TaskTitleFormField(editTaskModel),
                     const Gap(16),
                     TaskDescTextFormField(editTaskModel),
+
+                    const Gap(16),
+                    TaskStatuesFormField(editTaskModel),
                     const Gap(16),
                     TaskPriorityFormField(editTaskModel),
                     

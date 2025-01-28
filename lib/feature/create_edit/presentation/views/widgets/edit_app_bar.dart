@@ -13,11 +13,22 @@ class EditAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 12.0),
-      child: Row(
+      child: Stack(
         children: [
-          CustomBackArrowButton(),
-          Gap(8),
-          Text('Edit task', style: AppStyles.bold16),
+          Positioned(
+            left: -5,
+            top: -5,
+            child: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: CustomBackArrowButton(),
+            ),
+          ),
+          Row(
+            children: [
+              Gap(35),
+              Text('Edit task', style: AppStyles.bold16),
+            ],
+          ),
         ],
       ),
     );

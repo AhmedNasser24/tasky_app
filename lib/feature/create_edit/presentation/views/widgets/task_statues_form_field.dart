@@ -1,40 +1,37 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/utils/app_images.dart';
 
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_styles.dart';
 
-class TaskPriorityFormField extends StatefulWidget {
-  const TaskPriorityFormField(this.taskModel , {super.key});
+class TaskStatuesFormField extends StatefulWidget {
+  const TaskStatuesFormField(this.taskModel , {super.key});
   final TaskModel taskModel ;
 
   @override
-  State<TaskPriorityFormField> createState() => _TaskPriorityFormFieldState();
+  State<TaskStatuesFormField> createState() => _TaskStatuesFormFieldState();
 }
 
-class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
+class _TaskStatuesFormFieldState extends State<TaskStatuesFormField> {
   final valueListenable = ValueNotifier<String?>(null);
   late Color iconColor ;
 
   @override
   void initState() {
     iconColor = AppColor.greyColor;
-    valueListenable.value = widget.taskModel.priority?.toLowerCase();
+    valueListenable.value = widget.taskModel.status?.toLowerCase();
     changeIconColor(valueListenable.value);
     super.initState();
   }
   void changeIconColor(String? value) {
     if (value == null) return;
-    if (value == kLow.toLowerCase()) {
+    if (value == kFinished.toLowerCase()) {
       iconColor = AppColor.blueColor;
-    } else if (value == kMedium.toLowerCase()) {
+    } else if (value == kInprogress.toLowerCase()) {
       iconColor = AppColor.primaryColor;
-    } else if (value == kHigh.toLowerCase()) {
+    } else if (value == kWaiting.toLowerCase()) {
       iconColor = AppColor.orangeColor;
     }
     setState(() {});
@@ -48,7 +45,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
         
         isExpanded: true,
         hint: Text(
-          'Select Priority',
+          'Select Statues',
           style: AppStyles.regular14.copyWith(color: AppColor.greyColor),
         ),
         items: items
@@ -71,7 +68,7 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
         valueListenable: valueListenable,
         onChanged: (value) {
           valueListenable.value = value;
-          widget.taskModel.priority = value?.toLowerCase();
+          widget.taskModel.status = value?.toLowerCase();
           changeIconColor(value);
         },
         buttonStyleData: const ButtonStyleData(
@@ -106,46 +103,25 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
 
   final List<Map<String, dynamic>> items = [
     {
-      "widget": Row(children: [
-        SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(Assets.imagesLowFlag)),
-        const Gap(8),
-        Text(
-          "$kLow Priority",
-          style: AppStyles.bold16.copyWith(color: AppColor.blueColor),
-        ),
-      ]),
-      "value": kLow.toLowerCase(),
+      "widget": Text(
+        kWaiting,
+        style: AppStyles.bold16.copyWith(color: AppColor.orangeColor),
+      ),
+      "value": kWaiting.toLowerCase(),
     },
     {
-      "widget": Row(children: [
-        SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(Assets.imagesMediumFlag)),
-        const Gap(8),
-        Text(
-          "$kMedium Priority",
-          style: AppStyles.bold16.copyWith(color: AppColor.primaryColor),
-        ),
-      ]),
-      "value": kMedium.toLowerCase(),
+      "widget": Text(
+        kInprogress,
+        style: AppStyles.bold16.copyWith(color: AppColor.primaryColor),
+      ),
+      "value": kInprogress.toLowerCase(),
     },
     {
-      "widget": Row(children: [
-        SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(Assets.imagesHeighFlag)),
-        const Gap(8),
-        Text(
-          "$kHigh Priority",
-          style: AppStyles.bold16.copyWith(color: AppColor.orangeColor),
-        ),
-      ]),
-      "value": kHigh.toLowerCase(),
+      "widget": Text(
+        kFinished,
+        style: AppStyles.bold16.copyWith(color: AppColor.blueColor),
+      ),
+      "value": kFinished.toLowerCase(),
     },
   ];
 }

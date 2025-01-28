@@ -16,7 +16,7 @@ class SettingIconButton extends StatelessWidget {
   final TaskModel taskModel ;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         log(taskModel.taskId!) ;
         log(taskModel.toJsonEdit().toString());
