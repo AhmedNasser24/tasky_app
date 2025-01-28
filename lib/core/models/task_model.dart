@@ -24,7 +24,9 @@ class TaskModel {
       this.status,
       this.userId,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.dueDate,
+      });
 
   factory TaskModel.fromJsonFetch(Map<String, dynamic> json) => TaskModel(
         taskId: json[ApiKeys.taskId],

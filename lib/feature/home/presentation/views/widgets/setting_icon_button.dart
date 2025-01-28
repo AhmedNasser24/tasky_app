@@ -16,13 +16,19 @@ class SettingIconButton extends StatelessWidget {
   final TaskModel taskModel ;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         log(taskModel.taskId!) ;
         log(taskModel.toJsonEdit().toString());
         Navigator.push(context, MaterialPageRoute(builder: (context) =>  EditView(taskModel: taskModel)));
       },
-      child: SvgPicture.asset(Assets.imagesSettingIcon),
+      child: Container(
+        padding: const EdgeInsets.all(5.0),
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+        ),
+        child: SvgPicture.asset(Assets.imagesSettingIcon),
+      ),
     );
     
   }

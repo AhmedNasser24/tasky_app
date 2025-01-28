@@ -56,8 +56,8 @@ class TaskItem extends StatelessWidget {
             ],
           ),
           Positioned(
-            top: 0,
-            right: 0,
+            top: -5,
+            right: -5,
             child: SettingIconButton(taskModel: taskModel),
           ),
         ],

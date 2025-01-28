@@ -7,22 +7,36 @@ import 'edit_app_bar.dart';
 import 'edit_task_button.dart';
 import 'image_form_field.dart';
 import 'task_desc_text_form_field.dart';
-import 'task_due_date_text_form_field.dart';
 import 'task_priority_form_field.dart';
 import 'task_title_text_form_field.dart';
 
 class EditBodyView extends StatefulWidget {
   const EditBodyView({super.key, required this.taskModel});
-  final TaskModel taskModel ; 
+  final TaskModel taskModel;
   @override
   State<EditBodyView> createState() => _EditBodyViewState();
 }
 
 class _EditBodyViewState extends State<EditBodyView> {
+  late TaskModel editTaskModel;
+  @override
+  void initState() {
+    editTaskModel = TaskModel(
+      image: widget.taskModel.image,
+      priority: widget.taskModel.priority,
+      status: widget.taskModel.status,
+      taskId: widget.taskModel.taskId,
+      title: widget.taskModel.title,
+      desc: widget.taskModel.desc,
+      userId: widget.taskModel.userId,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
         key: formKey,
@@ -34,17 +48,16 @@ class _EditBodyViewState extends State<EditBodyView> {
                 child: Column(
                   children: [
                     const Gap(24),
-                    ImageFormField(widget.taskModel),
+                    ImageFormField(editTaskModel),
                     const Gap(16),
-                    TaskTitleFormField(widget.taskModel),
+                    TaskTitleFormField(editTaskModel),
                     const Gap(16),
-                    TaskDescTextFormField(widget.taskModel),
+                    TaskDescTextFormField(editTaskModel),
                     const Gap(16),
-                    TaskPriorityFormField(widget.taskModel),
-                    const Gap(16),
-                    TaskDueDateFormField(widget.taskModel),
+                    TaskPriorityFormField(editTaskModel),
+                    
                     const Gap(34),
-                    EditTaskButton(widget.taskModel , formKey),
+                    EditTaskButton(editTaskModel, formKey),
                     const Gap(kBottomSpace),
                   ],
                 ),
