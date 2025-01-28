@@ -61,7 +61,7 @@ class _EditBodyViewState extends State<EditBodyView> {
                     TaskPriorityFormField(editTaskModel),
                     
                     const Gap(34),
-                    EditTaskButton(editTaskModel, formKey),
+                    EditTaskButton( taskModel: widget.taskModel , editTaskModel:  editTaskModel, formKey: formKey),
                     const Gap(kBottomSpace),
                   ],
                 ),

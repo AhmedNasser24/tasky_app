@@ -33,7 +33,7 @@ class _ImageFormFieldState extends State<ImageFormField> {
       },
       child:  widget.taskModel.image != null
           ? Container(
-              constraints: const BoxConstraints(maxWidth: 300),
+              constraints: const BoxConstraints(maxWidth: 340),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -47,7 +47,7 @@ class _ImageFormFieldState extends State<ImageFormField> {
                           imageUrl: widget.taskModel.image!),
                     ),
                   ),
-                  const Gap(8),
+                  const Gap(5),
                   IconButton(
                     onPressed: () {
                       widget.taskModel.image = null;
