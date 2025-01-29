@@ -23,8 +23,6 @@ class _DetailsPriorityState extends State<DetailsPriority> {
       padding: const EdgeInsets.only(
             left: 24,
             right: 10,
-            top: 4 ,
-            bottom: 4,
           ),
           decoration: ShapeDecoration(
             color: const Color(0xFFF0ECFF),
