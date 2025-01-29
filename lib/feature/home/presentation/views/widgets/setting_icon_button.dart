@@ -8,9 +8,8 @@ import '../../../../../core/utils/app_styles.dart';
 
 class SettingIconButton extends StatelessWidget {
   const SettingIconButton(
-      {super.key, required this.taskModel, required this.context});
+      {super.key, required this.taskModel});
   final TaskModel taskModel;
-  final BuildContext context;
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
