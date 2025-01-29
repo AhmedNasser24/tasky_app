@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/models/task_model.dart';
 import 'details_app_bar.dart';
+import 'details_task_image.dart';
 
 class DetailsViewBody extends StatelessWidget {
   const DetailsViewBody({super.key, required this.taskModel});
@@ -13,6 +13,8 @@ class DetailsViewBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DetailsAppBar(taskModel: taskModel),
+          DetailsTaskImage(imgUrl: taskModel.image!),
+          
         ],
       ),
     );
