@@ -10,6 +10,7 @@ class DetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DetailsAppBar(taskModel: taskModel),
         ],

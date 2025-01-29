@@ -13,6 +13,7 @@ class SettingIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
+      offset: const Offset(0, 42),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),),
       color: AppColor.whiteColor,

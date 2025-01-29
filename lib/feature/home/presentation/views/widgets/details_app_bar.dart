@@ -8,14 +8,15 @@ import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/widgets/custom_back_arrow_button.dart';
 
 class DetailsAppBar extends StatelessWidget {
-  const DetailsAppBar({super.key , required this.taskModel});
+  const DetailsAppBar({super.key, required this.taskModel});
   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    return  Stack(
-      children:  [
+    return Stack(
+      children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding, vertical: 12.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: kHorizontalPadding, vertical: 12.0),
           child: Stack(
             children: [
               Positioned(
@@ -33,12 +34,14 @@ class DetailsAppBar extends StatelessWidget {
                 ],
               ),
             ],
-
           ),
         ),
-        Positioned(child: SettingIconButton(taskModel: taskModel))
+        Positioned(
+            right: 0,
+            top: 0,
+            bottom: 0,
+            child: SettingIconButton(taskModel: taskModel))
       ],
-      
     );
   }
 }

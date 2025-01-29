@@ -9,7 +9,7 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
         child: DetailsViewBody(taskModel: taskModel,),
       ),
     );
