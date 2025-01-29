@@ -37,31 +37,28 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     bool isThereMoreItems =
         BlocProvider.of<FetchTaskCubit>(context).isThereMoreItems;
     String currFilter = BlocProvider.of<FetchTaskCubit>(context).currFilter;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: RefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 1));
-          BlocProvider.of<FetchTaskCubit>(context).refresh();
+    return RefreshIndicator(
+      onRefresh: () async {
+        await Future.delayed(const Duration(seconds: 1));
+        BlocProvider.of<FetchTaskCubit>(context).refresh();
+      },
+      child: ListView.builder(
+        controller: controller,
+        physics: const AlwaysScrollableScrollPhysics(),
+        itemCount: tasksList.length + (isThereMoreItems ? 1 : 0),
+        itemBuilder: (context, index) {
+          if (index < tasksList.length) {
+            return showTaskItemAfterFilter(currFilter, tasksList, index);
+          } else {
+            return GestureDetector(
+              onTap: () => BlocProvider.of<FetchTaskCubit>(context).fetchData(),
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            );
+          }
         },
-        child: ListView.builder(
-          controller: controller,
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: tasksList.length + (isThereMoreItems ? 1 : 0),
-          itemBuilder: (context, index) {
-            if (index < tasksList.length) {
-              return showTaskItemAfterFilter(currFilter, tasksList, index);
-            } else {
-              return GestureDetector(
-                onTap: () => BlocProvider.of<FetchTaskCubit>(context).fetchData(),
-                child: const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Center(child: CircularProgressIndicator()),
-                ),
-              );
-            }
-          },
-        ),
       ),
     );
   }

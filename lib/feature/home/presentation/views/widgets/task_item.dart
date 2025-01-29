@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
+import 'package:tasky_app/constants.dart';
 import '../../../../../core/models/task_model.dart';
 import 'setting_icon_button.dart';
 import 'task_item_date.dart';
@@ -14,11 +15,12 @@ class TaskItem extends StatelessWidget {
   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: Stack(
-        children: [
-          Row(
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding , vertical: 12.0),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TaskItemImage(taskModel.image!),
@@ -50,16 +52,16 @@ class TaskItem extends StatelessWidget {
                   ],
                 ),
               ),
-              const Gap(30),
+              const Gap(24),
             ],
           ),
-          Positioned(
-            top: -5,
-            right: -5,
-            child: SettingIconButton(taskModel: taskModel),
-          ),
-        ],
-      ),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: SettingIconButton(taskModel: taskModel , context: context,),
+        ),
+      ],
     );
   }
 }
