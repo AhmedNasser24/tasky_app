@@ -25,7 +25,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
       emit(FetchTaskLoading());
     }
     Either<List<TaskModel>, Failure> result =
-        await homeRepoImpl.fetchData(pageNum: __pageNum);
+        await homeRepoImpl.fetchAllTasks(pageNum: __pageNum);
     result.fold(
       (tasksList) {
         if (__tasksList != null) {

@@ -5,6 +5,7 @@ import '../../feature/auth/presentation/views/login_view.dart';
 import '../../feature/create_edit/presentation/views/create_view.dart';
 import '../../feature/home/presentation/views/home_view.dart';
 import '../../feature/profile/presentation/views/profile_view.dart';
+import '../../feature/home/presentation/views/scan_code_view.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -16,9 +17,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const HomeView());
     case CreateView.routeName:
       return MaterialPageRoute(builder: (context) => const CreateView());
-
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
+    case ScanCodeView.routeName:
+      return MaterialPageRoute(builder: (context) => const ScanCodeView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

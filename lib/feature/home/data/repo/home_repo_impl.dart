@@ -16,7 +16,7 @@ class HomeRepoImpl extends HomeRepo {
   final AuthServices authServices;
   HomeRepoImpl({required this.authServices, required this.dataService});
   @override
-  Future<Either<List<TaskModel>, Failure>> fetchData({required int pageNum}) async {
+  Future<Either<List<TaskModel>, Failure>> fetchAllTasks({required int pageNum}) async {
     try {
       String newAccessToken = await refreshToken() ;
       List<TaskModel> taskModel = await dataService.fetchTasks( accessToken : newAccessToken , pageNum : pageNum);
@@ -39,5 +39,20 @@ class HomeRepoImpl extends HomeRepo {
     await SharedPreferenceSingleton.setString(
         ApiKeys.accessToken, newAccessToken);
     return newAccessToken;
+  }
+  
+  @override
+  Future<Either<TaskModel, Failure>> fetchOneTask({required String qrData}) async{
+   try {
+      String newAccessToken = await refreshToken() ;
+     TaskModel taskModel = await dataService.fetchOneTask( accessToken : newAccessToken , qrData: qrData);
+      return left(taskModel);
+    } on DioException catch (e) {
+      log("fetch one task error : ${e.toString()}");
+      return right(ServerFailure.fromDioException(e));
+    } catch (e) {
+      log("fetch one task error : ${e.toString()}");
+      return right(const ServerFailure("please try again"));
+    }
   }
 }

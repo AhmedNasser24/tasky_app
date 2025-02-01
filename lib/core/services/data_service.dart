@@ -57,4 +57,14 @@ class DataService {
         authorization: accessToken
     );
   }
+
+  Future < TaskModel > fetchOneTask ({required String accessToken , required String qrData}) async {
+    var data = await _apiServices.get(
+        endPoint: "${EndPoint.one}$qrData",
+        authorization: accessToken
+    );
+    TaskModel task = TaskModel.fromJsonFetch(data);
+    return task;
+
+  }
 }

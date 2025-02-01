@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'custom_add_icon.dart';
-import 'custom_qr_icon.dart';
+import 'custom_qr_icon_button.dart';
 
 class CustomFloatingButtonForHomeView extends StatelessWidget {
   const CustomFloatingButtonForHomeView({

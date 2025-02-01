@@ -1,1 +1,1 @@
-43 hour work
+46.15 hour work

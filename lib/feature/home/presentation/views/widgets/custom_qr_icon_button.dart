@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasky_app/feature/home/presentation/views/scan_code_view.dart';
 
 import '../../../../../core/utils/app_images.dart';
 
@@ -9,7 +10,9 @@ class CustomQrIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {} ,
+      onTap: () {
+        Navigator.pushNamed(context, ScanCodeView.routeName);
+      } ,
       child: Container(
         width: 50,
         height: 50,
