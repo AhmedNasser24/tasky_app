@@ -11,16 +11,17 @@ class ScanCodeView extends StatefulWidget {
   State<ScanCodeView> createState() => _ScanCodeViewState();
 }
 
-class _ScanCodeViewState extends State<ScanCodeView> with SingleTickerProviderStateMixin {
+class _ScanCodeViewState extends State<ScanCodeView>
+    with SingleTickerProviderStateMixin {
   bool isFlashOn = false;
   MobileScannerController scannerController = MobileScannerController();
   late AnimationController _animationController;
-bool hasScanned = false; // Prevent multiple detections
+  bool hasScanned = false; // Prevent multiple detections
   final frameSize = 250.0;
   @override
   void initState() {
     super.initState();
-    
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
@@ -47,16 +48,17 @@ bool hasScanned = false; // Prevent multiple detections
           // QR Scanner
           MobileScanner(
             controller: scannerController,
-            onDetect: (capture) async{
+            onDetect: (capture) async {
               final List<Barcode> barcodes = capture.barcodes;
               if (barcodes.isNotEmpty) {
                 if (!hasScanned) {
-                setState(() {
-                  hasScanned = true;
-                });}
+                  setState(() {
+                    hasScanned = true;
+                  });
+                }
                 final String code = barcodes.first.rawValue ?? "";
                 // **Trigger Vibration on Scan**
-                if (await Vibration.hasVibrator() ) {
+                if (await Vibration.hasVibrator()) {
                   Vibration.vibrate(duration: 300); // Vibrates for 300ms
                 }
               }
@@ -68,13 +70,14 @@ bool hasScanned = false; // Prevent multiple detections
             child: Stack(
               children: [
                 _buildScannerOverlay(),
-                
+
                 // Flash and Close Buttons
                 Positioned(
                   bottom: 60,
                   left: 20,
                   child: IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white, size: 30),
+                    icon:
+                        const Icon(Icons.close, color: Colors.white, size: 30),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ),
@@ -82,7 +85,8 @@ bool hasScanned = false; // Prevent multiple detections
                   bottom: 60,
                   right: 20,
                   child: IconButton(
-                    icon: Icon(isFlashOn ? Icons.flash_on : Icons.flash_off, color: Colors.white, size: 30),
+                    icon: Icon(isFlashOn ? Icons.flash_on : Icons.flash_off,
+                        color: Colors.white, size: 30),
                     onPressed: () {
                       setState(() {
                         isFlashOn = !isFlashOn;
@@ -114,7 +118,9 @@ bool hasScanned = false; // Prevent multiple detections
         AnimatedBuilder(
           animation: _animationController,
           builder: (context, child) {
-            double scanY = (MediaQuery.of(context).size.height - frameSize) / 3 + (frameSize * _animationController.value);
+            double scanY =
+                (MediaQuery.of(context).size.height - frameSize) / 3 +
+                    (frameSize * _animationController.value);
             // if (MediaQuery.of(context).orientation == Orientation.portrait) {
             //   scanY = MediaQuery.of(context).size.height * 0.22 + (frameSize * _animationController.value);
             // } else {
@@ -139,7 +145,6 @@ bool hasScanned = false; // Prevent multiple detections
       ],
     );
   }
-  
 }
 
 // Custom Overlay Shape (Transparent Cutout with Rounded Borders)
@@ -195,16 +200,18 @@ class _ScannerOverlayShape extends ShapeBorder {
       ..lineTo(left, top + scanSize)
       ..lineTo(left + cornerLength, top + scanSize) // Bottom-left horizontal
 
-      ..moveTo(left + scanSize, top + scanSize - cornerLength) // Bottom-right vertical
+      ..moveTo(left + scanSize,
+          top + scanSize - cornerLength) // Bottom-right vertical
       ..lineTo(left + scanSize, top + scanSize)
-      ..lineTo(left + scanSize - cornerLength, top + scanSize); // Bottom-right horizontal
+      ..lineTo(left + scanSize - cornerLength,
+          top + scanSize); // Bottom-right horizontal
 
     canvas.drawPath(corners, cornerPaint);
   }
 
   @override
   ShapeBorder scale(double t) => this;
-  
+
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
     throw UnimplementedError();
