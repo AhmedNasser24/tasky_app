@@ -30,7 +30,7 @@ class DetailsAppBar extends StatelessWidget {
               Row(
                 children: [
                   Gap(35),
-                  Text('Edit task', style: AppStyles.bold16),
+                  Text('Task Details', style: AppStyles.bold16),
                 ],
               ),
             ],

@@ -10,13 +10,18 @@ part 'fetch_one_task_cubit_state.dart';
 class FetchOneTaskCubitCubit extends Cubit<FetchOneTaskCubitState> {
   FetchOneTaskCubitCubit(this.homeRepoImpl) : super(FetchOneTaskCubitInitial());
   final HomeRepo homeRepoImpl;
+  bool __isSuccess = false;
   Future<void> fetchOneTask({required String qrData}) async {
+    if (__isSuccess) {
+      return;
+    }
     emit(FetchOneTaskCubitLoading());
     Either<TaskModel, Failure> result =
         await homeRepoImpl.fetchOneTask(qrData: qrData);
     result.fold(
       (taskModel) {
         if (__isDataCorrect(taskModel)) {
+          __isSuccess = true;
           emit(FetchOneTaskCubitSuccess(taskModel));
         } else {
           emit(FetchOneTaskCubitFailure("QR code is not correct"));
