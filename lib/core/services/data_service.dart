@@ -67,4 +67,11 @@ class DataService {
     return task;
 
   }
+
+  Future <void > deleteTask ({required String accessToken , required String taskId}) async {
+    await _apiServices.delete(
+        endPoint: "${EndPoint.deleteTask}$taskId",
+        authorization: accessToken
+    );
+  }
 }

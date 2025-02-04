@@ -16,10 +16,12 @@ class HomeRepoImpl extends HomeRepo {
   final AuthServices authServices;
   HomeRepoImpl({required this.authServices, required this.dataService});
   @override
-  Future<Either<List<TaskModel>, Failure>> fetchAllTasks({required int pageNum}) async {
+  Future<Either<List<TaskModel>, Failure>> fetchAllTasks(
+      {required int pageNum}) async {
     try {
-      String newAccessToken = await refreshToken() ;
-      List<TaskModel> taskModel = await dataService.fetchTasks( accessToken : newAccessToken , pageNum : pageNum);
+      String newAccessToken = await refreshToken();
+      List<TaskModel> taskModel = await dataService.fetchTasks(
+          accessToken: newAccessToken, pageNum: pageNum);
       return left(taskModel);
     } on DioException catch (e) {
       log("fetch data error : ${e.toString()}");
@@ -40,13 +42,30 @@ class HomeRepoImpl extends HomeRepo {
         ApiKeys.accessToken, newAccessToken);
     return newAccessToken;
   }
-  
+
   @override
-  Future<Either<TaskModel, Failure>> fetchOneTask({required String qrData}) async{
-   try {
-      String newAccessToken = await refreshToken() ;
-     TaskModel taskModel = await dataService.fetchOneTask( accessToken : newAccessToken , qrData: qrData);
+  Future<Either<TaskModel, Failure>> fetchOneTask(
+      {required String qrData}) async {
+    try {
+      String newAccessToken = await refreshToken();
+      TaskModel taskModel = await dataService.fetchOneTask(
+          accessToken: newAccessToken, qrData: qrData);
       return left(taskModel);
+    } on DioException catch (e) {
+      log("fetch one task error : ${e.toString()}");
+      return right(ServerFailure.fromDioException(e));
+    } catch (e) {
+      log("fetch one task error : ${e.toString()}");
+      return right(const ServerFailure("please try again"));
+    }
+  }
+
+  @override
+  Future<Either<void, Failure>> deleteTask({required String taskId}) async {
+    try {
+      String newAccessToken = await refreshToken();
+      await dataService.deleteTask(accessToken: newAccessToken, taskId: taskId);
+      return left(null);
     } on DioException catch (e) {
       log("fetch one task error : ${e.toString()}");
       return right(ServerFailure.fromDioException(e));

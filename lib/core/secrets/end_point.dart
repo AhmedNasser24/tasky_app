@@ -9,4 +9,5 @@ class EndPoint {
   static const String uploadImage = "upload/image" ;
   static const String editTask = "todos/" ;
   static const String one = "todos/" ;
+  static const String deleteTask = "todos/" ;
 }
