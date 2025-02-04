@@ -1,5 +1,6 @@
 const double kHorizontalPadding = 22.0;
 const double kBottomSpace = 40.0;
+const kIsOnboardingVisited = "isOnboardingVisited";
 
 const String kAll = "All" ;
 const String kWaiting = "Waiting" ;

@@ -6,6 +6,10 @@ class Assets {
   /// assets/images/app_icon.webp
   static const String imagesAppIcon = "assets/images/app_icon.webp";
 
+  /// Assets for imagesArrow
+  /// assets/images/arrow.svg
+  static const String imagesArrow = "assets/images/arrow.svg";
+
   /// Assets for imagesBackArrowIcon
   /// assets/images/back_arrow_icon.svg
   static const String imagesBackArrowIcon = "assets/images/back_arrow_icon.svg";
@@ -57,6 +61,10 @@ class Assets {
   /// Assets for imagesMediumFlag
   /// assets/images/medium_flag.svg
   static const String imagesMediumFlag = "assets/images/medium_flag.svg";
+
+  /// Assets for imagesOnboarding
+  /// assets/images/onboarding.png
+  static const String imagesOnboarding = "assets/images/onboarding.png";
 
   /// Assets for imagesProfileIcon
   /// assets/images/profile_icon.svg
