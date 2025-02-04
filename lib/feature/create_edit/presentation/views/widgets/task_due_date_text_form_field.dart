@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -29,7 +27,6 @@ class _TaskDueDateFormFieldState extends State<TaskDueDateFormField> {
   Future<void> __selectDate() async {
     DateTime? pickedDate = await pickDate(context);
     if (pickedDate != null) {
-      log(pickedDate.toString());
       setState(() {
         dateController.text = formatDate(pickedDate.toString());
       });

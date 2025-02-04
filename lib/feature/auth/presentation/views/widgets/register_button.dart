@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
@@ -16,7 +14,6 @@ class RegisterButton extends StatelessWidget {
     return CustomButton(
       onTap: () {
         if (formKey.currentState!.validate()) {
-          log("user info : ${userInfoModel.toJson()}");
           BlocProvider.of<RegisterCubit>(context).register(userInfoModelInput : userInfoModel);
         }
       },
