@@ -12,7 +12,9 @@ void main() async {
   await SharedPreferenceSingleton.init();
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
-  runApp(const TaskyApp());
+  runApp(
+    const TaskyApp(),
+  );
 }
 
 class TaskyApp extends StatelessWidget {
@@ -30,7 +32,6 @@ class TaskyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
       initialRoute: SplashView.routeName,
-          
     );
   }
 }
