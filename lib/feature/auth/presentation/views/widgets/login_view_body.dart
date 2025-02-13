@@ -25,22 +25,28 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
         key: formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(Assets.imagesLoginLogo),
-              const TitleWidget("Login"),
-              const Gap(15),
-              LoginPhone(loginModel),
-              const Gap(10),
-              LoginPassword(loginModel),
-              const Gap(15),
-              LoginButton(loginModel:loginModel , formKey:formKey),
-              const Gap(10),
-              const DoNotHaveAccount(),
-              const Gap(kBottomSpace),
-            ],
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 480),
+            alignment: Alignment.topCenter ,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(Assets.imagesLoginLogo),
+                  const TitleWidget("Login"),
+                  const Gap(15),
+                  LoginPhone(loginModel),
+                  const Gap(10),
+                  LoginPassword(loginModel),
+                  const Gap(15),
+                  LoginButton(loginModel:loginModel , formKey:formKey),
+                  const Gap(10),
+                  const DoNotHaveAccount(),
+                  const Gap(kBottomSpace),
+                ],
+              ),
+            ),
           ),
         ),
       ),

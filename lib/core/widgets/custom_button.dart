@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
+        constraints: const BoxConstraints(maxWidth: 380),
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration:  const BoxDecoration(
           color: AppColor.primaryColor,

@@ -17,10 +17,11 @@ class StartButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacementNamed(context, LoginView.routeName);
-        SharedPreferenceSingleton.setbool(kIsOnboardingVisited , true);
+        SharedPreferenceSingleton.setbool(kIsOnboardingVisited, true);
       },
       child: Container(
         width: double.infinity,
+        constraints: const BoxConstraints(maxWidth: 380),
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: const BoxDecoration(
           color: AppColor.primaryColor,

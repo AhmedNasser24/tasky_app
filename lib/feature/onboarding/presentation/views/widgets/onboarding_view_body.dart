@@ -43,10 +43,7 @@ class OnboardingViewBody extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const Gap(50),
-                  Container(
-                    constraints: const BoxConstraints(maxWidth: 400),
-                    child: const StartButton(),
-                  ),
+                  const StartButton(),
                 ],
               ),
             ),
