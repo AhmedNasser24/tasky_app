@@ -23,35 +23,41 @@ class _CreateViewBodyState extends State<CreateViewBody> {
   Widget build(BuildContext context) {
     TaskModel taskModel = TaskModel();
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
         key: formKey,
-        child: Column(
-          children: [
-            const CreateAppBar(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const Gap(24),
-                    ImageFormField(taskModel),
-                    const Gap(16),
-                    TaskTitleFormField(taskModel),
-                    const Gap(16),
-                    TaskDescTextFormField(taskModel),
-                    const Gap(16),
-                    TaskPriorityFormField(taskModel),
-                    const Gap(16),
-                    TaskDueDateFormField(taskModel),
-                    const Gap(34),
-                    CreateTaskButton(taskModel , formKey),
-                    const Gap(kBottomSpace),
-                  ],
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 550),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                const CreateAppBar(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const Gap(24),
+                        ImageFormField(taskModel),
+                        const Gap(16),
+                        TaskTitleFormField(taskModel),
+                        const Gap(16),
+                        TaskDescTextFormField(taskModel),
+                        const Gap(16),
+                        TaskPriorityFormField(taskModel),
+                        const Gap(16),
+                        TaskDueDateFormField(taskModel),
+                        const Gap(34),
+                        CreateTaskButton(taskModel, formKey),
+                        const Gap(kBottomSpace),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

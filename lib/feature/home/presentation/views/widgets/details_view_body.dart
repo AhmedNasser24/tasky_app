@@ -14,23 +14,35 @@ class DetailsViewBody extends StatelessWidget {
   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          DetailsAppBar(taskModel: taskModel),
-          DetailsTaskImage(imgUrl: taskModel.image!),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TaskTitleAndDesc(taskModel),
-          ),
-          const Gap(8),
-          DetailsStatues(taskModel.status!),
-          DetailsPriority(taskModel.priority!),
-          const Gap(16),
-          GenerateQrCode(taskId: taskModel.taskId!),
-          const Gap(kBottomSpace),
-        ],
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 550),
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            DetailsAppBar(taskModel: taskModel),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    DetailsTaskImage(imgUrl: taskModel.image!),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TaskTitleAndDesc(taskModel),
+                    ),
+                    const Gap(8),
+                    DetailsStatues(taskModel.status!),
+                    DetailsPriority(taskModel.priority!),
+                    const Gap(16),
+                    GenerateQrCode(taskId: taskModel.taskId!),
+                    const Gap(kBottomSpace),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

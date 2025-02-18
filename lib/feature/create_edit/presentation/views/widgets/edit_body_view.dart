@@ -41,33 +41,40 @@ class _EditBodyViewState extends State<EditBodyView> {
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
         key: formKey,
-        child: Column(
-          children: [
-            const EditAppBar(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const Gap(24),
-                    ImageFormField(editTaskModel),
-                    const Gap(16),
-                    TaskTitleFormField(editTaskModel),
-                    const Gap(16),
-                    TaskDescTextFormField(editTaskModel),
-
-                    const Gap(16),
-                    TaskStatuesFormField(editTaskModel),
-                    const Gap(16),
-                    TaskPriorityFormField(editTaskModel),
-                    
-                    const Gap(34),
-                    EditTaskButton( taskModel: widget.taskModel , editTaskModel:  editTaskModel, formKey: formKey),
-                    const Gap(kBottomSpace),
-                  ],
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 550),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                const EditAppBar(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const Gap(24),
+                        ImageFormField(editTaskModel),
+                        const Gap(16),
+                        TaskTitleFormField(editTaskModel),
+                        const Gap(16),
+                        TaskDescTextFormField(editTaskModel),
+                        const Gap(16),
+                        TaskStatuesFormField(editTaskModel),
+                        const Gap(16),
+                        TaskPriorityFormField(editTaskModel),
+                        const Gap(34),
+                        EditTaskButton(
+                            taskModel: widget.taskModel,
+                            editTaskModel: editTaskModel,
+                            formKey: formKey),
+                        const Gap(kBottomSpace),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

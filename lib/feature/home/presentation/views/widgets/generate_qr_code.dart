@@ -10,7 +10,7 @@ class GenerateQrCode extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Container(
-        constraints: const BoxConstraints(maxWidth: 340),
+        constraints: const BoxConstraints(maxWidth: 300),
         padding: const EdgeInsets.all(26),    
         child: Column(
           children: [

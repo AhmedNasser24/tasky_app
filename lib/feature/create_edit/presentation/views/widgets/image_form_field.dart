@@ -103,7 +103,7 @@ class _ImageFormFieldState extends State<ImageFormField> {
                       ),
                     )
                   : Container(
-                      constraints: const BoxConstraints(maxWidth: 300),
+                      constraints: const BoxConstraints(maxWidth: 340),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
