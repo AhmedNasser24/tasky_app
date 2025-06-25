@@ -37,16 +37,9 @@ class _ImageFormFieldState extends State<ImageFormField> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: CustomCachedNetworkImage(
+                  CustomCachedNetworkImage(
                           imageUrl: widget.taskModel.image!),
-                    ),
-                  ),
+                    
                   const Gap(5),
                   IconButton(
                     onPressed: () {

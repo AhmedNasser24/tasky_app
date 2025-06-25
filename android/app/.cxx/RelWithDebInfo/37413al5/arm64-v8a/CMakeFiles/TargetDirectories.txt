@@ -1,0 +1,2 @@
+F:/flutter_project/tasky_app/android/app/.cxx/RelWithDebInfo/37413al5/arm64-v8a/CMakeFiles/edit_cache.dir
+F:/flutter_project/tasky_app/android/app/.cxx/RelWithDebInfo/37413al5/arm64-v8a/CMakeFiles/rebuild_cache.dir

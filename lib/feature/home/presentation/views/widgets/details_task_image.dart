@@ -14,15 +14,7 @@ class DetailsTaskImage extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 340),
         child: Column(
           children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: CustomCachedNetworkImage(imageUrl: imgUrl),
-              ),
-            ),
+            CustomCachedNetworkImage(imageUrl: imgUrl),
           ],
         ),
       ),
