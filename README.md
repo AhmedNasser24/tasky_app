@@ -8,6 +8,11 @@ A powerful and responsive **Flutter** todo app that supports secure **authentica
 
 ---
 
+ 
+## [⬇️ Download APK](https://github.com/AhmedNasser24/tasky_app/releases/download/v1.0.0/app-release.apk)
+
+
+
 ## 🚀 Features
 
 - 🔐 **Login** with phone number & password  
