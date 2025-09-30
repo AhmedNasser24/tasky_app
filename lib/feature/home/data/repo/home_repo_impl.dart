@@ -61,8 +61,7 @@ class HomeRepoImpl extends HomeRepo {
   @override
   Future<Either<void, Failure>> deleteTask({required String taskId}) async {
     try {
-      String newAccessToken = await refreshToken();
-      await dataService.deleteTask(accessToken: newAccessToken, taskId: taskId);
+      await dataService.deleteTask( taskId: taskId);
       return left(null);
     } on DioException catch (e) {
       log("fetch one task error : ${e.toString()}");

@@ -49,16 +49,7 @@ class ApiServices {
     );
   }
 
-  Future<void> delete({required String endPoint, String? authorization}) async {
-    _dio.delete(
-      "$kBaseUrl$endPoint",
-      options: authorization == null
-          ? null
-          : Options(
-              headers: {
-                'Authorization': 'Bearer $authorization',
-              },
-            ),
-    );
+  Future<void> delete({required String endPoint}) async {
+    _dioInterceptor.dio.delete(endPoint);
   }
 }
