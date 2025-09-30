@@ -78,10 +78,12 @@ class _ImageFormFieldState extends State<ImageFormField> {
                             setState(() {});
                           },
                           child: DottedBorder(
-                            color: AppColor.primaryColor,
-                            borderType: BorderType.RRect,
+                            options: RoundedRectDottedBorderOptions(
+                              color: AppColor.primaryColor,
                             radius: const Radius.circular(12),
                             padding: const EdgeInsets.symmetric(vertical: 12),
+                            ),
+                            
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

@@ -31,24 +31,23 @@ dependencies:
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
-  device_preview: ^1.1.0
   dio: ^5.7.0
-  dotted_border: ^2.1.0
+  dotted_border: ^3.1.0
   dropdown_button2: ^3.0.0-beta.21
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.1.1
   flutter_svg: ^2.0.16
   gap: ^3.0.1
   get_it: ^8.0.3
   image_picker: ^1.1.2
-  intl: ^0.19.0
+  intl: ^0.20.2
   intl_phone_field: ^3.2.0
-  mobile_scanner: ^6.0.5
+  mobile_scanner: ^7.1.2
   modal_progress_hud_nsn: ^0.5.1
   pretty_qr_code: ^3.3.0
   shared_preferences: ^2.3.5
-  skeletonizer: ^1.4.2
+  skeletonizer: ^2.1.0+1
   vibration: ^3.1.2
 
 dev_dependencies:
@@ -58,7 +57,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 
