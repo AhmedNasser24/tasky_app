@@ -36,7 +36,7 @@ class AuthServices {
   }
 
   Future < UserInfoModel > getProfile({required String accessToken}) async {
-    Map < String , dynamic > data = await apiServices.get(endPoint: EndPoint.profile, authorization: accessToken);
+    Map < String , dynamic > data = await apiServices.get(endPoint: EndPoint.profile);
     UserInfoModel profileInfo = UserInfoModel.profileFromJson(data);
     return profileInfo;
   }

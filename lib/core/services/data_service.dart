@@ -11,11 +11,10 @@ class DataService {
 
   DataService(this._apiServices);
   Future<List<TaskModel>> fetchTasks(
-      {required String accessToken, required int pageNum}) async {
-    var data = await _apiServices.test(
+      { required int pageNum}) async {
+    var data = await _apiServices.get(
       endPoint: EndPoint.getTasks,
-      // authorization: accessToken,
-      // queryParameters: {"page": pageNum},
+      queryParameters: {"page": pageNum},
     );
     List<TaskModel> tasksList = [];
     for (var task in data) {
@@ -60,9 +59,9 @@ class DataService {
   }
 
   Future<TaskModel> fetchOneTask(
-      {required String accessToken, required String qrData}) async {
+      { required String qrData}) async {
     var data = await _apiServices.get(
-        endPoint: "${EndPoint.one}$qrData", authorization: accessToken);
+        endPoint: "${EndPoint.one}$qrData");
     TaskModel task = TaskModel.fromJsonFetch(data);
     return task;
   }

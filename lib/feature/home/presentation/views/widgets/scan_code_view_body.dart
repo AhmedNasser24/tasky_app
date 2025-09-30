@@ -37,6 +37,7 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody>
   @override
   void dispose() {
     _animationController.dispose();
+    scannerController.dispose();
     super.dispose();
   }
 

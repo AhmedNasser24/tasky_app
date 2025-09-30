@@ -6,37 +6,11 @@ class ApiServices {
   final Dio _dio = Dio();
   final DioInterceptor _dioInterceptor = DioInterceptor();
 
-  Future test({
-    required String endPoint,
-  }) async {
+  Future get(
+      {required String endPoint, Map<String, dynamic>? queryParameters}) async {
     Response response = await _dioInterceptor.dio.get(
       endPoint,
-      // queryParameters: queryParameters,
-      // options: authorization == null
-      //     ? null
-      //     : Options(
-      //         headers: {
-      //           'Authorization': 'Bearer $authorization',
-      //         },
-      //       ),
-    );
-    return response.data;
-  }
-
-  Future get(
-      {required String endPoint,
-      String? authorization,
-      Map<String, dynamic>? queryParameters}) async {
-    Response response = await _dioInterceptor.dio.get(
-      "$kBaseUrl$endPoint",
       queryParameters: queryParameters,
-      options: authorization == null
-          ? null
-          : Options(
-              headers: {
-                'Authorization': 'Bearer $authorization',
-              },
-            ),
     );
     return response.data;
   }

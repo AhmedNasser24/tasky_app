@@ -20,9 +20,8 @@ class HomeRepoImpl extends HomeRepo {
       {required int pageNum}) async {
     try {
       // String newAccessToken = await refreshToken();
-      String newAccessToken = SharedPreferenceSingleton.getString(ApiKeys.accessToken);
-      List<TaskModel> taskModel = await dataService.fetchTasks(
-          accessToken: newAccessToken, pageNum: pageNum);
+      List<TaskModel> taskModel =
+          await dataService.fetchTasks(pageNum: pageNum);
       return left(taskModel);
     } on DioException catch (e) {
       log("fetch data error : ${e.toString()}");
@@ -48,9 +47,7 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<TaskModel, Failure>> fetchOneTask(
       {required String qrData}) async {
     try {
-      String newAccessToken = await refreshToken();
-      TaskModel taskModel = await dataService.fetchOneTask(
-          accessToken: newAccessToken, qrData: qrData);
+      TaskModel taskModel = await dataService.fetchOneTask(qrData: qrData);
       return left(taskModel);
     } on DioException catch (e) {
       log("fetch one task error : ${e.toString()}");
