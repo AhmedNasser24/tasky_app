@@ -24,7 +24,7 @@ class AuthServices {
     return registerOutput;
   }
 
-  Future<void> logout({required accessToken}) async {
+  Future<void> logout({required String accessToken}) async {
     await apiServices.post(endPoint: EndPoint.logout , authorization: accessToken);
   }
 

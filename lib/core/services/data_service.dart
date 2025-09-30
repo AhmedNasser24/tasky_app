@@ -12,10 +12,11 @@ class DataService {
   DataService(this._apiServices);
   Future<List<TaskModel>> fetchTasks(
       {required String accessToken, required int pageNum}) async {
-    var data = await _apiServices.get(
-        endPoint: EndPoint.getTasks,
-        authorization: accessToken,
-        queryParameters: {"page": pageNum});
+    var data = await _apiServices.test(
+      endPoint: EndPoint.getTasks,
+      // authorization: accessToken,
+      // queryParameters: {"page": pageNum},
+    );
     List<TaskModel> tasksList = [];
     for (var task in data) {
       tasksList.add(TaskModel.fromJsonFetch(task));
@@ -46,32 +47,29 @@ class DataService {
         endPoint: EndPoint.uploadImage,
         data: formData,
         authorization: accessToken);
-    return data[ApiKeys.taskImage] ;  
+    return data[ApiKeys.taskImage];
   }
 
-  Future < void > editTask ({required String accessToken , required TaskModel taskModel}) async {
+  Future<void> editTask(
+      {required String accessToken, required TaskModel taskModel}) async {
     String taskId = taskModel.taskId!;
     await _apiServices.put(
         endPoint: "${EndPoint.editTask}$taskId",
         data: taskModel.toJsonEdit(),
-        authorization: accessToken
-    );
+        authorization: accessToken);
   }
 
-  Future < TaskModel > fetchOneTask ({required String accessToken , required String qrData}) async {
+  Future<TaskModel> fetchOneTask(
+      {required String accessToken, required String qrData}) async {
     var data = await _apiServices.get(
-        endPoint: "${EndPoint.one}$qrData",
-        authorization: accessToken
-    );
+        endPoint: "${EndPoint.one}$qrData", authorization: accessToken);
     TaskModel task = TaskModel.fromJsonFetch(data);
     return task;
-
   }
 
-  Future <void > deleteTask ({required String accessToken , required String taskId}) async {
+  Future<void> deleteTask(
+      {required String accessToken, required String taskId}) async {
     await _apiServices.delete(
-        endPoint: "${EndPoint.deleteTask}$taskId",
-        authorization: accessToken
-    );
+        endPoint: "${EndPoint.deleteTask}$taskId", authorization: accessToken);
   }
 }

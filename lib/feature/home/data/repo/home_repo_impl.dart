@@ -19,7 +19,8 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<List<TaskModel>, Failure>> fetchAllTasks(
       {required int pageNum}) async {
     try {
-      String newAccessToken = await refreshToken();
+      // String newAccessToken = await refreshToken();
+      String newAccessToken = SharedPreferenceSingleton.getString(ApiKeys.accessToken);
       List<TaskModel> taskModel = await dataService.fetchTasks(
           accessToken: newAccessToken, pageNum: pageNum);
       return left(taskModel);

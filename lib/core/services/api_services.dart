@@ -1,14 +1,33 @@
 import 'package:dio/dio.dart';
 import 'package:tasky_app/core/secrets/api_base_url.dart';
+import 'package:tasky_app/core/services/dio_interceptor.dart';
 
 class ApiServices {
   final Dio _dio = Dio();
+  final DioInterceptor _dioInterceptor = DioInterceptor();
+
+  Future test({
+    required String endPoint,
+  }) async {
+    Response response = await _dioInterceptor.dio.get(
+      endPoint,
+      // queryParameters: queryParameters,
+      // options: authorization == null
+      //     ? null
+      //     : Options(
+      //         headers: {
+      //           'Authorization': 'Bearer $authorization',
+      //         },
+      //       ),
+    );
+    return response.data;
+  }
 
   Future get(
       {required String endPoint,
       String? authorization,
       Map<String, dynamic>? queryParameters}) async {
-    Response response = await _dio.get(
+    Response response = await _dioInterceptor.dio.get(
       "$kBaseUrl$endPoint",
       queryParameters: queryParameters,
       options: authorization == null
@@ -23,9 +42,7 @@ class ApiServices {
   }
 
   Future post(
-      {required String endPoint,
-      Object? data,
-      String? authorization}) async {
+      {required String endPoint, Object? data, String? authorization}) async {
     Response response = await _dio.post(
       "$kBaseUrl$endPoint",
       data: data,
