@@ -57,22 +57,12 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
-  @override
-  Future<String> refreshToken() async {
-    String refreshToken =
-        SharedPreferenceSingleton.getString(ApiKeys.refreshToken);
-    String newAccessToken =
-        await __authServices.refreshToken(refreshToken: refreshToken);
-    await SharedPreferenceSingleton.setString(
-        ApiKeys.accessToken, newAccessToken);
-    return newAccessToken;
-  }
+  
 
   @override
   Future<Either<void, Failure>> logout() async {
     try {
-      String newAccessToken = await refreshToken();
-      await __authServices.logout(accessToken: newAccessToken);
+      await __authServices.logout();
       // remove access token & refresh token from local storage
       await SharedPreferenceSingleton.remove(ApiKeys.accessToken);
       await SharedPreferenceSingleton.remove(ApiKeys.refreshToken);

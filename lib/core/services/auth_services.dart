@@ -1,4 +1,3 @@
-import 'package:tasky_app/core/helper/api_keys.dart';
 import 'package:tasky_app/core/services/api_services.dart';
 
 import '../../feature/auth/data/model/user_info_model.dart';
@@ -24,16 +23,11 @@ class AuthServices {
     return registerOutput;
   }
 
-  Future<void> logout({required String accessToken}) async {
-    await apiServices.post(endPoint: EndPoint.logout , authorization: accessToken);
+  Future<void> logout() async {
+    await apiServices.post(endPoint: EndPoint.logout );
   }
 
-  Future<String> refreshToken({required String refreshToken}) async {
-    Map<String, dynamic> data = await apiServices.get(
-        endPoint: "${EndPoint.refreshToken}$refreshToken");
-    String newAccessToken = data[ApiKeys.accessToken];
-    return newAccessToken;
-  }
+ 
 
   Future < UserInfoModel > getProfile({required String accessToken}) async {
     Map < String , dynamic > data = await apiServices.get(endPoint: EndPoint.profile);

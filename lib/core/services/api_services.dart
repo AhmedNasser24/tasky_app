@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:tasky_app/core/secrets/api_base_url.dart';
 import 'package:tasky_app/core/services/dio_interceptor.dart';
 
 class ApiServices {
@@ -16,36 +15,22 @@ class ApiServices {
   }
 
   Future post(
-      {required String endPoint, Object? data, String? authorization}) async {
+      {required String endPoint, Object? data}) async {
     Response response = await _dio.post(
-      "$kBaseUrl$endPoint",
+      endPoint,
       data: data,
-      options: authorization == null
-          ? null
-          : Options(
-              headers: {
-                'Authorization': 'Bearer $authorization',
-              },
-            ),
     );
 
     return response.data;
   }
 
-  Future<void> put(
-      {required String endPoint,
-      required Map<String, dynamic> data,
-      String? authorization}) async {
+  Future<void> put({
+    required String endPoint,
+    required Map<String, dynamic> data,
+  }) async {
     _dio.put(
-      "$kBaseUrl$endPoint",
+      endPoint,
       data: data,
-      options: authorization == null
-          ? null
-          : Options(
-              headers: {
-                'Authorization': 'Bearer $authorization',
-              },
-            ),
     );
   }
 

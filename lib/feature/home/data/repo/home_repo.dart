@@ -7,6 +7,5 @@ abstract class HomeRepo {
   Future<Either<List<TaskModel>, Failure>> fetchAllTasks(
       {required int pageNum});
   Future<Either<TaskModel, Failure>> fetchOneTask({required String qrData});
-  Future<String> refreshToken();
   Future<Either<void, Failure>> deleteTask({required String taskId});
 }

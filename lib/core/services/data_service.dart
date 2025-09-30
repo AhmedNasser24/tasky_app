@@ -10,8 +10,7 @@ class DataService {
   final ApiServices _apiServices;
 
   DataService(this._apiServices);
-  Future<List<TaskModel>> fetchTasks(
-      { required int pageNum}) async {
+  Future<List<TaskModel>> fetchTasks({required int pageNum}) async {
     var data = await _apiServices.get(
       endPoint: EndPoint.getTasks,
       queryParameters: {"page": pageNum},
@@ -23,16 +22,14 @@ class DataService {
     return tasksList;
   }
 
-  Future<void> createTask(
-      {required String accessToken, required TaskModel taskModel}) async {
+  Future<void> createTask({required TaskModel taskModel}) async {
     await _apiServices.post(
-        endPoint: EndPoint.createTask,
-        data: taskModel.toJsonCreate(),
-        authorization: accessToken);
+      endPoint: EndPoint.createTask,
+      data: taskModel.toJsonCreate(),
+    );
   }
 
-  Future<String> uploadImage(
-      {required String accessToken, required File imageFile}) async {
+  Future<String> uploadImage({required File imageFile}) async {
     FormData formData = FormData.fromMap({
       "image": await MultipartFile.fromFile(
         imageFile.path,
@@ -43,32 +40,27 @@ class DataService {
     });
 
     var data = await _apiServices.post(
-        endPoint: EndPoint.uploadImage,
-        data: formData,
-        authorization: accessToken);
+      endPoint: EndPoint.uploadImage,
+      data: formData,
+    );
     return data[ApiKeys.taskImage];
   }
 
-  Future<void> editTask(
-      {required String accessToken, required TaskModel taskModel}) async {
+  Future<void> editTask({required TaskModel taskModel}) async {
     String taskId = taskModel.taskId!;
     await _apiServices.put(
-        endPoint: "${EndPoint.editTask}$taskId",
-        data: taskModel.toJsonEdit(),
-        authorization: accessToken);
+      endPoint: "${EndPoint.editTask}$taskId",
+      data: taskModel.toJsonEdit(),
+    );
   }
 
-  Future<TaskModel> fetchOneTask(
-      { required String qrData}) async {
-    var data = await _apiServices.get(
-        endPoint: "${EndPoint.one}$qrData");
+  Future<TaskModel> fetchOneTask({required String qrData}) async {
+    var data = await _apiServices.get(endPoint: "${EndPoint.one}$qrData");
     TaskModel task = TaskModel.fromJsonFetch(data);
     return task;
   }
 
-  Future<void> deleteTask(
-      { required String taskId}) async {
-    await _apiServices.delete(
-        endPoint: "${EndPoint.deleteTask}$taskId");
+  Future<void> deleteTask({required String taskId}) async {
+    await _apiServices.delete(endPoint: "${EndPoint.deleteTask}$taskId");
   }
 }

@@ -33,13 +33,11 @@ void getItSetup() {
   getIt.registerSingleton<HomeRepo>(
     HomeRepoImpl(
       dataService: getIt.get<DataService>(),
-      authServices: getIt.get<AuthServices>(),
     ),
   );
   getIt.registerSingleton<TaskOperationRepo>(
     TaskOperationRepoImpl(
       dataService: getIt.get<DataService>(),
-      authServices: getIt.get<AuthServices>(),
     ),
   );
 }

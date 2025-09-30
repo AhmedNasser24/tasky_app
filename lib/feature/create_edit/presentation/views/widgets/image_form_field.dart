@@ -105,6 +105,7 @@ class _ImageFormFieldState extends State<ImageFormField> {
                           AspectRatio(
                             aspectRatio: 1,
                             child: Container(
+                              constraints: const BoxConstraints(maxHeight: 340, maxWidth: 340),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                               ),
