@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
@@ -21,14 +20,19 @@ class TaskItem extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding , vertical: 12.0),
+          padding: const EdgeInsets.symmetric(
+              horizontal: kHorizontalPadding, vertical: 12.0),
           child: InkWell(
-            focusColor: Colors.transparent ,
-            splashColor: Colors.transparent ,
-            hoverColor: Colors.transparent ,
+            focusColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (contex) => DetailsView(taskModel: taskModel)));
+              Navigator.pushNamed(
+                context,
+                DetailsView.routeName,
+                arguments: taskModel,
+              );
             },
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +74,7 @@ class TaskItem extends StatelessWidget {
         Positioned(
           top: 0,
           right: 0,
-          child: SettingIconButton(taskModel: taskModel ),
+          child: SettingIconButton(taskModel: taskModel),
         ),
       ],
     );

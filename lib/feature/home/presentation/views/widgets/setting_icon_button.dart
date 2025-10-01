@@ -46,10 +46,11 @@ class SettingIconButton extends StatelessWidget {
                 .deleteTask(taskId: taskModel.taskId!);
           });
         } else if (value == 'edit') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => EditView(taskModel: taskModel)));
+          Navigator.pushNamed(
+            context,
+            EditView.routeName,
+            arguments: taskModel,
+          );
         }
       },
     );
@@ -65,14 +66,17 @@ class SettingIconButton extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context), // Close the dialog
-              child:  Text("Cancel" , style:AppStyles.medium16.copyWith(color: AppColor.blueColor)),
+              child: Text("Cancel",
+                  style:
+                      AppStyles.medium16.copyWith(color: AppColor.blueColor)),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context); // Close the dialog
                 onDelete(); // Perform the delete action
               },
-              child:  Text("Delete", style: AppStyles.medium16.copyWith(color: Colors.red)),
+              child: Text("Delete",
+                  style: AppStyles.medium16.copyWith(color: Colors.red)),
             ),
           ],
         );

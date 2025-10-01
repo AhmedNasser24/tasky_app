@@ -28,7 +28,7 @@ class ApiServices {
     required String endPoint,
     required Map<String, dynamic> data,
   }) async {
-    _dio.put(
+    _dioInterceptor.dio.put(
       endPoint,
       data: data,
     );

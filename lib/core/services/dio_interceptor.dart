@@ -26,7 +26,7 @@ class DioInterceptor {
       onError: (DioException e, handler) async {
         log("dio interceptor Error : ${e.toString()}");
         if ( e.response?.statusCode == 401){
-          await __refreshToken();
+          await refreshToken();
           String newAccessToken = SharedPreferenceSingleton.getString(ApiKeys.accessToken);
           final requestOptions = e.requestOptions ;
           requestOptions.headers.addAll({"Authorization": "Bearer $newAccessToken"});
@@ -39,7 +39,7 @@ class DioInterceptor {
     ));
   }
 
-  Future<void> __refreshToken() async {
+  Future<void> refreshToken() async {
     try {
       String refreshToken =
           SharedPreferenceSingleton.getString(ApiKeys.refreshToken);
@@ -47,6 +47,7 @@ class DioInterceptor {
         "${EndPoint.refreshToken}$refreshToken",
       );
       String newAccessToken = response.data[ApiKeys.accessToken];
+      log("newAccessToken : $newAccessToken");
       SharedPreferenceSingleton.setString(ApiKeys.accessToken, newAccessToken);
       log("refresh token success");
     } catch (e) {

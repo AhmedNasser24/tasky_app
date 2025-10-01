@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_button.dart';
@@ -7,7 +9,11 @@ import '../../../../../core/models/task_model.dart';
 import '../../manager/edit_task_cubit/edit_task_cubit.dart';
 
 class EditTaskButton extends StatelessWidget {
-  const EditTaskButton({required this.taskModel, required this.formKey, super.key, required this.editTaskModel});
+  const EditTaskButton(
+      {required this.taskModel,
+      required this.formKey,
+      super.key,
+      required this.editTaskModel});
   final TaskModel taskModel;
   final TaskModel editTaskModel;
   final GlobalKey<FormState> formKey;
@@ -16,14 +22,24 @@ class EditTaskButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       onTap: () {
-        if (isTaskEdited(taskModel, editTaskModel)) {
+        // log("old task : ${taskModel.desc}");
+        // log("new task : ${editTaskModel.desc}");
+        // log("old task : ${taskModel.status}");
+        // log("new task : ${editTaskModel.status}");
+        // log("old task : ${taskModel.title}");
+        // log("new task : ${editTaskModel.title}");
+        log("old task : ${taskModel.priority}");
+        log("new task : ${editTaskModel.priority}");
+        if (!isTaskEdited(taskModel, editTaskModel)) {
           showSnackBar(context, "task is not edited");
-        }
-        else if (taskModel.imageFile == null && taskModel.image == null) {
+        } else if (taskModel.imageFile == null || taskModel.image == null) {
           showSnackBar(context, "image is required");
-        }  else if (formKey.currentState!.validate()) {
+        } else if (formKey.currentState!.validate()) {
+          log("validation passed");
+          log("old task : ${taskModel.priority}");
+          log("new task : ${editTaskModel.priority}");
           BlocProvider.of<EditTaskCubit>(context)
-              .editTask(taskModel: taskModel);
+              .editTask(taskModel: editTaskModel);
         }
       },
       title: "Edit task",

@@ -34,6 +34,7 @@ class _TaskDescTextFormFieldState extends State<TaskDescTextFormField> {
           controller: controller,
           hintText: "Enter description here...",
           maxLines: 5,
+          onChanged: (desc) => widget.taskModel.desc = desc,
           validator: (desc) {
             if (desc == null || desc.isEmpty) {
               return "field is required";

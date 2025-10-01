@@ -31,6 +31,7 @@ class _TaskTitleFormFieldState extends State<TaskTitleFormField> {
         CustomTextFormField(
           controller: controller,
           hintText: "Enter title here...",
+          onChanged: (title) => widget.taskModel.title = title,
           validator: (title){
             if(title == null || title.isEmpty){
               return "field is required";
