@@ -16,7 +16,7 @@ class ApiServices {
 
   Future post(
       {required String endPoint, Object? data}) async {
-    Response response = await _dio.post(
+    Response response = await _dioInterceptor.dio.post(
       endPoint,
       data: data,
     );

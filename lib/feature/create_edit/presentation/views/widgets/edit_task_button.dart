@@ -22,22 +22,14 @@ class EditTaskButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       onTap: () {
-        // log("old task : ${taskModel.desc}");
-        // log("new task : ${editTaskModel.desc}");
-        // log("old task : ${taskModel.status}");
-        // log("new task : ${editTaskModel.status}");
-        // log("old task : ${taskModel.title}");
-        // log("new task : ${editTaskModel.title}");
-        log("old task : ${taskModel.priority}");
-        log("new task : ${editTaskModel.priority}");
+      
         if (!isTaskEdited(taskModel, editTaskModel)) {
           showSnackBar(context, "task is not edited");
-        } else if (taskModel.imageFile == null || taskModel.image == null) {
+        } else if (editTaskModel.imageFile == null && editTaskModel.image == null) {    // this mean that user delete image and not upload new one from device
           showSnackBar(context, "image is required");
         } else if (formKey.currentState!.validate()) {
           log("validation passed");
-          log("old task : ${taskModel.priority}");
-          log("new task : ${editTaskModel.priority}");
+          
           BlocProvider.of<EditTaskCubit>(context)
               .editTask(taskModel: editTaskModel);
         }

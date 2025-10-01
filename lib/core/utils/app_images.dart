@@ -86,6 +86,10 @@ class Assets {
   /// assets/images/register_logo_copy.png
   static const String imagesRegisterLogoCopy = "assets/images/register_logo_copy.png";
 
+  /// Assets for imagesScreenshot20250625235710ComExampleTaskyApp
+  /// assets/images/Screenshot_20250625_235710_com.example.tasky_app.jpg
+  static const String imagesScreenshot20250625235710ComExampleTaskyApp = "assets/images/Screenshot_20250625_235710_com.example.tasky_app.jpg";
+
   /// Assets for imagesSettingIcon
   /// assets/images/setting_icon.svg
   static const String imagesSettingIcon = "assets/images/setting_icon.svg";
@@ -93,6 +97,42 @@ class Assets {
   /// Assets for imagesTask
   /// assets/images/task.png
   static const String imagesTask = "assets/images/task.png";
+
+  /// Assets for imagesTaskyAdd
+  /// assets/images/tasky_add.jpg
+  static const String imagesTaskyAdd = "assets/images/tasky_add.jpg";
+
+  /// Assets for imagesTaskyCountries
+  /// assets/images/tasky_countries.jpg
+  static const String imagesTaskyCountries = "assets/images/tasky_countries.jpg";
+
+  /// Assets for imagesTaskyDetails
+  /// assets/images/tasky_details.jpg
+  static const String imagesTaskyDetails = "assets/images/tasky_details.jpg";
+
+  /// Assets for imagesTaskyHome
+  /// assets/images/tasky_home.jpg
+  static const String imagesTaskyHome = "assets/images/tasky_home.jpg";
+
+  /// Assets for imagesTaskyLogin
+  /// assets/images/tasky_login.jpg
+  static const String imagesTaskyLogin = "assets/images/tasky_login.jpg";
+
+  /// Assets for imagesTaskyPicture
+  /// assets/images/tasky_picture.JPG
+  static const String imagesTaskyPicture = "assets/images/tasky_picture.JPG";
+
+  /// Assets for imagesTaskyProfile
+  /// assets/images/tasky_profile.jpg
+  static const String imagesTaskyProfile = "assets/images/tasky_profile.jpg";
+
+  /// Assets for imagesTaskyRegister
+  /// assets/images/tasky_register.jpg
+  static const String imagesTaskyRegister = "assets/images/tasky_register.jpg";
+
+  /// Assets for imagesTaskySplash
+  /// assets/images/tasky_splash.jpg
+  static const String imagesTaskySplash = "assets/images/tasky_splash.jpg";
 
   /// Assets for imagesTinywowLogoPng72237246
   /// assets/images/tinywow_logo_png_72237246.png

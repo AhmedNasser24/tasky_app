@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
@@ -5,6 +6,7 @@ Future<File?> pickImageFromGallery() async {
   final ImagePicker picker = ImagePicker();
   // Pick an image
   final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+  log("pick image success");
   if (image != null) {
     return File(image.path);
   } else {

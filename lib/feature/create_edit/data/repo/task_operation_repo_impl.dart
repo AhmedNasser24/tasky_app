@@ -21,7 +21,7 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
   Future<Either<void, Failure>> createTask(
       {required TaskModel taskModel}) async {
     try {
-      String imageUrl = await uploadImage(image: taskModel.imageFile!);
+      String imageUrl = await uploadImage(imageFile: taskModel.imageFile!);
       taskModel.image = imageUrl;
       await dataService.createTask(taskModel: taskModel);
       return left(null);
@@ -38,7 +38,7 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
   Future<Either<void, Failure>> editTask({required TaskModel taskModel}) async {
     try {
       if (taskModel.imageFile != null) {
-        String imageUrl = await uploadImage(image: taskModel.imageFile!);
+        String imageUrl = await uploadImage(imageFile: taskModel.imageFile!);
         taskModel.image = imageUrl;
       }
       await dataService.editTask( taskModel: taskModel);
@@ -53,8 +53,8 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
   }
 
   @override
-  Future<String> uploadImage({required File image}) async {
-    String imagePath = await dataService.uploadImage(imageFile: image);
+  Future<String> uploadImage({required File imageFile}) async {
+    String imagePath = await dataService.uploadImage(imageFile: imageFile);
     String imageUrl = "$kBaseUrl/images/$imagePath";
     return imageUrl;
   }
