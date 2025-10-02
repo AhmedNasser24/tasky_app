@@ -24,6 +24,11 @@ class _TaskDueDateFormFieldState extends State<TaskDueDateFormField> {
     dateController = TextEditingController(text: widget.taskModel.dueDate);
     super.initState();
   }
+   @override
+  dispose(){
+    dateController.dispose();
+    super.dispose();
+  }
   Future<void> __selectDate() async {
     DateTime? pickedDate = await pickDate(context);
     if (pickedDate != null) {

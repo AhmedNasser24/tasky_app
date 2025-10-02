@@ -41,7 +41,11 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
     }
     setState(() {});
   }
-
+   @override
+  dispose(){
+    valueListenable.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(

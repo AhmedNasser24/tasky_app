@@ -25,7 +25,6 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     if (__isThereMoreItems == false) {
       return;
     }
-
     if (!__isNetworkConnected) {
       return ;
     }

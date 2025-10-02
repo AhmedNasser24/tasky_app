@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
@@ -35,3 +37,96 @@ class TaskyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+// for testing
+// class Page1 extends StatefulWidget {
+//   const Page1({super.key});
+
+//   @override
+//   State<Page1> createState() => _Page1State();
+// }
+
+// class _Page1State extends State<Page1> {
+//   bool x = false;
+//   void change() {
+//     setState(() {
+//       x = !x;
+//     });
+//     log("change something");
+//   }
+
+//   @override
+//   void initState() {
+//     log("init state");
+//     super.initState();
+//   }
+
+//   @override
+//   void didChangeDependencies() {
+//     log("did change dependencies");
+//     super.didChangeDependencies();
+//   }
+
+//   @override
+//   void deactivate() {
+//     log("deactivate");
+//     super.deactivate();
+//   }
+
+//   @override
+//   void dispose() {
+//     log("dispose");
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Page 1"),
+//       ),
+//       body: Center(
+//         child: TextButton(
+//           onPressed: () {
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(
+//                 builder: (context) => Page2(
+//                   change: change,
+//                 ),
+//               ),
+//             );
+//           },
+//           child: Text(
+//             x.toString(),
+//             style: const TextStyle(fontSize: 40),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class Page2 extends StatelessWidget {
+//   const Page2({super.key, required this.change});
+//   final void Function() change;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Page 2"),
+//       ),
+//       body: Center(
+//         child: TextButton(
+//           onPressed: change,
+//           child: const Text(
+//             "change something",
+//             style: TextStyle(fontSize: 40),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -20,6 +20,11 @@ class _TaskDescTextFormFieldState extends State<TaskDescTextFormField> {
     controller = TextEditingController(text: widget.taskModel.desc);
     super.initState();
   }
+   @override
+  dispose(){
+    controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
