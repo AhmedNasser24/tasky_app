@@ -22,6 +22,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
       imageBuilder: (context, imageProvider) => AspectRatio(
         aspectRatio: 1,
         child: Container(
+          constraints: const BoxConstraints(maxHeight: 340, maxWidth: 340),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             image: DecorationImage(
@@ -33,9 +34,18 @@ class CustomCachedNetworkImage extends StatelessWidget {
       ),
       placeholder: (context, url) =>
           const Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Image.asset(
-        Assets.imagesTask,
-        fit: BoxFit.fill,
+      errorWidget: (context, url, error) => AspectRatio(
+        aspectRatio: 1,
+        child: Container(
+          constraints: const BoxConstraints(maxHeight: 340, maxWidth: 340),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            image: DecorationImage(
+              image: AssetImage(Assets.imagesTaskyPicture),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
       ),
     );
   }

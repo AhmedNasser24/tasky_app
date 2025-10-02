@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
@@ -16,10 +19,15 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
   bool __isFirstLoading = true;
   List<TaskModel>? __tasksList;
   String __currFilter = kAll;
-
+  StreamSubscription<List<ConnectivityResult>>? __connectivityStreamSubscription;
+  bool __isNetworkConnected = true;
   Future<void> fetchData() async {
     if (__isThereMoreItems == false) {
       return;
+    }
+
+    if (!__isNetworkConnected) {
+      return ;
     }
     if (__isFirstLoading) {
       emit(FetchTaskLoading());
@@ -74,5 +82,34 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     emit(FetchTaskSuccess(tasksList!));
   }
 
-  get currFilter => __currFilter;
+  String get currFilter => __currFilter;
+
+  void checkConnectevity() {
+    __connectivityStreamSubscription = Connectivity().onConnectivityChanged.listen(
+      (connectivityResult) {
+        if (__isFirstLoading){
+          if (connectivityResult.contains(ConnectivityResult.none)) {
+            __isNetworkConnected = false;
+            emit(FetchTaskNoInternet());        // to show image at first
+          }else if ( connectivityResult.contains(ConnectivityResult.wifi) || connectivityResult.contains(ConnectivityResult.mobile)) {
+            __isNetworkConnected = true;
+            fetchData();
+          }
+        }else {
+          if (connectivityResult.contains(ConnectivityResult.none)) {
+            __isNetworkConnected = false;
+          }else if ( connectivityResult.contains(ConnectivityResult.wifi) || connectivityResult.contains(ConnectivityResult.mobile)) {
+            __isNetworkConnected = true;
+          }
+        }
+
+      },
+    );
+  }
+
+  @override
+  Future<void> close() {
+    __connectivityStreamSubscription?.cancel();
+    return super.close();
+  }
 }

@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
           create: (context) => LogoutCubit(getIt.get<AuthRepo>()),
         ),
         BlocProvider(
-          create: (context) => FetchTaskCubit(getIt.get<HomeRepo>()),
+          create: (context) => FetchTaskCubit(getIt.get<HomeRepo>())..checkConnectevity(),
         ),
         BlocProvider(
             create: (context) => DeleteTaskCubit(getIt.get<HomeRepo>())),

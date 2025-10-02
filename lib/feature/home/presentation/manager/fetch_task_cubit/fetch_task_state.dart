@@ -18,3 +18,5 @@ class FetchTaskFailure extends FetchTaskState {
 
   FetchTaskFailure(this.errMessage);
 }
+
+class FetchTaskNoInternet extends FetchTaskState {}

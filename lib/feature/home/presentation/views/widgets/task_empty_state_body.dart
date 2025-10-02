@@ -10,10 +10,14 @@ class TaskEmptyStateBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text(
-        " No Tasks yet",
-        style: AppStyles.semibold16,
-        textAlign: TextAlign.center,
+      child: Column(
+        children: [
+          Text(
+            " No Tasks yet in this category",
+            style: AppStyles.semibold16,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
