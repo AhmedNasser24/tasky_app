@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_button.dart';
 import 'package:tasky_app/core/widgets/show_snack_bar.dart';
+import 'package:tasky_app/feature/home/presentation/manager/fetch_task_cubit/fetch_task_cubit.dart';
 
 import '../../../../../core/models/task_model.dart';
-import '../../manager/edit_task_cubit/edit_task_cubit.dart';
 
 class EditTaskButton extends StatelessWidget {
   const EditTaskButton(
@@ -30,7 +30,7 @@ class EditTaskButton extends StatelessWidget {
         } else if (formKey.currentState!.validate()) {
           log("validation passed");
           
-          BlocProvider.of<EditTaskCubit>(context)
+          BlocProvider.of<FetchTaskCubit>(context)
               .editTask(taskModel: editTaskModel);
         }
       },

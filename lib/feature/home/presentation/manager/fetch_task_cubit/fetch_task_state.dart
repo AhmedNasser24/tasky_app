@@ -20,3 +20,12 @@ class FetchTaskFailure extends FetchTaskState {
 }
 
 class FetchTaskNoInternet extends FetchTaskState {}
+
+class EditTaskLoading extends FetchTaskState {}
+
+class EditTaskSuccess extends FetchTaskState {}
+
+class EditTaskFailure extends FetchTaskState {
+  final String errmessage;
+  EditTaskFailure( this.errmessage);
+}

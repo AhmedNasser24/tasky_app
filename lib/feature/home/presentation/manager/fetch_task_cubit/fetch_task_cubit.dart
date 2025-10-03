@@ -1,32 +1,34 @@
 import 'dart:async';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/errors/failure.dart';
 import 'package:tasky_app/core/models/task_model.dart';
+import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
 import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 
 part 'fetch_task_state.dart';
 
 class FetchTaskCubit extends Cubit<FetchTaskState> {
-  FetchTaskCubit(this.homeRepoImpl) : super(FetchTaskInitial());
+  FetchTaskCubit({ required this.homeRepoImpl,  required this.taskOperationRepoImpl}) : super(FetchTaskInitial());
   final HomeRepo homeRepoImpl;
+  final TaskOperationRepo taskOperationRepoImpl;
   int __pageNum = 1;
   final int __maxItemPerPage = 20;
   bool __isThereMoreItems = true;
   bool __isFirstLoading = true;
   List<TaskModel>? __tasksList;
   String __currFilter = kAll;
-  StreamSubscription<List<ConnectivityResult>>? __connectivityStreamSubscription;
+  StreamSubscription<List<ConnectivityResult>>?
+      __connectivityStreamSubscription;
   bool __isNetworkConnected = true;
   Future<void> fetchData() async {
     if (__isThereMoreItems == false) {
       return;
     }
     if (!__isNetworkConnected) {
-      return ;
+      return;
     }
     if (__isFirstLoading) {
       emit(FetchTaskLoading());
@@ -84,25 +86,45 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
   String get currFilter => __currFilter;
 
   void checkConnectevity() {
-    __connectivityStreamSubscription = Connectivity().onConnectivityChanged.listen(
+    __connectivityStreamSubscription =
+        Connectivity().onConnectivityChanged.listen(
       (connectivityResult) {
-        if (__isFirstLoading){
+        if (__isFirstLoading) {
           if (connectivityResult.contains(ConnectivityResult.none)) {
             __isNetworkConnected = false;
-            emit(FetchTaskNoInternet());        // to show image at first
-          }else if ( connectivityResult.contains(ConnectivityResult.wifi) || connectivityResult.contains(ConnectivityResult.mobile)) {
+            emit(FetchTaskNoInternet()); // to show image at first
+          } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
+              connectivityResult.contains(ConnectivityResult.mobile)) {
             __isNetworkConnected = true;
             fetchData();
           }
-        }else {
+        } else {
           if (connectivityResult.contains(ConnectivityResult.none)) {
             __isNetworkConnected = false;
-          }else if ( connectivityResult.contains(ConnectivityResult.wifi) || connectivityResult.contains(ConnectivityResult.mobile)) {
+          } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
+              connectivityResult.contains(ConnectivityResult.mobile)) {
             __isNetworkConnected = true;
           }
         }
-
       },
+    );
+  }
+
+  Future<void> editTask({required TaskModel taskModel}) async {
+    if (!__isNetworkConnected) {
+      emit(EditTaskFailure("No internet connection"));
+      return;
+    }
+    emit(EditTaskLoading());
+    Either<void, Failure> result =
+        await taskOperationRepoImpl.editTask(taskModel: taskModel);
+    result.fold(
+      (ok) {
+        int index = taskModel.currIndex!;
+        __tasksList!.replaceRange(index, index + 1, [taskModel]);
+        emit(EditTaskSuccess());
+      },
+      (fail) => emit(EditTaskFailure(fail.errMessage)),
     );
   }
 

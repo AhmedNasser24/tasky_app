@@ -28,6 +28,7 @@ class TaskItem extends StatelessWidget {
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () {
+              
               Navigator.pushNamed(
                 context,
                 DetailsView.routeName,

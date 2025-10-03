@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:tasky_app/core/helper/api_keys.dart';
 
 class TaskModel {
+  int? currIndex;
   String? taskId,
       image,
       title,
@@ -26,6 +27,7 @@ class TaskModel {
       this.createdAt,
       this.updatedAt,
       this.dueDate,
+      this.currIndex
       });
 
   factory TaskModel.fromJsonFetch(Map<String, dynamic> json) => TaskModel(

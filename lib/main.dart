@@ -1,9 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/get_it_setup.dart';
+import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
+import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
+import 'package:tasky_app/feature/home/presentation/manager/fetch_task_cubit/fetch_task_cubit.dart';
 import 'package:tasky_app/feature/splash/presentation/views/splash_view.dart';
 import 'core/helper/on_generate_route.dart';
 import 'core/utils/shared_preference_singleton.dart';
@@ -25,20 +26,21 @@ class TaskyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'DM Sans',
-        scaffoldBackgroundColor: AppColor.whiteColor,
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+    return BlocProvider(
+      create: (context) => FetchTaskCubit(homeRepoImpl:  getIt<HomeRepo>(), taskOperationRepoImpl: getIt<TaskOperationRepo>() ),
+      child: MaterialApp(
+        theme: ThemeData(
+          fontFamily: 'DM Sans',
+          scaffoldBackgroundColor: AppColor.whiteColor,
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+        ),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: onGenerateRoute,
+        initialRoute: SplashView.routeName,
       ),
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: onGenerateRoute,
-      initialRoute: SplashView.routeName,
     );
   }
 }
-
-
 
 // for testing
 // class Page1 extends StatefulWidget {

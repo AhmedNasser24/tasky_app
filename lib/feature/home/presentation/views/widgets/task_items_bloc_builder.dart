@@ -26,7 +26,7 @@ class TaskItemsBlocBuilder extends StatelessWidget {
         } else if (state is FetchTaskNoInternet) {
           return const TaskNoInternetStateBody();
         } else {
-          return const TaskErrorStateBody();
+          return const TaskSuccessStateBody();
         }
       },
     );

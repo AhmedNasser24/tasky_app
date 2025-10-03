@@ -7,8 +7,8 @@ import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
 import 'task_item.dart';
 
 class TaskSuccessStateBody extends StatefulWidget {
-  const TaskSuccessStateBody({super.key, required this.state});
-  final FetchTaskSuccess state;
+  const TaskSuccessStateBody({super.key,  this.state});
+  final FetchTaskSuccess? state;
   @override
   State<TaskSuccessStateBody> createState() => _TaskSuccessStateBodyState();
 }
@@ -33,7 +33,7 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
 
   @override
   Widget build(BuildContext context) {
-    List<TaskModel> tasksList = widget.state.tasksList;
+    List<TaskModel> tasksList = widget.state?.tasksList ?? BlocProvider.of<FetchTaskCubit>(context).tasksList ?? [] ;
     bool isThereMoreItems =
         BlocProvider.of<FetchTaskCubit>(context).isThereMoreItems;
     String currFilter = BlocProvider.of<FetchTaskCubit>(context).currFilter;
@@ -48,6 +48,7 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
         itemCount: tasksList.length + (isThereMoreItems ? 1 : 0),
         itemBuilder: (context, index) {
           if (index < tasksList.length) {
+            tasksList[index].currIndex = index;     // to be used in editing task
             return showTaskItemAfterFilter(currFilter, tasksList, index);
           } else {
             return GestureDetector(

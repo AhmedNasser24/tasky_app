@@ -22,6 +22,7 @@ class _EditBodyViewState extends State<EditBodyView> {
   late TaskModel editTaskModel;
   @override
   void initState() {
+    // should copy all data to be used in cubit
     editTaskModel = TaskModel(
       image: widget.taskModel.image,
       priority: widget.taskModel.priority,
@@ -30,6 +31,11 @@ class _EditBodyViewState extends State<EditBodyView> {
       title: widget.taskModel.title,
       desc: widget.taskModel.desc,
       userId: widget.taskModel.userId,
+      imageFile: widget.taskModel.imageFile,
+      createdAt: widget.taskModel.createdAt,
+      updatedAt: widget.taskModel.updatedAt,
+      currIndex: widget.taskModel.currIndex,
+      dueDate: widget.taskModel.dueDate,
     );
     super.initState();
   }
