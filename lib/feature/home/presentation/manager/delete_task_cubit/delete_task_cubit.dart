@@ -13,7 +13,7 @@ class DeleteTaskCubit extends Cubit<DeleteTaskState> {
     emit(DeleteTaskLoading());
     var result = await homeRepoimpl.deleteTask(taskId: taskId);
     result.fold(
-      (r) => emit(DeleteTaskSuccess()),
+      (ok) => emit(DeleteTaskSuccess()),
       (fail) => emit(DeleteTaskFailure(errMessage: fail.errMessage))
     );
   }

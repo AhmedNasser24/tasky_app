@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_model_progress_hud.dart';
 import 'package:tasky_app/core/widgets/show_snack_bar.dart';
 import 'package:tasky_app/feature/auth/presentation/manager/logout_cubit/logout_cubit.dart';
-import 'package:tasky_app/feature/home/presentation/manager/delete_task_cubit/delete_task_cubit.dart';
 
 import '../../../../auth/presentation/views/login_view.dart';
 import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
@@ -16,10 +15,10 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DeleteTaskCubit, DeleteTaskState>(
+    return BlocConsumer<FetchTaskCubit, FetchTaskState>(
       listener: (context, state) {
         if (state is DeleteTaskSuccess) {
-          BlocProvider.of<FetchTaskCubit>(context).refresh();
+          showSnackBar(context, "task is deleted successfully");
         } else if (state is DeleteTaskFailure) {
           showSnackBar(context, state.errMessage);
         }

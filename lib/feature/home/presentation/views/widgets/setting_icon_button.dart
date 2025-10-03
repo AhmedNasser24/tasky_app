@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/feature/create_edit/presentation/views/edit_view.dart';
+import 'package:tasky_app/feature/home/presentation/manager/fetch_task_cubit/fetch_task_cubit.dart';
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_styles.dart';
-import '../../manager/delete_task_cubit/delete_task_cubit.dart';
 
 class SettingIconButton extends StatelessWidget {
   const SettingIconButton({super.key, required this.taskModel});
@@ -42,8 +42,8 @@ class SettingIconButton extends StatelessWidget {
       onSelected: (String value) {
         if (value == 'delete') {
           showDeleteDialog(context, () {
-            BlocProvider.of<DeleteTaskCubit>(context)
-                .deleteTask(taskId: taskModel.taskId!);
+            BlocProvider.of<FetchTaskCubit>(context)
+                .deleteTask(taskModel: taskModel);
           });
         } else if (value == 'edit') {
           Navigator.pushNamed(

@@ -11,7 +11,9 @@ import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 part 'fetch_task_state.dart';
 
 class FetchTaskCubit extends Cubit<FetchTaskState> {
-  FetchTaskCubit({ required this.homeRepoImpl,  required this.taskOperationRepoImpl}) : super(FetchTaskInitial());
+  FetchTaskCubit(
+      {required this.homeRepoImpl, required this.taskOperationRepoImpl})
+      : super(FetchTaskInitial());
   final HomeRepo homeRepoImpl;
   final TaskOperationRepo taskOperationRepoImpl;
   int __pageNum = 1;
@@ -125,6 +127,24 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
         emit(EditTaskSuccess());
       },
       (fail) => emit(EditTaskFailure(fail.errMessage)),
+    );
+  }
+
+  void deleteTask({required TaskModel taskModel}) async {
+    if (!__isNetworkConnected) {
+      emit(DeleteTaskFailure("No internet connection"));
+      return;
+    }
+    emit(DeleteTaskLoading());
+    String taskId = taskModel.taskId!;
+    var result = await homeRepoImpl.deleteTask(taskId: taskId);
+    result.fold(
+      (ok) {
+        int index = taskModel.currIndex!;
+        __tasksList!.removeAt(index);
+        emit(DeleteTaskSuccess());
+      },
+      (fail) => emit(DeleteTaskFailure(fail.errMessage)),
     );
   }
 

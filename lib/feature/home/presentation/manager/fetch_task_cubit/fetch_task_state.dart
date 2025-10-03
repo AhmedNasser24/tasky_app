@@ -29,3 +29,12 @@ class EditTaskFailure extends FetchTaskState {
   final String errmessage;
   EditTaskFailure( this.errmessage);
 }
+
+class DeleteTaskLoading extends FetchTaskState {}
+
+class DeleteTaskSuccess extends FetchTaskState {}
+
+class DeleteTaskFailure extends FetchTaskState {
+  final String errMessage;
+  DeleteTaskFailure(this.errMessage);
+}
