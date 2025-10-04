@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_button.dart';
 import 'package:tasky_app/core/widgets/show_snack_bar.dart';
-import 'package:tasky_app/feature/create_edit/presentation/manager/create_task_cubit/create_task_cubit.dart';
+import 'package:tasky_app/feature/home/presentation/manager/fetch_task_cubit/fetch_task_cubit.dart';
 
 import '../../../../../core/models/task_model.dart';
 
@@ -20,7 +20,7 @@ class CreateTaskButton extends StatelessWidget {
         } else if (taskModel.priority == null) {
           showSnackBar(context, "priority is required");
         } else if (formKey.currentState!.validate()) {
-          BlocProvider.of<CreateTaskCubit>(context)
+          BlocProvider.of<FetchTaskCubit>(context)
               .createTask(taskModel: taskModel);
         }
       },

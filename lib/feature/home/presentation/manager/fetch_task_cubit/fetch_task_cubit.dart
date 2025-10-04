@@ -87,6 +87,62 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
 
   String get currFilter => __currFilter;
 
+  Future<void> editTask({required TaskModel taskModel}) async {
+    if (!__isNetworkConnected) {
+      emit(EditTaskFailure("No internet connection"));
+      return;
+    }
+    emit(EditTaskLoading());
+    Either<void, Failure> result =
+        await taskOperationRepoImpl.editTask(taskModel: taskModel);
+    result.fold(
+      (ok) {
+        int index = taskModel.currIndex!;
+        __tasksList!.replaceRange(index, index + 1, [taskModel]);
+        emit(EditTaskSuccess());
+        emit(FetchTaskSuccess(__tasksList!)); // to display task in bloc builder
+      },
+      (fail) => emit(EditTaskFailure(fail.errMessage)),
+    );
+  }
+
+  Future<void> createTask({required TaskModel taskModel}) async {
+    if (!__isNetworkConnected) {
+      emit(CreateTaskFailure("No internet connection"));
+      return;
+    }
+    emit(CreateTaskLoading());
+    Either<TaskModel, Failure> result =
+        await taskOperationRepoImpl.createTask(taskModel: taskModel);
+    result.fold(
+      (createdTask) {
+        __tasksList == null ? __tasksList = [createdTask] : __tasksList!.add(createdTask);
+        emit(CreateTaskSuccess());
+        emit(FetchTaskSuccess(__tasksList!)); // to display task in bloc builder
+      },
+      (fail) => emit(CreateTaskFailure(fail.errMessage)),
+    );
+  }
+
+  void deleteTask({required TaskModel taskModel}) async {
+    if (!__isNetworkConnected) {
+      emit(DeleteTaskFailure("No internet connection"));
+      return;
+    }
+    emit(DeleteTaskLoading());
+    String taskId = taskModel.taskId!;
+    var result = await homeRepoImpl.deleteTask(taskId: taskId);
+    result.fold(
+      (ok) {
+        int index = taskModel.currIndex!;
+        __tasksList!.removeAt(index);
+        emit(DeleteTaskSuccess());
+        emit(FetchTaskSuccess(__tasksList!)); // to display task in bloc builder
+      },
+      (fail) => emit(DeleteTaskFailure(fail.errMessage)),
+    );
+  }
+
   void checkConnectevity() {
     __connectivityStreamSubscription =
         Connectivity().onConnectivityChanged.listen(
@@ -109,42 +165,6 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
           }
         }
       },
-    );
-  }
-
-  Future<void> editTask({required TaskModel taskModel}) async {
-    if (!__isNetworkConnected) {
-      emit(EditTaskFailure("No internet connection"));
-      return;
-    }
-    emit(EditTaskLoading());
-    Either<void, Failure> result =
-        await taskOperationRepoImpl.editTask(taskModel: taskModel);
-    result.fold(
-      (ok) {
-        int index = taskModel.currIndex!;
-        __tasksList!.replaceRange(index, index + 1, [taskModel]);
-        emit(EditTaskSuccess());
-      },
-      (fail) => emit(EditTaskFailure(fail.errMessage)),
-    );
-  }
-
-  void deleteTask({required TaskModel taskModel}) async {
-    if (!__isNetworkConnected) {
-      emit(DeleteTaskFailure("No internet connection"));
-      return;
-    }
-    emit(DeleteTaskLoading());
-    String taskId = taskModel.taskId!;
-    var result = await homeRepoImpl.deleteTask(taskId: taskId);
-    result.fold(
-      (ok) {
-        int index = taskModel.currIndex!;
-        __tasksList!.removeAt(index);
-        emit(DeleteTaskSuccess());
-      },
-      (fail) => emit(DeleteTaskFailure(fail.errMessage)),
     );
   }
 

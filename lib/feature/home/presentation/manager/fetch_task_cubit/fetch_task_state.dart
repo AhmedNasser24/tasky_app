@@ -30,6 +30,16 @@ class EditTaskFailure extends FetchTaskState {
   EditTaskFailure( this.errmessage);
 }
 
+class CreateTaskLoading extends FetchTaskState {}
+
+class CreateTaskSuccess extends FetchTaskState {}
+
+class CreateTaskFailure extends FetchTaskState {
+  final String errMessage;
+
+  CreateTaskFailure(this.errMessage);
+}
+
 class DeleteTaskLoading extends FetchTaskState {}
 
 class DeleteTaskSuccess extends FetchTaskState {}

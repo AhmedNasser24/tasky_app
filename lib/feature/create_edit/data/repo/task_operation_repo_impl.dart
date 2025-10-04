@@ -18,13 +18,13 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
       {required this.dataService});
       
   @override
-  Future<Either<void, Failure>> createTask(
+  Future<Either<TaskModel, Failure>> createTask(
       {required TaskModel taskModel}) async {
     try {
       String imageUrl = await uploadImage(imageFile: taskModel.imageFile!);
       taskModel.image = imageUrl;
-      await dataService.createTask(taskModel: taskModel);
-      return left(null);
+      TaskModel createdTask = await dataService.createTask(taskModel: taskModel);
+      return left(createdTask);
     } on DioException catch (e) {
       log("create task error : ${e.toString()}");
       return right(ServerFailure.fromDioException(e));

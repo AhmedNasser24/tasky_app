@@ -17,16 +17,18 @@ class DataService {
     );
     List<TaskModel> tasksList = [];
     for (var task in data) {
-      tasksList.add(TaskModel.fromJsonFetch(task));
+      tasksList.add(TaskModel.fromJson(task));
     }
     return tasksList;
   }
 
-  Future<void> createTask({required TaskModel taskModel}) async {
-    await _apiServices.post(
+  Future<TaskModel> createTask({required TaskModel taskModel}) async {
+    var data = await _apiServices.post(
       endPoint: EndPoint.createTask,
       data: taskModel.toJsonCreate(),
     );
+    TaskModel createdTask = TaskModel.fromJson(data);
+    return createdTask;
   }
 
   Future<String> uploadImage({required File imageFile}) async {
@@ -56,7 +58,7 @@ class DataService {
 
   Future<TaskModel> fetchOneTask({required String qrData}) async {
     var data = await _apiServices.get(endPoint: "${EndPoint.one}$qrData");
-    TaskModel task = TaskModel.fromJsonFetch(data);
+    TaskModel task = TaskModel.fromJson(data);
     return task;
   }
 

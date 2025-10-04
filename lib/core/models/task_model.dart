@@ -27,10 +27,9 @@ class TaskModel {
       this.createdAt,
       this.updatedAt,
       this.dueDate,
-      this.currIndex
-      });
+      this.currIndex});
 
-  factory TaskModel.fromJsonFetch(Map<String, dynamic> json) => TaskModel(
+  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
         taskId: json[ApiKeys.taskId],
         image: json[ApiKeys.taskImage],
         title: json[ApiKeys.taskTitle],
@@ -42,19 +41,19 @@ class TaskModel {
         updatedAt: json[ApiKeys.taskUpdatedAt],
       );
 
-  toJsonCreate() => {
+  Map<String, dynamic> toJsonCreate() => {
         ApiKeys.taskImage: image,
         ApiKeys.taskTitle: title,
         ApiKeys.taskDesc: desc,
         ApiKeys.taskPriority: priority,
         ApiKeys.taskDueDate: dueDate,
       };
-  toJsonEdit() => {
+  Map<String, dynamic> toJsonEdit() => {
         ApiKeys.taskImage: image,
         ApiKeys.taskTitle: title,
         ApiKeys.taskDesc: desc,
         ApiKeys.taskPriority: priority,
         ApiKeys.taskStatus: status,
-        ApiKeys.userId : userId ,
-      };    
+        ApiKeys.userId: userId,
+      };
 }

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:tasky_app/core/services/dio_interceptor.dart';
 
 class ApiServices {
-  final Dio _dio = Dio();
   final DioInterceptor _dioInterceptor = DioInterceptor();
 
   Future get(
