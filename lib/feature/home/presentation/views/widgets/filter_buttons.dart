@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
 
-import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
+import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 import 'filter_item.dart';
 
 class FilterButtons extends StatefulWidget {
@@ -47,7 +47,7 @@ class _FilterButtonsState extends State<FilterButtons> {
                       selectedIndex = index;
                     },
                   );
-                  BlocProvider.of<FetchTaskCubit>(context)
+                  BlocProvider.of<TaskOperationCubit>(context)
                       .changeFilter(filterName);
                   navToSection(index);
                 },

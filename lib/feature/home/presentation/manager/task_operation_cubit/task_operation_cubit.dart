@@ -8,10 +8,10 @@ import 'package:tasky_app/core/models/task_model.dart';
 import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
 import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 
-part 'fetch_task_state.dart';
+part 'task_operation_state.dart';
 
-class FetchTaskCubit extends Cubit<FetchTaskState> {
-  FetchTaskCubit(
+class TaskOperationCubit extends Cubit<TaskOperationState> {
+  TaskOperationCubit(
       {required this.homeRepoImpl, required this.taskOperationRepoImpl})
       : super(FetchTaskInitial());
   final HomeRepo homeRepoImpl;
@@ -19,7 +19,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
   int __pageNum = 1;
   final int __maxItemPerPage = 20;
   bool __isThereMoreItems = true;
-  bool __isFirstLoading = true;
+  bool __isFirstTaskOperation = true;
   List<TaskModel>? __tasksList;
   String __currFilter = kAll;
   StreamSubscription<List<ConnectivityResult>>?
@@ -32,11 +32,11 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     if (!__isNetworkConnected) {
       return;
     }
-    if (__isFirstLoading) {
+    if (__isFirstTaskOperation) {
       emit(FetchTaskLoading());
     }
     Either<List<TaskModel>, Failure> result =
-        await homeRepoImpl.fetchAllTasks(pageNum: __pageNum);
+        await taskOperationRepoImpl.fetchAllTasks(pageNum: __pageNum);
     result.fold(
       (tasksList) {
         if (__tasksList != null) {
@@ -53,23 +53,20 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
         } else {
           __pageNum++;
         }
-        if (__tasksList!.isEmpty) {
-          emit(FetchTaskEmpty());
-        } else {
-          emit(FetchTaskSuccess(__tasksList!));
-        }
+
+        emit(FetchTaskSuccess(__tasksList!));
       },
       (fail) {
-        if (__isFirstLoading) emit(FetchTaskFailure(fail.errMessage));
+        emit(FetchTaskFailure(fail.errMessage));
       },
     );
-    __isFirstLoading = false;
+    __isFirstTaskOperation = false;
   }
 
   Future<void> refresh() async {
     __pageNum = 1;
     __isThereMoreItems = true;
-    __isFirstLoading = true;
+    __isFirstTaskOperation = true;
     __tasksList = null;
     fetchData();
   }
@@ -80,13 +77,13 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
 
   void changeFilter(String value) {
     __currFilter = value;
-    if (__isFirstLoading) return;
+    if (__isFirstTaskOperation) return;
     if (tasksList!.isEmpty) return;
     emit(FetchTaskSuccess(tasksList!));
   }
 
   String get currFilter => __currFilter;
-
+  bool get isFirstTaskOperation => __isFirstTaskOperation;
   Future<void> editTask({required TaskModel taskModel}) async {
     if (!__isNetworkConnected) {
       emit(EditTaskFailure("No internet connection"));
@@ -116,7 +113,9 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
         await taskOperationRepoImpl.createTask(taskModel: taskModel);
     result.fold(
       (createdTask) {
-        __tasksList == null ? __tasksList = [createdTask] : __tasksList!.add(createdTask);
+        __tasksList == null
+            ? __tasksList = [createdTask]
+            : __tasksList!.add(createdTask);
         emit(CreateTaskSuccess());
         emit(FetchTaskSuccess(__tasksList!)); // to display task in bloc builder
       },
@@ -131,7 +130,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     }
     emit(DeleteTaskLoading());
     String taskId = taskModel.taskId!;
-    var result = await homeRepoImpl.deleteTask(taskId: taskId);
+    var result = await taskOperationRepoImpl.deleteTask(taskId: taskId);
     result.fold(
       (ok) {
         int index = taskModel.currIndex!;
@@ -147,7 +146,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     __connectivityStreamSubscription =
         Connectivity().onConnectivityChanged.listen(
       (connectivityResult) {
-        if (__isFirstLoading) {
+        if (__isFirstTaskOperation) {
           if (connectivityResult.contains(ConnectivityResult.none)) {
             __isNetworkConnected = false;
             emit(FetchTaskNoInternet()); // to show image at first
@@ -159,6 +158,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
         } else {
           if (connectivityResult.contains(ConnectivityResult.none)) {
             __isNetworkConnected = false;
+            emit(FetchTaskNoInternet()); // use this with isFirstTaskOperation to show snackbar with old tasks
           } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
               connectivityResult.contains(ConnectivityResult.mobile)) {
             __isNetworkConnected = true;

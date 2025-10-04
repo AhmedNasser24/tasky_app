@@ -11,21 +11,7 @@ import 'home_repo.dart';
 class HomeRepoImpl extends HomeRepo {
   final DataService dataService;
   HomeRepoImpl({ required this.dataService});
-  @override
-  Future<Either<List<TaskModel>, Failure>> fetchAllTasks(
-      {required int pageNum}) async {
-    try {
-      List<TaskModel> taskModel =
-          await dataService.fetchTasks(pageNum: pageNum);
-      return left(taskModel);
-    } on DioException catch (e) {
-      log("fetch data error : ${e.toString()}");
-      return right(ServerFailure.fromDioException(e));
-    } catch (e) {
-      log("fetch data error : ${e.toString()}");
-      return right(const ServerFailure("please try again"));
-    }
-  }
+ 
 
   
 
@@ -44,17 +30,4 @@ class HomeRepoImpl extends HomeRepo {
     }
   }
 
-  @override
-  Future<Either<void, Failure>> deleteTask({required String taskId}) async {
-    try {
-      await dataService.deleteTask( taskId: taskId);
-      return left(null);
-    } on DioException catch (e) {
-      log("fetch one task error : ${e.toString()}");
-      return right(ServerFailure.fromDioException(e));
-    } catch (e) {
-      log("fetch one task error : ${e.toString()}");
-      return right(const ServerFailure("please try again"));
-    }
-  }
 }

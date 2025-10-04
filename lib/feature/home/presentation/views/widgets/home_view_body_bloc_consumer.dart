@@ -5,7 +5,7 @@ import 'package:tasky_app/core/widgets/show_snack_bar.dart';
 import 'package:tasky_app/feature/auth/presentation/manager/logout_cubit/logout_cubit.dart';
 
 import '../../../../auth/presentation/views/login_view.dart';
-import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
+import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 import 'home_view_body.dart';
 
 class HomeViewBodyBlocConsumer extends StatelessWidget {
@@ -15,7 +15,7 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FetchTaskCubit, FetchTaskState>(
+    return BlocConsumer<TaskOperationCubit, TaskOperationState>(
       listener: (context, state) {
         if (state is DeleteTaskSuccess) {
           showSnackBar(context, "task is deleted successfully");

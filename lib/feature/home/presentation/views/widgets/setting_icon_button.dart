@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/feature/create_edit/presentation/views/edit_view.dart';
-import 'package:tasky_app/feature/home/presentation/manager/fetch_task_cubit/fetch_task_cubit.dart';
+import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_styles.dart';
@@ -42,7 +42,7 @@ class SettingIconButton extends StatelessWidget {
       onSelected: (String value) {
         if (value == 'delete') {
           showDeleteDialog(context, () {
-            BlocProvider.of<FetchTaskCubit>(context)
+            BlocProvider.of<TaskOperationCubit>(context)
                 .deleteTask(taskModel: taskModel);
           });
         } else if (value == 'edit') {

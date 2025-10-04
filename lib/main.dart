@@ -4,7 +4,7 @@ import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/get_it_setup.dart';
 import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
 import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
-import 'package:tasky_app/feature/home/presentation/manager/fetch_task_cubit/fetch_task_cubit.dart';
+import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 import 'package:tasky_app/feature/splash/presentation/views/splash_view.dart';
 import 'core/helper/on_generate_route.dart';
 import 'core/utils/shared_preference_singleton.dart';
@@ -27,7 +27,7 @@ class TaskyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FetchTaskCubit(homeRepoImpl:  getIt<HomeRepo>(), taskOperationRepoImpl: getIt<TaskOperationRepo>() ),
+      create: (context) => TaskOperationCubit(homeRepoImpl:  getIt<HomeRepo>(), taskOperationRepoImpl: getIt<TaskOperationRepo>() ),
       child: MaterialApp(
         theme: ThemeData(
           fontFamily: 'DM Sans',

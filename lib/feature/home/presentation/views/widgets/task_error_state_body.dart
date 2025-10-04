@@ -6,7 +6,7 @@ import 'package:tasky_app/feature/home/presentation/views/widgets/task_loading_s
 import '../../../../../constants.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_styles.dart';
-import '../../manager/fetch_task_cubit/fetch_task_cubit.dart';
+import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 
 class TaskErrorStateBody extends StatelessWidget {
   const TaskErrorStateBody({
@@ -19,7 +19,7 @@ class TaskErrorStateBody extends StatelessWidget {
       children: [
         const Expanded(child: TaskLoadingStateBody()),
         GestureDetector(
-          onTap: () => BlocProvider.of<FetchTaskCubit>(context).refresh(),
+          onTap: () => BlocProvider.of<TaskOperationCubit>(context).refresh(),
           child: Container(
             width: double.infinity,
             color: AppColor.primaryColor,
