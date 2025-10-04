@@ -34,28 +34,25 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
 
   @override
   Widget build(BuildContext context) {
-    List<TaskModel> tasksList = widget.state?.tasksList ??
-        BlocProvider.of<TaskOperationCubit>(context).tasksList ??
-        [];
+    List<TaskModel> tasksListAccordingToFilter = showTaskItemAfterFilter(widget.state?.tasksList);
     bool isThereMoreItems =
         BlocProvider.of<TaskOperationCubit>(context).isThereMoreItems;
-    String currFilter = BlocProvider.of<TaskOperationCubit>(context).currFilter;
+    
     return RefreshIndicator(
       onRefresh: () async {
         await Future.delayed(const Duration(seconds: 1));
         BlocProvider.of<TaskOperationCubit>(context).refresh();
       },
-      child: tasksList.isEmpty
+      child: tasksListAccordingToFilter.isEmpty
           ? const TaskEmptyStateBody()
           : ListView.builder(
               controller: controller,
               physics: const AlwaysScrollableScrollPhysics(),
-              itemCount: tasksList.length + (isThereMoreItems ? 1 : 0),
+              itemCount: tasksListAccordingToFilter.length + (isThereMoreItems ? 1 : 0),
               itemBuilder: (context, index) {
-                if (index < tasksList.length) {
-                  tasksList[index].currIndex =
-                      index; // to be used in editing task
-                  return showTaskItemAfterFilter(currFilter, tasksList, index);
+                if (index < tasksListAccordingToFilter.length) {
+                  tasksListAccordingToFilter[index].currIndex = index; // to be used in editing task
+                  return TaskItem(taskModel: tasksListAccordingToFilter[index]);
                 } else {
                   return GestureDetector(
                     onTap: () => BlocProvider.of<TaskOperationCubit>(context)
@@ -71,16 +68,21 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     );
   }
 
-  Widget showTaskItemAfterFilter(
-      String currFilter, List<TaskModel> tasksList, int index) {
+  List <TaskModel> showTaskItemAfterFilter(
+      List<TaskModel>? tasksList) {
+
+     if (tasksList == null) return []; 
+    String currFilter = BlocProvider.of<TaskOperationCubit>(context).currFilter;
+    List<TaskModel> tasksListAccordingToFilter = [];
     if (currFilter == kAll) {
-      return TaskItem(taskModel: tasksList[index]);
-    } else {
-      if (currFilter.toLowerCase() == tasksList[index].status!.toLowerCase()) {
-        return TaskItem(taskModel: tasksList[index]);
-      } else {
-        return const SizedBox();
+      tasksListAccordingToFilter = tasksList;
+    }else {
+      for (var task in tasksList) {
+        if (task.status!.toLowerCase() == currFilter.toLowerCase()) {
+          tasksListAccordingToFilter.add(task);
+        }
       }
     }
+    return tasksListAccordingToFilter;
   }
 }
