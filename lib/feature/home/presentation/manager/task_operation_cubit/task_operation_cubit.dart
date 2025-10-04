@@ -66,11 +66,11 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   }
 
   Future<void> refresh() async {
+    if (!__isNetworkConnected) return;
     __pageNum = 1;
     __isThereMoreItems = true;
     __isFirstTaskOperation = true;
     __tasksList = null;
-    // don't refresh if there is no network connection , this handle in fetch data method
     fetchData();
   }
 
@@ -81,8 +81,8 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   void changeFilter(String value) {
     __currFilter = value;
     if (__isFirstTaskOperation) return;
-    if (tasksList!.isEmpty) return;
-    emit(FetchTaskSuccess(tasksList!));
+    if (tasksList?.isEmpty ?? true) return;
+    emit(FetchTaskSuccess(tasksList));
   }
 
   String get currFilter => __currFilter;

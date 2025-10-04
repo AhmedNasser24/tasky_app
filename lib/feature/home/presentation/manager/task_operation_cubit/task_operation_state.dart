@@ -7,7 +7,7 @@ class FetchTaskInitial extends TaskOperationState {}
 class FetchTaskLoading extends TaskOperationState {}
 
 class FetchTaskSuccess extends TaskOperationState {
-  final List<TaskModel> tasksList;
+  final List<TaskModel>? tasksList;
 
   FetchTaskSuccess(this.tasksList);
 }

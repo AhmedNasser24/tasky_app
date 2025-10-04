@@ -82,10 +82,10 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
       await dataService.deleteTask( taskId: taskId);
       return left(null);
     } on DioException catch (e) {
-      log("fetch one task error : ${e.toString()}");
+      log("delete task error : ${e.toString()}");
       return right(ServerFailure.fromDioException(e));
     } catch (e) {
-      log("fetch one task error : ${e.toString()}");
+      log("delete task error : ${e.toString()}");
       return right(const ServerFailure("please try again"));
     }
   }

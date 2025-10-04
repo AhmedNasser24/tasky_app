@@ -20,9 +20,9 @@ class ProfileIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async{
-        // await SharedPreferenceSingleton.setString(ApiKeys.accessToken, "value") ;
+        await SharedPreferenceSingleton.setString(ApiKeys.accessToken, "value") ;
         // log("set wrong access token for test") ;
-        Navigator.pushNamed(context, ProfileView.routeName);
+        // Navigator.pushNamed(context, ProfileView.routeName);
         // DioInterceptor().refreshToken() ;
       },
       child: SvgPicture.asset(Assets.imagesProfileIcon),
