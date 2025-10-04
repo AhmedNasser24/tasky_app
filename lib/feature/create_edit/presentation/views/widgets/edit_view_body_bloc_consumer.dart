@@ -16,15 +16,20 @@ class EditViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<TaskOperationCubit, TaskOperationState>(
       listener: (context, state) {
         if (state is EditTaskSuccess) {
-          showSnackBar(context, "task is updated successfully");
+          showSnackBarSuccess(context, "task is updated successfully");
           Navigator.pop(context);
-          
         } else if (state is EditTaskFailure) {
           isLoading = false;
-          showSnackBar(context, state.errmessage);
+          showSnackBarFailure(context, state.errmessage);
         } else if (state is EditTaskLoading) {
           isLoading = true;
         }
+        //  else if (state is NoInternetConnection) {   // not used isFirstTaskOperation bec it is always false in this case
+        //   // showSnackBarFailure(context, state.message,
+        //   //     duration: const Duration(hours: 5)); // to still displaying snackbar
+        // } else if (state is InternetConnectionReturned) {
+        //   showSnackBarSuccess(context, state.message);
+        // }
       },
       builder: (context, state) {
         return CustomModalProgressHud(

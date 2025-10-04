@@ -15,13 +15,13 @@ class TaskItemsBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<TaskOperationCubit, TaskOperationState>(
       listener: (context, state) {
-        bool isFirstTaskOperation =
-            BlocProvider.of<TaskOperationCubit>(context).isFirstTaskOperation;
-        if (state is FetchTaskNoInternet && !isFirstTaskOperation) {
-          showSnackBar(context, state.message);
-        }
-        else if (state is FetchTaskFailure) {
-          showSnackBar(context, state.errMessage);
+        if (state is NoInternetConnection) {
+          showSnackBarFailure(context, state.message,
+              duration: const Duration(hours: 5));
+        } else if (state is InternetConnectionReturned) {
+          showSnackBarSuccess(context, state.message);
+        } else if (state is FetchTaskFailure) {
+          showSnackBarFailure(context, state.errMessage);
         }
       },
       builder: (context, state) {
@@ -30,10 +30,10 @@ class TaskItemsBlocBuilder extends StatelessWidget {
         if (state is FetchTaskSuccess) {
           return TaskSuccessStateBody(state: state);
         } else if (state is FetchTaskLoading) {
-          return const TaskLoadingStateBody();
-        } else if (state is FetchTaskNoInternet && isFirstTaskOperation) {
+          return const CustomLoadingSkeletonizer();
+        } else if (state is NoInternetConnection) {
           if (isFirstTaskOperation) {
-            return const TaskNoInternetStateBody();
+            return const CustomLoadingSkeletonizer();
           } else {
             return const TaskSuccessStateBody();
           }

@@ -20,7 +20,7 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
         if (state is RegisterSuccess) {
           Navigator.pushReplacementNamed(context, HomeView.routeName);
         } else if (state is RegisterFailure) {
-          showSnackBar(context, state.errMessage);
+          showSnackBarFailure(context, state.errMessage);
         }
       },
       builder: (context, state) {

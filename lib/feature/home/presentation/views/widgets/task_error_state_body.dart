@@ -17,7 +17,7 @@ class TaskErrorStateBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Expanded(child: TaskLoadingStateBody()),
+        const Expanded(child: CustomLoadingSkeletonizer()),
         GestureDetector(
           onTap: () => BlocProvider.of<TaskOperationCubit>(context).refresh(),
           child: Container(

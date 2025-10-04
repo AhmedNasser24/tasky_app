@@ -15,12 +15,12 @@ class CustomFloatingButtonForHomeView extends StatelessWidget {
       children: [
         Positioned(
           right: 0.0,
-          bottom: 20,
+          bottom: 20 ,
           child: CustomAddIconButton(),
         ),
         Positioned(
           right: 0.0,
-          bottom: 100,
+          bottom: 100 ,
           child: CustomQrIconButton(),
         ),
       ],

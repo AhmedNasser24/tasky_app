@@ -14,7 +14,7 @@ class CopyIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Clipboard.setData(ClipboardData(text: textToCopy));
-        showSnackBar(context, "Copied to clipboard");
+        showSnackBarFailure(context, "Copied to clipboard");
       },
       child: SvgPicture.asset(Assets.imagesCopyIcon),
     );

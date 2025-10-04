@@ -17,14 +17,20 @@ class CreateViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<TaskOperationCubit, TaskOperationState>(
       listener: (context, state) {
         if (state is CreateTaskSuccess) {
-          showSnackBar(context, "task is added successfully");
+          showSnackBarSuccess(context, "task is added successfully");
           Navigator.pop(context);
         } else if (state is CreateTaskLoading) {
           isLoading = true;
         } else if (state is CreateTaskFailure) {
           isLoading = false ;
-          showSnackBar(context, state.errMessage);
+          showSnackBarFailure(context, state.errMessage);
         }
+        // else if (state is NoInternetConnection) {   // not used isFirstTaskOperation bec can navigate to create view without internet at first
+        //   // showSnackBarFailure(context, state.message,
+        //   //     duration: const Duration(hours: 5)); // to still displaying snackbar
+        // } else if (state is InternetConnectionReturned) {
+        //   showSnackBarSuccess(context, state.message);
+        // }
       },
       builder: (context, state) {
         return CustomModalProgressHud(

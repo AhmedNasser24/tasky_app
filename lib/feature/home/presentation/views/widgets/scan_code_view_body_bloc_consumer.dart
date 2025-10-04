@@ -19,7 +19,7 @@ class ScanCodeViewBodyBlocConsumer extends StatelessWidget {
                   builder: (context) =>
                       DetailsView(taskModel: state.taskModel)));
         } else if (state is FetchOneTaskCubitFailure) {
-          showSnackBar(context, state.errMessage);
+          showSnackBarFailure(context, state.errMessage);
         }
       },
       builder: (context, state) {

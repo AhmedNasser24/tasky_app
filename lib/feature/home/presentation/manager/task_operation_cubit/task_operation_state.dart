@@ -18,8 +18,11 @@ class FetchTaskFailure extends TaskOperationState {
   FetchTaskFailure(this.errMessage);
 }
 
-class FetchTaskNoInternet extends TaskOperationState {
+class NoInternetConnection extends TaskOperationState {
   final String message = "No Internet Connection";
+}
+class InternetConnectionReturned extends TaskOperationState {
+  final String message = "Internet Connection Returned";
 }
 
 class EditTaskLoading extends TaskOperationState {}

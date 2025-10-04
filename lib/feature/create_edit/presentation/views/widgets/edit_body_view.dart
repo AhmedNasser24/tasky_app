@@ -73,7 +73,7 @@ class _EditBodyViewState extends State<EditBodyView> {
                             taskModel: widget.taskModel,
                             editTaskModel: editTaskModel,
                             formKey: formKey),
-                        const Gap(kBottomSpace),
+                         const Gap(kBottomSpace ),
                       ],
                     ),
                   ),

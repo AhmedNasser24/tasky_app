@@ -19,7 +19,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
         if (state is LoginSuccess) {
           Navigator.pushReplacementNamed(context, HomeView.routeName) ;
         } else if (state is LoginFailure) {
-          showSnackBar(context, state.errMessage);
+          showSnackBarFailure(context, state.errMessage);
         }
       },
       builder: (context, state) {

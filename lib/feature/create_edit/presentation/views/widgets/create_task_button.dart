@@ -16,9 +16,9 @@ class CreateTaskButton extends StatelessWidget {
     return CustomButton(
       onTap: () {
         if (taskModel.imageFile == null) {
-          showSnackBar(context, "image is required");
+          showSnackBarFailure(context, "image is required");
         } else if (taskModel.priority == null) {
-          showSnackBar(context, "priority is required");
+          showSnackBarFailure(context, "priority is required");
         } else if (formKey.currentState!.validate()) {
           BlocProvider.of<TaskOperationCubit>(context)
               .createTask(taskModel: taskModel);

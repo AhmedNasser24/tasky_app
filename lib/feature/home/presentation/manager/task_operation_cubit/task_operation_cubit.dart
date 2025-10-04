@@ -25,6 +25,8 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   StreamSubscription<List<ConnectivityResult>>?
       __connectivityStreamSubscription;
   bool __isNetworkConnected = true;
+
+
   Future<void> fetchData() async {
     if (__isThereMoreItems == false) {
       return;
@@ -68,6 +70,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     __isThereMoreItems = true;
     __isFirstTaskOperation = true;
     __tasksList = null;
+    // don't refresh if there is no network connection , this handle in fetch data method
     fetchData();
   }
 
@@ -86,7 +89,6 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   bool get isFirstTaskOperation => __isFirstTaskOperation;
   Future<void> editTask({required TaskModel taskModel}) async {
     if (!__isNetworkConnected) {
-      emit(EditTaskFailure("No internet connection"));
       return;
     }
     emit(EditTaskLoading());
@@ -105,7 +107,6 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
 
   Future<void> createTask({required TaskModel taskModel}) async {
     if (!__isNetworkConnected) {
-      emit(CreateTaskFailure("No internet connection"));
       return;
     }
     emit(CreateTaskLoading());
@@ -125,7 +126,6 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
 
   void deleteTask({required TaskModel taskModel}) async {
     if (!__isNetworkConnected) {
-      emit(DeleteTaskFailure("No internet connection"));
       return;
     }
     emit(DeleteTaskLoading());
@@ -149,19 +149,22 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
         if (__isFirstTaskOperation) {
           if (connectivityResult.contains(ConnectivityResult.none)) {
             __isNetworkConnected = false;
-            emit(FetchTaskNoInternet()); // to show image at first
+            emit(NoInternetConnection()); // to show image at first
           } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
               connectivityResult.contains(ConnectivityResult.mobile)) {
+            if(!__isNetworkConnected) emit(InternetConnectionReturned()); // to not display at first when app is already have connection to internet
             __isNetworkConnected = true;
             fetchData();
           }
         } else {
           if (connectivityResult.contains(ConnectivityResult.none)) {
             __isNetworkConnected = false;
-            emit(FetchTaskNoInternet()); // use this with isFirstTaskOperation to show snackbar with old tasks
+            emit(
+                NoInternetConnection()); // use this with isFirstTaskOperation to show snackbar with old tasks
           } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
               connectivityResult.contains(ConnectivityResult.mobile)) {
             __isNetworkConnected = true;
+            emit(InternetConnectionReturned());
           }
         }
       },

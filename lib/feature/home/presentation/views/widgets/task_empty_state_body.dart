@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky_app/core/utils/app_color.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 
@@ -9,15 +10,11 @@ class TaskEmptyStateBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        children: [
-          Text(
-            " No Tasks yet in this category",
-            style: AppStyles.semibold16,
-            textAlign: TextAlign.center,
-          ),
-        ],
+    return Center(
+      child: Text(
+        " No Tasks yet in this category",
+        style: AppStyles.semibold16.copyWith(color: AppColor.primaryColor),
+        textAlign: TextAlign.center,
       ),
     );
   }

@@ -15,10 +15,10 @@ class DetailsViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<TaskOperationCubit, TaskOperationState>(
       listener: (context, state) {
         if (state is DeleteTaskSuccess) {
-          showSnackBar(context, "task is deleted successfully");
+          showSnackBarFailure(context, "task is deleted successfully");
           Navigator.pop(context);
         } else if (state is DeleteTaskFailure) {
-          showSnackBar(context, state.errMessage);
+          showSnackBarFailure(context, state.errMessage);
         }
       },
       builder: (context, state) {

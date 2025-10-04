@@ -24,9 +24,9 @@ class EditTaskButton extends StatelessWidget {
       onTap: () {
       
         if (!isTaskEdited(taskModel, editTaskModel)) {
-          showSnackBar(context, "task is not edited");
+          showSnackBarFailure(context, "task is not edited");
         } else if (editTaskModel.imageFile == null && editTaskModel.image == null) {    // this mean that user delete image and not upload new one from device
-          showSnackBar(context, "image is required");
+          showSnackBarFailure(context, "image is required");
         } else if (formKey.currentState!.validate()) {
           log("validation passed");
           

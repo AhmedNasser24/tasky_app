@@ -5,8 +5,8 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../constants.dart';
 import 'damy_task_item.dart';
 
-class TaskLoadingStateBody extends StatelessWidget {
-  const TaskLoadingStateBody({
+class CustomLoadingSkeletonizer extends StatelessWidget {
+  const CustomLoadingSkeletonizer({
     super.key,
   });
 

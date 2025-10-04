@@ -49,7 +49,7 @@ class _CreateViewBodyState extends State<CreateViewBody> {
                         TaskDueDateFormField(taskModel),
                         const Gap(34),
                         CreateTaskButton(taskModel, formKey),
-                        const Gap(kBottomSpace),
+                         Gap(kBottomSpace +40),
                       ],
                     ),
                   ),

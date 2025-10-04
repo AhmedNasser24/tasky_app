@@ -18,9 +18,9 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<TaskOperationCubit, TaskOperationState>(
       listener: (context, state) {
         if (state is DeleteTaskSuccess) {
-          showSnackBar(context, "task is deleted successfully");
+          showSnackBarSuccess(context, "task is deleted successfully");
         } else if (state is DeleteTaskFailure) {
-          showSnackBar(context, state.errMessage);
+          showSnackBarFailure(context, state.errMessage);
         }
       },
       builder: (context, state) {
@@ -30,7 +30,7 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
               Navigator.pushNamedAndRemoveUntil(
                   context, LoginView.routeName, (_) => false);
             } else if (state is LogoutFailure) {
-              showSnackBar(context, state.errMessage);
+              showSnackBarFailure(context, state.errMessage);
             }
           },
           builder: (context, state) {
