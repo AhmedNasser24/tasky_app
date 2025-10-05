@@ -25,14 +25,34 @@ class DioInterceptor {
       },
       onError: (DioException e, handler) async {
         log("dio interceptor Error : ${e.toString()}");
-        if ( e.response?.statusCode == 401){
+        if (e.response?.statusCode == 401) {
           await refreshToken();
-          String newAccessToken = SharedPreferenceSingleton.getString(ApiKeys.accessToken);
-          final requestOptions = e.requestOptions ;
-          requestOptions.headers.addAll({"Authorization": "Bearer $newAccessToken"});
+          String newAccessToken =
+              SharedPreferenceSingleton.getString(ApiKeys.accessToken);
+          final requestOptions = e.requestOptions;
+          requestOptions.headers
+              .addAll({"Authorization": "Bearer $newAccessToken"});
+
+          // ⚠️ Check if the body was FormData
+          if (requestOptions.data is FormData) {
+            final oldFormData = requestOptions.data as FormData;
+            final Map<String, dynamic> newMap = {};
+            for (final entry in oldFormData.fields) {
+              newMap[entry.key] = entry.value;
+            }
+            for (final entry in oldFormData.files) {
+              final file = entry.value;
+              newMap[entry.key] = await MultipartFile.fromFile(
+                file.filename!,
+                filename: file.filename,
+                contentType: file.contentType,
+              );
+            }
+            requestOptions.data = FormData.fromMap(newMap);
+          }
+
           final response = await dio.fetch(requestOptions);
           return handler.resolve(response);
-        
         }
         return handler.next(e);
       },
