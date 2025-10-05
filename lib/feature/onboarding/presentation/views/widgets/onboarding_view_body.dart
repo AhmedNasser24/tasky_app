@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:tasky_app/core/helper/set_preferred_orientations.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/app_images.dart';
 import 'package:tasky_app/core/utils/app_styles.dart';
@@ -7,9 +8,20 @@ import 'package:tasky_app/core/utils/app_styles.dart';
 import '../../../../../constants.dart';
 import 'start_button.dart';
 
-class OnboardingViewBody extends StatelessWidget {
+class OnboardingViewBody extends StatefulWidget {
   const OnboardingViewBody({super.key});
 
+  @override
+  State<OnboardingViewBody> createState() => _OnboardingViewBodyState();
+}
+
+class _OnboardingViewBodyState extends State<OnboardingViewBody> {
+  
+  @override
+  void didChangeDependencies() {
+    setPreferredOrientations();
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(

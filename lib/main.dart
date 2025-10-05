@@ -9,6 +9,7 @@ import 'package:tasky_app/core/utils/get_it_setup.dart';
 import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
 import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
+import 'package:tasky_app/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:tasky_app/feature/splash/presentation/views/splash_view.dart';
 import 'core/helper/on_generate_route.dart';
 import 'core/utils/shared_preference_singleton.dart';
@@ -48,7 +49,7 @@ class TaskyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerateRoute,
-        initialRoute: SplashView.routeName,
+        initialRoute: OnboardingView.routeName,
       ),
     );
   }
