@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -12,9 +14,10 @@ class ProfileAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const  Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
-      child: Stack(
+    bool isMobile = Platform.isAndroid || Platform.isIOS;
+    return    Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: isMobile ? const Stack(
         children: [
           Positioned(
             left: -5,
@@ -31,7 +34,7 @@ class ProfileAppBar extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
+      ): const Text('Profile', style: AppStyles.bold20),
+    ) ;
   }
 }

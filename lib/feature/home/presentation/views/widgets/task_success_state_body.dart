@@ -99,7 +99,6 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     double fixedHeight = responsiveHeight(screenWidth);
     double crossAxisCount = responsiveCrossAxisCount(context);
     double crossAxisSpacing = 10;
-    // return (440 + kHorizontalPadding * 2 ) / 150 ;
     return ((screenWidth / crossAxisCount) -
             (kHorizontalPadding * 2) -
             (crossAxisSpacing * (crossAxisCount - 1))) /
