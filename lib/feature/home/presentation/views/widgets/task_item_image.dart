@@ -10,8 +10,8 @@ class TaskItemImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
-      width: 60,
+      // height: 100,
+      // width: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
       ),

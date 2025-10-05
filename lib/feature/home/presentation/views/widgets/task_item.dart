@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
+import 'package:tasky_app/core/helper/media_query_extension.dart';
 import '../../../../../core/models/task_model.dart';
 import '../details_view.dart';
 import 'setting_icon_button.dart';
@@ -35,40 +36,43 @@ class TaskItem extends StatelessWidget {
                 arguments: taskModel,
               );
             },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TaskItemImage(taskModel.image!),
-                const Gap(10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TaskItemTitle(taskModel.title!),
-                          ),
-                          const Gap(5),
-                          TaskItemStatues(taskModel.status!),
-                        ],
-                      ),
-                      const Gap(5),
-                      TaskItemDescription(taskModel.desc!),
-                      const Gap(5),
-                      Row(
-                        children: [
-                          TaskItemPriority(taskModel.priority!),
-                          const Spacer(),
-                          TaskItemDate(date: taskModel.createdAt!),
-                        ],
-                      )
-                    ],
+            child: SizedBox(
+              height: responsiveHeight(context),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TaskItemImage(taskModel.image!),
+                  const Gap(10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TaskItemTitle(taskModel.title!),
+                            ),
+                            const Gap(5),
+                            TaskItemStatues(taskModel.status!),
+                          ],
+                        ),
+                        const Spacer(),
+                        TaskItemDescription(taskModel.desc!),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            TaskItemPriority(taskModel.priority!),
+                            const Spacer(),
+                            TaskItemDate(date: taskModel.createdAt!),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                const Gap(24),
-              ],
+                  const Gap(24),
+                ],
+              ),
             ),
           ),
         ),
@@ -79,5 +83,20 @@ class TaskItem extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  double responsiveHeight(BuildContext context ) {
+    double screenWidth = context.screenWidth;
+    if (screenWidth < 700) {
+      return 60 ;
+    }else if ( screenWidth < 1000) {
+      return 65;
+    }else if (screenWidth < 1200) {
+      return 70;
+    }else if (screenWidth < 1500){
+      return 75;
+    }else {
+      return 80 ;
+    }
   }
 }

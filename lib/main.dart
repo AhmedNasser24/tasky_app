@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/core/helper/media_query_extension.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/get_it_setup.dart';
 import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
@@ -16,7 +20,11 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
   runApp(
-    const TaskyApp(),
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const TaskyApp(),
+    )
+    // const TaskyApp(),
   );
 }
 
@@ -26,9 +34,13 @@ class TaskyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    log(" screen height ${context.screenHeight}");
+    log(" screen width ${context.screenWidth}");
     return BlocProvider(
       create: (context) => TaskOperationCubit(homeRepoImpl:  getIt<HomeRepo>(), taskOperationRepoImpl: getIt<TaskOperationRepo>() ),
       child: MaterialApp(
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         theme: ThemeData(
           fontFamily: 'DM Sans',
           scaffoldBackgroundColor: AppColor.whiteColor,
