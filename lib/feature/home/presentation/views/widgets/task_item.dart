@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
 import '../../../../../core/models/task_model.dart';
 import '../details_view.dart';
 import 'setting_icon_button.dart';
@@ -17,70 +16,69 @@ class TaskItem extends StatelessWidget {
   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: kHorizontalPadding),
-          child: InkWell(
-            focusColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () {
-              
-              Navigator.pushNamed(
-                context,
-                DetailsView.routeName,
-                arguments: taskModel,
-              );
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TaskItemImage(taskModel.image!),
-                const Gap(10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TaskItemTitle(taskModel.title!),
-                          ),
-                          const Gap(5),
-                          TaskItemStatues(taskModel.status!),
-                        ],
-                      ),
-                      const Spacer(),
-                      TaskItemDescription(taskModel.desc!),
-                      const Spacer(),
-                      Row(
-                        children: [
-                          TaskItemPriority(taskModel.priority!),
-                          const Spacer(),
-                          TaskItemDate(date: taskModel.createdAt!),
-                        ],
-                      )
-                    ],
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+            child: InkWell(
+              focusColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  DetailsView.routeName,
+                  arguments: taskModel,
+                );
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TaskItemImage(taskModel.image!),
+                  const Gap(10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TaskItemTitle(taskModel.title!),
+                            ),
+                            const Gap(5),
+                            TaskItemStatues(taskModel.status!),
+                          ],
+                        ),
+                        const Spacer(),
+                        TaskItemDescription(taskModel.desc!),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            TaskItemPriority(taskModel.priority!),
+                            const Spacer(),
+                            TaskItemDate(date: taskModel.createdAt!),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                const Gap(24),
-              ],
+                  const Gap(24),
+                ],
+              ),
             ),
           ),
-        ),
-        Positioned(
-          top: 0,
-          right: 0,
-          child: SettingIconButton(taskModel: taskModel),
-        ),
-      ],
+          Positioned(
+            top: 0,
+            right: 0,
+            child: SettingIconButton(taskModel: taskModel),
+          ),
+        ],
+      ),
     );
   }
-
-
 }

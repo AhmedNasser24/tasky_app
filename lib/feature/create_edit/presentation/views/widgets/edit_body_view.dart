@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
+import 'package:tasky_app/core/helper/media_query_extension.dart';
 
 import '../../../../../core/models/task_model.dart';
 import 'edit_app_bar.dart';
@@ -39,48 +40,65 @@ class _EditBodyViewState extends State<EditBodyView> {
     );
     super.initState();
   }
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    double screenWidth = context.screenWidth;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
         key: formKey,
-        child: Center(
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 550),
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: [
-                const EditAppBar(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const Gap(24),
-                        ImageFormField(editTaskModel),
-                        const Gap(16),
-                        TaskTitleFormField(editTaskModel),
-                        const Gap(16),
-                        TaskDescTextFormField(editTaskModel),
-                        const Gap(16),
-                        TaskStatuesFormField(editTaskModel),
-                        const Gap(16),
-                        TaskPriorityFormField(editTaskModel),
-                        const Gap(34),
-                        EditTaskButton(
-                            taskModel: widget.taskModel,
-                            editTaskModel: editTaskModel,
-                            formKey: formKey),
-                         const Gap(kBottomSpace ),
-                      ],
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const EditAppBar(),
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  screenWidth < 800
+                      ? const SizedBox()
+                      : Flexible(
+                        flex: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 40),
+                          child: ImageFormField(editTaskModel),
+                        ),
+                      ),
+                  Flexible(
+                    flex: 5,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 550),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Gap(24),
+                            screenWidth < 800 ? ImageFormField(editTaskModel) : const SizedBox(),
+                            const Gap(16),
+                            TaskTitleFormField(editTaskModel),
+                            const Gap(16),
+                            TaskDescTextFormField(editTaskModel),
+                            const Gap(16),
+                            TaskStatuesFormField(editTaskModel),
+                            const Gap(16),
+                            TaskPriorityFormField(editTaskModel),
+                            const Gap(34),
+                            EditTaskButton(
+                                taskModel: widget.taskModel,
+                                editTaskModel: editTaskModel,
+                                formKey: formKey),
+                             const Gap(kBottomSpace ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

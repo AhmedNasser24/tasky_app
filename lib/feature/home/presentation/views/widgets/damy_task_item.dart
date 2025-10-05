@@ -14,45 +14,42 @@ class DamyTaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TaskItemImage(Assets.imagesTask),
-          Gap(5),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: TaskItemTitle("Grocery Shopping App"),
-                    ),
-                    Gap(5),
-                    TaskItemStatues(kFinished),
-                  ],
-                ),
-                Gap(5),
-                TaskItemDescription(
-                    "This application is designed for super shops. By using "),
-                Gap(5),
-                Row(
-                  children: [
-                    TaskItemPriority(kMedium , isDamy: true),
-                    Spacer(),
-                    TaskItemDate(),
-                  ],
-                )
-              ],
-            ),
+    return const Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TaskItemImage(Assets.imagesTask),
+        Gap(5),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: TaskItemTitle("Grocery Shopping App"),
+                  ),
+                  Gap(5),
+                  TaskItemStatues(kFinished),
+                ],
+              ),
+              Spacer(),
+              TaskItemDescription(
+                  "This application is designed for super shops. By using "),
+              Spacer(),
+              Row(
+                children: [
+                  TaskItemPriority(kMedium, isDamy: true),
+                  Spacer(),
+                  TaskItemDate(),
+                ],
+              )
+            ],
           ),
-          Gap(5),
-          // SettingIconButton(),
-        ],
-      ),
+        ),
+        Gap(5),
+        // SettingIconButton(),
+      ],
     );
   }
 }

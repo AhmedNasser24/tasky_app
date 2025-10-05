@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
+import 'package:tasky_app/core/helper/media_query_extension.dart';
 import 'package:tasky_app/core/models/task_model.dart';
 import 'package:tasky_app/feature/create_edit/presentation/views/widgets/create_app_bar.dart';
 import 'package:tasky_app/feature/create_edit/presentation/views/widgets/create_task_button.dart';
@@ -18,45 +19,61 @@ class CreateViewBody extends StatefulWidget {
 }
 
 class _CreateViewBodyState extends State<CreateViewBody> {
+  TaskModel taskModel = TaskModel();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    TaskModel taskModel = TaskModel();
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    double screenWidth = context.screenWidth;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
         key: formKey,
-        child: Center(
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 550),
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: [
-                const CreateAppBar(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const Gap(24),
-                        ImageFormField(taskModel),
-                        const Gap(16),
-                        TaskTitleFormField(taskModel),
-                        const Gap(16),
-                        TaskDescTextFormField(taskModel),
-                        const Gap(16),
-                        TaskPriorityFormField(taskModel),
-                        const Gap(16),
-                        TaskDueDateFormField(taskModel),
-                        const Gap(34),
-                        CreateTaskButton(taskModel, formKey),
-                         Gap(kBottomSpace +40),
-                      ],
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const CreateAppBar(),
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  screenWidth < 800
+                      ? const SizedBox()
+                      : Flexible(
+                          flex: 4,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 40),
+                            child: ImageFormField(taskModel),
+                          ),
+                        ),
+                  Flexible(
+                    flex: 5,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 550),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const Gap(24),
+                            screenWidth < 800 ? ImageFormField(taskModel) : const SizedBox(),
+                            const Gap(16),
+                            TaskTitleFormField(taskModel),
+                            const Gap(16),
+                            TaskDescTextFormField(taskModel),
+                            const Gap(16),
+                            TaskPriorityFormField(taskModel),
+                            const Gap(16),
+                            TaskDueDateFormField(taskModel),
+                            const Gap(34),
+                            CreateTaskButton(taskModel, formKey),
+                            const Gap(kBottomSpace),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/show_snack_bar.dart';
 import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/task_no_internet_state_body.dart';
 import 'package:tasky_app/feature/home/presentation/views/widgets/task_success_state_body.dart';
 import 'task_loading_state_body.dart';
 

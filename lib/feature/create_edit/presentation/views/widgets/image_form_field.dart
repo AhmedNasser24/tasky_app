@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:tasky_app/core/helper/media_query_extension.dart';
 import 'package:tasky_app/core/utils/app_styles.dart';
 
 import '../../../../../core/helper/image_picker.dart';
@@ -22,49 +23,52 @@ class _ImageFormFieldState extends State<ImageFormField> {
   @override
   Widget build(BuildContext context) {
     // return ShowImageFile(onPressedonDeleteIcon: (){}) ;
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
-      transitionBuilder: (Widget child, Animation<double> animation) {
-        return FadeTransition(
-          opacity: animation,
-          child: child,
-        );
-      },
-      child: widget.taskModel.image != null
-          ? ShowImageComeFromNetwork(
-              widget: widget,
-              onPressedonDeleteIcon: () {
-                widget.taskModel.image = null;
-                setState(() {});
-              },
-            )
-          : AnimatedSwitcher(
-              duration: const Duration(milliseconds: 300),
-              transitionBuilder: (Widget child, Animation<double> animation) {
-                return FadeTransition(
-                  opacity: animation,
-                  child: child,
-                );
-              },
-              child: widget.taskModel.imageFile == null
-                  ? AddImageButton(
-                      onTap: () async {
-                        // isLoading = true;
-                        // setState(() {});
-                        widget.taskModel.imageFile =
-                            await pickImageFromGallery();
-                        // isLoading = false;
-                        setState(() {});
-                      },
-                    )
-                  : ShowImageFile(
-                      taskModel: widget.taskModel,
-                      onPressedonDeleteIcon: () {
-                        widget.taskModel.imageFile = null;
-                        setState(() {});
-                      },
-                    ),
-            ),
+    return ConstrainedBox(
+      constraints:  BoxConstraints(maxWidth: context.screenWidth < 1200? 340 : 400),
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        child: widget.taskModel.image != null
+            ? ShowImageComeFromNetwork(
+                widget: widget,
+                onPressedonDeleteIcon: () {
+                  widget.taskModel.image = null;
+                  setState(() {});
+                },
+              )
+            : AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+                child: widget.taskModel.imageFile == null
+                    ? AddImageButton(
+                        onTap: () async {
+                          // isLoading = true;
+                          // setState(() {});
+                          widget.taskModel.imageFile =
+                              await pickImageFromGallery();
+                          // isLoading = false;
+                          setState(() {});
+                        },
+                      )
+                    : ShowImageFile(
+                        taskModel: widget.taskModel,
+                        onPressedonDeleteIcon: () {
+                          widget.taskModel.imageFile = null;
+                          setState(() {});
+                        },
+                      ),
+              ),
+      ),
     );
   }
 }
@@ -80,23 +84,20 @@ class ShowImageComeFromNetwork extends StatelessWidget {
   final void Function() onPressedonDeleteIcon;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 340),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomCachedNetworkImage(imageUrl: widget.taskModel.image!),
-          const Gap(5),
-          IconButton(
-            onPressed: onPressedonDeleteIcon,
-            icon: const Icon(
-              Icons.delete,
-              color: AppColor.primaryColor,
-              size: 30,
-            ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CustomCachedNetworkImage(imageUrl: widget.taskModel.image!),
+        const Gap(5),
+        IconButton(
+          onPressed: onPressedonDeleteIcon,
+          icon: const Icon(
+            Icons.delete,
+            color: AppColor.primaryColor,
+            size: 30,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -112,19 +113,21 @@ class AddImageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: DottedBorder(
-        options: RoundedRectDottedBorderOptions(
-          color: AppColor.primaryColor,
-          radius: const Radius.circular(12),
-          padding: const EdgeInsets.symmetric(vertical: 12),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(Assets.imagesImageIcon),
-            const Gap(8),
-            const Text("Add Img", style: AppStyles.medium19),
-          ],
+      child: SizedBox(
+        child: DottedBorder(
+          options: const RoundedRectDottedBorderOptions(
+            color: AppColor.primaryColor,
+            radius: Radius.circular(12),
+            padding: EdgeInsets.symmetric(vertical: 12),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(Assets.imagesImageIcon),
+              const Gap(8),
+              const Text("Add Img", style: AppStyles.medium19),
+            ],
+          ),
         ),
       ),
     );
@@ -141,39 +144,36 @@ class ShowImageFile extends StatelessWidget {
   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 340),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: Container(
-              constraints: const BoxConstraints(maxHeight: 340, maxWidth: 340),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                // image: DecorationImage(
-                //   image: FileImage( widget.taskModel.imageFile! ),
-                // )
-              ),
-              child: Image.file(
-                taskModel.imageFile!,
-                fit: BoxFit.fill,
-              ),
-              // child: Image.asset(Assets.imagesTaskySplash, fit: BoxFit.fill),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            constraints: const BoxConstraints(maxHeight: 340, maxWidth: 340),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              // image: DecorationImage(
+              //   image: FileImage( widget.taskModel.imageFile! ),
+              // )
             ),
-          ),
-          const Gap(8),
-          IconButton(
-            onPressed: onPressedonDeleteIcon,
-            icon: const Icon(
-              Icons.delete,
-              color: AppColor.primaryColor,
-              size: 30,
+            child: Image.file(
+              taskModel.imageFile!,
+              fit: BoxFit.fill,
             ),
+            // child: Image.asset(Assets.imagesTaskySplash, fit: BoxFit.fill),
           ),
-        ],
-      ),
+        ),
+        const Gap(8),
+        IconButton(
+          onPressed: onPressedonDeleteIcon,
+          icon: const Icon(
+            Icons.delete,
+            color: AppColor.primaryColor,
+            size: 30,
+          ),
+        ),
+      ],
     );
   }
 }

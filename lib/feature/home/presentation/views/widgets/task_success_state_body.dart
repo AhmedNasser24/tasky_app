@@ -94,16 +94,7 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     }
   }
 
-  double aspectRatioToShowChildWithFixedHeight(BuildContext context) {
-    double screenWidth = context.screenWidth;
-    double fixedHeight = responsiveHeight(screenWidth);
-    double crossAxisCount = responsiveCrossAxisCount(context);
-    double crossAxisSpacing = 10;
-    return ((screenWidth / crossAxisCount) -
-            (kHorizontalPadding * 2) -
-            (crossAxisSpacing * (crossAxisCount - 1))) /
-        fixedHeight;
-  }
+  
 
   List<TaskModel> showTaskItemAfterFilter(List<TaskModel>? tasksList) {
     if (tasksList == null) return [];
@@ -121,6 +112,16 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     return tasksListAccordingToFilter;
   }
 
+  double aspectRatioToShowChildWithFixedHeight(BuildContext context) {
+    double screenWidth = context.screenWidth;
+    double fixedHeight = responsiveHeight(screenWidth);
+    double crossAxisCount = responsiveCrossAxisCount(context);
+    double crossAxisSpacing = 10;
+    return ((screenWidth / crossAxisCount) -
+            (kHorizontalPadding * 2) -
+            (crossAxisSpacing * (crossAxisCount - 1))) /
+        fixedHeight;            // this calculation to make fixed height
+  }
   double responsiveCrossAxisCount(BuildContext context) {
     double screenWidth = context.screenWidth;
     if (screenWidth < 720) {

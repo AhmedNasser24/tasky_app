@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -11,26 +13,29 @@ class EditAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
-      child: Stack(
-        children: [
-          Positioned(
-            left: -5,
-            top: -5,
-            child: Padding(
-              padding: EdgeInsets.all(5.0),
-              child: CustomBackArrowButton(),
-            ),
-          ),
-          Row(
-            children: [
-              Gap(35),
-              Text('Edit task', style: AppStyles.bold16),
-            ],
-          ),
-        ],
-      ),
+    bool isMobile = Platform.isAndroid || Platform.isIOS;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: isMobile
+          ? const Stack(
+              children: [
+                Positioned(
+                  left: -5,
+                  top: -5,
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: CustomBackArrowButton(),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Gap(35),
+                    Text('Edit task', style: AppStyles.bold16),
+                  ],
+                ),
+              ],
+            )
+          : const Text('Edit task', style: AppStyles.bold20),
     );
   }
 }
