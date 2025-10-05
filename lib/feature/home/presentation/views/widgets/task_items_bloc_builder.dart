@@ -28,7 +28,7 @@ class TaskItemsBlocBuilder extends StatelessWidget {
             BlocProvider.of<TaskOperationCubit>(context).isFirstTaskOperation;
         if (state is FetchTaskSuccess) {
           return TaskSuccessStateBody(state: state);
-        } else if (state is FetchTaskLoading) {
+        } else if (state is FetchTaskLoading || state is FetchTaskInitial) {
           return const CustomLoadingSkeletonizer();
         } else if (state is NoInternetConnection) {
           if (isFirstTaskOperation) {

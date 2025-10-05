@@ -29,7 +29,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: HomeAppBar(),
         ),
-        Gap(24),
+        Gap(10),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: MyTaskText(),

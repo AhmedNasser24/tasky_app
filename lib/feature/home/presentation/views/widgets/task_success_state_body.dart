@@ -82,9 +82,7 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
   }
     double responsiveHeight(double screenWidth){
     if (screenWidth < 700) {
-      return 60 ;
-    }else if ( screenWidth < 1000) {
-      return 65;
+      return 65 ;
     }else if (screenWidth < 1200) {
       return 70;
     }else if (screenWidth < 1500){

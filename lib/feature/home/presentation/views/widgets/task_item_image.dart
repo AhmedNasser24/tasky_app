@@ -9,13 +9,6 @@ class TaskItemImage extends StatelessWidget {
   final String imageUrl;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 100,
-      // width: 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: CustomCachedNetworkImage(imageUrl: imageUrl),
-    );
+    return CustomCachedNetworkImage(imageUrl: imageUrl);
   }
 }

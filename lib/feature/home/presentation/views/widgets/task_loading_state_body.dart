@@ -27,7 +27,7 @@ class CustomLoadingSkeletonizer extends StatelessWidget {
                     aspectRatioToShowChildWithFixedHeight(context),
               ),
           physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: 6,
+          itemCount: 7,
           itemBuilder: (context, index) => const DamyTaskItem(),
         ),
       ),
@@ -45,11 +45,7 @@ class CustomLoadingSkeletonizer extends StatelessWidget {
         fixedHeight;                   // this calculation to make fixed height
   }
     double responsiveHeight(double screenWidth){
-    if (screenWidth < 700) {
-      return 60 ;
-    }else if ( screenWidth < 1000) {
-      return 65;
-    }else if (screenWidth < 1200) {
+     if (screenWidth < 1200) {
       return 70;
     }else if (screenWidth < 1500){
       return 75;

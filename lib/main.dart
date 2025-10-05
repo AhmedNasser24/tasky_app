@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/constants.dart';
+import 'package:tasky_app/core/helper/api_keys.dart';
 import 'package:tasky_app/core/helper/media_query_extension.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/get_it_setup.dart';
@@ -10,8 +12,8 @@ import 'package:tasky_app/feature/auth/presentation/views/login_view.dart';
 import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
 import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
+import 'package:tasky_app/feature/home/presentation/views/home_view.dart';
 import 'package:tasky_app/feature/onboarding/presentation/views/onboarding_view.dart';
-import 'package:tasky_app/feature/splash/presentation/views/splash_view.dart';
 import 'core/helper/on_generate_route.dart';
 import 'core/utils/shared_preference_singleton.dart';
 import 'core/utils/simple_bloc_observer.dart';
@@ -23,9 +25,9 @@ void main() async {
   getItSetup();
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => const TaskyApp(),
-    )
+    ),
     // const TaskyApp(),
   );
 }
@@ -39,7 +41,9 @@ class TaskyApp extends StatelessWidget {
     log(" screen height ${context.screenHeight}");
     log(" screen width ${context.screenWidth}");
     return BlocProvider(
-      create: (context) => TaskOperationCubit(homeRepoImpl:  getIt<HomeRepo>(), taskOperationRepoImpl: getIt<TaskOperationRepo>() ),
+      create: (context) => TaskOperationCubit(
+          homeRepoImpl: getIt<HomeRepo>(),
+          taskOperationRepoImpl: getIt<TaskOperationRepo>()),
       child: MaterialApp(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
@@ -50,9 +54,21 @@ class TaskyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerateRoute,
-        initialRoute: LoginView.routeName,
+        initialRoute: splashLogic(),
       ),
     );
+  }
+}
+
+String splashLogic() {
+  if (!SharedPreferenceSingleton.getbool(kIsOnboardingVisited)) {
+    return OnboardingView.routeName;
+  } else {
+    if (SharedPreferenceSingleton.getString(ApiKeys.accessToken).isNotEmpty) {
+      return HomeView.routeName;
+    } else {
+      return LoginView.routeName;
+    }
   }
 }
 

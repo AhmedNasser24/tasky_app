@@ -40,7 +40,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
           constraints: const BoxConstraints(maxHeight: 340, maxWidth: 340),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            image: DecorationImage(
+            image: const DecorationImage(
               image: AssetImage(Assets.imagesTaskyPicture),
               fit: BoxFit.fill,
             ),

@@ -27,7 +27,7 @@ class DamyTaskItem extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: TaskItemTitle("Grocery Shopping App"),
+                    child: TaskItemTitle("Grocery App"),
                   ),
                   Gap(5),
                   TaskItemStatues(kFinished),
@@ -35,7 +35,7 @@ class DamyTaskItem extends StatelessWidget {
               ),
               Spacer(),
               TaskItemDescription(
-                  "This application is designed for super shops. By using "),
+                  "This application is"),
               Spacer(),
               Row(
                 children: [
