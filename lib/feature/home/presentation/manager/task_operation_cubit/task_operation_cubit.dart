@@ -12,9 +12,8 @@ part 'task_operation_state.dart';
 
 class TaskOperationCubit extends Cubit<TaskOperationState> {
   TaskOperationCubit(
-      {required this.homeRepoImpl, required this.taskOperationRepoImpl})
+      {required this.taskOperationRepoImpl})
       : super(FetchTaskInitial());
-  final HomeRepo homeRepoImpl;
   final TaskOperationRepo taskOperationRepoImpl;
   int __pageNum = 1;
   final int __maxItemPerPage = 20;
@@ -26,6 +25,16 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
       __connectivityStreamSubscription;
   bool __isNetworkConnected = true;
 
+  void initAllDataOfCubit (){
+    __pageNum = 1;
+    __isThereMoreItems = true;
+    __isFirstTaskOperation = true;
+    __tasksList = null;
+    __currFilter = kAll;
+    __isNetworkConnected = true;
+    __connectivityStreamSubscription?.cancel();
+    __connectivityStreamSubscription = null ;
+  }
 
   Future<void> fetchData() async {
     if (__isThereMoreItems == false) {
@@ -170,7 +179,9 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
       },
     );
   }
-
+  Future <void> cancelConnectivityStream() async {
+    __connectivityStreamSubscription = null;
+  }
   @override
   Future<void> close() {
     __connectivityStreamSubscription?.cancel();

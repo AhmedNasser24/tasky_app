@@ -13,7 +13,8 @@ import 'auth_repo.dart';
 class AuthRepoImpl implements AuthRepo {
   final AuthServices __authServices;
 
-  AuthRepoImpl({required AuthServices authServices}) : __authServices = authServices;
+  AuthRepoImpl({required AuthServices authServices})
+      : __authServices = authServices;
   @override
   Future<Either<void, Failure>> register(
       {required UserInfoModel userInfoModelInput}) async {
@@ -21,8 +22,7 @@ class AuthRepoImpl implements AuthRepo {
       UserInfoModel registerOutput =
           await __authServices.register(userInfoModelInput: userInfoModelInput);
       await __saveUserInfoLocal(
-          userInfoModelOutput: registerOutput,
-          profile: userInfoModelInput);
+          userInfoModelOutput: registerOutput, profile: userInfoModelInput);
       return left(null);
     } on DioException catch (e) {
       log("register error : ${e.toString()}");
@@ -39,14 +39,17 @@ class AuthRepoImpl implements AuthRepo {
     try {
       UserInfoModel loginModelOutput =
           await __authServices.login(loginModelInput: loginModelInput);
-      UserInfoModel profile = await __authServices.getProfile(accessToken: loginModelOutput.accessToken!);
-      await __saveUserInfoLocal(userInfoModelOutput: loginModelOutput, profile: profile);    
       await SharedPreferenceSingleton.setString(
           ApiKeys.userId, loginModelOutput.userId!);
       await SharedPreferenceSingleton.setString(
           ApiKeys.accessToken, loginModelOutput.accessToken!);
       await SharedPreferenceSingleton.setString(
           ApiKeys.refreshToken, loginModelOutput.refreshToken!);
+      UserInfoModel profile = await __authServices.getProfile();
+      await __saveUserInfoLocal(
+          userInfoModelOutput: loginModelOutput, profile: profile);
+
+      log("access toke after login : ${SharedPreferenceSingleton.getString(ApiKeys.accessToken)}");
       return left(null);
     } on DioException catch (e) {
       log("login error : ${e.toString()}");
@@ -56,17 +59,13 @@ class AuthRepoImpl implements AuthRepo {
       return right(const ServerFailure("please try again"));
     }
   }
-
-  
 
   @override
   Future<Either<void, Failure>> logout() async {
     try {
       await __authServices.logout();
-      // remove access token & refresh token from local storage
-      await SharedPreferenceSingleton.remove(ApiKeys.accessToken);
-      await SharedPreferenceSingleton.remove(ApiKeys.refreshToken);
-      //------------------------------------------------------------------
+      await removeUserInfoLocal();
+      log("access toke after remove : ${SharedPreferenceSingleton.getString(ApiKeys.accessToken)}");
       return left(null);
     } on DioException catch (e) {
       log("log out error : ${e.toString()}");
@@ -78,8 +77,8 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future < UserInfoModel > profile (String accessToken) async {
-    UserInfoModel profile = await __authServices.getProfile(accessToken: accessToken);
+  Future<UserInfoModel> profile(String accessToken) async {
+    UserInfoModel profile = await __authServices.getProfile();
     return profile;
   }
 
@@ -101,5 +100,16 @@ class AuthRepoImpl implements AuthRepo {
         ApiKeys.level, profile.experienceLevel!);
     await SharedPreferenceSingleton.setInt(
         ApiKeys.experienceYears, profile.yearsOfExperience!);
+  }
+
+  Future <void>removeUserInfoLocal() async {
+    await SharedPreferenceSingleton.remove(ApiKeys.userId);
+    await SharedPreferenceSingleton.remove(ApiKeys.accessToken);
+    await SharedPreferenceSingleton.remove(ApiKeys.refreshToken);
+    await SharedPreferenceSingleton.remove(ApiKeys.phone);
+    await SharedPreferenceSingleton.remove(ApiKeys.displayName);
+    await SharedPreferenceSingleton.remove(ApiKeys.address);
+    await SharedPreferenceSingleton.remove(ApiKeys.level);
+    await SharedPreferenceSingleton.remove(ApiKeys.experienceYears);
   }
 }

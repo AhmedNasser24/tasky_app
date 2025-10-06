@@ -27,6 +27,7 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
         return BlocConsumer<LogoutCubit, LogoutState>(
           listener: (context, state) {
             if (state is LogoutSuccess) {
+              BlocProvider.of<TaskOperationCubit>(context).initAllDataOfCubit() ;
               Navigator.pushNamedAndRemoveUntil(
                   context, LoginView.routeName, (_) => false);
             } else if (state is LogoutFailure) {

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tasky_app/core/secrets/api_base_url.dart';
 import 'package:tasky_app/core/services/dio_interceptor.dart';
 
 class ApiServices {
@@ -14,13 +15,21 @@ class ApiServices {
   }
 
   Future post(
-      {required String endPoint, Object? data}) async {
-    Response response = await _dioInterceptor.dio.post(
-      endPoint,
-      data: data,
-    );
+      {required String endPoint, Object? data, bool isAuth = false}) async {
+    if (isAuth) {
+      Response response = await Dio().post(
+        "$kBaseUrl$endPoint",
+        data: data,
+      );
+      return response.data;
+    } else {
+      Response response = await _dioInterceptor.dio.post(
+        endPoint,
+        data: data,
+      );
 
-    return response.data;
+      return response.data;
+    }
   }
 
   Future<void> put({

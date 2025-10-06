@@ -42,7 +42,6 @@ class TaskyApp extends StatelessWidget {
     log(" screen width ${context.screenWidth}");
     return BlocProvider(
       create: (context) => TaskOperationCubit(
-          homeRepoImpl: getIt<HomeRepo>(),
           taskOperationRepoImpl: getIt<TaskOperationRepo>()),
       child: MaterialApp(
         locale: DevicePreview.locale(context),

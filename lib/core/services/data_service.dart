@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -15,6 +16,7 @@ class DataService {
       endPoint: EndPoint.getTasks,
       queryParameters: {"page": pageNum},
     );
+    log("fetch all tasks") ;
     List<TaskModel> tasksList = [];
     for (var task in data) {
       tasksList.add(TaskModel.fromJson(task));

@@ -22,7 +22,7 @@ class LogoutIconButtonBlocConsumer extends StatelessWidget {
     );
   }
 
-  confirmLogoutDialog(BuildContext context, LogoutCubit logoutCubit) {
+  void confirmLogoutDialog(BuildContext context, LogoutCubit logoutCubit) {
     showDialog(
       context: context,
       builder: (context) {
