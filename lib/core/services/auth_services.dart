@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:tasky_app/core/secrets/api_base_url.dart';
 import 'package:tasky_app/core/services/api_services.dart';
 
 import '../../feature/auth/data/model/user_info_model.dart';

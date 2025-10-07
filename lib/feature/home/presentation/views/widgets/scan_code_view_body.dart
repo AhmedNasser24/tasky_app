@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -51,7 +50,9 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody>
           onDetect: (capture) async {
             final List<Barcode> barcodes = capture.barcodes;
             if (barcodes.isNotEmpty) {
-              if (!hasScanned && widget.state is! FetchOneTaskCubitLoading && widget.state is! FetchOneTaskCubitSuccess) {
+              if (!hasScanned &&
+                  widget.state is! FetchOneTaskCubitLoading &&
+                  widget.state is! FetchOneTaskCubitSuccess) {
                 setState(() {
                   hasScanned = true;
                 });

@@ -26,7 +26,7 @@ class HomeRepoImpl extends HomeRepo {
       return right(ServerFailure.fromDioException(e));
     } catch (e) {
       log("fetch one task error : ${e.toString()}");
-      return right(const ServerFailure("please try again"));
+      return right(const ServerFailure("Task not found , please try again"));
     }
   }
 

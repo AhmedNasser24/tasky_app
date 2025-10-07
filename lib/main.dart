@@ -10,7 +10,6 @@ import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/get_it_setup.dart';
 import 'package:tasky_app/feature/auth/presentation/views/login_view.dart';
 import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
-import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
 import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 import 'package:tasky_app/feature/home/presentation/views/home_view.dart';
 import 'package:tasky_app/feature/onboarding/presentation/views/onboarding_view.dart';
