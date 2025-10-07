@@ -1,4 +1,4 @@
-# ✅ Tasky - Todo App   ( 53 work hour )
+# ✅ Tasky - Todo App   ( 60 work hour )
 
 ![Flutter](https://img.shields.io/badge/Made%20with-Flutter-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Mobile-lightgrey)
@@ -25,7 +25,7 @@ A powerful and responsive **Flutter** todo app that supports secure **authentica
   - Infinite scrolling  
   - Pull-to-refresh  
   - Loading / Empty / Error states  
-- 📸 **Add images** to todos via camera or gallery  
+- 📸 **Add images** to todos via camera or gallery , and can **crop it**
 - 📎 **QR Code** generated from todo ID (on detail screen)  
 - 📷 **QR Scanner** fetches todo by scanning and hitting `/todos/:id`  
 - 📱 **Fully responsive design** for all screens  
