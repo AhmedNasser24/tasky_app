@@ -12,8 +12,12 @@ class ImageServices {
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     log("pick image success");
     if (image != null) {
-      File? croppedFile = await cropImage(File(image.path));
-      return croppedFile ?? File(image.path);
+      if (Platform.isAndroid || Platform.isIOS) {
+        File? croppedFile = await cropImage(File(image.path));
+        return croppedFile ?? File(image.path);
+      } else {
+        return File(image.path);
+      }
     } else {
       return null;
     }

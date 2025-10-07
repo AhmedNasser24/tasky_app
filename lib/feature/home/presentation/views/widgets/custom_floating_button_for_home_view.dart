@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -11,18 +12,19 @@ class CustomFloatingButtonForHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Stack(
+    bool isMobile = Platform.isAndroid || Platform.isIOS;
+    return Stack(
       children: [
-        Positioned(
+        const Positioned(
           right: 0.0,
-          bottom: 20 ,
+          bottom: 20,
           child: CustomAddIconButton(),
         ),
         Positioned(
           right: 0.0,
-          bottom: 100 ,
-          child: CustomQrIconButton(),
-        ),
+          bottom: 100,
+          child: isMobile ? const CustomQrIconButton() : const SizedBox(),
+        )
       ],
     );
   }

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky_app/constants.dart';
@@ -14,13 +12,12 @@ class DetailsAppBar extends StatelessWidget {
   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
-    bool isMobile = Platform.isAndroid || Platform.isIOS;
-    return isMobile ? Stack(
+    return Stack(
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(
               horizontal: kHorizontalPadding, vertical: 12.0),
-          child:  Stack(
+          child: Stack(
             children: [
               Positioned(
                 left: -5,
@@ -45,15 +42,6 @@ class DetailsAppBar extends StatelessWidget {
             bottom: 0,
             child: SettingIconButton(taskModel: taskModel))
       ],
-    ) : Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding, vertical: 12.0),
-      child: Row(
-        children: [
-          const Text('Task Details', style: AppStyles.bold20),
-          const Spacer(),
-          SettingIconButton(taskModel: taskModel)
-        ],
-      ),
     );
   }
 }

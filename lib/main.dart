@@ -23,11 +23,11 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
   runApp(
-    DevicePreview(
-      enabled: false,
-      builder: (context) => const TaskyApp(),
-    ),
-    // const TaskyApp(),
+    // DevicePreview(
+    //   enabled: false,
+    //   builder: (context) => const TaskyApp(),
+    // ),
+    const TaskyApp(),
   );
 }
 

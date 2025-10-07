@@ -13,11 +13,9 @@ class EditAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile = Platform.isAndroid || Platform.isIOS;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: isMobile
-          ? const Stack(
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 12.0),
+      child: Stack(
               children: [
                 Positioned(
                   left: -5,
@@ -35,7 +33,6 @@ class EditAppBar extends StatelessWidget {
                 ),
               ],
             )
-          : const Text('Edit task', style: AppStyles.bold20),
     );
   }
 }

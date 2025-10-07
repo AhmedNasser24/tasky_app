@@ -15,6 +15,7 @@ class ProfileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isMobile = Platform.isAndroid || Platform.isIOS;
+    Platform.isIOS;
     return    Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: isMobile ? const Stack(
