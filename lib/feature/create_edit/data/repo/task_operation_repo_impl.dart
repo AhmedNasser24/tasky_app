@@ -27,7 +27,8 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
       log("fetch data error : ${e.toString()}");
       return right(ServerFailure.fromDioException(e));
     } catch (e) {
-      log("fetch data error : ${e.toString()}");
+
+      log("fetch data error with 403 : ${e.toString()}");
       return right(const ServerFailure("please try again"));
     }
   }

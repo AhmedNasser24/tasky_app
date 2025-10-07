@@ -1,11 +1,7 @@
-import 'dart:developer';
-
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/helper/api_keys.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 import 'package:tasky_app/core/utils/get_it_setup.dart';
 import 'package:tasky_app/feature/auth/presentation/views/login_view.dart';
@@ -23,28 +19,22 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
   runApp(
-    // DevicePreview(
-    //   enabled: false,
-    //   builder: (context) => const TaskyApp(),
-    // ),
+    
     const TaskyApp(),
   );
 }
-
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class TaskyApp extends StatelessWidget {
   const TaskyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    log(" screen height ${context.screenHeight}");
-    log(" screen width ${context.screenWidth}");
     return BlocProvider(
       create: (context) => TaskOperationCubit(
           taskOperationRepoImpl: getIt<TaskOperationRepo>()),
       child: MaterialApp(
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
+        navigatorKey: navigatorKey,
         theme: ThemeData(
           fontFamily: 'DM Sans',
           scaffoldBackgroundColor: AppColor.whiteColor,

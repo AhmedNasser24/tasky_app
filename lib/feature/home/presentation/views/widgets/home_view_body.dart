@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -20,12 +18,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
     BlocProvider.of<TaskOperationCubit>(context).checkConnectevity();
-    log("home view body init state");
     super.initState();
   }
   @override
   void dispose() {
-    log("home view body dispose");
     super.dispose();
   }
 

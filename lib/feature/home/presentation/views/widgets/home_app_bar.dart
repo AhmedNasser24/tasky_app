@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:tasky_app/feature/home/presentation/views/widgets/refresh_icon_button.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 import 'logout_icon_button_bloc_consumer.dart';
@@ -10,19 +13,20 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric( vertical: 12.0),
+    bool isMobile = Platform.isAndroid || Platform.isIOS;
+    return  Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
         children: [
-          Text('Logo', style: AppStyles.bold24),
-          Spacer(),
-          ProfileIconButton(),
-          Gap(20),
-          LogoutIconButtonBlocConsumer(),
+          const Text('Logo', style: AppStyles.bold24),
+          const Spacer(),
+          isMobile? const SizedBox() : const RefreshIconButton(),
+          const Gap(10),
+          const ProfileIconButton(),
+          const Gap(20),
+          const LogoutIconButtonBlocConsumer(),
         ],
       ),
     );
   }
 }
-
-
