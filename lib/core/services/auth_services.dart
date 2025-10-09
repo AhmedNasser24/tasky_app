@@ -12,6 +12,7 @@ class AuthServices {
     Map<String, dynamic> data = await apiServices.post(
       endPoint: EndPoint.login,
       data: loginModelInput.loginToJson(),
+      isAuth: true
     );
 
     UserInfoModel loginModelOutput = UserInfoModel.authFromJson(data);
