@@ -39,6 +39,7 @@ class ImageServices {
       sourcePath: imageFile.path,
       uiSettings: [
         AndroidUiSettings(
+
           toolbarTitle: 'Image Cropper',
           toolbarColor: AppColor.primaryColor,
           toolbarWidgetColor: Colors.white,
@@ -46,7 +47,6 @@ class ImageServices {
           initAspectRatio: CropAspectRatioPreset.square,
           // cropStyle: CropStyle.values[],
           showCropGrid: false,
-
           aspectRatioPresets: [
             CropAspectRatioPreset.original,
             CropAspectRatioPreset.square,

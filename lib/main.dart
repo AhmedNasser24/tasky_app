@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +23,7 @@ void main() async {
   getItSetup();
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => const TaskyApp(),
     ),
     // const TaskyApp(),
@@ -34,6 +36,7 @@ class TaskyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    log(MediaQuery.of(context).viewPadding.top.toString());
     return BlocProvider(
       create: (context) => TaskOperationCubit(
           taskOperationRepoImpl: getIt<TaskOperationRepo>()),

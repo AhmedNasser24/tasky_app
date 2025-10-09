@@ -46,6 +46,7 @@ class _SelectedExperienceTextFormFieldState
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          contentPadding: const EdgeInsets.symmetric(vertical: 12),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,21 +54,24 @@ class _SelectedExperienceTextFormFieldState
               for (int i = 0; i < experience.length; i++)
                 Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
-                      child: GestureDetector(
-                        child: Text(experience[i], style: AppStyles.semibold14),
-                        onTap: () {
-                          setState(() {
-                            selectExperience = experience[i];
-                          });
-                          Navigator.pop(context);
-                        },
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          selectExperience = experience[i];
+                        });
+                        Navigator.pop(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: Center(child: Text(experience[i], style: AppStyles.semibold14)),
                       ),
                     ),
                     i != experience.length - 1
                         ? const Divider(
-                            thickness: 0.3, color: AppColor.primaryColor)
+                            height: 0,
+                            thickness: 0.3, color: AppColor.primaryColor,
+                            
+                            )
                         : const SizedBox(),
                   ],
                 ),

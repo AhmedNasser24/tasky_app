@@ -113,21 +113,20 @@ class AddImageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
-        child: DottedBorder(
-          options: const RoundedRectDottedBorderOptions(
-            color: AppColor.primaryColor,
-            radius: Radius.circular(12),
-            padding: EdgeInsets.symmetric(vertical: 12),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(Assets.imagesImageIcon),
-              const Gap(8),
-              const Text("Add Img", style: AppStyles.medium19),
-            ],
-          ),
+      child: DottedBorder(
+        ignoring: false,
+        options: const RoundedRectDottedBorderOptions(
+          color: AppColor.primaryColor,
+          radius: Radius.circular(12),
+          padding: EdgeInsets.symmetric(vertical: 12),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(Assets.imagesImageIcon),
+            const Gap(8),
+            const Text("Add Img", style: AppStyles.medium19),
+          ],
         ),
       ),
     );
