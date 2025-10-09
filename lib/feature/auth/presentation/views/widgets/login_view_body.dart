@@ -24,6 +24,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
+        // autovalidateMode: AutovalidateMode.always,
         key: formKey,
         child: Center(
           child: Container(

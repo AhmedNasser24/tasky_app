@@ -19,7 +19,18 @@ class SelectedExperienceTextFormField extends StatefulWidget {
 
 class _SelectedExperienceTextFormFieldState
     extends State<SelectedExperienceTextFormField> {
-  String selectExperience = 'Choose experience Level';
+  late TextEditingController textController ;
+  
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController(text: 'Choose experience Level');
+  }
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
@@ -27,10 +38,9 @@ class _SelectedExperienceTextFormFieldState
         _showAccountKindDialog(context);
       },
       readOnly: true,
-      controller: TextEditingController(text: selectExperience),
+      controller: textController,
       suffixIcon: const Icon(Icons.arrow_drop_down, color: AppColor.greyColor),
-      // suffix: _showPopUpMenu(),
-      validator: (_) {
+      validator: (selectExperience) {
         if (selectExperience == 'Choose experience Level') {
           return "Choose experience Level";
         }
@@ -57,7 +67,7 @@ class _SelectedExperienceTextFormFieldState
                     InkWell(
                       onTap: () {
                         setState(() {
-                          selectExperience = experience[i];
+                          textController.text = experience[i];
                         });
                         Navigator.pop(context);
                       },

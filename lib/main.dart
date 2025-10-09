@@ -23,7 +23,7 @@ void main() async {
   getItSetup();
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => const TaskyApp(),
     ),
     // const TaskyApp(),

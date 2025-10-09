@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tasky_app/core/utils/app_color.dart';
 
 import '../utils/app_styles.dart';
@@ -23,6 +24,8 @@ class CustomTextFormField extends StatelessWidget {
     this.filled,
     this.fillColor,
     this.borderSide,
+    this.autovalidateMode,
+    this.inputFormatters,
   });
   final String? hintText;
   final TextInputType? keyboardType;
@@ -39,9 +42,13 @@ class CustomTextFormField extends StatelessWidget {
   final Color? fillColor;
   final bool? filled;
   final double? borderSide;
+  final AutovalidateMode? autovalidateMode ;
+  final List<TextInputFormatter>? inputFormatters ;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      inputFormatters: inputFormatters ,
       controller: controller,
       style: textStyle ?? AppStyles.medium14,
       keyboardType: keyboardType,
