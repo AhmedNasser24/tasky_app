@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
@@ -19,8 +20,11 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
   runApp(
-    
-    const TaskyApp(),
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const TaskyApp(),
+    ),
+    // const TaskyApp(),
   );
 }
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -35,6 +39,9 @@ class TaskyApp extends StatelessWidget {
           taskOperationRepoImpl: getIt<TaskOperationRepo>()),
       child: MaterialApp(
         navigatorKey: navigatorKey,
+        locale:  DevicePreview.locale(context) ,
+        builder: DevicePreview.appBuilder,
+
         theme: ThemeData(
           fontFamily: 'DM Sans',
           scaffoldBackgroundColor: AppColor.whiteColor,
