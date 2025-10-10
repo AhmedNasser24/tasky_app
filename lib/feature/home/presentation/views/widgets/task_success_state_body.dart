@@ -35,8 +35,9 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
 
   @override
   Widget build(BuildContext context) {
+    List <TaskModel >? tasks = widget.state?.tasksList ?? BlocProvider.of<TaskOperationCubit>(context).tasksList ;
     List<TaskModel> tasksListAccordingToFilter =
-        showTaskItemAfterFilter(widget.state?.tasksList);
+        showTaskItemAfterFilter(tasks);
     bool isThereMoreItems =
         BlocProvider.of<TaskOperationCubit>(context).isThereMoreItems;
 
