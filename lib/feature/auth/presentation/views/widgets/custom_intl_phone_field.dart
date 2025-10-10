@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
@@ -18,15 +19,19 @@ class CustomIntlPhoneField extends StatefulWidget {
 
 class _CustomIntlPhoneFieldState extends State<CustomIntlPhoneField> {
   TextEditingController controller = TextEditingController();
-  AutovalidateMode autovalidateMode = AutovalidateMode.always ;
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
+      
+      keyboardType: TextInputType.phone,
       controller: controller,
-      autovalidateMode: AutovalidateMode.always,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly, // 👈 only allows 0–9
+      ],
       flagsButtonPadding: const EdgeInsets.only(left: 8),
       style: AppStyles.medium14,
-      disableLengthCheck: true,    // set false , make it use default validation
+      disableLengthCheck: false , // set false , make it use default validation
       decoration: InputDecoration(
         hintText: 'Enter your phone number',
         hintStyle: AppStyles.regular14.copyWith(color: AppColor.greyColor),
@@ -46,22 +51,22 @@ class _CustomIntlPhoneFieldState extends State<CustomIntlPhoneField> {
       onChanged: widget.onChanged,
       onCountryChanged: (value) {
         setState(() {
-          autovalidateMode = AutovalidateMode.always ;
           controller.clear();
         });
       },
-      validator: (phone) async {
+      
+      validator: (phone) {
         if (phone == null || phone.number.isEmpty) return "field is required";
-        try {
-          phone.isValidNumber();
+        // try {
+        //   phone.isValidNumber();
           return null;
-        } catch (e) {
-          if (e.toString().contains("NumberTooShortException")) {
-            return "Number is too short";
-          } else {
-            return "Number is too long";
-          }
-        }
+      //   } catch (e) {
+      //     if (e.toString().contains("NumberTooShortException")) {
+      //       return "Number is too short";
+      //     } else {
+      //       return "Number is too long";
+      //     }
+      //   }
       },
     );
   }

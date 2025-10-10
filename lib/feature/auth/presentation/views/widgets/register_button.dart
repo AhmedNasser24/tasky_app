@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/core/widgets/show_snack_bar.dart';
 import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
@@ -13,6 +14,10 @@ class RegisterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       onTap: () {
+        if (userInfoModel.phone == null) {
+          showSnackBarFailure(context, "phone is required");
+          return;
+        }
         if (formKey.currentState!.validate()) {
           BlocProvider.of<RegisterCubit>(context).register(userInfoModelInput : userInfoModel);
         }

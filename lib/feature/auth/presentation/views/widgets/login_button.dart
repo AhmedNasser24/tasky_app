@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/core/widgets/show_snack_bar.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../data/model/user_info_model.dart';
@@ -14,6 +15,10 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       onTap: () {
+        if (loginModel.phone == null) {
+          showSnackBarFailure(context, "phone is required");
+          return;
+        }
         if (formKey.currentState!.validate()) {
           BlocProvider.of<LoginCubit>(context)
               .login(loginModelInput: loginModel);
