@@ -4,7 +4,10 @@ import 'package:tasky_app/core/services/dio_interceptor.dart';
 
 class ApiServices {
   final DioInterceptor _dioInterceptor = DioInterceptor();
-
+  final Dio dio = Dio(BaseOptions(
+    connectTimeout: const Duration(seconds: 10),
+    sendTimeout: const Duration(seconds: 10),
+  ));
   Future get(
       {required String endPoint, Map<String, dynamic>? queryParameters}) async {
     Response response = await _dioInterceptor.dio.get(
@@ -17,7 +20,7 @@ class ApiServices {
   Future post(
       {required String endPoint, Object? data, bool isAuth = false}) async {
     if (isAuth) {
-      Response response = await Dio().post(
+      Response response = await dio.post(
         "$kBaseUrl$endPoint",
         data: data,
       );

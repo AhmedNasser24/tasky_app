@@ -43,7 +43,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           child: FilterButtons(),
         ),
         Expanded(
-          child: TaskItemsBlocBuilder(),
+          child: TaskItemList(),
         ),
       ],
     );

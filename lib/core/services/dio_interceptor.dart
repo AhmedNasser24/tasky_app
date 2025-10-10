@@ -15,7 +15,11 @@ class DioInterceptor {
   late final Dio dio;
 
   DioInterceptor() {
-    dio = Dio(BaseOptions(baseUrl: kBaseUrl));
+    dio = Dio(BaseOptions(
+      baseUrl: kBaseUrl,
+      connectTimeout: const Duration(seconds: 10),
+      sendTimeout: const Duration(seconds: 10),
+    ));
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         log("dio interceptor Request : ${options.path}");
@@ -60,9 +64,12 @@ class DioInterceptor {
           return handler.resolve(response);
         }
         if (e.response?.statusCode == 403) {
-          BlocProvider.of<TaskOperationCubit>(navigatorKey.currentState!.context).initAllDataOfCubit();
-          Navigator.pushReplacementNamed(navigatorKey.currentState!.context, LoginView.routeName);
-          return ;
+          BlocProvider.of<TaskOperationCubit>(
+                  navigatorKey.currentState!.context)
+              .initAllDataOfCubit();
+          Navigator.pushReplacementNamed(
+              navigatorKey.currentState!.context, LoginView.routeName);
+          return;
         }
         return handler.next(e);
       },

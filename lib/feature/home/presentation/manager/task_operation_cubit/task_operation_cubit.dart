@@ -64,13 +64,13 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
           __pageNum++;
         }
 
+        __isFirstTaskOperation = false;
         emit(FetchTaskSuccess(__tasksList!));
       },
       (fail) {
         emit(FetchTaskFailure(fail.errMessage));
       },
     );
-    __isFirstTaskOperation = false;
   }
 
   Future<void> refresh() async {
@@ -79,7 +79,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     __isThereMoreItems = true;
     __isFirstTaskOperation = true;
     __tasksList = null;
-    fetchData();
+    await fetchData();
   }
 
   bool get isThereMoreItems => __isThereMoreItems;

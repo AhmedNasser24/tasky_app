@@ -12,7 +12,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return const ServerFailure('Connection time out with ApiServer');
+        return const ServerFailure('Poor Internet Connection');
       case DioExceptionType.sendTimeout:
         return const ServerFailure('Send time out with ApiServer');
       case DioExceptionType.receiveTimeout:

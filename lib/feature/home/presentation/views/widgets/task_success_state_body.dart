@@ -40,45 +40,39 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     bool isThereMoreItems =
         BlocProvider.of<TaskOperationCubit>(context).isThereMoreItems;
 
-    return RefreshIndicator(
-      onRefresh: () async {
-        await Future.delayed(const Duration(seconds: 1));
-        BlocProvider.of<TaskOperationCubit>(context).refresh();
-      },
-      child: tasksListAccordingToFilter.isEmpty
-          ? const TaskEmptyStateBody()
-          : GridView.builder(
-              controller: controller,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount:
-                    responsiveCrossAxisCount(context).toInt(), // number of columns
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 24,
-                // mainAxisExtent: 150, // 👈 fixed height for each item!
-                childAspectRatio: 
-                    aspectRatioToShowChildWithFixedHeight(context),
-              ),
-              physics: const AlwaysScrollableScrollPhysics(),
-              itemCount: tasksListAccordingToFilter.length +
-                  (isThereMoreItems ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index < tasksListAccordingToFilter.length) {
-                  tasksListAccordingToFilter[index].currIndex =
-                      index; // to be used in editing task
-                  return TaskItem(taskModel: tasksListAccordingToFilter[index]);
-                } else {
-                  return GestureDetector(
-                    onTap: () => BlocProvider.of<TaskOperationCubit>(context)
-                        .fetchData(),
-                    child: const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(child: CircularProgressIndicator()),
-                    ),
-                  );
-                }
-              },
+    return tasksListAccordingToFilter.isEmpty
+        ? const TaskEmptyStateBody()
+        : GridView.builder(
+            controller: controller,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount:
+                  responsiveCrossAxisCount(context).toInt(), // number of columns
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 24,
+              // mainAxisExtent: 150, // 👈 fixed height for each item!
+              childAspectRatio: 
+                  aspectRatioToShowChildWithFixedHeight(context),
             ),
-    );
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemCount: tasksListAccordingToFilter.length +
+                (isThereMoreItems ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index < tasksListAccordingToFilter.length) {
+                tasksListAccordingToFilter[index].currIndex =
+                    index; // to be used in editing task
+                return TaskItem(taskModel: tasksListAccordingToFilter[index]);
+              } else {
+                return GestureDetector(
+                  onTap: () => BlocProvider.of<TaskOperationCubit>(context)
+                      .fetchData(),
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                );
+              }
+            },
+          );
   }
     double responsiveHeight(double screenWidth){
     if (screenWidth < 700) {
