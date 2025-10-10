@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -78,8 +76,6 @@ class _TaskPriorityFormFieldState extends State<TaskPriorityFormField> {
         onChanged: (value) {
           valueListenable.value = value;
           widget.taskModel.priority = value?.toLowerCase();
-          log("value $value ") ;
-          log("widget.taskModel.priority ${widget.taskModel.priority}" ) ;
           changeIconColor(value);
         },
         buttonStyleData: const ButtonStyleData(

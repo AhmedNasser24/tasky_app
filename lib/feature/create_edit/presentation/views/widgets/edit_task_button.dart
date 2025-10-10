@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/widgets/custom_button.dart';
@@ -28,7 +26,6 @@ class EditTaskButton extends StatelessWidget {
         } else if (editTaskModel.imageFile == null && editTaskModel.image == null) {    // this mean that user delete image and not upload new one from device
           showSnackBarFailure(context, "image is required");
         } else if (formKey.currentState!.validate()) {
-          log("validation passed");
           
           BlocProvider.of<TaskOperationCubit>(context)
               .editTask(taskModel: editTaskModel);

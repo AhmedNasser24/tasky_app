@@ -23,6 +23,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   StreamSubscription<List<ConnectivityResult>>?
       __connectivityStreamSubscription;
   bool __isNetworkConnected = true;
+  bool isLoading = false;
 
   void initAllDataOfCubit (){
     __pageNum = 1;
@@ -42,6 +43,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     if (!__isNetworkConnected) {
       return;
     }
+    isLoading = true;
     if (__isFirstTaskOperation) {
       emit(FetchTaskLoading());
     }
@@ -71,6 +73,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
         emit(FetchTaskFailure(fail.errMessage));
       },
     );
+    isLoading = false;
   }
 
   Future<void> refresh() async {

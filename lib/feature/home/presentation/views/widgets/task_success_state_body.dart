@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/helper/media_query_extension.dart';
@@ -17,15 +19,30 @@ class TaskSuccessStateBody extends StatefulWidget {
 
 class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
   ScrollController controller = ScrollController();
+
   @override
   void initState() {
+    final cubit = BlocProvider.of<TaskOperationCubit>(context);
     controller.addListener(() {
-      if (controller.position.maxScrollExtent == controller.offset) {
-        BlocProvider.of<TaskOperationCubit>(context).fetchData();
+      if (controller.position.pixels >=
+              controller.position.maxScrollExtent - 200 &&
+          cubit.isThereMoreItems &&
+          !cubit.isLoading) {
+        log('fetchData');
+        cubit.fetchData();
       }
     });
     super.initState();
   }
+  // @override
+  // void initState() {
+  //   controller.addListener(() {
+  //     if (controller.position.maxScrollExtent == controller.offset) {
+  //       BlocProvider.of<TaskOperationCubit>(context).fetchData();
+  //     }
+  //   });
+  //   super.initState();
+  // }
 
   @override
   void dispose() {
@@ -35,28 +52,33 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
 
   @override
   Widget build(BuildContext context) {
-    List <TaskModel >? tasks = widget.state?.tasksList ?? BlocProvider.of<TaskOperationCubit>(context).tasksList ;
-    List<TaskModel> tasksListAccordingToFilter =
-        showTaskItemAfterFilter(tasks);
-    bool isThereMoreItems =
-        BlocProvider.of<TaskOperationCubit>(context).isThereMoreItems;
-
+    final cubit = BlocProvider.of<TaskOperationCubit>(context);
+    List<TaskModel>? tasks = widget.state?.tasksList ?? cubit.tasksList;
+    List<TaskModel> tasksListAccordingToFilter = showTaskItemAfterFilter(tasks);
+    bool isThereMoreItems = cubit.isThereMoreItems;
+    
+    // 👇 Add this post-frame check
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (controller.hasClients &&
+          controller.position.maxScrollExtent == 0 &&
+          isThereMoreItems) {
+        cubit.fetchData();
+      }
+    });
     return tasksListAccordingToFilter.isEmpty
         ? const TaskEmptyStateBody()
         : GridView.builder(
             controller: controller,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  responsiveCrossAxisCount(context).toInt(), // number of columns
+              crossAxisCount: responsiveCrossAxisCount(context)
+                  .toInt(), // number of columns
               crossAxisSpacing: 10,
               mainAxisSpacing: 24,
-              // mainAxisExtent: 150, // 👈 fixed height for each item!
-              childAspectRatio: 
-                  aspectRatioToShowChildWithFixedHeight(context),
+              childAspectRatio: aspectRatioToShowChildWithFixedHeight(context),
             ),
             physics: const AlwaysScrollableScrollPhysics(),
-            itemCount: tasksListAccordingToFilter.length +
-                (isThereMoreItems ? 1 : 0),
+            itemCount:
+                tasksListAccordingToFilter.length + (isThereMoreItems ? 1 : 0),
             itemBuilder: (context, index) {
               if (index < tasksListAccordingToFilter.length) {
                 tasksListAccordingToFilter[index].currIndex =
@@ -64,8 +86,8 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
                 return TaskItem(taskModel: tasksListAccordingToFilter[index]);
               } else {
                 return GestureDetector(
-                  onTap: () => BlocProvider.of<TaskOperationCubit>(context)
-                      .fetchData(),
+                  onTap: () =>
+                      BlocProvider.of<TaskOperationCubit>(context).fetchData(),
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Center(child: CircularProgressIndicator()),
@@ -75,19 +97,18 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
             },
           );
   }
-    double responsiveHeight(double screenWidth){
+
+  double responsiveHeight(double screenWidth) {
     if (screenWidth < 700) {
-      return 65 ;
-    }else if (screenWidth < 1200) {
+      return 65;
+    } else if (screenWidth < 1200) {
       return 70;
-    }else if (screenWidth < 1500){
+    } else if (screenWidth < 1500) {
       return 75;
-    }else {
-      return 80 ;
+    } else {
+      return 80;
     }
   }
-
-  
 
   List<TaskModel> showTaskItemAfterFilter(List<TaskModel>? tasksList) {
     if (tasksList == null) return [];
@@ -113,8 +134,9 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     return ((screenWidth / crossAxisCount) -
             (kHorizontalPadding * 2) -
             (crossAxisSpacing * (crossAxisCount - 1))) /
-        fixedHeight;            // this calculation to make fixed height
+        fixedHeight; // this calculation to make fixed height
   }
+
   double responsiveCrossAxisCount(BuildContext context) {
     double screenWidth = context.screenWidth;
     if (screenWidth < 720) {
