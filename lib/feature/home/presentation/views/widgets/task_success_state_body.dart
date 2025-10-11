@@ -67,9 +67,11 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
       }
     });
     
-    return tasksListAccordingToFilter.isEmpty
+    return
+     tasksListAccordingToFilter.isEmpty && !isThereMoreItems
         ? const TaskEmptyStateBody()
-        : GridView.builder(
+        : 
+        GridView.builder(
             controller: controller,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: responsiveCrossAxisCount(context)
