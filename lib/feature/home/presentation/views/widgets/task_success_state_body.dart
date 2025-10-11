@@ -63,8 +63,10 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
           controller.position.maxScrollExtent == 0 &&
           isThereMoreItems) {
         cubit.fetchData();
+        log("widget binding") ;
       }
     });
+    
     return tasksListAccordingToFilter.isEmpty
         ? const TaskEmptyStateBody()
         : GridView.builder(

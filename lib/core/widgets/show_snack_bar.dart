@@ -32,9 +32,10 @@ void showSnackBarFailure(BuildContext context, String message  , {Duration? dura
   // Show a new SnackBar
   messenger.showSnackBar(
     SnackBar(
-      duration: duration ?? const Duration(seconds: 3),
+      duration: duration ?? const Duration(seconds: 5),
       behavior: SnackBarBehavior.fixed,
       // margin: EdgeInsets.fromLTRB(16, 0, 16, 12 + bottomInset),
+      padding: const EdgeInsets.only(right: 14 , left: 14 ,  top: 16),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular( 12))),
       elevation: 6,
       backgroundColor: bgColor,
@@ -66,8 +67,9 @@ void showSnackBarSuccess(BuildContext context, String message) {
   // Show a new SnackBar
   messenger.showSnackBar(
     SnackBar(
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 5),
       behavior: SnackBarBehavior.fixed,
+      padding: const EdgeInsets.only(right: 14 , left: 14 ,  top: 16),
       // margin: EdgeInsets.fromLTRB(16, 0, 16, 12 + bottomInset),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular( 12))),
       elevation: 6,

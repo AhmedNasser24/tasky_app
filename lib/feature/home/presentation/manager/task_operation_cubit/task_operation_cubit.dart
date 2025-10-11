@@ -10,8 +10,7 @@ import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart
 part 'task_operation_state.dart';
 
 class TaskOperationCubit extends Cubit<TaskOperationState> {
-  TaskOperationCubit(
-      {required this.taskOperationRepoImpl})
+  TaskOperationCubit({required this.taskOperationRepoImpl})
       : super(FetchTaskInitial());
   final TaskOperationRepo taskOperationRepoImpl;
   int __pageNum = 1;
@@ -25,7 +24,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   bool __isNetworkConnected = true;
   bool isLoading = false;
 
-  void initAllDataOfCubit (){
+  void initAllDataOfCubit() {
     __pageNum = 1;
     __isThereMoreItems = true;
     __isFirstTaskOperation = true;
@@ -33,7 +32,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     __currFilter = kAll;
     __isNetworkConnected = true;
     __connectivityStreamSubscription?.cancel();
-    __connectivityStreamSubscription = null ;
+    __connectivityStreamSubscription = null;
   }
 
   Future<void> fetchData() async {
@@ -41,6 +40,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
       return;
     }
     if (!__isNetworkConnected) {
+      emit(NoInternetConnection());
       return;
     }
     isLoading = true;
@@ -77,7 +77,10 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   }
 
   Future<void> refresh() async {
-    if (!__isNetworkConnected) return;
+    if (!__isNetworkConnected) {
+      emit(NoInternetConnection());
+      return;
+    }
     __pageNum = 1;
     __isThereMoreItems = true;
     __isFirstTaskOperation = true;
@@ -100,6 +103,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   bool get isFirstTaskOperation => __isFirstTaskOperation;
   Future<void> editTask({required TaskModel taskModel}) async {
     if (!__isNetworkConnected) {
+      emit(NoInternetConnection());
       return;
     }
     emit(EditTaskLoading());
@@ -118,6 +122,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
 
   Future<void> createTask({required TaskModel taskModel}) async {
     if (!__isNetworkConnected) {
+      emit(NoInternetConnection());
       return;
     }
     emit(CreateTaskLoading());
@@ -137,6 +142,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
 
   void deleteTask({required TaskModel taskModel}) async {
     if (!__isNetworkConnected) {
+      emit(NoInternetConnection());
       return;
     }
     emit(DeleteTaskLoading());
@@ -163,7 +169,9 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
             emit(NoInternetConnection()); // to show image at first
           } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
               connectivityResult.contains(ConnectivityResult.mobile)) {
-            if(!__isNetworkConnected) emit(InternetConnectionReturned()); // to not display at first when app is already have connection to internet
+            if (!__isNetworkConnected)
+              emit(
+                  InternetConnectionReturned()); // to not display at first when app is already have connection to internet
             __isNetworkConnected = true;
             fetchData();
           }
@@ -181,9 +189,11 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
       },
     );
   }
-  Future <void> cancelConnectivityStream() async {
+
+  Future<void> cancelConnectivityStream() async {
     __connectivityStreamSubscription = null;
   }
+
   @override
   Future<void> close() {
     __connectivityStreamSubscription?.cancel();

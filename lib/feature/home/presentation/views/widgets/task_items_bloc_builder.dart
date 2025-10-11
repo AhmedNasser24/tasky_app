@@ -15,8 +15,7 @@ class TaskItemsBlocBuilder extends StatelessWidget {
     return BlocConsumer<TaskOperationCubit, TaskOperationState>(
       listener: (context, state) {
         if (state is NoInternetConnection) {
-          showSnackBarFailure(context, state.message,
-              duration: const Duration(hours: 5));
+          showSnackBarFailure(context, state.message);
         } else if (state is InternetConnectionReturned) {
           showSnackBarSuccess(context, state.message);
         } else if (state is FetchTaskFailure) {
