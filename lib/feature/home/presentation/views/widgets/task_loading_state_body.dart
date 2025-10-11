@@ -1,9 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tasky_app/core/helper/media_query_extension.dart';
-import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 
 import '../../../../../constants.dart';
 import 'damy_task_item.dart';

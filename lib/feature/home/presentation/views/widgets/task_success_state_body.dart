@@ -61,7 +61,7 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (controller.hasClients &&
           controller.position.maxScrollExtent == 0 &&
-          isThereMoreItems) {
+          isThereMoreItems && !cubit.isLoading) {
         cubit.fetchData();
         log("widget binding") ;
       }

@@ -33,6 +33,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     __isNetworkConnected = true;
     __connectivityStreamSubscription?.cancel();
     __connectivityStreamSubscription = null;
+    emit(FetchTaskInitial());
   }
 
   Future<void> fetchData() async {

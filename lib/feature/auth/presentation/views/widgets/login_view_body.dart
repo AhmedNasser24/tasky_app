@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tasky_app/constants.dart';
 import 'package:tasky_app/core/utils/app_images.dart';
 import 'package:tasky_app/feature/auth/presentation/views/widgets/login_phone.dart';
@@ -37,28 +36,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   Image.asset(Assets.imagesLoginLogo),
                   const TitleWidget("Login"),
                   const Gap(15),
-                  // IntlPhoneField(
-                  //   // focusNode: focusNode,
-                  //   decoration: const InputDecoration(
-                  //     labelText: 'Phone Number',
-                  //     border: OutlineInputBorder(
-                  //       borderSide: BorderSide(),
-                  //     ),
-                  //   ),
-                  //   languageCode: "en",
-                  //   onChanged: (phone) {
-                  //     print(phone.completeNumber);
-                  //   },
-                  //   onCountryChanged: (country) {
-                  //     print('Country changed to: ${country.name}');
-                  //   },
-                  //   validator: (phone) {
-                  //     if (phone == null || phone.number.isEmpty) {
-                  //       return 'Phone number is required';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
                   LoginPhone(loginModel),
                   const Gap(10),
                   LoginPassword(loginModel),

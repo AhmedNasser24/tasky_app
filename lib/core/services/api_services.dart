@@ -1,51 +1,11 @@
-import 'package:dio/dio.dart';
-import 'package:tasky_app/core/secrets/api_base_url.dart';
-import 'package:tasky_app/core/services/dio_interceptor.dart';
 
-class ApiServices {
-  final DioInterceptor _dioInterceptor = DioInterceptor();
-  final Dio dio = Dio(BaseOptions(
-    connectTimeout: const Duration(seconds: 10),
-    sendTimeout: const Duration(seconds: 10),
-  ));
-  Future get(
-      {required String endPoint, Map<String, dynamic>? queryParameters}) async {
-    Response response = await _dioInterceptor.dio.get(
-      endPoint,
-      queryParameters: queryParameters,
-    );
-    return response.data;
-  }
+abstract class ApiServices {
+  Future get({required String endPoint, Map<String, dynamic>? queryParameters});
 
-  Future post(
-      {required String endPoint, Object? data, bool isAuth = false}) async {
-    if (isAuth) {
-      Response response = await dio.post(
-        "$kBaseUrl$endPoint",
-        data: data,
-      );
-      return response.data;
-    } else {
-      Response response = await _dioInterceptor.dio.post(
-        endPoint,
-        data: data,
-      );
+  Future post({required String endPoint, Object? data, bool isAuth = false});
 
-      return response.data;
-    }
-  }
+  Future<void> put(
+      {required String endPoint, required Map<String, dynamic> data});
 
-  Future<void> put({
-    required String endPoint,
-    required Map<String, dynamic> data,
-  }) async {
-    _dioInterceptor.dio.put(
-      endPoint,
-      data: data,
-    );
-  }
-
-  Future<void> delete({required String endPoint}) async {
-    _dioInterceptor.dio.delete(endPoint);
-  }
+  Future<void> delete({required String endPoint});
 }
