@@ -4,7 +4,7 @@ import '../utils/app_styles.dart';
 
 // void showSnackBar(BuildContext context, String message) {
 //   final messenger = ScaffoldMessenger.of(context);
-  
+
 //   // Dismiss the currently visible SnackBar, if any
 //   messenger.hideCurrentSnackBar();
 
@@ -18,10 +18,10 @@ import '../utils/app_styles.dart';
 //   );
 // }
 
-
-void showSnackBarFailure(BuildContext context, String message  , {Duration? duration}) {
+void showSnackBarFailure(BuildContext context, String message,
+    {Duration? duration}) {
   final messenger = ScaffoldMessenger.of(context);
-  
+
   // Dismiss the currently visible SnackBar, if any
   messenger.hideCurrentSnackBar();
 
@@ -35,8 +35,10 @@ void showSnackBarFailure(BuildContext context, String message  , {Duration? dura
       duration: duration ?? const Duration(seconds: 5),
       behavior: SnackBarBehavior.fixed,
       // margin: EdgeInsets.fromLTRB(16, 0, 16, 12 + bottomInset),
-      padding: const EdgeInsets.only(right: 14 , left: 14 ,  top: 16),
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular( 12))),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12), topRight: Radius.circular(12))),
       elevation: 6,
       backgroundColor: bgColor,
       content: Row(
@@ -57,7 +59,7 @@ void showSnackBarFailure(BuildContext context, String message  , {Duration? dura
 
 void showSnackBarSuccess(BuildContext context, String message) {
   final messenger = ScaffoldMessenger.of(context);
-  
+
   // Dismiss the currently visible SnackBar, if any
   messenger.hideCurrentSnackBar();
 
@@ -69,9 +71,11 @@ void showSnackBarSuccess(BuildContext context, String message) {
     SnackBar(
       duration: const Duration(seconds: 5),
       behavior: SnackBarBehavior.fixed,
-      padding: const EdgeInsets.only(right: 14 , left: 14 ,  top: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
       // margin: EdgeInsets.fromLTRB(16, 0, 16, 12 + bottomInset),
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular( 12))),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12), topRight: Radius.circular(12))),
       elevation: 6,
       backgroundColor: bgColor,
       content: Row(

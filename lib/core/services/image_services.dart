@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -10,7 +9,6 @@ class ImageServices {
     final ImagePicker picker = ImagePicker();
     // Pick an image
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    log("pick image success");
     if (image != null) {
       if (Platform.isAndroid || Platform.isIOS) {
         File? croppedFile = await cropImage(File(image.path));

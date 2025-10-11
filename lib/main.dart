@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/constants.dart';
@@ -12,7 +9,7 @@ import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart
 import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 import 'package:tasky_app/feature/home/presentation/views/home_view.dart';
 import 'package:tasky_app/feature/onboarding/presentation/views/onboarding_view.dart';
-import 'core/helper/on_generate_route.dart';
+import 'core/routes/on_generate_route.dart';
 import 'core/utils/shared_preference_singleton.dart';
 import 'core/utils/simple_bloc_observer.dart';
 
@@ -22,29 +19,24 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   getItSetup();
   runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context) => const TaskyApp(),
-    ),
-    // const TaskyApp(),
+    const TaskyApp(),
   );
 }
+
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class TaskyApp extends StatelessWidget {
   const TaskyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    log(MediaQuery.of(context).viewPadding.top.toString());
     return BlocProvider(
-      create: (context) => TaskOperationCubit(
-          taskOperationRepoImpl: getIt<TaskOperationRepo>()),
+      create: (context) =>
+          TaskOperationCubit(taskOperationRepoImpl: getIt<TaskOperationRepo>()),
       child: MaterialApp(
         navigatorKey: navigatorKey,
-        locale:  DevicePreview.locale(context) ,
-        builder: DevicePreview.appBuilder,
-
+        
         theme: ThemeData(
           fontFamily: 'DM Sans',
           scaffoldBackgroundColor: AppColor.whiteColor,

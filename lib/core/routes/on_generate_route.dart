@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/core/models/task_model.dart';
+import 'package:tasky_app/core/routes/animated_routes.dart';
 import 'package:tasky_app/feature/auth/presentation/views/register_view.dart';
 import 'package:tasky_app/feature/create_edit/presentation/views/edit_view.dart';
 import 'package:tasky_app/feature/home/presentation/views/details_view.dart';
@@ -15,28 +16,27 @@ import '../../feature/splash/presentation/views/splash_view.dart';
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   final arg = settings.arguments;
   switch (settings.name) {
-    
     case SplashView.routeName:
-      return MaterialPageRoute(builder: (context) => const SplashView());
+      return animatedRoute(const SplashView());
     case OnboardingView.routeName:
-      return MaterialPageRoute(builder: (context) => const OnboardingView());
+      return animatedRoute(const OnboardingView());
     case LoginView.routeName:
-      return MaterialPageRoute(builder: (context) => const LoginView());
+      return animatedRoute(const LoginView());
     case RegisterView.routeName:
-      return MaterialPageRoute(builder: (context) => const RegisterView());
+      return animatedRoute(const RegisterView());
     case HomeView.routeName:
-      return MaterialPageRoute(builder: (context) => const HomeView());
+      return animatedRoute(const HomeView());
     case CreateView.routeName:
-      return MaterialPageRoute(builder: (context) => const CreateView());
+      return animatedRoute(const CreateView());
     case DetailsView.routeName:
-      return MaterialPageRoute(builder: (context) =>  DetailsView(taskModel: arg as TaskModel));
+      return animatedRoute(DetailsView(taskModel: arg as TaskModel));
     case EditView.routeName:
-      return MaterialPageRoute(builder: (context) =>  EditView(taskModel: arg as TaskModel));     
+      return animatedRoute(EditView(taskModel: arg as TaskModel));
     case ProfileView.routeName:
-      return MaterialPageRoute(builder: (context) => const ProfileView());
+      return animatedRoute(const ProfileView());
     case ScanCodeView.routeName:
-      return MaterialPageRoute(builder: (context) => const ScanCodeView());
+      return animatedRoute(const ScanCodeView());
     default:
-      return MaterialPageRoute(builder: (context) => const Scaffold());
+      return animatedRoute(const Scaffold());
   }
 }

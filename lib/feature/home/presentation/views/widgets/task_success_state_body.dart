@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/helper/media_query_extension.dart';
@@ -28,21 +26,12 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
               controller.position.maxScrollExtent - 200 &&
           cubit.isThereMoreItems &&
           !cubit.isLoading) {
-        log('fetchData');
         cubit.fetchData();
       }
     });
     super.initState();
   }
-  // @override
-  // void initState() {
-  //   controller.addListener(() {
-  //     if (controller.position.maxScrollExtent == controller.offset) {
-  //       BlocProvider.of<TaskOperationCubit>(context).fetchData();
-  //     }
-  //   });
-  //   super.initState();
-  // }
+ 
 
   @override
   void dispose() {
@@ -63,7 +52,6 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
           controller.position.maxScrollExtent == 0 &&
           isThereMoreItems && !cubit.isLoading) {
         cubit.fetchData();
-        log("widget binding") ;
       }
     });
     
