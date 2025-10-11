@@ -169,9 +169,9 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
             emit(NoInternetConnection()); // to show image at first
           } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
               connectivityResult.contains(ConnectivityResult.mobile)) {
-            if (!__isNetworkConnected)
+            if (!__isNetworkConnected){
               emit(
-                  InternetConnectionReturned()); // to not display at first when app is already have connection to internet
+                  InternetConnectionReturned());} // to not display at first when app is already have connection to internet
             __isNetworkConnected = true;
             fetchData();
           }

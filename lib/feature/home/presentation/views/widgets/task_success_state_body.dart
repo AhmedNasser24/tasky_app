@@ -85,8 +85,7 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
                 tasksListAccordingToFilter.length + (isThereMoreItems ? 1 : 0),
             itemBuilder: (context, index) {
               if (index < tasksListAccordingToFilter.length) {
-                tasksListAccordingToFilter[index].currIndex =
-                    index; // to be used in editing task
+                
                 return TaskItem(taskModel: tasksListAccordingToFilter[index]);
               } else {
                 return GestureDetector(
@@ -116,6 +115,10 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
 
   List<TaskModel> showTaskItemAfterFilter(List<TaskModel>? tasksList) {
     if (tasksList == null) return [];
+    // the usage of index is for deleting and editing in cubit
+    for (int index = 0 ; index < tasksList.length ; index++) {
+      tasksList[index].currIndex = index;        
+    }
     String currFilter = BlocProvider.of<TaskOperationCubit>(context).currFilter;
     List<TaskModel> tasksListAccordingToFilter = [];
     if (currFilter == kAll) {
