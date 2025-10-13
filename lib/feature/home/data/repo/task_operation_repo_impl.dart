@@ -23,7 +23,7 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
     try {
       List<TaskModel> tasksModel =
           await dataSource.fetchTasks(pageNum: pageNum);
-      List<TaskEntity> tasksEntity = tasksModel.map((taskModel) => taskModel ).toList();
+      List<TaskEntity> tasksEntity = tasksModel.map((taskModel) => taskModel as TaskEntity).toList();
       return left(tasksEntity);
     } on DioException catch (e) {
       log("fetch data error : ${e.toString()}");
