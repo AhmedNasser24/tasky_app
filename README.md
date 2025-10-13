@@ -73,6 +73,9 @@ A powerful and responsive **Flutter** todo app that supports secure **authentica
 - **Framework**: [Flutter](https://flutter.dev/)
 - **Language**: Dart  
 - **State Management**: (e.g., Provider, Bloc – specify if used)  
+- **Architecture Pattern**: 🧱 **Clean Architecture**
+  - Separation of concerns into **Presentation**, **Domain**, and **Data** layers
+  - Ensures **testability**, **scalability**, and **maintainability**
 - **Authentication**: JWT with refresh token logic  
 - **Camera & Media**: `camera`, `image_picker`  
 - **QR Code**: `pretty_qr_code`  
