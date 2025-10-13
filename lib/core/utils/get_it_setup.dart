@@ -30,60 +30,60 @@ void getItSetup() {
   // خلي بالك من الترتيب مينفع انادي علي حاجة وهي لسه متعملهاش ريجستير
 
   // services
-  getIt.registerSingleton<ApiServices>(DioApiServices());
+  getIt.registerLazySingleton<ApiServices>(() => DioApiServices());
   // data source
-  getIt.registerSingleton<DataSource>(
-    DataSourceImpl(
-      apiServices: getIt.get<ApiServices>(),
+  getIt.registerLazySingleton<DataSource>(
+    () => DataSourceImpl(
+      apiServices: getIt(),
     ),
   );
 
-  getIt.registerSingleton<AuthServicesDataSource>(
-    AuthServicesDataSourceImpl(
-      apiServices: getIt.get<ApiServices>(),
+  getIt.registerLazySingleton<AuthServicesDataSource>(
+    () => AuthServicesDataSourceImpl(
+      apiServices: getIt(),
     ),
   );
   // repo
-  getIt.registerSingleton<AuthRepo>(
-    AuthRepoImpl(
-      authServicesDataSource: getIt.get<AuthServicesDataSource>(),
+  getIt.registerLazySingleton<AuthRepo>(
+    () => AuthRepoImpl(
+      authServicesDataSource: getIt(),
     ),
   );
 
-  getIt.registerSingleton<TaskOperationRepo>(
-    TaskOperationRepoImpl(
-      dataSource: getIt.get<DataSource>(),
+  getIt.registerLazySingleton<TaskOperationRepo>(
+    () => TaskOperationRepoImpl(
+      dataSource: getIt(),
     ),
   );
   // user cases
   // Auth user case
-  getIt.registerSingleton<LoginUserCase>(
-    LoginUserCase(
-      authRepo: getIt.get<AuthRepo>(),
+  getIt.registerLazySingleton<LoginUserCase>(
+    () => LoginUserCase(
+      authRepo: getIt(),
     ),
   );
-  getIt.registerSingleton<RegisterUserCase>(
-    RegisterUserCase(
-      authRepo: getIt.get<AuthRepo>(),
+  getIt.registerLazySingleton<RegisterUserCase>(
+    () => RegisterUserCase(
+      authRepo: getIt(),
     ),
   );
-  getIt.registerSingleton<LogoutUserCase>(
-    LogoutUserCase(
-      authRepo: getIt.get<AuthRepo>(),
+  getIt.registerLazySingleton<LogoutUserCase>(
+    () => LogoutUserCase(
+      authRepo: getIt(),
     ),
   );
 
   // home user cases
-  getIt.registerSingleton<FetchAllTaskUserCase>(
-      FetchAllTaskUserCase(taskOperationRepo: getIt.get<TaskOperationRepo>()));
-  getIt.registerSingleton<FetchOneTaskUserCase>(
-      FetchOneTaskUserCase(taskOperationRepo: getIt.get<TaskOperationRepo>()));
-  getIt.registerSingleton<CreateTaskUserCase>(
-      CreateTaskUserCase(taskOperationRepo: getIt.get<TaskOperationRepo>()));
-  getIt.registerSingleton<EditTaskUserCase>(
-      EditTaskUserCase(taskOperationRepo: getIt.get<TaskOperationRepo>()));
-  getIt.registerSingleton<DeleteTaskUserCase>(
-      DeleteTaskUserCase(taskOperationRepo: getIt.get<TaskOperationRepo>()));
+  getIt.registerLazySingleton<FetchAllTaskUserCase>(
+      () => FetchAllTaskUserCase(taskOperationRepo: getIt()));
+  getIt.registerLazySingleton<FetchOneTaskUserCase>(
+      () => FetchOneTaskUserCase(taskOperationRepo: getIt()));
+  getIt.registerLazySingleton<CreateTaskUserCase>(
+      () => CreateTaskUserCase(taskOperationRepo: getIt()));
+  getIt.registerLazySingleton<EditTaskUserCase>(
+      () => EditTaskUserCase(taskOperationRepo: getIt()));
+  getIt.registerLazySingleton<DeleteTaskUserCase>(
+      () => DeleteTaskUserCase(taskOperationRepo: getIt()));
 
   // cubit
   getIt.registerFactory<TaskOperationCubit>(
