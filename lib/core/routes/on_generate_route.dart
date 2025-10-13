@@ -11,13 +11,10 @@ import '../../feature/home/presentation/views/home_view.dart';
 import '../../feature/onboarding/presentation/views/onboarding_view.dart';
 import '../../feature/profile/presentation/views/profile_view.dart';
 import '../../feature/home/presentation/views/scan_code_view.dart';
-import '../../feature/splash/presentation/views/splash_view.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   final arg = settings.arguments;
   switch (settings.name) {
-    case SplashView.routeName:
-      return animatedRoute(const SplashView());
     case OnboardingView.routeName:
       return animatedRoute(const OnboardingView());
     case LoginView.routeName:
