@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/app_color.dart';
-import '../register_view.dart';
+import '../../../../core/utils/app_color.dart';
 
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../core/utils/app_styles.dart';
 
-class DoNotHaveAccount extends StatelessWidget {
-  const DoNotHaveAccount({super.key});
+class AlreadyHaveAccount extends StatelessWidget {
+  const AlreadyHaveAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +12,15 @@ class DoNotHaveAccount extends StatelessWidget {
       children: [
         const Spacer(),
         Text(
-          "Don't have any account? ",
+          "Already have any account? ",
           style: AppStyles.regular14.copyWith(color: AppColor.greyColor),
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, RegisterView.routeName);
+            Navigator.pop(context);
           },
           child: Text(
-            "Sign Up here",
+            "Sign in",
             style: AppStyles.regular14.copyWith(
                 color: AppColor.primaryColor,
                 decoration: TextDecoration.underline),

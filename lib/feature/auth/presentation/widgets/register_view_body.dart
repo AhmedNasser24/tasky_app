@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../data/model/user_info_model.dart';
+import '../../../../constants.dart';
+import '../../../../core/utils/app_images.dart';
+import '../../domain/entities/user_info_entity.dart';
 import 'already_have_account.dart';
 import 'register_password.dart';
 import 'package:gap/gap.dart';
@@ -21,7 +21,7 @@ class RegisterViewBody extends StatefulWidget {
 }
 
 class _RegisterViewBodyState extends State<RegisterViewBody> {
-  UserInfoModel userInfoModel = UserInfoModel();
+  UserInfoEntity userInfoModel = UserInfoEntity();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../core/utils/app_color.dart';
+import '../../../../core/utils/app_styles.dart';
 
 class CustomIntlPhoneField extends StatefulWidget {
   const CustomIntlPhoneField({

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'custom_intl_phone_field.dart';
 
-import '../../../data/model/user_info_model.dart';
+import '../../domain/entities/user_info_entity.dart';
 
 class LoginPhone extends StatelessWidget {
   const LoginPhone(
     this.loginModel, {
     super.key,
   });
-  final UserInfoModel loginModel;
+  final UserInfoEntity loginModel;
   @override
   Widget build(BuildContext context) {
     return CustomIntlPhoneField(

@@ -1,7 +1,8 @@
 
-import '../../feature/auth/data/model/user_info_model.dart';
+import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
 
-abstract class AuthServices {
+
+abstract class AuthServicesDataSource {
   Future<UserInfoModel> login({required UserInfoModel loginModelInput});
 
   Future<UserInfoModel> register({required UserInfoModel userInfoModelInput});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../data/model/user_info_model.dart';
+import '../../domain/entities/user_info_entity.dart';
 import 'custom_intl_phone_field.dart';
 
 class RegisterPhone extends StatelessWidget {
@@ -7,7 +7,7 @@ class RegisterPhone extends StatelessWidget {
     this.userInfoModel, {
     super.key,
   });
-  final UserInfoModel userInfoModel;
+  final UserInfoEntity userInfoModel;
   @override
   Widget build(BuildContext context) {
     return CustomIntlPhoneField(

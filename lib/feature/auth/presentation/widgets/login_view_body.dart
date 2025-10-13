@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_images.dart';
+import '../../../../constants.dart';
+import '../../../../core/utils/app_images.dart';
 import 'login_phone.dart';
 import 'package:gap/gap.dart';
-import '../../../data/model/user_info_model.dart';
+import '../../domain/entities/user_info_entity.dart';
 import 'do_not_have_account.dart';
 import 'login_button.dart';
 import 'login_password.dart';
@@ -17,7 +17,7 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-  UserInfoModel loginModel = UserInfoModel();
+  UserInfoEntity loginModel = UserInfoEntity();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

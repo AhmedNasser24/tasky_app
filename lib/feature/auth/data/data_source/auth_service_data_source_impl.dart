@@ -1,13 +1,14 @@
-import 'api_services.dart';
-import 'auth_services.dart';
+import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
 
-import '../../feature/auth/data/model/user_info_model.dart';
-import '../secrets/end_point.dart';
+import '../../../../core/services/api_services.dart';
+import 'auth_services_data_source.dart';
 
-class ApiAuthServices extends AuthServices {
+import '../../../../core/secrets/end_point.dart';
+
+class AuthServicesDataSourceImpl extends AuthServicesDataSource {
   final ApiServices apiServices;
 
-  ApiAuthServices({required this.apiServices});
+  AuthServicesDataSourceImpl({required this.apiServices});
 
   @override
   Future<UserInfoModel> login({required UserInfoModel loginModelInput}) async {

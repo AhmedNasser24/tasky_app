@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_styles.dart';
-import '../../../data/model/user_info_model.dart';
-import '../../../../../core/widgets/custom_textformfield.dart';
+import '../../../../core/utils/app_color.dart';
+import '../../../../core/utils/app_styles.dart';
+import '../../domain/entities/user_info_entity.dart';
+import '../../../../core/widgets/custom_textformfield.dart';
 
 class SelectedExperienceTextFormField extends StatefulWidget {
   const SelectedExperienceTextFormField(
     this.userInfoModel, {
     super.key,
   });
-  final UserInfoModel userInfoModel;
+  final UserInfoEntity userInfoModel;
 
   @override
   State<SelectedExperienceTextFormField> createState() =>

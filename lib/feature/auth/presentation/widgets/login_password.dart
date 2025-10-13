@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../data/model/user_info_model.dart';
-import '../../../../../core/widgets/custom_textformfield.dart';
+import '../../domain/entities/user_info_entity.dart';
+import '../../../../core/widgets/custom_textformfield.dart';
 
 class LoginPassword extends StatefulWidget {
   const LoginPassword(this.loginModel, {super.key});
-  final UserInfoModel loginModel;
+  final UserInfoEntity loginModel;
   @override
   State<LoginPassword> createState() => _LoginPasswordState();
 }

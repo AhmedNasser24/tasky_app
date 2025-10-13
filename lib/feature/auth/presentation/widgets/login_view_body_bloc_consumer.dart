@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/widgets/custom_model_progress_hud.dart';
-import '../../../../../core/widgets/show_snack_bar.dart';
-import '../../manager/login_cubit/login_cubit.dart';
-import '../../../../home/presentation/views/home_view.dart';
+import '../../../../core/widgets/custom_model_progress_hud.dart';
+import '../../../../core/widgets/show_snack_bar.dart';
+import '../manager/login_cubit/login_cubit.dart';
+import '../../../home/presentation/views/home_view.dart';
 
 import 'login_view_body.dart';
 

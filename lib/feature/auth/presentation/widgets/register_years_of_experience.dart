@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../data/model/user_info_model.dart';
-import '../../../../../core/widgets/custom_textformfield.dart';
+import '../../domain/entities/user_info_entity.dart';
+import '../../../../core/widgets/custom_textformfield.dart';
 
 class RegisterYearsOfExperience extends StatelessWidget {
   const RegisterYearsOfExperience(this.userInfoModel, {super.key});
-  final UserInfoModel userInfoModel;
+  final UserInfoEntity userInfoModel;
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
