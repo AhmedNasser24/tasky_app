@@ -25,7 +25,7 @@ A powerful and responsive **Flutter** todo app that supports secure **authentica
   - Infinite scrolling  
   - Pull-to-refresh  
   - Loading / Empty / Error states  
-- 📸 **Add images** to todos via camera or gallery , and can **crop it**
+- 📸 **Add images** to todos via camera or gallery 
 - 📎 **QR Code** generated from todo ID (on detail screen)  
 - 📷 **QR Scanner** fetches todo by scanning and hitting `/todos/:id`  
 - 📱 **Fully responsive design** for all screens  
@@ -36,23 +36,33 @@ A powerful and responsive **Flutter** todo app that supports secure **authentica
 
 <div align="center">
 
-<img src="assets/images/tasky_splash.jpg" width="45%" alt="Home Screen"/>
-<img src="assets/images/tasky_login.jpg" width="45%" alt="Todo Detail"/>
+<img src="assets/images/tasky_splash.jpg" width="45%" alt="Splash Screen"/>
+<img src="assets/images/tasky_login.jpg" width="45%" alt="Login"/>
 
 <br><br>
 
 <img src="assets/images/tasky_countries.jpg" width="45%" alt="QR Scanner"/>
-<img src="assets/images/tasky_register.jpg" width="45%" alt="Add Image"/>
+<img src="assets/images/tasky_register.jpg" width="45%" alt="Register"/>
 
 <br><br>
 
-<img src="assets/images/tasky_home.jpg" width="45%" alt="QR Scanner"/>
-<img src="assets/images/tasky_add.jpg" width="45%" alt="Add Image"/>
+<img src="assets/images/loading.jpg" width="45%" alt="loading"/>
+<img src="assets/images/loading_with_error.jpg" width="45%" alt="No Connection"/>
 
 <br><br>
 
-<img src="assets/images/tasky_details.jpg" width="45%" alt="QR Scanner"/>
-<img src="assets/images/tasky_profile.jpg" width="45%" alt="Add Image"/>
+<img src="assets/images/tasky_home.jpg" width="45%" alt="tasky_home"/>
+<img src="assets/images/home_edit_delete.jpg" width="45%" alt="Home feature"/>
+
+<br><br>
+
+<img src="assets/images/tasky_add.jpg" width="45%" alt="tasky_add"/>
+<img src="assets/images/scan_view.jpg" width="45%" alt="QR Scanner"/>
+
+<br><br>
+
+<img src="assets/images/tasky_details.jpg" width="45%" alt="tasky_details"/>
+<img src="assets/images/tasky_profile.jpg" width="45%" alt="tasky_profile"/>
 
 </div>
 
