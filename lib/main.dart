@@ -31,7 +31,7 @@ class TaskyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => di.getIt.get<TaskOperationCubit>(),
+      create: (context) => di.getIt<TaskOperationCubit>(),
       child: MaterialApp(
         navigatorKey: navigatorKey,
         

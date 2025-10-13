@@ -12,7 +12,7 @@ class ScanCodeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => di.getIt.get<FetchOneTaskCubit>(),
+      create: (context) => di.getIt<FetchOneTaskCubit>(),
       child: const Scaffold(
         backgroundColor: Colors.black,
         body: ScanCodeViewBodyBlocConsumer(),

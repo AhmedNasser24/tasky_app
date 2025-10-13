@@ -11,7 +11,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => di.getIt.get<RegisterCubit>(),
+      create: (context) => di.getIt<RegisterCubit>(),
       child: const Scaffold(
         body: SafeArea(
           child: RegisterViewBodyBlocConsumer(),

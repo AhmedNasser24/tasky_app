@@ -86,20 +86,23 @@ void getItSetup() {
       DeleteTaskUserCase(taskOperationRepo: getIt.get<TaskOperationRepo>()));
 
   // cubit
-  getIt.registerSingleton<TaskOperationCubit>(
-    TaskOperationCubit(
-        fetchAllTaskUserCase: getIt.get<FetchAllTaskUserCase>(),
-        createTaskUserCase: getIt.get<CreateTaskUserCase>(),
-        editTaskUserCase: getIt.get<EditTaskUserCase>(),
-        deleteTaskUserCase: getIt.get<DeleteTaskUserCase>()),
+  getIt.registerFactory<TaskOperationCubit>(
+    () => TaskOperationCubit(
+      fetchAllTaskUserCase: getIt(),
+      createTaskUserCase: getIt(),
+      editTaskUserCase: getIt(),
+      deleteTaskUserCase: getIt(),
+    ),
   );
 
-  getIt.registerSingleton<FetchOneTaskCubit>(FetchOneTaskCubit(
-      fetchOneTaskUserCase: getIt.get<FetchOneTaskUserCase>()));
+  getIt.registerFactory<FetchOneTaskCubit>(
+      () => FetchOneTaskCubit(fetchOneTaskUserCase: getIt()));
 
-  getIt.registerSingleton<LogoutCubit>(LogoutCubit(logoutUserCase: getIt.get<LogoutUserCase>()));
+  getIt
+      .registerFactory<LogoutCubit>(() => LogoutCubit(logoutUserCase: getIt()));
 
-  getIt.registerSingleton<LoginCubit>(LoginCubit(loginUserCase: getIt.get<LoginUserCase>()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(loginUserCase: getIt()));
 
-  getIt.registerSingleton<RegisterCubit>(RegisterCubit(registerUserCase: getIt.get<RegisterUserCase>()));    
+  getIt.registerFactory<RegisterCubit>(
+      () => RegisterCubit(registerUserCase: getIt()));
 }
