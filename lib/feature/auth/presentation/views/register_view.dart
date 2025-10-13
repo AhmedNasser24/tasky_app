@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/user_cases/register_user_case.dart';
 import '../manager/register_cubit/register_cubit.dart';
 
-import '../../../../core/utils/get_it_setup.dart';
+import '../../../../core/utils/get_it_setup.dart' as di;
 import '../widgets/register_view_body_bloc_consumer.dart';
 
 class RegisterView extends StatelessWidget {
@@ -12,8 +11,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          RegisterCubit(registerUserCase: getIt.get<RegisterUserCase>()),
+      create: (context) => di.getIt.get<RegisterCubit>(),
       child: const Scaffold(
         body: SafeArea(
           child: RegisterViewBodyBlocConsumer(),
@@ -22,4 +20,3 @@ class RegisterView extends StatelessWidget {
     );
   }
 }
-

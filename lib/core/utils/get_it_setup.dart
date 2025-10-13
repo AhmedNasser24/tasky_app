@@ -1,10 +1,13 @@
 import 'package:get_it/get_it.dart';
+import 'package:tasky_app/feature/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:tasky_app/feature/home/presentation/manager/fetch_one_task_cubit/fetch_one_task_cubit_cubit.dart';
 import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 import '../../feature/auth/domain/user_cases/login_user_case.dart';
 import '../../feature/auth/domain/user_cases/logout_user_case.dart';
 import '../../feature/auth/domain/user_cases/register_user_case.dart';
 import '../../feature/auth/data/data_source/auth_service_data_source_impl.dart';
+import '../../feature/auth/presentation/manager/logout_cubit/logout_cubit.dart';
+import '../../feature/auth/presentation/manager/register_cubit/register_cubit.dart';
 import '../../feature/home/data/data_source/data_source_impl.dart';
 import '../../feature/home/domain/user_cases/create_task_user_case.dart';
 import '../../feature/home/domain/user_cases/delete_task_user_case.dart';
@@ -24,28 +27,14 @@ import '../../feature/home/data/repo/task_operation_repo_impl.dart';
 final getIt = GetIt.instance;
 
 void getItSetup() {
-  // cubit
-  // getIt.registerSingleton<TaskOperationCubit>(
-  //    TaskOperationCubit(
-  //       fetchAllTaskUserCase: getIt.get<FetchAllTaskUserCase>(),
-  //       createTaskUserCase: getIt.get<CreateTaskUserCase>(),
-  //       editTaskUserCase: getIt.get<EditTaskUserCase>(),
-  //       deleteTaskUserCase: getIt.get<DeleteTaskUserCase>()),
-  // );
-
-  // getIt.registerSingleton<FetchOneTaskCubit>( FetchOneTaskCubit(fetchOneTaskUserCase: getIt.get<FetchOneTaskUserCase>()));
-
-  
- 
-
-  
+  // خلي بالك من الترتيب مينفع انادي علي حاجة وهي لسه متعملهاش ريجستير
 
   // services
   getIt.registerSingleton<ApiServices>(DioApiServices());
   // data source
   getIt.registerSingleton<DataSource>(
     DataSourceImpl(
-      apiServices : getIt.get<ApiServices>(),
+      apiServices: getIt.get<ApiServices>(),
     ),
   );
 
@@ -54,7 +43,7 @@ void getItSetup() {
       apiServices: getIt.get<ApiServices>(),
     ),
   );
-   // repo
+  // repo
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
       authServicesDataSource: getIt.get<AuthServicesDataSource>(),
@@ -96,4 +85,21 @@ void getItSetup() {
   getIt.registerSingleton<DeleteTaskUserCase>(
       DeleteTaskUserCase(taskOperationRepo: getIt.get<TaskOperationRepo>()));
 
+  // cubit
+  getIt.registerSingleton<TaskOperationCubit>(
+    TaskOperationCubit(
+        fetchAllTaskUserCase: getIt.get<FetchAllTaskUserCase>(),
+        createTaskUserCase: getIt.get<CreateTaskUserCase>(),
+        editTaskUserCase: getIt.get<EditTaskUserCase>(),
+        deleteTaskUserCase: getIt.get<DeleteTaskUserCase>()),
+  );
+
+  getIt.registerSingleton<FetchOneTaskCubit>(FetchOneTaskCubit(
+      fetchOneTaskUserCase: getIt.get<FetchOneTaskUserCase>()));
+
+  getIt.registerSingleton<LogoutCubit>(LogoutCubit(logoutUserCase: getIt.get<LogoutUserCase>()));
+
+  getIt.registerSingleton<LoginCubit>(LoginCubit(loginUserCase: getIt.get<LoginUserCase>()));
+
+  getIt.registerSingleton<RegisterCubit>(RegisterCubit(registerUserCase: getIt.get<RegisterUserCase>()));    
 }
