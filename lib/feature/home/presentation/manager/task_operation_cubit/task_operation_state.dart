@@ -2,12 +2,12 @@ part of 'task_operation_cubit.dart';
 
 abstract class TaskOperationState {}
 
-class FetchTaskInitial extends TaskOperationState {}
+class InitialState extends TaskOperationState {}
 
 class FetchTaskLoading extends TaskOperationState {}
 
 class FetchTaskSuccess extends TaskOperationState {
-  final List<TaskModel>? tasksList;
+  final List<TaskEntity>? tasksList;
 
   FetchTaskSuccess(this.tasksList);
 }

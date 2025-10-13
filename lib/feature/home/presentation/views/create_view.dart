@@ -1,0 +1,17 @@
+import 'package:flutter/material.dart';
+
+import '../widgets/create_edit_widgets/create_view_body_bloc_consumer.dart';
+
+class CreateView extends StatelessWidget {
+  const CreateView({super.key});
+  static const routeName = '/createView';
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: SafeArea(
+        child: CreateViewBodyBlocConsumer(),
+      ),
+    );
+  }
+}
+

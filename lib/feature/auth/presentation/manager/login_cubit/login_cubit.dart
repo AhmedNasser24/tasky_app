@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/feature/auth/domain/user_cases/login_user_case.dart';
+import '../../../domain/user_cases/login_user_case.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../domain/entities/user_info_entity.dart';

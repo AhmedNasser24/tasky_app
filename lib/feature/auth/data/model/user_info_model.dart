@@ -1,4 +1,4 @@
-import 'package:tasky_app/feature/auth/domain/entities/user_info_entity.dart';
+import '../../domain/entities/user_info_entity.dart';
 
 import '../../../../core/helper/api_keys.dart';
 

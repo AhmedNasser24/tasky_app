@@ -2,22 +2,34 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/create_task_user_case.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/delete_task_user_case.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/edit_task_user_case.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/fetch_all_task_user_case.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/errors/failure.dart';
-import '../../../../../core/models/task_model.dart';
-import '../../../../create_edit/data/repo/task_operation_repo.dart';
+import '../../../domain/entities/task_entity.dart';
 
 part 'task_operation_state.dart';
 
 class TaskOperationCubit extends Cubit<TaskOperationState> {
-  TaskOperationCubit({required this.taskOperationRepoImpl})
-      : super(FetchTaskInitial());
-  final TaskOperationRepo taskOperationRepoImpl;
+  TaskOperationCubit({
+    required this.fetchAllTaskUserCase,
+    required this.createTaskUserCase,
+    required this.editTaskUserCase,
+    required this.deleteTaskUserCase,
+  }) : super(InitialState());
+  final FetchAllTaskUserCase fetchAllTaskUserCase;
+  final CreateTaskUserCase createTaskUserCase;
+  final EditTaskUserCase editTaskUserCase;
+  final DeleteTaskUserCase deleteTaskUserCase;
+
+
   int __pageNum = 1;
   final int __maxItemPerPage = 20;
   bool __isThereMoreItems = true;
   bool __isFirstTaskOperation = true;
-  List<TaskModel>? __tasksList;
+  List<TaskEntity>? __tasksList;
   String __currFilter = kAll;
   StreamSubscription<List<ConnectivityResult>>?
       __connectivityStreamSubscription;
@@ -33,7 +45,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     __isNetworkConnected = true;
     __connectivityStreamSubscription?.cancel();
     __connectivityStreamSubscription = null;
-    emit(FetchTaskInitial());
+    emit(InitialState());
   }
 
   Future<void> fetchData() async {
@@ -48,8 +60,8 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     if (__isFirstTaskOperation) {
       emit(FetchTaskLoading());
     }
-    Either<List<TaskModel>, Failure> result =
-        await taskOperationRepoImpl.fetchAllTasks(pageNum: __pageNum);
+    Either<List<TaskEntity>, Failure> result =
+        await fetchAllTaskUserCase(pageNum: __pageNum);
     result.fold(
       (tasksList) {
         if (__tasksList != null) {
@@ -91,7 +103,7 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
 
   bool get isThereMoreItems => __isThereMoreItems;
 
-  List<TaskModel>? get tasksList => __tasksList;
+  List<TaskEntity>? get tasksList => __tasksList;
 
   void changeFilter(String value) {
     __currFilter = value;
@@ -102,18 +114,18 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
 
   String get currFilter => __currFilter;
   bool get isFirstTaskOperation => __isFirstTaskOperation;
-  Future<void> editTask({required TaskModel taskModel}) async {
+  Future<void> editTask({required TaskEntity taskEntity}) async {
     if (!__isNetworkConnected) {
       emit(NoInternetConnection());
       return;
     }
     emit(EditTaskLoading());
     Either<void, Failure> result =
-        await taskOperationRepoImpl.editTask(taskModel: taskModel);
+        await editTaskUserCase(taskEntity: taskEntity);
     result.fold(
       (ok) {
-        int index = taskModel.currIndex!;
-        __tasksList!.replaceRange(index, index + 1, [taskModel]);
+        int index = taskEntity.currIndex!;
+        __tasksList!.replaceRange(index, index + 1, [taskEntity]);
         emit(EditTaskSuccess());
         emit(FetchTaskSuccess(__tasksList!)); // to display task in bloc builder
       },
@@ -121,14 +133,14 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     );
   }
 
-  Future<void> createTask({required TaskModel taskModel}) async {
+  Future<void> createTask({required TaskEntity taskEntity}) async {
     if (!__isNetworkConnected) {
       emit(NoInternetConnection());
       return;
     }
     emit(CreateTaskLoading());
-    Either<TaskModel, Failure> result =
-        await taskOperationRepoImpl.createTask(taskModel: taskModel);
+    Either<TaskEntity, Failure> result =
+        await createTaskUserCase(taskEntity: taskEntity);
     result.fold(
       (createdTask) {
         __tasksList == null
@@ -141,14 +153,14 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
     );
   }
 
-  void deleteTask({required TaskModel taskModel}) async {
+  void deleteTask({required TaskEntity taskModel}) async {
     if (!__isNetworkConnected) {
       emit(NoInternetConnection());
       return;
     }
     emit(DeleteTaskLoading());
     String taskId = taskModel.taskId!;
-    var result = await taskOperationRepoImpl.deleteTask(taskId: taskId);
+    var result = await deleteTaskUserCase(taskId: taskId);
     result.fold(
       (ok) {
         int index = taskModel.currIndex!;
@@ -170,9 +182,9 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
             emit(NoInternetConnection()); // to show image at first
           } else if (connectivityResult.contains(ConnectivityResult.wifi) ||
               connectivityResult.contains(ConnectivityResult.mobile)) {
-            if (!__isNetworkConnected){
-              emit(
-                  InternetConnectionReturned());} // to not display at first when app is already have connection to internet
+            if (!__isNetworkConnected) {
+              emit(InternetConnectionReturned());
+            } // to not display at first when app is already have connection to internet
             __isNetworkConnected = true;
             fetchData();
           }

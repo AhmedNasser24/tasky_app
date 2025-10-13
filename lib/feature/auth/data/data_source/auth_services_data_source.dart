@@ -1,5 +1,5 @@
 
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
+import '../model/user_info_model.dart';
 
 
 abstract class AuthServicesDataSource {

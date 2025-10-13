@@ -1,23 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/fetch_one_task_user_case.dart';
 
 import '../../../../../core/errors/failure.dart';
-import '../../../../../core/models/task_model.dart';
-import '../../../data/repo/home_repo.dart';
+import '../../../domain/entities/task_entity.dart';
 
 part 'fetch_one_task_cubit_state.dart';
 
-class FetchOneTaskCubitCubit extends Cubit<FetchOneTaskCubitState> {
-  FetchOneTaskCubitCubit(this.homeRepoImpl) : super(FetchOneTaskCubitInitial());
-  final HomeRepo homeRepoImpl;
+class FetchOneTaskCubit extends Cubit<FetchOneTaskCubitState> {
+  FetchOneTaskCubit({required this.fetchOneTaskUserCase}) : super(FetchOneTaskCubitInitial());
+  final FetchOneTaskUserCase fetchOneTaskUserCase;
   bool __isSuccess = false;
   Future<void> fetchOneTask({required String qrData}) async {
     if (__isSuccess) {
       return;
     }
     emit(FetchOneTaskCubitLoading());
-    Either<TaskModel, Failure> result =
-        await homeRepoImpl.fetchOneTask(qrData: qrData);
+    Either<TaskEntity, Failure> result =
+        await fetchOneTaskUserCase(qrData: qrData);
     result.fold(
       (taskModel) {
         if (__isDataCorrect(taskModel)) {
@@ -31,7 +31,7 @@ class FetchOneTaskCubitCubit extends Cubit<FetchOneTaskCubitState> {
     );
   }
 
-  bool __isDataCorrect(TaskModel taskModel) {
+  bool __isDataCorrect(TaskEntity taskModel) {
     return taskModel.desc != null &&
         taskModel.title != null &&
         taskModel.taskId != null &&

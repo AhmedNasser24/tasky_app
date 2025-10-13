@@ -7,8 +7,8 @@ class FetchOneTaskCubitInitial extends FetchOneTaskCubitState {}
 class FetchOneTaskCubitLoading extends FetchOneTaskCubitState {}
 
 class FetchOneTaskCubitSuccess extends FetchOneTaskCubitState {
-  final TaskModel taskModel;
-  FetchOneTaskCubitSuccess(this.taskModel);
+  final TaskEntity taskEntity;
+  FetchOneTaskCubitSuccess(this.taskEntity);
 }
 
 class FetchOneTaskCubitFailure extends FetchOneTaskCubitState {

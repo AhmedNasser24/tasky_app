@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/feature/profile/data/get_profile_data.dart';
+import '../../../data/get_profile_data.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/helper/media_query_extension.dart';
 import '../../../../auth/domain/entities/user_info_entity.dart';

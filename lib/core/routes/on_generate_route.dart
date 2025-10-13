@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../models/task_model.dart';
+import '../../feature/home/domain/entities/task_entity.dart';
 import 'animated_routes.dart';
 import '../../feature/auth/presentation/views/register_view.dart';
-import '../../feature/create_edit/presentation/views/edit_view.dart';
+import '../../feature/home/presentation/views/edit_view.dart';
 import '../../feature/home/presentation/views/details_view.dart';
 
 import '../../feature/auth/presentation/views/login_view.dart';
-import '../../feature/create_edit/presentation/views/create_view.dart';
+import '../../feature/home/presentation/views/create_view.dart';
 import '../../feature/home/presentation/views/home_view.dart';
 import '../../feature/onboarding/presentation/views/onboarding_view.dart';
 import '../../feature/profile/presentation/views/profile_view.dart';
@@ -26,9 +26,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case CreateView.routeName:
       return animatedRoute(const CreateView());
     case DetailsView.routeName:
-      return animatedRoute(DetailsView(taskModel: arg as TaskModel));
+      return animatedRoute(DetailsView(taskEntity: arg as TaskEntity));
     case EditView.routeName:
-      return animatedRoute(EditView(taskModel: arg as TaskModel));
+      return animatedRoute(EditView(taskEntity: arg as TaskEntity));
     case ProfileView.routeName:
       return animatedRoute(const ProfileView());
     case ScanCodeView.routeName:

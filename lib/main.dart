@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/create_task_user_case.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/delete_task_user_case.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/edit_task_user_case.dart';
+import 'package:tasky_app/feature/home/domain/user_cases/fetch_all_task_user_case.dart';
 import 'constants.dart';
 import 'core/helper/api_keys.dart';
 import 'core/utils/app_color.dart';
 import 'core/utils/get_it_setup.dart';
 import 'feature/auth/presentation/views/login_view.dart';
-import 'feature/create_edit/data/repo/task_operation_repo.dart';
 import 'feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 import 'feature/home/presentation/views/home_view.dart';
 import 'feature/onboarding/presentation/views/onboarding_view.dart';
@@ -32,11 +35,14 @@ class TaskyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          TaskOperationCubit(taskOperationRepoImpl: getIt<TaskOperationRepo>()),
+      create: (context) => TaskOperationCubit(
+        fetchAllTaskUserCase: getIt.get<FetchAllTaskUserCase>(),
+        createTaskUserCase: getIt.get<CreateTaskUserCase>(),
+        editTaskUserCase: getIt.get<EditTaskUserCase>(),
+        deleteTaskUserCase: getIt.get<DeleteTaskUserCase>(),
+      ),
       child: MaterialApp(
         navigatorKey: navigatorKey,
-        
         theme: ThemeData(
           fontFamily: 'DM Sans',
           scaffoldBackgroundColor: AppColor.whiteColor,

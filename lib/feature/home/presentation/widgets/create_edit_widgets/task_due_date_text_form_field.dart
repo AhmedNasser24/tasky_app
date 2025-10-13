@@ -1,0 +1,72 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
+import '../../../../../core/helper/date_picker.dart';
+import '../../../../../core/helper/format_date.dart';
+import '../../../../../core/widgets/custom_textformfield.dart';
+
+import '../../../domain/entities/task_entity.dart';
+import '../../../../../core/utils/app_images.dart';
+import '../../../../../core/utils/app_styles.dart';
+
+class TaskDueDateFormField extends StatefulWidget {
+  const TaskDueDateFormField(this.taskModel , {super.key});
+  final TaskEntity taskModel ;
+
+  @override
+  State<TaskDueDateFormField> createState() => _TaskDueDateFormFieldState();
+}
+
+class _TaskDueDateFormFieldState extends State<TaskDueDateFormField> {
+  late TextEditingController dateController;
+  @override
+  void initState() {
+    dateController = TextEditingController(text: widget.taskModel.dueDate);
+    super.initState();
+  }
+   @override
+  dispose(){
+    dateController.dispose();
+    super.dispose();
+  }
+  Future<void> __selectDate() async {
+    DateTime? pickedDate = await pickDate(context);
+    if (pickedDate != null) {
+      setState(() {
+        dateController.text = formatDate(pickedDate.toString());
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Due date',
+            style:
+                AppStyles.regular12.copyWith(color: const Color(0xff6E6A7C))),
+        const Gap(8),
+        CustomTextFormField(
+          controller: dateController,
+          hintText: "choose due date...",
+          onTap: () async {
+            await __selectDate();
+          },
+          suffixIcon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 9),
+            child: SvgPicture.asset(Assets.imagesCalendar),
+          ),
+          validator: (dueDate) {
+            if (dueDate == null || dueDate.isEmpty) {
+              return "field is required";
+            }
+            widget.taskModel.dueDate = dueDate;
+            return null;
+          },
+        ),
+      ],
+    );
+  }
+}

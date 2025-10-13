@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
+import '../model/user_info_model.dart';
 import '../../../../core/helper/api_keys.dart';
 import '../data_source/auth_services_data_source.dart';
 import '../../../../core/utils/shared_preference_singleton.dart';
@@ -12,17 +12,17 @@ import '../../../../core/errors/failure.dart';
 import '../../domain/repo/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  final AuthServicesDataSource __authServices;
+  final AuthServicesDataSource __authServicesDataSource;
 
-  AuthRepoImpl({required AuthServicesDataSource authServices})
-      : __authServices = authServices;
+  AuthRepoImpl({required AuthServicesDataSource authServicesDataSource})
+      : __authServicesDataSource = authServicesDataSource;
   @override
   Future<Either<void, Failure>> register(
       {required UserInfoEntity userInfoEntityInput}) async {
     try {
       UserInfoModel userInfoModelInput = UserInfoModel.fromEntity(userInfoEntityInput);
       UserInfoEntity registerOutput =
-          await __authServices.register(userInfoModelInput: userInfoModelInput);
+          await __authServicesDataSource.register(userInfoModelInput: userInfoModelInput);
       await __saveUserInfoLocal(
           userInfoModelOutput: registerOutput, profile: userInfoEntityInput);
       return left(null);
@@ -41,14 +41,14 @@ class AuthRepoImpl implements AuthRepo {
     try {
       UserInfoModel loginModelInput = UserInfoModel.fromEntity(loginEntityInput);
       UserInfoEntity loginModelOutput =
-          await __authServices.login(loginModelInput: loginModelInput);
+          await __authServicesDataSource.login(loginModelInput: loginModelInput);
       await SharedPreferenceSingleton.setString(
           ApiKeys.userId, loginModelOutput.userId!);
       await SharedPreferenceSingleton.setString(
           ApiKeys.accessToken, loginModelOutput.accessToken!);
       await SharedPreferenceSingleton.setString(
           ApiKeys.refreshToken, loginModelOutput.refreshToken!);
-      UserInfoEntity profile = await __authServices.getProfile();
+      UserInfoEntity profile = await __authServicesDataSource.getProfile();
       await __saveUserInfoLocal(
           userInfoModelOutput: loginModelOutput, profile: profile);
 
@@ -66,7 +66,7 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<void, Failure>> logout() async {
     try {
-      await __authServices.logout();
+      await __authServicesDataSource.logout();
       await removeUserInfoLocal();
       log("access toke after remove : ${SharedPreferenceSingleton.getString(ApiKeys.accessToken)}");
       return left(null);
@@ -81,7 +81,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<UserInfoEntity> profile(String accessToken) async {
-    UserInfoEntity profile = await __authServices.getProfile();
+    UserInfoEntity profile = await __authServicesDataSource.getProfile();
     return profile;
   }
 

@@ -1,4 +1,4 @@
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
+import '../model/user_info_model.dart';
 
 import '../../../../core/services/api_services.dart';
 import 'auth_services_data_source.dart';
