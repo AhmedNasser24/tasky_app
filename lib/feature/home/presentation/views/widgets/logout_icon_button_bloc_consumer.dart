@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasky_app/feature/auth/presentation/manager/logout_cubit/logout_cubit.dart';
+import '../../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
 
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_images.dart';

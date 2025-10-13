@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasky_app/feature/home/presentation/views/scan_code_view.dart';
+import '../scan_code_view.dart';
 
 import '../../../../../core/utils/app_images.dart';
 

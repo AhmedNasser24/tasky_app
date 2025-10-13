@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/core/widgets/custom_textformfield.dart';
+import '../../../../../core/widgets/custom_textformfield.dart';
 
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_styles.dart';

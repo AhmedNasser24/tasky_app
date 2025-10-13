@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:tasky_app/core/secrets/api_base_url.dart';
-import 'package:tasky_app/core/services/api_services.dart';
-import 'package:tasky_app/core/services/dio_interceptor.dart';
+import '../secrets/api_base_url.dart';
+import 'api_services.dart';
+import 'dio_interceptor.dart';
 
 class DioApiServices extends ApiServices {
   final DioInterceptor _dioInterceptor = DioInterceptor();

@@ -1,8 +1,5 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tasky_app/core/utils/app_color.dart';
 
 class ImageServices {
   static Future<File?> pickImageFromGallery() async {
@@ -10,12 +7,7 @@ class ImageServices {
     // Pick an image
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
-      if (Platform.isAndroid || Platform.isIOS) {
-        File? croppedFile = await cropImage(File(image.path));
-        return croppedFile ?? File(image.path);
-      } else {
-        return File(image.path);
-      }
+      return File(image.path);
     } else {
       return null;
     }
@@ -32,56 +24,56 @@ class ImageServices {
     }
   }
 
-  static Future<File?> cropImage(File imageFile) async {
-    CroppedFile? croppedFile = await ImageCropper().cropImage(
-      sourcePath: imageFile.path,
-      uiSettings: [
-        AndroidUiSettings(
+  // static Future<File?> cropImage(File imageFile) async {
+  //   CroppedFile? croppedFile = await ImageCropper().cropImage(
+  //     sourcePath: imageFile.path,
+  //     uiSettings: [
+  //       AndroidUiSettings(
 
-          toolbarTitle: 'Image Cropper',
-          toolbarColor: AppColor.primaryColor,
-          toolbarWidgetColor: Colors.white,
-          hideBottomControls: true,
-          initAspectRatio: CropAspectRatioPreset.square,
-          // cropStyle: CropStyle.values[],
-          showCropGrid: false,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.square,
-            CropAspectRatioPresetCustom(),
-          ],
-        ),
-        IOSUiSettings(
-          title: 'Image Cropper',
-          minimumAspectRatio: 1,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.square,
-            CropAspectRatioPresetCustom(), // IMPORTANT: iOS supports only one custom aspect ratio in preset list
-          ],
-        ),
-        // WebUiSettings(
-        //   context: navigatorKey.currentContext!,
+  //         toolbarTitle: 'Image Cropper',
+  //         toolbarColor: AppColor.primaryColor,
+  //         toolbarWidgetColor: Colors.white,
+  //         hideBottomControls: true,
+  //         initAspectRatio: CropAspectRatioPreset.square,
+  //         // cropStyle: CropStyle.values[],
+  //         showCropGrid: false,
+  //         aspectRatioPresets: [
+  //           CropAspectRatioPreset.original,
+  //           CropAspectRatioPreset.square,
+  //           CropAspectRatioPresetCustom(),
+  //         ],
+  //       ),
+  //       IOSUiSettings(
+  //         title: 'Image Cropper',
+  //         minimumAspectRatio: 1,
+  //         aspectRatioPresets: [
+  //           CropAspectRatioPreset.original,
+  //           CropAspectRatioPreset.square,
+  //           CropAspectRatioPresetCustom(), // IMPORTANT: iOS supports only one custom aspect ratio in preset list
+  //         ],
+  //       ),
+  // WebUiSettings(
+  //   context: navigatorKey.currentContext!,
 
-        // ),
-      ],
-    );
+  // ),
+  //   ],
+  // );
 
-    if (croppedFile != null) {
-      return File(croppedFile.path);
-    } else {
-      return null;
-    }
-  }
+  // if (croppedFile != null) {
+  //   return File(croppedFile.path);
+  // } else {
+  //   return null;
+  // }
+  // }
 }
 
-class CropAspectRatioPresetCustom implements CropAspectRatioPresetData {
-  @override
-  (int, int)? get data => (2, 3);
+// class CropAspectRatioPresetCustom implements CropAspectRatioPresetData {
+//   @override
+//   (int, int)? get data => (2, 3);
 
-  @override
-  String get name => '2x3 (customized)';
-}
+//   @override
+//   String get name => '2x3 (customized)';
+// }
 
 
 /*

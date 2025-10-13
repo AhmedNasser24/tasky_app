@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/setting_icon_button.dart';
+import '../../../../../constants.dart';
+import 'setting_icon_button.dart';
 
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_styles.dart';

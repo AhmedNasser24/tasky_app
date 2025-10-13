@@ -4,11 +4,11 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import 'package:tasky_app/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 
-import 'package:tasky_app/core/models/task_model.dart';
-import 'package:tasky_app/core/secrets/api_base_url.dart';
-import 'package:tasky_app/core/services/data_service.dart';
+import '../../../../core/models/task_model.dart';
+import '../../../../core/secrets/api_base_url.dart';
+import '../../../../core/services/data_service.dart';
 import 'task_operation_repo.dart';
 
 class TaskOperationRepoImpl extends TaskOperationRepo {

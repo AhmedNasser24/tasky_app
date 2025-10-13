@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasky_app/feature/auth/presentation/views/widgets/custom_intl_phone_field.dart';
+import 'custom_intl_phone_field.dart';
 
 import '../../../data/model/user_info_model.dart';
 

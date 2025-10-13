@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/task_loading_state_body.dart';
+import 'task_loading_state_body.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/app_color.dart';

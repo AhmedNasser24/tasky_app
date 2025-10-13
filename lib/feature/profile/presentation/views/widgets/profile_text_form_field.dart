@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/core/utils/app_styles.dart';
-import 'package:tasky_app/feature/profile/presentation/views/widgets/copy_icon_button.dart';
+import '../../../../../core/utils/app_styles.dart';
+import 'copy_icon_button.dart';
 
 class ProfileTextFormField extends StatelessWidget {
   const ProfileTextFormField(

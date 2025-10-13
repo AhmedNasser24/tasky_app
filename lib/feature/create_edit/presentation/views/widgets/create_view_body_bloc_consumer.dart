@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/core/widgets/custom_model_progress_hud.dart';
-import 'package:tasky_app/core/widgets/show_snack_bar.dart';
-import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
+import '../../../../../core/widgets/custom_model_progress_hud.dart';
+import '../../../../../core/widgets/show_snack_bar.dart';
+import '../../../../home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
 
 import 'create_view_body.dart';
 

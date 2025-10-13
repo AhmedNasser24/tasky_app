@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/core/helper/set_preferred_orientations.dart';
-import 'package:tasky_app/core/utils/app_color.dart';
-import 'package:tasky_app/core/utils/app_images.dart';
-import 'package:tasky_app/core/utils/app_styles.dart';
+import '../../../../../core/helper/set_preferred_orientations.dart';
+import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/app_images.dart';
+import '../../../../../core/utils/app_styles.dart';
 
 import '../../../../../constants.dart';
 import 'start_button.dart';

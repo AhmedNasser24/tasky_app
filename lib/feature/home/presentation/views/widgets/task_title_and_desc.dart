@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/core/utils/app_styles.dart';
+import '../../../../../core/utils/app_styles.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/models/task_model.dart';

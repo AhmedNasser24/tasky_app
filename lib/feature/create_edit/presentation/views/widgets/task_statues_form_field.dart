@@ -1,6 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky_app/constants.dart';
+import '../../../../../constants.dart';
 
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_color.dart';

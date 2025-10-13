@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tasky_app/core/models/task_model.dart';
-import 'package:tasky_app/core/routes/animated_routes.dart';
-import 'package:tasky_app/feature/auth/presentation/views/register_view.dart';
-import 'package:tasky_app/feature/create_edit/presentation/views/edit_view.dart';
-import 'package:tasky_app/feature/home/presentation/views/details_view.dart';
+import '../models/task_model.dart';
+import 'animated_routes.dart';
+import '../../feature/auth/presentation/views/register_view.dart';
+import '../../feature/create_edit/presentation/views/edit_view.dart';
+import '../../feature/home/presentation/views/details_view.dart';
 
 import '../../feature/auth/presentation/views/login_view.dart';
 import '../../feature/create_edit/presentation/views/create_view.dart';

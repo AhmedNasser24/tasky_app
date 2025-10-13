@@ -3,13 +3,13 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/core/helper/api_keys.dart';
-import 'package:tasky_app/core/secrets/api_base_url.dart';
-import 'package:tasky_app/core/secrets/end_point.dart';
-import 'package:tasky_app/core/utils/shared_preference_singleton.dart';
-import 'package:tasky_app/feature/auth/presentation/views/login_view.dart';
-import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
-import 'package:tasky_app/main.dart';
+import '../helper/api_keys.dart';
+import '../secrets/api_base_url.dart';
+import '../secrets/end_point.dart';
+import '../utils/shared_preference_singleton.dart';
+import '../../feature/auth/presentation/views/login_view.dart';
+import '../../feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
+import '../../main.dart';
 
 class DioInterceptor {
   late final Dio dio;

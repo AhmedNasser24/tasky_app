@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:tasky_app/core/helper/api_keys.dart';
-import 'package:tasky_app/core/services/auth_services.dart';
-import 'package:tasky_app/core/utils/shared_preference_singleton.dart';
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
+import '../../../../core/helper/api_keys.dart';
+import '../../../../core/services/auth_services.dart';
+import '../../../../core/utils/shared_preference_singleton.dart';
+import '../model/user_info_model.dart';
 
 import '../../../../core/errors/failure.dart';
 import 'auth_repo.dart';

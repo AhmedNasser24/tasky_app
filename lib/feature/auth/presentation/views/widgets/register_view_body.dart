@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/utils/app_images.dart';
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
-import 'package:tasky_app/feature/auth/presentation/views/widgets/already_have_account.dart';
-import 'package:tasky_app/feature/auth/presentation/views/widgets/register_password.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/utils/app_images.dart';
+import '../../../data/model/user_info_model.dart';
+import 'already_have_account.dart';
+import 'register_password.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/feature/auth/presentation/views/widgets/register_years_of_experience.dart';
+import 'register_years_of_experience.dart';
 import 'register_address.dart';
 import 'register_button.dart';
 import 'register_name.dart';

@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:tasky_app/core/errors/failure.dart';
-import 'package:tasky_app/core/services/data_service.dart';
-import 'package:tasky_app/core/models/task_model.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/services/data_service.dart';
+import '../../../../core/models/task_model.dart';
 
 import 'home_repo.dart';
 

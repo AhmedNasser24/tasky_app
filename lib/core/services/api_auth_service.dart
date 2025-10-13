@@ -1,5 +1,5 @@
-import 'package:tasky_app/core/services/api_services.dart';
-import 'package:tasky_app/core/services/auth_services.dart';
+import 'api_services.dart';
+import 'auth_services.dart';
 
 import '../../feature/auth/data/model/user_info_model.dart';
 import '../secrets/end_point.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/core/widgets/show_snack_bar.dart';
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
+import '../../../../../core/widgets/show_snack_bar.dart';
+import '../../../data/model/user_info_model.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
 import '../../manager/register_cubit/register_cubit.dart';

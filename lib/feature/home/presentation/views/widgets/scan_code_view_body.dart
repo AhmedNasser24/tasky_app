@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tasky_app/feature/home/presentation/manager/fetch_one_task_cubit/fetch_one_task_cubit_cubit.dart';
+import '../../manager/fetch_one_task_cubit/fetch_one_task_cubit_cubit.dart';
 import 'package:vibration/vibration.dart';
 
 class ScanCodeViewBody extends StatefulWidget {

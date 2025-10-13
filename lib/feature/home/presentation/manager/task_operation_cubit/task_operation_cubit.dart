@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/errors/failure.dart';
-import 'package:tasky_app/core/models/task_model.dart';
-import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/models/task_model.dart';
+import '../../../../create_edit/data/repo/task_operation_repo.dart';
 
 part 'task_operation_state.dart';
 

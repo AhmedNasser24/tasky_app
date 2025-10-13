@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/helper/api_keys.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
-import 'package:tasky_app/core/utils/shared_preference_singleton.dart';
-import 'package:tasky_app/feature/auth/data/model/user_info_model.dart';
-import 'package:tasky_app/feature/profile/presentation/views/widgets/profile_text_form_field.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/helper/api_keys.dart';
+import '../../../../../core/helper/media_query_extension.dart';
+import '../../../../../core/utils/shared_preference_singleton.dart';
+import '../../../../auth/data/model/user_info_model.dart';
+import 'profile_text_form_field.dart';
 
 import 'profile_app_bar.dart';
 

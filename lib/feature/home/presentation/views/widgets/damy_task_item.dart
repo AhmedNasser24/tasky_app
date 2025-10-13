@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
+import '../../../../../constants.dart';
 import '../../../../../core/utils/app_images.dart';
 import 'task_item_date.dart';
 import 'task_item_description.dart';

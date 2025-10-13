@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:tasky_app/core/helper/api_keys.dart';
-import 'package:tasky_app/core/services/api_services.dart';
-import 'package:tasky_app/core/services/data_service.dart';
+import '../helper/api_keys.dart';
+import 'api_services.dart';
+import 'data_service.dart';
 import '../models/task_model.dart';
 import '../secrets/end_point.dart';
 

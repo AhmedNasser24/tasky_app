@@ -2,8 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/utils/app_images.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/utils/app_images.dart';
 
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_color.dart';

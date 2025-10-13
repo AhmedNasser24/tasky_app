@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tasky_app/core/utils/app_color.dart';
+import '../utils/app_color.dart';
 
 import '../utils/app_styles.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:tasky_app/core/helper/api_keys.dart';
+import '../helper/api_keys.dart';
 
 class TaskModel {
   int? currIndex;

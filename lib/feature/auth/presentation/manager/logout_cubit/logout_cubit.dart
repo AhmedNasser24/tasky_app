@@ -2,7 +2,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/feature/auth/data/repos/auth_repo.dart';
+import '../../../data/repos/auth_repo.dart';
 
 import '../../../../../core/errors/failure.dart';
 

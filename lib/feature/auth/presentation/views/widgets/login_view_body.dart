@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/utils/app_images.dart';
-import 'package:tasky_app/feature/auth/presentation/views/widgets/login_phone.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/utils/app_images.dart';
+import 'login_phone.dart';
 import 'package:gap/gap.dart';
 import '../../../data/model/user_info_model.dart';
 import 'do_not_have_account.dart';

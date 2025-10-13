@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/generate_qr_code.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/task_title_and_desc.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/helper/media_query_extension.dart';
+import 'generate_qr_code.dart';
+import 'task_title_and_desc.dart';
 import '../../../../../core/models/task_model.dart';
 import '../../../../create_edit/presentation/views/widgets/details_priority.dart';
 import 'details_app_bar.dart';

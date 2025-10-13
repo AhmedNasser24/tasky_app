@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/filter_buttons.dart';
+import '../../../../../constants.dart';
+import '../../manager/task_operation_cubit/task_operation_cubit.dart';
+import 'filter_buttons.dart';
 import 'task_items_bloc_builder.dart';
 import 'home_app_bar.dart';
 import 'my_task_text.dart';

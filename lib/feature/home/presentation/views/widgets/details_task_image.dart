@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
+import '../../../../../core/helper/media_query_extension.dart';
 
 import '../../../../../constants.dart';
 import 'custom_cached_network_image.dart';

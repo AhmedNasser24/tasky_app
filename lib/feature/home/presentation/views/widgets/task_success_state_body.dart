@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
-import 'package:tasky_app/feature/home/presentation/views/widgets/task_empty_state_body.dart';
+import '../../../../../core/helper/media_query_extension.dart';
+import 'task_empty_state_body.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/models/task_model.dart';

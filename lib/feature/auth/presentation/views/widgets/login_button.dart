@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/core/widgets/show_snack_bar.dart';
+import '../../../../../core/widgets/show_snack_bar.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../data/model/user_info_model.dart';

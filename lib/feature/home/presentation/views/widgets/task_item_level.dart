@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/utils/app_color.dart';
-import 'package:tasky_app/core/utils/app_images.dart';
-import 'package:tasky_app/core/utils/app_styles.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/app_images.dart';
+import '../../../../../core/utils/app_styles.dart';
 
 class TaskItemPriority extends StatelessWidget {
   const TaskItemPriority(this.level, {super.key, this.isDamy = false});

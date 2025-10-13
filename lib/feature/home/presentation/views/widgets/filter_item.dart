@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasky_app/core/utils/app_color.dart';
-import 'package:tasky_app/core/utils/app_styles.dart';
+import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/app_styles.dart';
 
 class FilterItem extends StatelessWidget {
   const FilterItem({

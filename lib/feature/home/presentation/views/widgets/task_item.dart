@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
+import '../../../../../constants.dart';
 import '../../../../../core/models/task_model.dart';
 import '../details_view.dart';
 import 'setting_icon_button.dart';

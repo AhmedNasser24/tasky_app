@@ -1,13 +1,13 @@
 import 'package:get_it/get_it.dart';
-import 'package:tasky_app/core/services/api_auth_service.dart';
-import 'package:tasky_app/core/services/api_data_service.dart';
-import 'package:tasky_app/core/services/api_services.dart';
-import 'package:tasky_app/core/services/auth_services.dart';
-import 'package:tasky_app/core/services/data_service.dart';
-import 'package:tasky_app/core/services/dio_api_service.dart';
-import 'package:tasky_app/feature/create_edit/data/repo/task_operation_repo.dart';
-import 'package:tasky_app/feature/home/data/repo/home_repo.dart';
-import 'package:tasky_app/feature/home/data/repo/home_repo_impl.dart';
+import '../services/api_auth_service.dart';
+import '../services/api_data_service.dart';
+import '../services/api_services.dart';
+import '../services/auth_services.dart';
+import '../services/data_service.dart';
+import '../services/dio_api_service.dart';
+import '../../feature/create_edit/data/repo/task_operation_repo.dart';
+import '../../feature/home/data/repo/home_repo.dart';
+import '../../feature/home/data/repo/home_repo_impl.dart';
 
 import '../../feature/auth/data/repos/auth_repo.dart';
 import '../../feature/auth/data/repos/auth_repo_impl.dart';

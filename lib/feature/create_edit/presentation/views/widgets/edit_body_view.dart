@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/constants.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/helper/media_query_extension.dart';
 
 import '../../../../../core/models/task_model.dart';
 import 'edit_app_bar.dart';

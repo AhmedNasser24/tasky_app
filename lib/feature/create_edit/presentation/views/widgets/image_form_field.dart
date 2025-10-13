@@ -2,8 +2,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/core/helper/media_query_extension.dart';
-import 'package:tasky_app/core/utils/app_styles.dart';
+import '../../../../../core/helper/media_query_extension.dart';
+import '../../../../../core/utils/app_styles.dart';
 
 import '../../../../../core/services/image_services.dart';
 import '../../../../../core/models/task_model.dart';

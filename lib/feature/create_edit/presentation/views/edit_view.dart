@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasky_app/core/models/task_model.dart';
+import '../../../../core/models/task_model.dart';
 
 import 'widgets/edit_view_body_bloc_consumer.dart';
 

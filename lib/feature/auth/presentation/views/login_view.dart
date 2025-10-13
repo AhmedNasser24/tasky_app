@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasky_app/feature/auth/presentation/manager/login_cubit/login_cubit.dart';
+import '../manager/login_cubit/login_cubit.dart';
 
 import '../../../../core/utils/get_it_setup.dart';
 import '../../data/repos/auth_repo.dart';

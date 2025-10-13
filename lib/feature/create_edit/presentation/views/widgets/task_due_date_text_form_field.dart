@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:tasky_app/core/helper/date_picker.dart';
-import 'package:tasky_app/core/helper/format_date.dart';
-import 'package:tasky_app/core/widgets/custom_textformfield.dart';
+import '../../../../../core/helper/date_picker.dart';
+import '../../../../../core/helper/format_date.dart';
+import '../../../../../core/widgets/custom_textformfield.dart';
 
 import '../../../../../core/models/task_model.dart';
 import '../../../../../core/utils/app_images.dart';
