@@ -32,12 +32,14 @@ class ProfileTextFormField extends StatelessWidget {
                   title,
                   style: AppStyles.medium15
                       .copyWith(color: const Color(0x662F2F2F)),
+                      overflow: TextOverflow.ellipsis,                      
                 ),
                 const Gap(4),
                 Text(
                   subTitle,
                   style:
                       AppStyles.bold18.copyWith(color: const Color(0x992F2F2F)),
+                      overflow: TextOverflow.ellipsis,                      
                 ),
               ],
             ),

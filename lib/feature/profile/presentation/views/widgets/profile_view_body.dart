@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import '../../../data/get_profile_data.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/helper/media_query_extension.dart';
@@ -51,7 +50,6 @@ class ProfileViewBody extends StatelessWidget {
                     title: "Location",
                     subTitle: profileData.address!,
                   ),
-                  const Gap(kBottomSpace),
                 ],
               ),
             ),
