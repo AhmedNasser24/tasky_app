@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../../core/utils/shared_preference_singleton.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_styles.dart';
-import '../../../../auth/presentation/views/login_view.dart';
 
 class StartButton extends StatelessWidget {
   const StartButton({super.key});
@@ -16,7 +17,7 @@ class StartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacementNamed(context, LoginView.routeName);
+        context.pushReplacementNamed(AppRouter.register);
         SharedPreferenceSingleton.setbool(kIsOnboardingVisited, true);
       },
       child: Container(

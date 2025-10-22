@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 
 import '../../../../../core/utils/app_images.dart';
-import '../../../../profile/presentation/views/profile_view.dart';
 
 class ProfileIconButton extends StatelessWidget {
   const ProfileIconButton({
@@ -16,7 +17,7 @@ class ProfileIconButton extends StatelessWidget {
     return InkWell(
       onTap: () async{
         
-        Navigator.pushNamed(context, ProfileView.routeName);
+        context.pushNamed(AppRouter .profile);
       },
       child: SvgPicture.asset(Assets.imagesProfileIcon),
     );

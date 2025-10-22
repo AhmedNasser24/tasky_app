@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 
 import '../../../../../core/utils/app_color.dart';
-import '../../views/create_view.dart';
 
 class CustomAddIconButton extends StatelessWidget {
   const CustomAddIconButton({super.key});
@@ -10,7 +11,7 @@ class CustomAddIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, CreateView.routeName) ;
+        context.pushNamed(AppRouter.create);
       },
       child: Container(
         width: 64,

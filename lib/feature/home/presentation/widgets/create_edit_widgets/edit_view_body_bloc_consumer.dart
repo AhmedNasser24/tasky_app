@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/widgets/custom_model_progress_hud.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
 import 'edit_body_view.dart';
@@ -17,7 +18,7 @@ class EditViewBodyBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is EditTaskSuccess) {
           showSnackBarSuccess(context, "task is updated successfully");
-          Navigator.pop(context);
+          context.pop();
         } else if (state is EditTaskFailure) {
           isLoading = false;
           showSnackBarFailure(context, state.errmessage);

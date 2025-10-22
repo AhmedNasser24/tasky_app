@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../views/edit_view.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
@@ -9,8 +10,8 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class SettingIconButton extends StatelessWidget {
-  const SettingIconButton({super.key, required this.taskModel});
-  final TaskEntity taskModel;
+  const SettingIconButton({super.key, required this.taskEntity});
+  final TaskEntity taskEntity;
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
@@ -43,13 +44,13 @@ class SettingIconButton extends StatelessWidget {
         if (value == 'delete') {
           showDeleteDialog(context, () {
             BlocProvider.of<TaskOperationCubit>(context)
-                .deleteTask(taskModel: taskModel);
+                .deleteTask(taskModel: taskEntity);
           });
         } else if (value == 'edit') {
-          Navigator.pushNamed(
-            context,
+          context.pushNamed(
+            
             EditView.routeName,
-            arguments: taskModel,
+            extra: taskEntity,
           );
         }
       },

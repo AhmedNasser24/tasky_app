@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
 import '../../manager/fetch_one_task_cubit/fetch_one_task_cubit_cubit.dart';
 import '../../views/details_view.dart';
@@ -13,17 +15,13 @@ class ScanCodeViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<FetchOneTaskCubit, FetchOneTaskCubitState>(
       listener: (context, state) {
         if (state is FetchOneTaskCubitSuccess) {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      DetailsView(taskEntity: state.taskEntity)));
+          context.pushReplacement(AppRouter.details, extra: state.taskEntity);
         } else if (state is FetchOneTaskCubitFailure) {
           showSnackBarFailure(context, state.errMessage);
         }
       },
       builder: (context, state) {
-        return  ScanCodeViewBody(state : state);
+        return ScanCodeViewBody(state: state);
       },
     );
   }

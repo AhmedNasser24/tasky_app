@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../core/widgets/custom_model_progress_hud.dart';
 import '../../../../core/widgets/show_snack_bar.dart';
 import '../manager/register_cubit/register_cubit.dart';
 
-import '../../../home/presentation/views/home_view.dart';
 import 'register_view_body.dart';
 
 class RegisterViewBodyBlocConsumer extends StatelessWidget {
@@ -18,7 +19,7 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccess) {
-          Navigator.pushReplacementNamed(context, HomeView.routeName);
+          context.pushReplacementNamed(AppRouter.home);
         } else if (state is RegisterFailure) {
           showSnackBarFailure(context, state.errMessage);
         }

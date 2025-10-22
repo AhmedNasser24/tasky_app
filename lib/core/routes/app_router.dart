@@ -13,6 +13,7 @@ import 'package:tasky_app/feature/home/presentation/views/create_view.dart';
 import 'package:tasky_app/feature/home/presentation/views/details_view.dart';
 import 'package:tasky_app/feature/home/presentation/views/edit_view.dart';
 import 'package:tasky_app/feature/home/presentation/views/home_view.dart';
+import 'package:tasky_app/feature/home/presentation/views/scan_code_view.dart';
 import 'package:tasky_app/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:tasky_app/feature/profile/presentation/views/profile_view.dart';
 
@@ -209,7 +210,7 @@ class _PageBasedPageRoute<T> extends PageRoute<T> {
   }
 }
 
-String get initialLocation {
+String get _initialLocation {
   if (!SharedPreferenceSingleton.getbool(kIsOnboardingVisited)) {
     return AppRouter.onboarding;
   } else {
@@ -220,101 +221,112 @@ String get initialLocation {
     }
   }
 }
-final GoRouter appRouter = GoRouter(observers: [
-  routeObserver
-],
-  initialLocation: initialLocation,
- routes: [
-  GoRoute(
-      path: AppRouter.onboarding,
-      name: AppRouter.onboarding,
-      pageBuilder: (context, state) => buildAnimatedPage(
+
+final GoRouter appRouter = GoRouter(
+    observers: [routeObserver],
+    initialLocation: _initialLocation,
+    routes: [
+      GoRoute(
+          path: AppRouter.onboarding,
+          name: AppRouter.onboarding,
+          pageBuilder: (context, state) => buildAnimatedPage(
+                key: state.pageKey,
+                child: const OnboardingView(),
+                animationType: AnimationType.fade,
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.elasticOut,
+              )),
+      GoRoute(
+          path: AppRouter.login,
+          name: AppRouter.login,
+          pageBuilder: (context, state) => buildAnimatedPage(
+                key: state.pageKey,
+                child: const LoginView(),
+                animationType: AnimationType.slideFromRight,
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.elasticOut,
+              )),
+      GoRoute(
+        path: AppRouter.register,
+        name: AppRouter.register,
+        pageBuilder: (context, state) => buildAnimatedPage(
+          key: state.pageKey,
+          child: const RegisterView(),
+          animationType: AnimationType.slideFromRight,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.elasticOut,
+        ),
+      ),
+      GoRoute(
+        path: AppRouter.home,
+        name: AppRouter.home,
+        pageBuilder: (context, state) => buildAnimatedPage(
+          key: state.pageKey,
+          child: const HomeView(),
+          animationType: AnimationType.slideFromBottom,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.elasticOut,
+        ),
+      ),
+      GoRoute(
+        path: AppRouter.details,
+        name: AppRouter.details,
+        pageBuilder: (context, state) {
+          final taskEntity = state.extra as TaskEntity;
+          return buildAnimatedPage(
             key: state.pageKey,
-            child: const OnboardingView(),
+            child: DetailsView(taskEntity: taskEntity),
             animationType: AnimationType.fade,
             duration: const Duration(milliseconds: 400),
             curve: Curves.elasticOut,
-          )),
-  GoRoute(
-      path: AppRouter.login,
-      name: AppRouter.login,
-      pageBuilder: (context, state) => buildAnimatedPage(
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRouter.edit,
+        name: AppRouter.edit,
+        pageBuilder: (context, state) {
+          final taskEntity = state.extra as TaskEntity;
+          return buildAnimatedPage(
             key: state.pageKey,
-            child: const LoginView(),
-            animationType: AnimationType.slideFromRight,
+            child: EditView(taskEntity: taskEntity),
+            animationType: AnimationType.fade,
             duration: const Duration(milliseconds: 400),
             curve: Curves.elasticOut,
-          )),
-  GoRoute(
-    path: AppRouter.register,
-    name: AppRouter.register,
-    pageBuilder: (context, state) => buildAnimatedPage(
-      key: state.pageKey,
-      child: const RegisterView(),
-      animationType: AnimationType.slideFromRight,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.elasticOut,
-    ),
-  ),
-  GoRoute(
-    path: AppRouter.home,
-    name: AppRouter.home,
-    pageBuilder: (context, state) => buildAnimatedPage(
-      key: state.pageKey,
-      child: const HomeView(),
-      animationType: AnimationType.slideFromBottom,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.elasticOut,
-    ),
-  ),
-  GoRoute(
-    path: AppRouter.details,
-    name: AppRouter.details,
-    pageBuilder: (context, state) {
-      final taskEntity = state.extra as TaskEntity;
-      return buildAnimatedPage(
-        key: state.pageKey,
-        child: DetailsView(taskEntity: taskEntity),
-        animationType: AnimationType.fade,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.elasticOut,
-      );
-    },
-  ),
-  GoRoute(
-    path: AppRouter.edit,
-    name: AppRouter.edit,
-    pageBuilder: (context, state) {
-      final taskEntity = state.extra as TaskEntity;
-      return buildAnimatedPage(
-        key: state.pageKey,
-        child: EditView(taskEntity: taskEntity),
-        animationType: AnimationType.slideFromRight,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.elasticOut,
-      );
-    },
-  ),
-  GoRoute(
-    path: AppRouter.create,
-    name: AppRouter.create,
-    pageBuilder: (context, state) => buildAnimatedPage(
-      key: state.pageKey,
-      child: const CreateView(),
-      animationType: AnimationType.slideFromRight,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.elasticOut,
-    ),
-  ),
-  GoRoute(
-    path: AppRouter.profile,
-    name: AppRouter.profile,
-    pageBuilder: (context, state) => buildAnimatedPage(
-      key: state.pageKey,
-      child: const ProfileView(),
-      animationType: AnimationType.slideFromRight,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.elasticOut,
-    ),
-  ),
-]);
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRouter.create,
+        name: AppRouter.create,
+        pageBuilder: (context, state) => buildAnimatedPage(
+          key: state.pageKey,
+          child: const CreateView(),
+          animationType: AnimationType.fade,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.elasticOut,
+        ),
+      ),
+      GoRoute(
+        path: AppRouter.scanCode,
+        name: AppRouter.scanCode,
+        pageBuilder: (context, state) => buildAnimatedPage(
+          key: state.pageKey,
+          child: const ScanCodeView(),
+          animationType: AnimationType.fade,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.elasticOut,
+        ),
+      ),
+      GoRoute(
+        path: AppRouter.profile,
+        name: AppRouter.profile,
+        pageBuilder: (context, state) => buildAnimatedPage(
+          key: state.pageKey,
+          child: const ProfileView(),
+          animationType: AnimationType.fade,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.elasticOut,
+        ),
+      ),
+    ]);

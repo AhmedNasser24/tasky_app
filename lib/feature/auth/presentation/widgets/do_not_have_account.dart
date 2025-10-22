@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../core/utils/app_color.dart';
-import '../views/register_view.dart';
 
 import '../../../../core/utils/app_styles.dart';
 
@@ -18,7 +19,7 @@ class DoNotHaveAccount extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, RegisterView.routeName);
+            context.pushNamed( AppRouter.register);
           },
           child: Text(
             "Sign Up here",

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../../core/widgets/custom_model_progress_hud.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
 import '../../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
@@ -28,8 +30,7 @@ class HomeViewBodyBlocConsumer extends StatelessWidget {
           listener: (context, state) {
             if (state is LogoutSuccess) {
               BlocProvider.of<TaskOperationCubit>(context).initAllDataOfCubit() ;
-              Navigator.pushNamedAndRemoveUntil(
-                  context, LoginView.routeName, (_) => false);
+              GoRouter.of(context).goNamed(AppRouter.login);
             } else if (state is LogoutFailure) {
               showSnackBarFailure(context, state.errMessage);
             }

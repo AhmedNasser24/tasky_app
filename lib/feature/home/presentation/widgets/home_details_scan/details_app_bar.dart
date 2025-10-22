@@ -40,7 +40,7 @@ class DetailsAppBar extends StatelessWidget {
             right: 0,
             top: 0,
             bottom: 0,
-            child: SettingIconButton(taskModel: taskEntity))
+            child: SettingIconButton(taskEntity: taskEntity))
       ],
     );
   }

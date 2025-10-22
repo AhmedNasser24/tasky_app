@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../../constants.dart';
 import '../../../domain/entities/task_entity.dart';
 import '../../views/details_view.dart';
@@ -29,10 +31,9 @@ class TaskItem extends StatelessWidget {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  DetailsView.routeName,
-                  arguments: taskModel,
+                context.pushNamed(
+                  AppRouter.details,
+                  extra: taskModel,
                 );
               },
               child: Row(
@@ -75,7 +76,7 @@ class TaskItem extends StatelessWidget {
           Positioned(
             top: -8,
             right: 0,
-            child: SettingIconButton(taskModel: taskModel),
+            child: SettingIconButton(taskEntity: taskModel),
           ),
         ],
       ),

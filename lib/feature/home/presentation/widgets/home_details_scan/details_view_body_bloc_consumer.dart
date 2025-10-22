@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/widgets/custom_model_progress_hud.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
@@ -16,7 +17,7 @@ class DetailsViewBodyBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is DeleteTaskSuccess) {
           showSnackBarFailure(context, "task is deleted successfully");
-          Navigator.pop(context);
+          context.pop(context);
         } else if (state is DeleteTaskFailure) {
           showSnackBarFailure(context, state.errMessage);
         }

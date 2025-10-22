@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky_app/core/routes/app_router.dart';
-import 'constants.dart';
-import 'core/helper/api_keys.dart';
 import 'core/utils/app_color.dart';
 import 'core/utils/get_it_setup.dart' as di;
-import 'feature/auth/presentation/views/login_view.dart';
 import 'feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
-import 'feature/home/presentation/views/home_view.dart';
-import 'feature/onboarding/presentation/views/onboarding_view.dart';
-import 'core/routes/on_generate_route.dart';
 import 'core/utils/shared_preference_singleton.dart';
 import 'core/utils/simple_bloc_observer.dart';
 

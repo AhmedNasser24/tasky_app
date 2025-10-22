@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../utils/app_images.dart';
 
@@ -12,8 +13,8 @@ class CustomBackArrowButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (Navigator.canPop(context)) {
-          Navigator.pop(context);
+        if (context.canPop()) {
+          context.pop();
         }
       },
       child: SvgPicture.asset(Assets.imagesBackArrowIcon),

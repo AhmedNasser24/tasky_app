@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../views/scan_code_view.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 
 import '../../../../../core/utils/app_images.dart';
 
@@ -11,7 +12,7 @@ class CustomQrIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ScanCodeView.routeName);
+        context.pushNamed(AppRouter.scanCode);
       } ,
       child: Container(
         width: 50,

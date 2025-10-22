@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/widgets/custom_model_progress_hud.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
@@ -18,11 +19,11 @@ class CreateViewBodyBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is CreateTaskSuccess) {
           showSnackBarSuccess(context, "task is added successfully");
-          Navigator.pop(context);
+          context.pop();
         } else if (state is CreateTaskLoading) {
           isLoading = true;
         } else if (state is CreateTaskFailure) {
-          isLoading = false ;
+          isLoading = false;
           showSnackBarFailure(context, state.errMessage);
         }
         // else if (state is NoInternetConnection) {   // not used isFirstTaskOperation bec can navigate to create view without internet at first
