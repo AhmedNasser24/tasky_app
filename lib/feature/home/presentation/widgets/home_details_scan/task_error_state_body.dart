@@ -6,7 +6,7 @@ import '../../../../../core/utils/constants/app_constants.dart';
 import '../../../../../core/utils/theme/app_color.dart';
 import '../../../../../core/utils/theme/app_font_styles.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
-import 'task_loading_state_body.dart';
+import '../../../../../core/widgets/skeletonizer/custom_grid_skeletonizer.dart';
 
 class TaskErrorStateBody extends StatelessWidget {
   const TaskErrorStateBody({
@@ -17,7 +17,7 @@ class TaskErrorStateBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Expanded(child: CustomLoadingSkeletonizer()),
+        const Expanded(child: CustomGridSkeletonizer()),
         GestureDetector(
           onTap: () => BlocProvider.of<TaskOperationCubit>(context).refresh(),
           child: Container(

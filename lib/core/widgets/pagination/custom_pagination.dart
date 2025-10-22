@@ -13,6 +13,8 @@ class CustomPagination<T> extends StatefulWidget {
     this.crossAxisCount = 1,
     this.childAspectRatio = 1.0,
     required this.itemBuilder,
+    this.skeletonizerBuilder,
+    this.skeletonizerCount = 3,
   });
   final bool isLoading;
   final bool isThereMoreItems;
@@ -22,6 +24,8 @@ class CustomPagination<T> extends StatefulWidget {
   final int crossAxisCount;
   final double childAspectRatio;
   final Widget Function(T item) itemBuilder;
+  final Widget Function()? skeletonizerBuilder;
+  final int skeletonizerCount;
   @override
   State<CustomPagination<T>> createState() => _CustomPaginationState<T>();
 }
@@ -52,7 +56,7 @@ class _CustomPaginationState<T> extends State<CustomPagination<T>> {
 
   @override
   Widget build(BuildContext context) {
-    log ("isThereMoreItems : ${widget.isThereMoreItems}");
+    log("isThereMoreItems : ${widget.isThereMoreItems}");
 
     if (widget.items.isEmpty && !widget.isThereMoreItems) {
       return widget.emptyWidget;
@@ -75,16 +79,25 @@ class _CustomPaginationState<T> extends State<CustomPagination<T>> {
         childAspectRatio: widget.childAspectRatio,
       ),
       physics: const AlwaysScrollableScrollPhysics(),
-      itemCount: widget.items.length + (widget.isThereMoreItems ? 1 : 0),
+      itemCount: widget.items.length +
+          (widget.isThereMoreItems
+              ? (widget.skeletonizerBuilder != null
+                  ? widget.skeletonizerCount
+                  : 1)
+              : 0),
       itemBuilder: (context, index) {
         if (index < widget.items.length) {
           return widget.itemBuilder(widget.items[index]);
           // return TaskItem(taskModel: tasksListAccordingToFilter[index]);
         } else {
-          return const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Center(child: CircularProgressIndicator()),
-          );
+          if (widget.skeletonizerBuilder != null) {
+            return widget.skeletonizerBuilder!();
+          } else {
+            return const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
         }
       },
     );

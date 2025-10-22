@@ -6,7 +6,6 @@ import '../../../../../core/widgets/custom_model_progress_hud.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
 import '../../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
 
-import '../../../../auth/presentation/views/login_view.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 import 'home_view_body.dart';
 

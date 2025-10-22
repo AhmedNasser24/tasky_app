@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../../core/utils/constants/app_constants.dart';
 import '../../../domain/entities/task_entity.dart';
-import '../../views/details_view.dart';
 import 'setting_icon_button.dart';
 import 'task_item_date.dart';
 import 'task_item_description.dart';

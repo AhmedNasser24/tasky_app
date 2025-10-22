@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:tasky_app/core/routes/routes.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
 import '../../manager/fetch_one_task_cubit/fetch_one_task_cubit_cubit.dart';
-import '../../views/details_view.dart';
 import 'scan_code_view_body.dart';
 
 class ScanCodeViewBodyBlocConsumer extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/show_snack_bar.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
-import 'task_loading_state_body.dart';
+import '../../../../../core/widgets/skeletonizer/custom_grid_skeletonizer.dart';
 import 'task_success_state_body.dart';
 
 class TaskItemsBlocBuilder extends StatelessWidget {
@@ -30,15 +30,15 @@ class TaskItemsBlocBuilder extends StatelessWidget {
         if (state is FetchTaskSuccess) {
           return TaskSuccessStateBody(state: state);
         } else if (state is FetchTaskLoading || state is InitialState) {
-          return const CustomLoadingSkeletonizer();
+          return const CustomGridSkeletonizer();
         } else if (state is NoInternetConnection) {
           if (isFirstTaskOperation) {
-            return const CustomLoadingSkeletonizer();
+            return const CustomGridSkeletonizer();
           } else {
             return const TaskSuccessStateBody();
           }
         } else if (state is FetchTaskFailure && isFirstTaskOperation) {
-          return const CustomLoadingSkeletonizer();
+          return const CustomGridSkeletonizer();
         } else {
           return const TaskSuccessStateBody();
         }

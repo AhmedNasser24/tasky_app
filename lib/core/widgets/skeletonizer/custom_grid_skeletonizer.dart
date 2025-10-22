@@ -1,33 +1,29 @@
 
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../core/utils/constants/app_constants.dart';
-import '../../../../../core/extensions/media_query_extension.dart';
-import 'damy_task_item.dart';
+import '../../utils/constants/app_constants.dart';
+import '../../extensions/media_query_extension.dart';
+import 'task_item_skeletonizer.dart';
 
-class CustomLoadingSkeletonizer extends StatelessWidget {
-  const CustomLoadingSkeletonizer({
+class CustomGridSkeletonizer extends StatelessWidget {
+  const CustomGridSkeletonizer({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  responsiveCrossAxisCount(context).toInt(), // number of columns
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 24,
-              childAspectRatio: 
-                  aspectRatioToShowChildWithFixedHeight(context),
-            ),
-        physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: 10,
-        itemBuilder: (context, index) => const Skeletonizer(enabled: true, child: DamyTaskItem()),
-      ),
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount:
+                responsiveCrossAxisCount(context).toInt(), // number of columns
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 24,
+            childAspectRatio: 
+                aspectRatioToShowChildWithFixedHeight(context),
+          ),
+      physics: const AlwaysScrollableScrollPhysics(),
+      itemCount: 10,
+      itemBuilder: (context, index) => const  TaskItemSkeletonizer(),
     );
   }
   
