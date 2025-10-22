@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/core/routes/app_router.dart';
 import 'constants.dart';
 import 'core/helper/api_keys.dart';
 import 'core/utils/app_color.dart';
@@ -22,7 +23,7 @@ void main() async {
   );
 }
 
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+// GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class TaskyApp extends StatelessWidget {
   const TaskyApp({super.key});
@@ -31,34 +32,45 @@ class TaskyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => di.getIt<TaskOperationCubit>(),
-      child: MaterialApp(
-        navigatorKey: navigatorKey,
-        
-        theme: ThemeData(
-          fontFamily: 'DM Sans',
-          scaffoldBackgroundColor: AppColor.whiteColor,
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
-        ),
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: onGenerateRoute,
-        initialRoute: splashLogic(),
-      ),
-    );
+        create: (context) => di.getIt<TaskOperationCubit>(),
+        child: MaterialApp.router(
+          routerConfig: appRouter,
+          // navigatorKey: navigatorKey,
+          theme: ThemeData(
+            fontFamily: 'DM Sans',
+            scaffoldBackgroundColor: AppColor.whiteColor,
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+          ),
+          debugShowCheckedModeBanner: false,
+          
+        )
+        // child: MaterialApp(
+        // navigatorKey: navigatorKey,
+
+        // theme: ThemeData(
+        //   fontFamily: 'DM Sans',
+        //   scaffoldBackgroundColor: AppColor.whiteColor,
+        //   colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+        // ),
+        // debugShowCheckedModeBanner: false,
+        //   onGenerateRoute: onGenerateRoute,
+        //   initialRoute: splashLogic(),
+        // ),
+        );
   }
 }
 
-String splashLogic() {
-  if (!SharedPreferenceSingleton.getbool(kIsOnboardingVisited)) {
-    return OnboardingView.routeName;
-  } else {
-    if (SharedPreferenceSingleton.getString(ApiKeys.accessToken).isNotEmpty) {
-      return HomeView.routeName;
-    } else {
-      return LoginView.routeName;
-    }
-  }
-}
+// String splashLogic() {
+//   if (!SharedPreferenceSingleton.getbool(kIsOnboardingVisited)) {
+//     return OnboardingView.routeName;
+//   } else {
+//     if (SharedPreferenceSingleton.getString(ApiKeys.accessToken).isNotEmpty) {
+//       return HomeView.routeName;
+//     } else {
+//       return LoginView.routeName;
+//     }
+//   }
+// }
 
 // for testing
 // class Page1 extends StatefulWidget {

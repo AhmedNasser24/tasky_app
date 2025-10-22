@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/core/routes/app_router.dart';
 import '../helper/api_keys.dart';
 import '../secrets/api_base_url.dart';
 import '../secrets/end_point.dart';
@@ -64,11 +65,12 @@ class DioInterceptor {
           return handler.resolve(response);
         }
         if (e.response?.statusCode == 403) {
-          BlocProvider.of<TaskOperationCubit>(
-                  navigatorKey.currentState!.context)
-              .initAllDataOfCubit();
-          Navigator.pushReplacementNamed(
-              navigatorKey.currentState!.context, LoginView.routeName);
+          // BlocProvider.of<TaskOperationCubit>(
+          //         navigatorKey.currentState!.context)
+          //     .initAllDataOfCubit();
+          // Navigator.pushReplacementNamed(
+          //     navigatorKey.currentState!.context, LoginView.routeName);
+          appRouter.go(LoginView.routeName);
           return;
         }
         return handler.next(e);
