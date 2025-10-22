@@ -240,7 +240,7 @@ final GoRouter appRouter = GoRouter(
         path: AppRouter.login,
         name: AppRouter.login,
         pageBuilder: (context, state) {
-          final initOperationTaskCubit = state.extra as bool;
+          final bool initOperationTaskCubit = state.extra as bool? ?? false;
           return buildAnimatedPage(
             key: state.pageKey,
             child: LoginView(initOperationTaskCubit: initOperationTaskCubit),

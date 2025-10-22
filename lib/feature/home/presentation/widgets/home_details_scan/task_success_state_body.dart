@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/extensions/media_query_extension.dart';
+import '../../../../../core/widgets/pagination/custom_pagination.dart';
 import 'task_empty_state_body.dart';
 
 import '../../../../../core/utils/constants/app_constants.dart';
@@ -16,77 +19,90 @@ class TaskSuccessStateBody extends StatefulWidget {
 }
 
 class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
-  ScrollController controller = ScrollController();
+  // ScrollController controller = ScrollController();
 
-  @override
-  void initState() {
-    final cubit = BlocProvider.of<TaskOperationCubit>(context);
-    controller.addListener(() {
-      if (controller.position.pixels >=
-              controller.position.maxScrollExtent - 200 &&
-          cubit.isThereMoreItems &&
-          !cubit.isLoading) {
-        cubit.fetchData();
-      }
-    });
-    super.initState();
-  }
- 
+  // @override
+  // void initState() {
+  //   final cubit = BlocProvider.of<TaskOperationCubit>(context);
+  //   controller.addListener(() {
+  //     if (controller.position.pixels >=
+  //             controller.position.maxScrollExtent - 200 &&
+  //         cubit.isThereMoreItems &&
+  //         !cubit.isLoading) {
+  //       cubit.fetchData();
+  //     }
+  //   });
+  //   super.initState();
+  // }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<TaskOperationCubit>(context);
     List<TaskEntity>? tasks = widget.state?.tasksList ?? cubit.tasksList;
-    List<TaskEntity> tasksListAccordingToFilter = showTaskItemAfterFilter(tasks);
+    List<TaskEntity> tasksListAccordingToFilter =
+        showTaskItemAfterFilter(tasks);
     bool isThereMoreItems = cubit.isThereMoreItems;
-    
+
     // 👇 Add this post-frame check
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (controller.hasClients &&
-          controller.position.maxScrollExtent == 0 &&
-          isThereMoreItems && !cubit.isLoading) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   if (controller.hasClients &&
+    //       controller.position.maxScrollExtent == 0 &&
+    //       isThereMoreItems &&
+    //       !cubit.isLoading) {
+    //     cubit.fetchData();
+    //   }
+    // });
+    // log ("isThereMoreItems : $isThereMoreItems");
+    // return
+    //  tasksListAccordingToFilter.isEmpty && !isThereMoreItems
+    //     ? const TaskEmptyStateBody()
+    //     :
+    //     GridView.builder(
+    //         controller: controller,
+    //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //           crossAxisCount: responsiveCrossAxisCount(context)
+    //               .toInt(), // number of columns
+    //           crossAxisSpacing: 10,
+    //           mainAxisSpacing: 24,
+    //           childAspectRatio: aspectRatioToShowChildWithFixedHeight(context),
+    //         ),
+    //         physics: const AlwaysScrollableScrollPhysics(),
+    //         itemCount:
+    //             tasksListAccordingToFilter.length + (isThereMoreItems ? 1 : 0),
+    //         itemBuilder: (context, index) {
+    //           if (index < tasksListAccordingToFilter.length) {
+
+    //             return TaskItem(taskModel: tasksListAccordingToFilter[index]);
+    //           } else {
+    //             return GestureDetector(
+    //               onTap: () =>
+    //                   BlocProvider.of<TaskOperationCubit>(context).fetchData(),
+    //               child: const Padding(
+    //                 padding: EdgeInsets.all(16.0),
+    //                 child: Center(child: CircularProgressIndicator()),
+    //               ),
+    //             );
+    //           }
+    //         },
+    //       );
+    return CustomPagination<TaskEntity>(
+      isLoading: cubit.isLoading,
+      isThereMoreItems: cubit.isThereMoreItems,
+      onLoadMoreData: () {
         cubit.fetchData();
-      }
-    });
-    
-    return
-     tasksListAccordingToFilter.isEmpty && !isThereMoreItems
-        ? const TaskEmptyStateBody()
-        : 
-        GridView.builder(
-            controller: controller,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: responsiveCrossAxisCount(context)
-                  .toInt(), // number of columns
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 24,
-              childAspectRatio: aspectRatioToShowChildWithFixedHeight(context),
-            ),
-            physics: const AlwaysScrollableScrollPhysics(),
-            itemCount:
-                tasksListAccordingToFilter.length + (isThereMoreItems ? 1 : 0),
-            itemBuilder: (context, index) {
-              if (index < tasksListAccordingToFilter.length) {
-                
-                return TaskItem(taskModel: tasksListAccordingToFilter[index]);
-              } else {
-                return GestureDetector(
-                  onTap: () =>
-                      BlocProvider.of<TaskOperationCubit>(context).fetchData(),
-                  child: const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
-                );
-              }
-            },
-          );
+      },
+      items: tasksListAccordingToFilter,
+      itemBuilder: (item) => TaskItem(taskModel: item),
+      emptyWidget: const TaskEmptyStateBody(),
+      crossAxisCount: responsiveCrossAxisCount(context).toInt(),
+      childAspectRatio: aspectRatioToShowChildWithFixedHeight(context),
+    );
   }
 
   double responsiveHeight(double screenWidth) {
@@ -104,8 +120,8 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
   List<TaskEntity> showTaskItemAfterFilter(List<TaskEntity>? tasksList) {
     if (tasksList == null) return [];
     // the usage of index is for deleting and editing in cubit
-    for (int index = 0 ; index < tasksList.length ; index++) {
-      tasksList[index].currIndex = index;        
+    for (int index = 0; index < tasksList.length; index++) {
+      tasksList[index].currIndex = index;
     }
     String currFilter = BlocProvider.of<TaskOperationCubit>(context).currFilter;
     List<TaskEntity> tasksListAccordingToFilter = [];

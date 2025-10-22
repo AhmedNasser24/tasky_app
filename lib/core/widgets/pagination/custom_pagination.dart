@@ -1,0 +1,92 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+
+class CustomPagination<T> extends StatefulWidget {
+  const CustomPagination({
+    super.key,
+    required this.isLoading,
+    required this.isThereMoreItems,
+    required this.onLoadMoreData,
+    required this.items,
+    required this.emptyWidget,
+    this.crossAxisCount = 1,
+    this.childAspectRatio = 1.0,
+    required this.itemBuilder,
+  });
+  final bool isLoading;
+  final bool isThereMoreItems;
+  final VoidCallback onLoadMoreData;
+  final List<T> items;
+  final Widget emptyWidget;
+  final int crossAxisCount;
+  final double childAspectRatio;
+  final Widget Function(T item) itemBuilder;
+  @override
+  State<CustomPagination<T>> createState() => _CustomPaginationState<T>();
+}
+
+class _CustomPaginationState<T> extends State<CustomPagination<T>> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    _scrollController.addListener(onScroll);
+    super.initState();
+  }
+
+  void onScroll() {
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent - 200 &&
+        widget.isThereMoreItems &&
+        !widget.isLoading) {
+      widget.onLoadMoreData();
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    log ("isThereMoreItems : ${widget.isThereMoreItems}");
+
+    if (widget.items.isEmpty && !widget.isThereMoreItems) {
+      return widget.emptyWidget;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients &&
+          _scrollController.position.maxScrollExtent == 0 &&
+          widget.isThereMoreItems &&
+          !widget.isLoading) {
+        widget.onLoadMoreData();
+      }
+    });
+    return GridView.builder(
+      controller: _scrollController,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: widget.crossAxisCount, // number of columns
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 24,
+        childAspectRatio: widget.childAspectRatio,
+      ),
+      physics: const AlwaysScrollableScrollPhysics(),
+      itemCount: widget.items.length + (widget.isThereMoreItems ? 1 : 0),
+      itemBuilder: (context, index) {
+        if (index < widget.items.length) {
+          return widget.itemBuilder(widget.items[index]);
+          // return TaskItem(taskModel: tasksListAccordingToFilter[index]);
+        } else {
+          return const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+      },
+    );
+  }
+}
