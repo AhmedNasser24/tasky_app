@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 import 'logout_icon_button_bloc_consumer.dart';
 import 'profile_icon_button.dart';
 import 'refresh_icon_button.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../constants.dart';
-import '../../../../core/utils/app_images.dart';
+import '../../../../core/utils/constants/app_constants.dart';
+import '../../../../core/utils/theme/app_images.dart';
 import '../../domain/entities/user_info_entity.dart';
 import 'already_have_account.dart';
 import 'register_password.dart';

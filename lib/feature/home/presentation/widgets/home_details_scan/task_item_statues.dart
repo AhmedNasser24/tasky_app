@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/utils/theme/app_color.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class TaskItemStatues extends StatelessWidget {
   const TaskItemStatues(

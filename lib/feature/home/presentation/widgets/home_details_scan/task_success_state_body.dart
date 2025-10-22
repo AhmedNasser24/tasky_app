@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/helper/media_query_extension.dart';
+import '../../../../../core/extensions/media_query_extension.dart';
 import 'task_empty_state_body.dart';
 
-import '../../../../../constants.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
 import '../../../domain/entities/task_entity.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 import 'task_item.dart';

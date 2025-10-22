@@ -1,16 +1,13 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasky_app/core/api/status_code.dart';
 import 'package:tasky_app/core/routes/app_router.dart';
+import 'package:tasky_app/core/routes/routes.dart';
 import '../helper/api_keys.dart';
-import '../secrets/api_base_url.dart';
-import '../secrets/end_point.dart';
-import '../utils/shared_preference_singleton.dart';
-import '../../feature/auth/presentation/views/login_view.dart';
-import '../../feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
-import '../../main.dart';
+import 'api_base_url.dart';
+import 'end_point.dart';
+import '../storage/shared_preference_singleton.dart';
 
 class DioInterceptor {
   late final Dio dio;
@@ -35,7 +32,7 @@ class DioInterceptor {
       },
       onError: (DioException e, handler) async {
         log("dio interceptor Error : ${e.toString()}");
-        if (e.response?.statusCode == 401) {
+        if (e.response?.statusCode == StatusCode.unauthorized) {
           await refreshToken();
           String newAccessToken =
               SharedPreferenceSingleton.getString(ApiKeys.accessToken);
@@ -64,13 +61,8 @@ class DioInterceptor {
           final response = await dio.fetch(requestOptions);
           return handler.resolve(response);
         }
-        if (e.response?.statusCode == 403) {
-          // BlocProvider.of<TaskOperationCubit>(
-          //         navigatorKey.currentState!.context)
-          //     .initAllDataOfCubit();
-          // Navigator.pushReplacementNamed(
-          //     navigatorKey.currentState!.context, LoginView.routeName);
-          appRouter.go(LoginView.routeName);
+        if (e.response?.statusCode == StatusCode.refreshFailed) {
+          appRouter.go(AppRouter.login , extra: true);
           return;
         }
         return handler.next(e);

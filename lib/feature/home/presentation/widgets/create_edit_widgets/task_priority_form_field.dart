@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/utils/theme/app_color.dart';
+import '../../../../../core/utils/theme/app_images.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 import '../../../domain/entities/task_entity.dart';
 
 class TaskPriorityFormField extends StatefulWidget {

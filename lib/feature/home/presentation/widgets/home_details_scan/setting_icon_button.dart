@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/theme/app_color.dart';
 import '../../views/edit_view.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 import '../../../domain/entities/task_entity.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_images.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class SettingIconButton extends StatelessWidget {
   const SettingIconButton({super.key, required this.taskEntity});

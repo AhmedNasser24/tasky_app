@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/helper/media_query_extension.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/extensions/media_query_extension.dart';
 import '../../../domain/entities/task_entity.dart';
 import 'edit_app_bar.dart';
 import 'edit_task_button.dart';

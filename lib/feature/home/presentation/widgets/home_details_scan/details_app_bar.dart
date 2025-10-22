@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 import '../../../../../core/widgets/custom_back_arrow_button.dart';
 import '../../../domain/entities/task_entity.dart';
 import 'setting_icon_button.dart';

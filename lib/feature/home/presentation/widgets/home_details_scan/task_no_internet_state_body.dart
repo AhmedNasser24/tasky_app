@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class TaskNoInternetStateBody extends StatelessWidget {
   const TaskNoInternetStateBody({

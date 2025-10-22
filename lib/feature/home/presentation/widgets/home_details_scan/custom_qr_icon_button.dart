@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tasky_app/core/routes/routes.dart';
 
-import '../../../../../core/utils/app_images.dart';
+import '../../../../../core/utils/theme/app_images.dart';
 
 class CustomQrIconButton extends StatelessWidget {
   const CustomQrIconButton({super.key});

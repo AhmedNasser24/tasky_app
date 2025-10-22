@@ -1,5 +1,5 @@
 
-abstract class ApiServices {
+abstract class ApiConsumer {
   Future get({required String endPoint, Map<String, dynamic>? queryParameters});
 
   Future post({required String endPoint, Object? data, bool isAuth = false});

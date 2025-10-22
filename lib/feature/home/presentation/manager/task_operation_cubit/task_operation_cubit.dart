@@ -6,7 +6,7 @@ import 'package:tasky_app/feature/home/domain/user_cases/create_task_user_case.d
 import 'package:tasky_app/feature/home/domain/user_cases/delete_task_user_case.dart';
 import 'package:tasky_app/feature/home/domain/user_cases/edit_task_user_case.dart';
 import 'package:tasky_app/feature/home/domain/user_cases/fetch_all_task_user_case.dart';
-import '../../../../../constants.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../domain/entities/task_entity.dart';
 

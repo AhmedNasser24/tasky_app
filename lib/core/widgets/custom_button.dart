@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../utils/app_color.dart';
+import '../utils/theme/app_color.dart';
 
-import '../utils/app_styles.dart';
+import '../utils/theme/app_font_styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.onTap, required this.title});

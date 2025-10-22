@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import '../models/task_model.dart';
 import '../../../../core/helper/api_keys.dart';
-import '../../../../core/services/api_services.dart';
+import '../../../../core/api/api_consumer.dart';
 import 'data_source.dart';
-import '../../../../core/secrets/end_point.dart';
+import '../../../../core/api/end_point.dart';
 
 class DataSourceImpl extends DataSource {
-  final ApiServices apiServices;
+  final ApiConsumer apiServices;
   
   DataSourceImpl({required this.apiServices});
   @override

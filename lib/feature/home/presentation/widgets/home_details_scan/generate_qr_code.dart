@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
-import '../../../../../constants.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
 
 class GenerateQrCode extends StatelessWidget {
   const GenerateQrCode({super.key, required this.taskId});

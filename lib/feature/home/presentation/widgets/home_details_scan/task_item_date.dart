@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import '../../../../../core/helper/format_date.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class TaskItemDate extends StatelessWidget {
   const TaskItemDate({super.key,this.date });

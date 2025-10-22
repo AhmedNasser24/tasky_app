@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/helper/media_query_extension.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/extensions/media_query_extension.dart';
 import 'damy_task_item.dart';
 
 class CustomLoadingSkeletonizer extends StatelessWidget {

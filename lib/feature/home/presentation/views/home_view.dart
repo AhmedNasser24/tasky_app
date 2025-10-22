@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/utils/get_it_setup.dart';
+import '../../../../core/dependency_injection/get_it_setup.dart';
 import '../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
 import '../widgets/home_details_scan/custom_floating_button_for_home_view.dart';
 import '../widgets/home_details_scan/home_view_body_bloc_consumer.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../../../core/helper/set_preferred_orientations.dart';
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_color.dart';
+import '../../../../../core/utils/theme/app_images.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
-import '../../../../../constants.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
 import 'start_button.dart';
 
 class OnboardingViewBody extends StatefulWidget {

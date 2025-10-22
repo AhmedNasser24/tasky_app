@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../data/get_profile_data.dart';
-import '../../../../../constants.dart';
-import '../../../../../core/helper/media_query_extension.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/extensions/media_query_extension.dart';
 import '../../../../auth/domain/entities/user_info_entity.dart';
 import 'profile_text_form_field.dart';
 

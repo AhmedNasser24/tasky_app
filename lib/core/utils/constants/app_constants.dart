@@ -11,6 +11,7 @@ const String kMedium = "Medium" ;
 const String kHigh = "High" ;
 const String kFlag = "Flag" ;
 const String kColor = "Color" ;
+const String kAppFontFamily = 'DM Sans' ;
 
 
 

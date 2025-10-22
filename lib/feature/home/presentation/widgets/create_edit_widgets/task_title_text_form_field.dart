@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import '../../../../../core/widgets/custom_textformfield.dart';
 
 import '../../../domain/entities/task_entity.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class TaskTitleFormField extends StatefulWidget {
   const TaskTitleFormField(this.taskModel , {super.key});

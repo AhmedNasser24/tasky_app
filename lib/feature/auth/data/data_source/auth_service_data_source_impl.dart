@@ -1,12 +1,12 @@
 import '../model/user_info_model.dart';
 
-import '../../../../core/services/api_services.dart';
+import '../../../../core/api/api_consumer.dart';
 import 'auth_services_data_source.dart';
 
-import '../../../../core/secrets/end_point.dart';
+import '../../../../core/api/end_point.dart';
 
 class AuthServicesDataSourceImpl extends AuthServicesDataSource {
-  final ApiServices apiServices;
+  final ApiConsumer apiServices;
 
   AuthServicesDataSourceImpl({required this.apiServices});
 

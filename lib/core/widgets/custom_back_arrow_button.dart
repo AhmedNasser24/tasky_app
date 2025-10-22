@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../utils/app_images.dart';
+import '../utils/theme/app_images.dart';
 
 class CustomBackArrowButton extends StatelessWidget {
   const CustomBackArrowButton({

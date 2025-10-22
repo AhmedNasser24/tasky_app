@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import '../../../../../constants.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 import 'filter_buttons.dart';
 import 'task_items_bloc_builder.dart';

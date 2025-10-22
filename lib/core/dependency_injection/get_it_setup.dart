@@ -14,10 +14,10 @@ import '../../feature/home/domain/user_cases/delete_task_user_case.dart';
 import '../../feature/home/domain/user_cases/edit_task_user_case.dart';
 import '../../feature/home/domain/user_cases/fetch_all_task_user_case.dart';
 import '../../feature/home/domain/user_cases/fetch_one_task_user_case.dart';
-import '../services/api_services.dart';
+import '../api/api_consumer.dart';
 import '../../feature/auth/data/data_source/auth_services_data_source.dart';
 import '../../feature/home/data/data_source/data_source.dart';
-import '../services/dio_api_service.dart';
+import '../api/dio_consumer.dart';
 import '../../feature/home/domain/repo/task_operation_repo.dart';
 
 import '../../feature/auth/domain/repo/auth_repo.dart';
@@ -30,7 +30,7 @@ void getItSetup() {
   // خلي بالك من الترتيب مينفع انادي علي حاجة وهي لسه متعملهاش ريجستير
 
   // services
-  getIt.registerLazySingleton<ApiServices>(() => DioApiServices());
+  getIt.registerLazySingleton<ApiConsumer>(() => DioConsumer());
   // data source
   getIt.registerLazySingleton<DataSource>(
     () => DataSourceImpl(

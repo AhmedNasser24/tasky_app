@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_color.dart';
-import '../../../../core/utils/app_styles.dart';
+import '../../../../core/utils/theme/app_color.dart';
+import '../../../../core/utils/theme/app_font_styles.dart';
 import '../../domain/entities/user_info_entity.dart';
 import '../../../../core/widgets/custom_textformfield.dart';
 

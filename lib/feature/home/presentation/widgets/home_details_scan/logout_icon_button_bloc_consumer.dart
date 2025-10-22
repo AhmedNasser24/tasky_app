@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_color.dart';
+import '../../../../../core/utils/theme/app_images.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 import '../../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
 
 class LogoutIconButtonBlocConsumer extends StatelessWidget {

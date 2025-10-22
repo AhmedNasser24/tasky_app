@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_images.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/utils/theme/app_images.dart';
 import 'task_item_date.dart';
 import 'task_item_description.dart';
 import 'task_item_image.dart';

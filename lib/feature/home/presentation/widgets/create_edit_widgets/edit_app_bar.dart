@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 import '../../../../../core/widgets/custom_back_arrow_button.dart';
 
 class EditAppBar extends StatelessWidget {

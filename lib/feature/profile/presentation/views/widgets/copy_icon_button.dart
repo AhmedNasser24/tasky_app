@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../core/widgets/show_snack_bar.dart';
 
-import '../../../../../core/utils/app_images.dart';
+import '../../../../../core/utils/theme/app_images.dart';
 
 class CopyIconButton extends StatelessWidget {
   const CopyIconButton({super.key, required this.textToCopy});

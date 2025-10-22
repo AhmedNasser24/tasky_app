@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class TaskItemTitle extends StatelessWidget {
   const TaskItemTitle(this.title ,{

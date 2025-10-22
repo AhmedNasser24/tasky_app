@@ -3,12 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tasky_app/core/routes/routes.dart';
-import '../../../../../core/utils/shared_preference_singleton.dart';
+import '../../../../../core/storage/shared_preference_singleton.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/utils/theme/app_color.dart';
+import '../../../../../core/utils/theme/app_images.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class StartButton extends StatelessWidget {
   const StartButton({super.key});

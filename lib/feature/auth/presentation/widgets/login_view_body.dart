@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../constants.dart';
-import '../../../../core/utils/app_images.dart';
+import '../../../../core/utils/constants/app_constants.dart';
+import '../../../../core/utils/theme/app_images.dart';
 import 'login_phone.dart';
 import 'package:gap/gap.dart';
 import '../../domain/entities/user_info_entity.dart';

@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import '../secrets/api_base_url.dart';
-import 'api_services.dart';
+import 'api_base_url.dart';
+import 'api_consumer.dart';
 import 'dio_interceptor.dart';
 
-class DioApiServices extends ApiServices {
+class DioConsumer extends ApiConsumer {
   final DioInterceptor _dioInterceptor = DioInterceptor();
   final Dio dio = Dio(BaseOptions(
     connectTimeout: const Duration(seconds: 10),

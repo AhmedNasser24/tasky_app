@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
-import '../../../../../constants.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
 import '../../../domain/entities/task_entity.dart';
-import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/theme/app_color.dart';
 
 class TaskTitleAndDesc extends StatelessWidget {
   const TaskTitleAndDesc(this.taskModel, {super.key});

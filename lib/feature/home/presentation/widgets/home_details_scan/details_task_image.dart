@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/helper/media_query_extension.dart';
+import '../../../../../core/extensions/media_query_extension.dart';
 
-import '../../../../../constants.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
 import 'custom_cached_network_image.dart';
 
 class DetailsTaskImage extends StatelessWidget {

@@ -1,5 +1,5 @@
 import '../../../core/helper/api_keys.dart';
-import '../../../core/utils/shared_preference_singleton.dart';
+import '../../../core/storage/shared_preference_singleton.dart';
 import '../../auth/domain/entities/user_info_entity.dart';
 
 UserInfoEntity getProfileData() {

@@ -6,8 +6,8 @@ import '../../../../../core/helper/format_date.dart';
 import '../../../../../core/widgets/custom_textformfield.dart';
 
 import '../../../domain/entities/task_entity.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/theme/app_images.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 
 class TaskDueDateFormField extends StatefulWidget {
   const TaskDueDateFormField(this.taskModel , {super.key});

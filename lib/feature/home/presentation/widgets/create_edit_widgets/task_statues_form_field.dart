@@ -1,9 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/constants/app_constants.dart';
+import '../../../../../core/utils/theme/app_color.dart';
+import '../../../../../core/utils/theme/app_font_styles.dart';
 import '../../../domain/entities/task_entity.dart';
 
 class TaskStatuesFormField extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../manager/register_cubit/register_cubit.dart';
 
-import '../../../../core/utils/get_it_setup.dart' as di;
+import '../../../../core/dependency_injection/get_it_setup.dart' as di;
 import '../widgets/register_view_body_bloc_consumer.dart';
 
 class RegisterView extends StatelessWidget {

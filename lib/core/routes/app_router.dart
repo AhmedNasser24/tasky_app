@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tasky_app/constants.dart';
+import 'package:tasky_app/core/utils/constants/app_constants.dart';
 import 'package:tasky_app/core/helper/api_keys.dart';
 import 'package:tasky_app/core/routes/routes.dart';
-import 'package:tasky_app/core/utils/shared_preference_singleton.dart';
+import 'package:tasky_app/core/storage/shared_preference_singleton.dart';
 import 'package:tasky_app/feature/auth/presentation/views/login_view.dart';
 import 'package:tasky_app/feature/auth/presentation/views/register_view.dart';
 import 'package:tasky_app/feature/home/domain/entities/task_entity.dart';
@@ -237,15 +237,19 @@ final GoRouter appRouter = GoRouter(
                 curve: Curves.elasticOut,
               )),
       GoRoute(
-          path: AppRouter.login,
-          name: AppRouter.login,
-          pageBuilder: (context, state) => buildAnimatedPage(
-                key: state.pageKey,
-                child: const LoginView(),
-                animationType: AnimationType.slideFromRight,
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.elasticOut,
-              )),
+        path: AppRouter.login,
+        name: AppRouter.login,
+        pageBuilder: (context, state) {
+          final initOperationTaskCubit = state.extra as bool;
+          return buildAnimatedPage(
+            key: state.pageKey,
+            child: LoginView(initOperationTaskCubit: initOperationTaskCubit),
+            animationType: AnimationType.slideFromRight,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.elasticOut,
+          );
+        },
+      ),
       GoRoute(
         path: AppRouter.register,
         name: AppRouter.register,
