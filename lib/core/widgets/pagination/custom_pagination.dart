@@ -14,8 +14,9 @@ class CustomPagination<T> extends StatefulWidget {
     this.childAspectRatio = 1.0,
     required this.itemBuilder,
     this.skeletonizerBuilder,
-    this.skeletonizerCount = 3,
+    this.skeletonizerCount = 3, required this.scrollController,
   });
+  final ScrollController scrollController;
   final bool isLoading;
   final bool isThereMoreItems;
   final VoidCallback onLoadMoreData;
@@ -31,19 +32,20 @@ class CustomPagination<T> extends StatefulWidget {
 }
 
 class _CustomPaginationState<T> extends State<CustomPagination<T>> {
-  final ScrollController _scrollController = ScrollController();
+  late ScrollController _scrollController ;
 
   @override
   void initState() {
+    _scrollController = widget.scrollController ;
     _scrollController.addListener(onScroll);
     super.initState();
   }
 
   void onScroll() {
     if (_scrollController.position.pixels >=
-            _scrollController.position.maxScrollExtent - 200 &&
-        widget.isThereMoreItems &&
-        !widget.isLoading) {
+            _scrollController.position.maxScrollExtent - 200 
+            // &&widget.isThereMoreItems &&!widget.isLoading  // i handle this in cubit
+            ) {
       widget.onLoadMoreData();
     }
   }
@@ -56,7 +58,6 @@ class _CustomPaginationState<T> extends State<CustomPagination<T>> {
 
   @override
   Widget build(BuildContext context) {
-    log("isThereMoreItems : ${widget.isThereMoreItems}");
 
     if (widget.items.isEmpty && !widget.isThereMoreItems) {
       return widget.emptyWidget;
@@ -64,42 +65,46 @@ class _CustomPaginationState<T> extends State<CustomPagination<T>> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients &&
-          _scrollController.position.maxScrollExtent == 0 &&
-          widget.isThereMoreItems &&
-          !widget.isLoading) {
+          _scrollController.position.maxScrollExtent == 0 
+          // && widget.isThereMoreItems && !widget.isLoading   // i handle this in cubit
+          ) {
         widget.onLoadMoreData();
       }
     });
-    return GridView.builder(
-      controller: _scrollController,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: widget.crossAxisCount, // number of columns
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 24,
-        childAspectRatio: widget.childAspectRatio,
-      ),
-      physics: const AlwaysScrollableScrollPhysics(),
-      itemCount: widget.items.length +
-          (widget.isThereMoreItems
-              ? (widget.skeletonizerBuilder != null
-                  ? widget.skeletonizerCount
-                  : 1)
-              : 0),
-      itemBuilder: (context, index) {
-        if (index < widget.items.length) {
-          return widget.itemBuilder(widget.items[index]);
-          // return TaskItem(taskModel: tasksListAccordingToFilter[index]);
-        } else {
-          if (widget.skeletonizerBuilder != null) {
-            return widget.skeletonizerBuilder!();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: GridView.builder(
+        controller: _scrollController,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: widget.crossAxisCount, // number of columns
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 24,
+          childAspectRatio: widget.childAspectRatio,
+        ),
+        physics: const AlwaysScrollableScrollPhysics(),
+        itemCount: widget.items.length +
+            (widget.isThereMoreItems
+                ? 
+                (widget.skeletonizerBuilder != null
+                    ? widget.skeletonizerCount
+                    : 1)
+                : 0),
+        itemBuilder: (context, index) {
+          if (index < widget.items.length) {
+            return widget.itemBuilder(widget.items[index]);
+            // return TaskItem(taskModel: tasksListAccordingToFilter[index]);
           } else {
-            return const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Center(child: CircularProgressIndicator()),
-            );
+            if (widget.skeletonizerBuilder != null) {
+              return widget.skeletonizerBuilder!();
+            } else {
+              return const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
           }
-        }
-      },
+        },
+      ),
     );
   }
 }

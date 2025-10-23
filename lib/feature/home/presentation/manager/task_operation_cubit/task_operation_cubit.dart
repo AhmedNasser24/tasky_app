@@ -49,9 +49,9 @@ class TaskOperationCubit extends Cubit<TaskOperationState> {
   }
 
   Future<void> fetchData() async {
-    if (__isThereMoreItems == false) {
-      return;
-    }
+    if (isLoading) return;   // to prevent multiple calls
+    if (__isThereMoreItems == false) return;
+    
     if (!__isNetworkConnected) {
       emit(NoInternetConnection());
       return;

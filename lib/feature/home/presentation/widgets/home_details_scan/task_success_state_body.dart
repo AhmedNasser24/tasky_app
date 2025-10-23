@@ -10,18 +10,29 @@ import '../../../domain/entities/task_entity.dart';
 import '../../manager/task_operation_cubit/task_operation_cubit.dart';
 import 'task_item.dart';
 
-class TaskSuccessStateBody extends StatelessWidget {
+class TaskSuccessStateBody extends StatefulWidget {
   const TaskSuccessStateBody({super.key, this.state});
   final FetchTaskSuccess? state;
+
+  @override
+  State<TaskSuccessStateBody> createState() => _TaskSuccessStateBodyState();
+}
+
+class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
+  final ScrollController controller = ScrollController();
+  @override
+
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<TaskOperationCubit>(context);
-    List<TaskEntity>? tasks = state?.tasksList ?? cubit.tasksList;
+    List<TaskEntity>? tasks = widget.state?.tasksList ?? cubit.tasksList;
     List<TaskEntity> tasksListAccordingToFilter =
-        showTaskItemAfterFilter(context ,tasks);
+        showTaskItemAfterFilter(tasks);
 
-    
+
+   
     return CustomPagination<TaskEntity>(
+      scrollController : controller,
       isLoading: cubit.isLoading,
       isThereMoreItems: cubit.isThereMoreItems,
       onLoadMoreData: () {
@@ -48,7 +59,7 @@ class TaskSuccessStateBody extends StatelessWidget {
     }
   }
 
-  List<TaskEntity> showTaskItemAfterFilter(BuildContext context , List<TaskEntity>? tasksList) {
+  List<TaskEntity> showTaskItemAfterFilter( List<TaskEntity>? tasksList) {
     if (tasksList == null) return [];
     // the usage of index is for deleting and editing in cubit
     for (int index = 0; index < tasksList.length; index++) {
