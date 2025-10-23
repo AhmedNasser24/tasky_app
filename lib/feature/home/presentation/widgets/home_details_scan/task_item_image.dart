@@ -6,10 +6,12 @@ class TaskItemImage extends StatelessWidget {
   const TaskItemImage(
     this.imageUrl, {
     super.key,
+    this.fromApi = true,
   });
   final String imageUrl;
+  final bool fromApi;
   @override
   Widget build(BuildContext context) {
-    return CustomCachedNetworkImage(imageUrl: imageUrl);
+    return CustomCachedNetworkImage(imageUrl: imageUrl, fromApi: fromApi);
   }
 }

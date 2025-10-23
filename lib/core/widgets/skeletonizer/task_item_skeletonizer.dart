@@ -22,7 +22,7 @@ class TaskItemSkeletonizer extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TaskItemImage(Assets.imagesTask),
+            TaskItemImage(Assets.imagesTask , fromApi: false),
             Gap(5),
             Expanded(
               child: Column(

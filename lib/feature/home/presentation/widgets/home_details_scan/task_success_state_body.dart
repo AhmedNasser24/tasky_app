@@ -96,8 +96,10 @@ class _TaskSuccessStateBodyState extends State<TaskSuccessStateBody> {
       return 1;
     } else if (screenWidth < 1200) {
       return 2;
-    } else {
+    } else if (screenWidth < 1700){
       return 3;
+    } else {
+      return 4 ;
     }
   }
 }
