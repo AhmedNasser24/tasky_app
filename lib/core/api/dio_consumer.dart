@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
-import 'api_base_url.dart';
 import 'api_consumer.dart';
-import 'dio_interceptor.dart';
 
 class DioConsumer extends ApiConsumer {
-  final DioInterceptor _dioInterceptor = DioInterceptor();
-  final Dio dio = Dio(BaseOptions(
+  DioConsumer({required this.dio});
+  final Dio dio;
+  final Dio normalDio = Dio(BaseOptions(
     connectTimeout: const Duration(seconds: 10),
     sendTimeout: const Duration(seconds: 10),
   ));
+
   @override
   Future get(
       {required String endPoint, Map<String, dynamic>? queryParameters}) async {
-    Response response = await _dioInterceptor.dio.get(
+    Response response = await dio.get(
       endPoint,
       queryParameters: queryParameters,
     );
@@ -20,22 +20,13 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future post(
-      {required String endPoint, Object? data, bool isAuth = false}) async {
-    if (isAuth) {
-      Response response = await dio.post(
-        "$kBaseUrl$endPoint",
-        data: data,
-      );
-      return response.data;
-    } else {
-      Response response = await _dioInterceptor.dio.post(
-        endPoint,
-        data: data,
-      );
+  Future post({required String endPoint, Object? data}) async {
+    Response response = await dio.post(
+      endPoint,
+      data: data,
+    );
 
-      return response.data;
-    }
+    return response.data;
   }
 
   @override
@@ -43,7 +34,7 @@ class DioConsumer extends ApiConsumer {
     required String endPoint,
     required Map<String, dynamic> data,
   }) async {
-    _dioInterceptor.dio.put(
+    dio.put(
       endPoint,
       data: data,
     );
@@ -51,6 +42,6 @@ class DioConsumer extends ApiConsumer {
 
   @override
   Future<void> delete({required String endPoint}) async {
-    _dioInterceptor.dio.delete(endPoint);
+    dio.delete(endPoint);
   }
 }

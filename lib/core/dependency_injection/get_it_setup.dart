@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:tasky_app/core/api/app_interceptor.dart';
+import 'package:tasky_app/core/api/end_point.dart';
 import 'package:tasky_app/feature/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:tasky_app/feature/home/presentation/manager/fetch_one_task_cubit/fetch_one_task_cubit_cubit.dart';
 import 'package:tasky_app/feature/home/presentation/manager/task_operation_cubit/task_operation_cubit.dart';
@@ -27,10 +30,25 @@ import '../../feature/home/data/repo/task_operation_repo_impl.dart';
 final getIt = GetIt.instance;
 
 void getItSetup() {
-  // خلي بالك من الترتيب مينفع انادي علي حاجة وهي لسه متعملهاش ريجستير
+  // خلي بالك من الترتيب مينفع انادي علي حاجة وهي لسه متعملهاش ريجستير وده بسبب انك مش بتسمي 
 
-  // services
-  getIt.registerLazySingleton<ApiConsumer>(() => DioConsumer());
+  // dio config
+  getIt.registerSingleton<Dio>(
+    Dio(
+      BaseOptions(
+        baseUrl: EndPoint.baseUrl,
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+      ),
+    ),
+  );
+
+  getIt.registerSingleton<ApiConsumer>(
+    DioConsumer(
+      dio: getIt.get<Dio>()
+        ..interceptors.add(AppInterceptors(dio: getIt.get<Dio>())),
+    ),
+  );
   // data source
   getIt.registerLazySingleton<DataSource>(
     () => DataSourceImpl(
@@ -40,7 +58,7 @@ void getItSetup() {
 
   getIt.registerLazySingleton<AuthServicesDataSource>(
     () => AuthServicesDataSourceImpl(
-      apiServices: getIt(),
+      apiConsumer: getIt(),
     ),
   );
   // repo

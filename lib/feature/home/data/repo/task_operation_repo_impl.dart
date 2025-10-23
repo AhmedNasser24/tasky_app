@@ -3,12 +3,12 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:tasky_app/core/api/end_point.dart';
 import '../models/task_model.dart';
 
 import '../../../../core/errors/failure.dart';
 
 import '../../domain/entities/task_entity.dart';
-import '../../../../core/api/api_base_url.dart';
 import '../data_source/data_source.dart';
 import '../../domain/repo/task_operation_repo.dart';
 
@@ -94,7 +94,7 @@ class TaskOperationRepoImpl extends TaskOperationRepo {
   
   Future<String> __uploadImage({required File imageFile}) async {
     String imagePath = await dataSource.uploadImage(imageFile: imageFile);
-    String imageUrl = "$kBaseUrl/images/$imagePath";
+    String imageUrl = "${EndPoint.baseUrl}/images/$imagePath";
     return imageUrl;
   }
 
