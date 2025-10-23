@@ -1,6 +1,6 @@
 import '../../domain/entities/task_entity.dart';
 
-import '../../../../core/helper/api_keys.dart';
+import '../../../../core/utils/constants/api_keys.dart';
 
 class TaskModel extends TaskEntity {
   TaskModel(

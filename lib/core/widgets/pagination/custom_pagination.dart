@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 class CustomPagination<T> extends StatefulWidget {
@@ -75,7 +73,9 @@ class _CustomPaginationState<T> extends State<CustomPagination<T>> {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: GridView.builder(
         controller: _scrollController,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 400,
+          mainAxisExtent: 350,
           crossAxisCount: widget.crossAxisCount, // number of columns
           crossAxisSpacing: 10,
           mainAxisSpacing: 24,

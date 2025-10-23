@@ -15,6 +15,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       fit: BoxFit.fill,
+      
       imageUrl: imageUrl,
       imageBuilder: (context, imageProvider) => AspectRatio(
         aspectRatio: 1,
